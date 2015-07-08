@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       145,          7]
-NotebookDataLength[     13134,        463]
-NotebookOptionsPosition[      9631,        348]
-NotebookOutlinePosition[     11234,        393]
-CellTagsIndexPosition[     11149,        388]
+NotebookDataLength[     13075,        459]
+NotebookOptionsPosition[      9575,        344]
+NotebookOutlinePosition[     11178,        389]
+CellTagsIndexPosition[     11093,        384]
 WindowTitle->Adjoint - Wolfram Mathematica
 WindowFrame->Normal*)
 
@@ -135,16 +135,16 @@ Cell[TextData[Cell[BoxData[
   Evaluator->None,
   Method->"Preemptive"]]]], "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->14470713],
+ CellID->6898380],
 
 Cell[TextData[{
  "Argument ",
  Cell[BoxData["group"], "InlineFormula"],
- "s should be the ",
- ButtonBox["Cartan matrices",
+ " should be the ",
+ ButtonBox["Cartan matrix",
   BaseStyle->"Link",
-  ButtonData->"paclet:Susyno/ref/CM"],
- " of the groups;"
+  ButtonData->"paclet:Susyno/ref/CartanMatrix"],
+ " of the group;"
 }], "Notes",
  CellID->416274567],
 
@@ -157,11 +157,7 @@ of ",
  CellID->1067943069],
 
 Cell[TextData[{
- "A list of ",
- ButtonBox["Cartan matrices",
-  BaseStyle->"Link",
-  ButtonData->"paclet:Susyno/ref/CM"],
- " ",
+ "A list of Cartan matrices ",
  Cell[BoxData[
   RowBox[{"{", 
    RowBox[{"group1", ",", " ", "group2", ",", "..."}], "}"}]], 
@@ -187,7 +183,7 @@ Cell[TextData[ButtonBox["EXAMPLES",
      FrontEnd`SelectedNotebook[], After, 
      CellContents]}]& )]], "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->558925606],
+ CellID->124372874],
 
 Cell[CellGroupData[{
 
@@ -196,7 +192,7 @@ Cell[TextData[{
  "\[NonBreakingSpace]\[NonBreakingSpace]",
  Cell["(1)", "ExampleCount"]
 }], "ExampleSection",
- CellID->150080761],
+ CellID->31185522],
 
 Cell["\<\
 The adjoint of SU(2) is the triplet representation [={2} in Dynkin \
@@ -217,7 +213,7 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[1]=",
- CellID->298052731]
+ CellID->163354776]
 }, Open  ]],
 
 Cell["Two more examples:", "ExampleText",
@@ -237,7 +233,7 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[2]=",
- CellID->730638731]
+ CellID->563256976]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -254,7 +250,7 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[3]=",
- CellID->419206379]
+ CellID->804071996]
 }, Open  ]],
 
 Cell["\<\
@@ -284,7 +280,7 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[4]=",
- CellID->82718239]
+ CellID->29393988]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
@@ -329,9 +325,9 @@ Cell[TextData[ButtonBox["RELATED LINKS",
 
 Cell[TextData[{
  Cell[BoxData[
-  ButtonBox["CM",
+  ButtonBox["CartanMatrix",
    BaseStyle->"Link",
-   ButtonData->"paclet:Susyno/ref/CM"]], "InlineFormula"],
+   ButtonData->"paclet:Susyno/ref/CartanMatrix"]], "InlineFormula"],
  "\[NonBreakingSpace]",
  StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
   "InlineSeparator"],
@@ -354,7 +350,7 @@ WindowTitle->"Adjoint - Wolfram Mathematica",
 TaggingRules->{
  "ModificationHighlight" -> False, 
   "Metadata" -> {
-   "built" -> "{2011, 2, 8, 15, 58, 57.0312500}", "context" -> "Susyno`", 
+   "built" -> "{2012, 3, 2, 12, 12, 56.0937500}", "context" -> "Susyno`", 
     "keywords" -> {}, "index" -> True, "label" -> "Susyno Paclet Symbol", 
     "language" -> "en", "paclet" -> "Susyno", "status" -> "None", "summary" -> 
     "Adjoint[group] Returns the adjoint representation of \
@@ -380,14 +376,14 @@ StyleDefinitions->Notebook[{
 (*CellTagsOutline
 CellTagsIndex->{
  "PrimaryExamplesSection"->{
-  Cell[5448, 176, 461, 13, 70, "PrimaryExamplesSection",
+  Cell[5373, 172, 461, 13, 70, "PrimaryExamplesSection",
    CellTags->"PrimaryExamplesSection",
-   CellID->558925606]}
+   CellID->124372874]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"PrimaryExamplesSection", 11006, 381}
+ {"PrimaryExamplesSection", 10950, 377}
  }
 *)
 (*NotebookFileOutline
@@ -403,68 +399,68 @@ Cell[3219, 91, 791, 24, 70, "Usage",
  CellID->982511436]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[4047, 120, 579, 17, 70, "NotesSection",
+Cell[4047, 120, 578, 17, 70, "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->14470713],
-Cell[4629, 139, 234, 9, 70, "Notes",
+ CellID->6898380],
+Cell[4628, 139, 240, 9, 70, "Notes",
  CellID->416274567],
-Cell[4866, 150, 180, 6, 70, "Notes",
+Cell[4871, 150, 180, 6, 70, "Notes",
  CellID->1067943069],
-Cell[5049, 158, 362, 13, 70, "Notes",
+Cell[5054, 158, 282, 9, 70, "Notes",
  CellID->68145961]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[5448, 176, 461, 13, 70, "PrimaryExamplesSection",
+Cell[5373, 172, 461, 13, 70, "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->558925606],
+ CellID->124372874],
 Cell[CellGroupData[{
-Cell[5934, 193, 148, 5, 70, "ExampleSection",
- CellID->150080761],
-Cell[6085, 200, 134, 4, 70, "ExampleText",
+Cell[5859, 189, 147, 5, 70, "ExampleSection",
+ CellID->31185522],
+Cell[6009, 196, 134, 4, 70, "ExampleText",
  CellID->283112903],
 Cell[CellGroupData[{
-Cell[6244, 208, 105, 3, 70, "Input",
+Cell[6168, 204, 105, 3, 70, "Input",
  CellID->473091279],
-Cell[6352, 213, 180, 6, 36, "Output",
- CellID->298052731]
+Cell[6276, 209, 180, 6, 36, "Output",
+ CellID->163354776]
 }, Open  ]],
-Cell[6547, 222, 61, 1, 70, "ExampleText",
+Cell[6471, 218, 61, 1, 70, "ExampleText",
  CellID->753055023],
 Cell[CellGroupData[{
-Cell[6633, 227, 105, 3, 70, "Input",
+Cell[6557, 223, 105, 3, 70, "Input",
  CellID->297272364],
-Cell[6741, 232, 223, 7, 36, "Output",
- CellID->730638731]
+Cell[6665, 228, 223, 7, 36, "Output",
+ CellID->563256976]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[7001, 244, 106, 3, 70, "Input",
+Cell[6925, 240, 106, 3, 70, "Input",
  CellID->130136287],
-Cell[7110, 249, 233, 7, 36, "Output",
- CellID->419206379]
+Cell[7034, 245, 233, 7, 36, "Output",
+ CellID->804071996]
 }, Open  ]],
-Cell[7358, 259, 126, 3, 70, "ExampleText",
+Cell[7282, 255, 126, 3, 70, "ExampleText",
  CellID->167344756],
 Cell[CellGroupData[{
-Cell[7509, 266, 166, 5, 70, "Input",
+Cell[7433, 262, 166, 5, 70, "Input",
  CellID->72297960],
-Cell[7678, 273, 388, 13, 36, "Output",
- CellID->82718239]
+Cell[7602, 269, 388, 13, 36, "Output",
+ CellID->29393988]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[8127, 293, 419, 12, 70, "TutorialsSection",
+Cell[8051, 289, 419, 12, 70, "TutorialsSection",
  CellID->250839057],
-Cell[8549, 307, 151, 3, 70, "Tutorials",
+Cell[8473, 303, 151, 3, 70, "Tutorials",
  CellID->341631938]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[8737, 315, 427, 12, 70, "RelatedLinksSection",
+Cell[8661, 311, 427, 12, 70, "RelatedLinksSection",
  CellID->1584193535],
-Cell[9167, 329, 422, 14, 70, "RelatedLinks",
+Cell[9091, 325, 442, 14, 70, "RelatedLinks",
  CellID->56765791]
 }, Open  ]],
-Cell[9604, 346, 23, 0, 70, "FooterCell"]
+Cell[9548, 342, 23, 0, 70, "FooterCell"]
 }
 ]
 *)

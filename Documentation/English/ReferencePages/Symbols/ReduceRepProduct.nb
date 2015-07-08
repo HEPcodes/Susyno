@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       145,          7]
-NotebookDataLength[     38373,       1371]
-NotebookOptionsPosition[     31670,       1141]
-NotebookOutlinePosition[     33380,       1189]
-CellTagsIndexPosition[     33294,       1184]
+NotebookDataLength[     41652,       1469]
+NotebookOptionsPosition[     34709,       1231]
+NotebookOutlinePosition[     36419,       1279]
+CellTagsIndexPosition[     36333,       1274]
 WindowTitle->ReduceRepProduct - Wolfram Mathematica
 WindowFrame->Normal*)
 
@@ -46,6 +46,62 @@ Cell[BoxData[GridBox[{
        FrameBox["\<\"See Also \[RightGuillemet]\"\>",
         StripOnInput->False], {"\<\"DimR\"\>":>Documentation`HelpLookup[
        "paclet:Susyno/ref/DimR"]},
+       Appearance->None,
+       MenuAppearance->Automatic]],
+      LineSpacing->{1.4, 0}],
+     "\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+     Cell[BoxData[
+      ActionMenuBox[
+       FrameBox["\<\"More About \[RightGuillemet]\"\>",
+        StripOnInput->False], {
+       RowBox[{
+        RowBox[{"{", "}"}], "\[LeftDoubleBracket]", "1", 
+        "\[RightDoubleBracket]"}]:>Documentation`HelpLookup[
+        If[
+         StringMatchQ[
+          Part[{}, 2], "paclet*"], 
+         Part[
+          
+          Part[{{}, {
+            "D.M. Snow, ACM Trans. Math. Softw. 16 (1990) 94ACM Trans. Math. \
+Softw. 19 (1993) 95", 
+             StringReplace[{
+               URL["http://dx.doi.org/10.1145/77626.77634"], None}, "paclet:" :> 
+              ""]}}, 1], 2], 
+         StringJoin["paclet:", 
+          Part[
+           
+           Part[{{}, {
+             "D.M. Snow, ACM Trans. Math. Softw. 16 (1990) 94ACM Trans. Math. \
+Softw. 19 (1993) 95", 
+              StringReplace[{
+                URL["http://dx.doi.org/10.1145/77626.77634"], None}, 
+               "paclet:" :> ""]}}, 1], 
+           2]]]], "\<\"D.M. Snow, ACM Trans. Math. Softw. 16 (1990) 94ACM \
+Trans. Math. Softw. 19 (1993) 95\"\>":>Documentation`HelpLookup[
+        If[
+         StringMatchQ[
+          StringReplace[{
+            URL["http://dx.doi.org/10.1145/77626.77634"], None}, "paclet:" :> 
+           ""], "paclet*"], 
+         Part[
+          
+          Part[{{}, {
+            "D.M. Snow, ACM Trans. Math. Softw. 16 (1990) 94ACM Trans. Math. \
+Softw. 19 (1993) 95", 
+             StringReplace[{
+               URL["http://dx.doi.org/10.1145/77626.77634"], None}, "paclet:" :> 
+              ""]}}, 2], 2], 
+         StringJoin["paclet:", 
+          Part[
+           
+           Part[{{}, {
+             "D.M. Snow, ACM Trans. Math. Softw. 16 (1990) 94ACM Trans. Math. \
+Softw. 19 (1993) 95", 
+              StringReplace[{
+                URL["http://dx.doi.org/10.1145/77626.77634"], None}, 
+               "paclet:" :> ""]}}, 2], 2]]]]},
        Appearance->None,
        MenuAppearance->Automatic]],
       LineSpacing->{1.4, 0}],
@@ -134,14 +190,14 @@ Cell[TextData[Cell[BoxData[
   Evaluator->None,
   Method->"Preemptive"]]]], "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->58122818],
+ CellID->9676541],
 
 Cell[TextData[{
  Cell[BoxData["group"], "InlineFormula"],
  " should be the ",
  ButtonBox["Cartan matrix",
   BaseStyle->"Link",
-  ButtonData->"paclet:Susyno/ref/CM"],
+  ButtonData->"paclet:Susyno/ref/CartanMatrix"],
  " of the intended group;"
 }], "Notes",
  CellID->1067943069],
@@ -200,7 +256,7 @@ Cell[TextData[ButtonBox["EXAMPLES",
      FrontEnd`SelectedNotebook[], After, 
      CellContents]}]& )]], "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->165740056],
+ CellID->94553864],
 
 Cell[CellGroupData[{
 
@@ -209,11 +265,11 @@ Cell[TextData[{
  "\[NonBreakingSpace]\[NonBreakingSpace]",
  Cell["(1)", "ExampleCount"]
 }], "ExampleSection",
- CellID->214581247],
+ CellID->30548673],
 
 Cell["\<\
 This tells us that in the product {1,0} x {1,0} of SU(3) there is one {2,0} \
-irrep and one {1,0} :\
+irrep and one {1,0}:\
 \>", "ExampleText",
  CellID->513681956],
 
@@ -304,7 +360,7 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[3]=",
- CellID->513679871]
+ CellID->359981010]
 }, Open  ]],
 
 Cell["Sure enough,", "ExampleText",
@@ -325,7 +381,7 @@ Cell[BoxData["1"], "Output",
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[4]=",
- CellID->425251226]
+ CellID->512571573]
 }, Open  ]],
 
 Cell["\<\
@@ -349,8 +405,8 @@ Cell[BoxData[{
  CellID->714739772],
 
 Cell[BoxData["\<\"Adjoint of SU(3):\"\>"], "Print",
- CellLabel->"During evaluation of In[5]:=",
- CellID->455802147],
+ CellLabel->"During evaluation of In[250]:=",
+ CellID->178902834],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -359,18 +415,18 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[5]=",
- CellID->164152913],
+ CellID->47991492],
 
 Cell[BoxData["\<\"Its dimension:\"\>"], "Print",
- CellLabel->"During evaluation of In[5]:=",
- CellID->594113801],
+ CellLabel->"During evaluation of In[250]:=",
+ CellID->2728469],
 
 Cell[BoxData["8"], "Output",
  ImageSize->{11, 15},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[5]=",
- CellID->989303556]
+ CellID->219613548]
 }, Open  ]],
 
 Cell["\<\
@@ -538,7 +594,7 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[6]=",
- CellID->223992513]
+ CellID->182203414]
 }, Open  ]],
 
 Cell["\<\
@@ -568,14 +624,14 @@ Cell[BoxData["210"], "Output",
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[7]=",
- CellID->286126778],
+ CellID->50615701],
 
 Cell[BoxData["210"], "Output",
  ImageSize->{25, 15},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[7]=",
- CellID->721592750]
+ CellID->137703148]
 }, Open  ]],
 
 Cell["\<\
@@ -631,7 +687,7 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[8]=",
- CellID->82371302],
+ CellID->84369869],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -655,7 +711,7 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[8]=",
- CellID->177376853]
+ CellID->548746622]
 }, Open  ]]
 }, Open  ]],
 
@@ -783,8 +839,8 @@ Cell[BoxData[{
  CellID->96133454],
 
 Cell[BoxData["\<\"Are there colour singlets in q q q?\"\>"], "Print",
- CellLabel->"During evaluation of In[14]:=",
- CellID->330019],
+ CellLabel->"During evaluation of In[259]:=",
+ CellID->92799751],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -805,24 +861,24 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[1]=",
- CellID->770906776],
+ CellID->558845160],
 
 Cell[BoxData["True"], "Output",
  ImageSize->{32, 15},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[1]=",
- CellID->83329753],
+ CellID->518456810],
 
 Cell[CellGroupData[{
 
 Cell[BoxData["\<\"\"\>"], "Print",
- CellLabel->"During evaluation of In[14]:=",
- CellID->306927342],
+ CellLabel->"During evaluation of In[259]:=",
+ CellID->227151654],
 
 Cell[BoxData["\<\"Are there colour singlets in q q q q?\"\>"], "Print",
- CellLabel->"During evaluation of In[14]:=",
- CellID->527025003]
+ CellLabel->"During evaluation of In[259]:=",
+ CellID->62853760]
 }, Open  ]],
 
 Cell[BoxData[
@@ -848,24 +904,24 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[1]=",
- CellID->76625266],
+ CellID->420888458],
 
 Cell[BoxData["False"], "Output",
  ImageSize->{39, 15},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[1]=",
- CellID->847731845],
+ CellID->341421433],
 
 Cell[CellGroupData[{
 
 Cell[BoxData["\<\"\"\>"], "Print",
- CellLabel->"During evaluation of In[14]:=",
- CellID->172509633],
+ CellLabel->"During evaluation of In[259]:=",
+ CellID->751634745],
 
 Cell[BoxData["\<\"Are there colour singlets in q q q q q?\"\>"], "Print",
- CellLabel->"During evaluation of In[14]:=",
- CellID->46637857]
+ CellLabel->"During evaluation of In[259]:=",
+ CellID->16275302]
 }, Open  ]],
 
 Cell[BoxData[
@@ -895,24 +951,24 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[1]=",
- CellID->547606438],
+ CellID->49240577],
 
 Cell[BoxData["False"], "Output",
  ImageSize->{39, 15},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[1]=",
- CellID->140759670],
+ CellID->2355979],
 
 Cell[CellGroupData[{
 
 Cell[BoxData["\<\"\"\>"], "Print",
- CellLabel->"During evaluation of In[14]:=",
- CellID->167202265],
+ CellLabel->"During evaluation of In[259]:=",
+ CellID->129300925],
 
 Cell[BoxData["\<\"Are there colour singlets in q q q q qBar?\"\>"], "Print",
- CellLabel->"During evaluation of In[14]:=",
- CellID->169153268]
+ CellLabel->"During evaluation of In[259]:=",
+ CellID->540946199]
 }, Open  ]],
 
 Cell[BoxData[
@@ -946,24 +1002,24 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[1]=",
- CellID->24170969],
+ CellID->9652818],
 
 Cell[BoxData["True"], "Output",
  ImageSize->{32, 15},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[1]=",
- CellID->186924740],
+ CellID->92422922],
 
 Cell[CellGroupData[{
 
 Cell[BoxData["\<\"\"\>"], "Print",
- CellLabel->"During evaluation of In[14]:=",
- CellID->133434257],
+ CellLabel->"During evaluation of In[259]:=",
+ CellID->44445466],
 
 Cell[BoxData["\<\"Are there colour singlets in q q q qBar qBar?\"\>"], "Print",
- CellLabel->"During evaluation of In[14]:=",
- CellID->225783943]
+ CellLabel->"During evaluation of In[259]:=",
+ CellID->52717816]
 }, Open  ]],
 
 Cell[BoxData[
@@ -997,20 +1053,20 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[1]=",
- CellID->941074617],
+ CellID->72024029],
 
 Cell[BoxData["False"], "Output",
  ImageSize->{39, 15},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[1]=",
- CellID->55851426]
+ CellID->450011530]
 }, Open  ]],
 
 Cell["\<\
-Using ReduceRepProduct and DimR together - DimR can be used to convert the \
-irreps given in Dynkin coefficients notation, to the (potentially ambiguous) \
-'dimension notation':\
+Using ReduceRepProduct and DimR together: the function DimR can be used to \
+convert the irreps given in Dynkin coefficients notation, to the (potentially \
+ambiguous) 'dimension notation':\
 \>", "ExampleText",
  CellID->448198813],
 
@@ -1050,8 +1106,8 @@ Cell[BoxData[{
 
 Cell[BoxData["\<\"Fundamental x Fundamental x 24 of SU(5) breaks down into:\"\
 \>"], "Print",
- CellLabel->"During evaluation of In[33]:=",
- CellID->107487656],
+ CellLabel->"During evaluation of In[278]:=",
+ CellID->10442349],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -1085,7 +1141,7 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[2]=",
- CellID->245052368]
+ CellID->734624003]
 }, Open  ]]
 }, Closed]]
 }, Open  ]],
@@ -1137,6 +1193,40 @@ Cell[TextData[ButtonBox["Susyno Tutorial",
  CellID->341631938]
 }, Open  ]],
 
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["MORE ABOUT",
+ BaseStyle->None,
+ Appearance->{Automatic, None},
+ Evaluator->None,
+ Method->"Preemptive",
+ ButtonFunction:>(FrontEndExecute[{
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], All, ButtonCell], 
+    FrontEndToken["OpenCloseGroup"], 
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], After, 
+     CellContents]}]& )]], "MoreAboutSection",
+ CellID->38303248],
+
+Cell["The algorithm used is based on the following sources:", "MoreAbout",
+ CellID->474435919],
+
+Cell[TextData[{
+ ButtonBox["D.M. Snow, ACM Trans. Math. Softw. 16 (1990) 94",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://dx.doi.org/10.1145/77626.77634"], None}],
+ ";\[LineSeparator]",
+ ButtonBox["ACM Trans. Math. Softw. 19 (1993) 95",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://dx.doi.org/10.1145/151271.151278"], None}],
+ "."
+}], "MoreAbout",
+ CellID->1665078683]
+}, Open  ]],
+
 Cell[" ", "FooterCell"]
 },
 Saveable->False,
@@ -1147,7 +1237,7 @@ WindowTitle->"ReduceRepProduct - Wolfram Mathematica",
 TaggingRules->{
  "ModificationHighlight" -> False, 
   "Metadata" -> {
-   "built" -> "{2011, 2, 8, 16, 0, 14.7187500}", "context" -> "Susyno`", 
+   "built" -> "{2012, 3, 2, 12, 16, 19.1093750}", "context" -> "Susyno`", 
     "keywords" -> {
      "Direct product", "Representation", "Group", 
       "Irreducible representation", "Reduce"}, "index" -> True, "label" -> 
@@ -1176,203 +1266,211 @@ StyleDefinitions->Notebook[{
 (*CellTagsOutline
 CellTagsIndex->{
  "PrimaryExamplesSection"->{
-  Cell[6031, 189, 461, 13, 70, "PrimaryExamplesSection",
+  Cell[8105, 245, 460, 13, 70, "PrimaryExamplesSection",
    CellTags->"PrimaryExamplesSection",
-   CellID->165740056]}
+   CellID->94553864]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"PrimaryExamplesSection", 33151, 1177}
+ {"PrimaryExamplesSection", 36191, 1267}
  }
 *)
 (*NotebookFileOutline
 Notebook[{
 Cell[597, 21, 76, 1, 70, "SymbolColorBar"],
 Cell[676, 24, 178, 5, 70, "LinkTrail"],
-Cell[857, 31, 2549, 59, 70, "AnchorBarGrid",
+Cell[857, 31, 4614, 115, 70, "AnchorBarGrid",
  CellID->1],
 Cell[CellGroupData[{
-Cell[3431, 94, 59, 1, 70, "ObjectName",
+Cell[5496, 150, 59, 1, 70, "ObjectName",
  CellID->1224892054],
-Cell[3493, 97, 606, 17, 70, "Usage",
+Cell[5558, 153, 606, 17, 70, "Usage",
  CellID->982511436]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[4136, 119, 579, 17, 70, "NotesSection",
+Cell[6201, 175, 578, 17, 70, "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->58122818],
-Cell[4718, 138, 226, 8, 70, "Notes",
+ CellID->9676541],
+Cell[6782, 194, 236, 8, 70, "Notes",
  CellID->1067943069],
-Cell[4947, 148, 182, 5, 70, "Notes",
+Cell[7021, 204, 182, 5, 70, "Notes",
  CellID->360734878],
-Cell[5132, 155, 157, 5, 70, "Notes",
+Cell[7206, 211, 157, 5, 70, "Notes",
  CellID->73174212],
-Cell[5292, 162, 702, 22, 70, "Notes",
+Cell[7366, 218, 702, 22, 70, "Notes",
  CellID->133619986]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[6031, 189, 461, 13, 70, "PrimaryExamplesSection",
+Cell[8105, 245, 460, 13, 70, "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->165740056],
+ CellID->94553864],
 Cell[CellGroupData[{
-Cell[6517, 206, 148, 5, 70, "ExampleSection",
- CellID->214581247],
-Cell[6668, 213, 150, 4, 70, "ExampleText",
+Cell[8590, 262, 147, 5, 70, "ExampleSection",
+ CellID->30548673],
+Cell[8740, 269, 149, 4, 70, "ExampleText",
  CellID->513681956],
 Cell[CellGroupData[{
-Cell[6843, 221, 245, 8, 70, "Input",
+Cell[8914, 277, 245, 8, 70, "Input",
  CellID->196926373],
-Cell[7091, 231, 408, 15, 36, "Output",
+Cell[9162, 287, 408, 15, 36, "Output",
  CellID->372239613]
 }, Open  ]],
-Cell[7514, 249, 147, 4, 70, "ExampleText",
+Cell[9585, 305, 147, 4, 70, "ExampleText",
  CellID->791803354],
 Cell[CellGroupData[{
-Cell[7686, 257, 173, 6, 70, "Input",
+Cell[9757, 313, 173, 6, 70, "Input",
  CellID->43353311],
-Cell[7862, 265, 157, 5, 36, "Output",
+Cell[9933, 321, 157, 5, 36, "Output",
  CellID->23316078]
 }, Open  ]],
-Cell[8034, 273, 176, 4, 70, "ExampleText",
+Cell[10105, 329, 176, 4, 70, "ExampleText",
  CellID->337007840],
 Cell[CellGroupData[{
-Cell[8235, 281, 245, 8, 70, "Input",
+Cell[10306, 337, 245, 8, 70, "Input",
  CellID->103769142],
-Cell[8483, 291, 408, 15, 36, "Output",
- CellID->513679871]
+Cell[10554, 347, 408, 15, 36, "Output",
+ CellID->359981010]
 }, Open  ]],
-Cell[8906, 309, 54, 1, 70, "ExampleText",
+Cell[10977, 365, 54, 1, 70, "ExampleText",
  CellID->30425394],
 Cell[CellGroupData[{
-Cell[8985, 314, 174, 6, 70, "Input",
+Cell[11056, 370, 174, 6, 70, "Input",
  CellID->102523921],
-Cell[9162, 322, 158, 5, 36, "Output",
- CellID->425251226]
+Cell[11233, 378, 158, 5, 36, "Output",
+ CellID->512571573]
 }, Open  ]],
-Cell[9335, 330, 134, 4, 70, "ExampleText",
+Cell[11406, 386, 134, 4, 70, "ExampleText",
  CellID->284900139],
 Cell[CellGroupData[{
-Cell[9494, 338, 405, 10, 70, "Input",
+Cell[11565, 394, 405, 10, 70, "Input",
  CellID->714739772],
-Cell[9902, 350, 115, 2, 70, "Print",
- CellID->455802147],
-Cell[10020, 354, 203, 7, 36, "Output",
- CellID->164152913],
-Cell[10226, 363, 112, 2, 70, "Print",
- CellID->594113801],
-Cell[10341, 367, 158, 5, 36, "Output",
- CellID->989303556]
+Cell[11973, 406, 117, 2, 70, "Print",
+ CellID->178902834],
+Cell[12093, 410, 202, 7, 36, "Output",
+ CellID->47991492],
+Cell[12298, 419, 112, 2, 70, "Print",
+ CellID->2728469],
+Cell[12413, 423, 158, 5, 36, "Output",
+ CellID->219613548]
 }, Open  ]],
-Cell[10514, 375, 186, 4, 70, "ExampleText",
+Cell[12586, 431, 186, 4, 70, "ExampleText",
  CellID->164023796],
 Cell[CellGroupData[{
-Cell[10725, 383, 362, 12, 70, "Input",
+Cell[12797, 439, 362, 12, 70, "Input",
  CellID->26272814],
-Cell[11090, 397, 4017, 143, 122, "Output",
- CellID->223992513]
+Cell[13162, 453, 4017, 143, 122, "Output",
+ CellID->182203414]
 }, Open  ]],
-Cell[15122, 543, 141, 4, 70, "ExampleText",
+Cell[17194, 599, 141, 4, 70, "ExampleText",
  CellID->554346309],
 Cell[CellGroupData[{
-Cell[15288, 551, 376, 12, 70, "Input",
+Cell[17360, 607, 376, 12, 70, "Input",
  CellID->353483304],
-Cell[15667, 565, 160, 5, 36, "Output",
- CellID->286126778],
-Cell[15830, 572, 160, 5, 36, "Output",
- CellID->721592750]
+Cell[17739, 621, 159, 5, 36, "Output",
+ CellID->50615701],
+Cell[17901, 628, 160, 5, 36, "Output",
+ CellID->137703148]
 }, Open  ]],
-Cell[16005, 580, 174, 4, 70, "ExampleText",
+Cell[18076, 636, 174, 4, 70, "ExampleText",
  CellID->360467482],
 Cell[CellGroupData[{
-Cell[16204, 588, 578, 16, 70, "Input",
+Cell[18275, 644, 578, 16, 70, "Input",
  CellID->196227131],
-Cell[16785, 606, 775, 27, 36, "Output",
- CellID->82371302],
-Cell[17563, 635, 628, 22, 36, "Output",
- CellID->177376853]
+Cell[18856, 662, 775, 27, 36, "Output",
+ CellID->84369869],
+Cell[19634, 691, 628, 22, 36, "Output",
+ CellID->548746622]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[18240, 663, 228, 7, 70, "ExampleSection",
+Cell[20311, 719, 228, 7, 70, "ExampleSection",
  CellID->589267740],
-Cell[18471, 672, 333, 6, 70, "ExampleText",
+Cell[20542, 728, 333, 6, 70, "ExampleText",
  CellID->358872975],
 Cell[CellGroupData[{
-Cell[18829, 682, 3557, 100, 70, "Input",
+Cell[20900, 738, 3557, 100, 70, "Input",
  CellID->96133454],
-Cell[22389, 784, 131, 2, 70, "Print",
- CellID->330019],
-Cell[22523, 788, 520, 19, 36, "Output",
- CellID->770906776],
-Cell[23046, 809, 160, 5, 36, "Output",
- CellID->83329753],
+Cell[24460, 840, 134, 2, 70, "Print",
+ CellID->92799751],
+Cell[24597, 844, 520, 19, 36, "Output",
+ CellID->558845160],
+Cell[25120, 865, 161, 5, 36, "Output",
+ CellID->518456810],
 Cell[CellGroupData[{
-Cell[23231, 818, 99, 2, 70, "Print",
- CellID->306927342],
-Cell[23333, 822, 136, 2, 70, "Print",
- CellID->527025003]
+Cell[25306, 874, 100, 2, 70, "Print",
+ CellID->227151654],
+Cell[25409, 878, 136, 2, 70, "Print",
+ CellID->62853760]
 }, Open  ]],
-Cell[23484, 827, 631, 23, 36, "Output",
- CellID->76625266],
-Cell[24118, 852, 162, 5, 36, "Output",
- CellID->847731845],
+Cell[25560, 883, 632, 23, 36, "Output",
+ CellID->420888458],
+Cell[26195, 908, 162, 5, 36, "Output",
+ CellID->341421433],
 Cell[CellGroupData[{
-Cell[24305, 861, 99, 2, 70, "Print",
- CellID->172509633],
-Cell[24407, 865, 137, 2, 70, "Print",
- CellID->46637857]
+Cell[26382, 917, 100, 2, 70, "Print",
+ CellID->751634745],
+Cell[26485, 921, 138, 2, 70, "Print",
+ CellID->16275302]
 }, Open  ]],
-Cell[24559, 870, 744, 27, 36, "Output",
- CellID->547606438],
-Cell[25306, 899, 162, 5, 36, "Output",
- CellID->140759670],
+Cell[26638, 926, 743, 27, 36, "Output",
+ CellID->49240577],
+Cell[27384, 955, 160, 5, 36, "Output",
+ CellID->2355979],
 Cell[CellGroupData[{
-Cell[25493, 908, 99, 2, 70, "Print",
- CellID->167202265],
-Cell[25595, 912, 141, 2, 70, "Print",
- CellID->169153268]
+Cell[27569, 964, 100, 2, 70, "Print",
+ CellID->129300925],
+Cell[27672, 968, 142, 2, 70, "Print",
+ CellID->540946199]
 }, Open  ]],
-Cell[25751, 917, 855, 31, 36, "Output",
- CellID->24170969],
-Cell[26609, 950, 161, 5, 36, "Output",
- CellID->186924740],
+Cell[27829, 973, 854, 31, 36, "Output",
+ CellID->9652818],
+Cell[28686, 1006, 160, 5, 36, "Output",
+ CellID->92422922],
 Cell[CellGroupData[{
-Cell[26795, 959, 99, 2, 70, "Print",
- CellID->133434257],
-Cell[26897, 963, 144, 2, 70, "Print",
- CellID->225783943]
+Cell[28871, 1015, 99, 2, 70, "Print",
+ CellID->44445466],
+Cell[28973, 1019, 144, 2, 70, "Print",
+ CellID->52717816]
 }, Open  ]],
-Cell[27056, 968, 856, 31, 36, "Output",
- CellID->941074617],
-Cell[27915, 1001, 161, 5, 36, "Output",
- CellID->55851426]
+Cell[29132, 1024, 855, 31, 36, "Output",
+ CellID->72024029],
+Cell[29990, 1057, 162, 5, 36, "Output",
+ CellID->450011530]
 }, Open  ]],
-Cell[28091, 1009, 228, 5, 70, "ExampleText",
+Cell[30167, 1065, 240, 5, 70, "ExampleText",
  CellID->448198813],
 Cell[CellGroupData[{
-Cell[28344, 1018, 1009, 30, 70, "Input",
+Cell[30432, 1074, 1009, 30, 70, "Input",
  CellID->244066278],
-Cell[29356, 1050, 158, 3, 70, "Print",
- CellID->107487656],
-Cell[29517, 1055, 821, 32, 36, "Output",
- CellID->245052368]
+Cell[31444, 1106, 158, 3, 70, "Print",
+ CellID->10442349],
+Cell[31605, 1111, 821, 32, 36, "Output",
+ CellID->734624003]
 }, Open  ]]
 }, Closed]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[30399, 1094, 417, 12, 70, "SeeAlsoSection",
+Cell[32487, 1150, 417, 12, 70, "SeeAlsoSection",
  CellID->1255426704],
-Cell[30819, 1108, 199, 6, 70, "SeeAlso",
+Cell[32907, 1164, 199, 6, 70, "SeeAlso",
  CellID->929782353]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[31055, 1119, 419, 12, 70, "TutorialsSection",
+Cell[33143, 1175, 419, 12, 70, "TutorialsSection",
  CellID->250839057],
-Cell[31477, 1133, 151, 3, 70, "Tutorials",
+Cell[33565, 1189, 151, 3, 70, "Tutorials",
  CellID->341631938]
 }, Open  ]],
-Cell[31643, 1139, 23, 0, 70, "FooterCell"]
+Cell[CellGroupData[{
+Cell[33753, 1197, 419, 12, 70, "MoreAboutSection",
+ CellID->38303248],
+Cell[34175, 1211, 94, 1, 70, "MoreAbout",
+ CellID->474435919],
+Cell[34272, 1214, 395, 12, 70, "MoreAbout",
+ CellID->1665078683]
+}, Open  ]],
+Cell[34682, 1229, 23, 0, 70, "FooterCell"]
 }
 ]
 *)

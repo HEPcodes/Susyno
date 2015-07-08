@@ -317,7 +317,7 @@ fuct2M1Q2[j_, i_] := 1/2 Tr[oY[\[Alpha][1], \[Alpha][3], \[Alpha][4]][[j]].(Cj[o
 fuct2M1Q3[j_, i_] := 2 Tr[Cj[oY[\[Alpha][2], \[Alpha][3], \[Alpha][4]][[i]]].(oY[\[Alpha][1], \[Alpha][4], \[Alpha][5]][[j]].oM2T[\[Alpha][5], \[Alpha][3]])];
 
 fuct2M1Q4[j_, i_] := Tr[Cj[oH[\[Alpha][2], \[Alpha][3], \[Alpha][4]][[i]]].oH[\[Alpha][1], \[Alpha][4], \[Alpha][3]][[j]]];
-fuct2M1Q5[j_, i_] := -8 KroneckerDelta[i, j] Sum[g[l]^2 Cj[M[l]] M[l] cR[i, l], {l, totalS}];
+fuct2M1Q5[j_, i_] := -8 KroneckerDelta[i, j]KroneckerDelta[\[Alpha][1], \[Alpha][2]] Sum[g[l]^2 Cj[M[l]] M[l] cR[i, l], {l, totalS}];
 fuct2M1Q6[j_, i_] := 2 Sum[g[l]^2 fullRepMat[[l, a, j, i]] KroneckerDelta[\[Alpha][1], \[Alpha][2]] Tr[fullRepMat[[l, a]].oM2[\[Alpha][3], \[Alpha][3]]], {l, totalS}, {a,dG[l]}];
 
 

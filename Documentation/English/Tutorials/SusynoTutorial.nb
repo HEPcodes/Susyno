@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       145,          7]
-NotebookDataLength[     82468,       2789]
-NotebookOptionsPosition[     71143,       2416]
-NotebookOutlinePosition[     73320,       2469]
-CellTagsIndexPosition[     73277,       2466]
+NotebookDataLength[     95642,       3111]
+NotebookOptionsPosition[     83391,       2705]
+NotebookOutlinePosition[     85597,       2759]
+CellTagsIndexPosition[     85554,       2756]
 WindowTitle->Susyno Tutorial - Wolfram Mathematica
 WindowFrame->Normal*)
 
@@ -23,10 +23,9 @@ Cell[" ", "TutorialColorBar",
  CellMargins->{{Inherited, Inherited}, {-5, 0}}],
 
 Cell[TextData[{
- StyleBox[ButtonBox["Mathematica",
+ ButtonBox["Mathematica",
   BaseStyle->{"Link", "LinkTrail"},
-  ButtonData->"paclet:guide/Mathematica"],
-  FontSlant->"Italic"],
+  ButtonData->"paclet:Susyno/guide/Susyno"],
  StyleBox[" > ", "LinkTrailSeparator"]
 }], "LinkTrail"],
 
@@ -35,7 +34,96 @@ Cell[BoxData[GridBox[{
      Cell[BoxData[
       ActionMenuBox[
        FrameBox["\<\"More About \[RightGuillemet]\"\>",
-        StripOnInput->False], {
+        StripOnInput->
+         False], {"\<\"http://web.ist.utl.pt/renato.fonseca/susyno.html\"\>":>
+       Documentation`HelpLookup[
+        If[
+         StringMatchQ[
+          StringReplace[{
+            URL["http://web.ist.utl.pt/renato.fonseca/susyno.html"], None}, 
+           "paclet:" :> ""], "paclet*"], 
+         Part[
+          Part[{{"http://web.ist.utl.pt/renato.fonseca/susyno.html", 
+             StringReplace[{
+               URL["http://web.ist.utl.pt/renato.fonseca/susyno.html"], None},
+               "paclet:" :> ""]}, {"arXiv:1106.5016 [hep-ph]", 
+             StringReplace[{
+               URL["http://arxiv.org/abs/1106.5016"], None}, "paclet:" :> 
+              ""]}, {"R. Slansky, Phys.Rept. 79 (1981)", 
+             StringReplace[{
+               URL["http://dx.doi.org/10.1016/0370-1573(81)90092-2"], None}, 
+              "paclet:" :> ""]}, {}}, 1], 2], 
+         StringJoin["paclet:", 
+          Part[
+           Part[{{"http://web.ist.utl.pt/renato.fonseca/susyno.html", 
+              StringReplace[{
+                URL["http://web.ist.utl.pt/renato.fonseca/susyno.html"], 
+                None}, "paclet:" :> ""]}, {"arXiv:1106.5016 [hep-ph]", 
+              StringReplace[{
+                URL["http://arxiv.org/abs/1106.5016"], None}, "paclet:" :> 
+               ""]}, {"R. Slansky, Phys.Rept. 79 (1981)", 
+              StringReplace[{
+                URL["http://dx.doi.org/10.1016/0370-1573(81)90092-2"], None}, 
+               "paclet:" :> ""]}, {}}, 1], 
+           2]]]], "\<\"arXiv:1106.5016 [hep-ph]\"\>":>Documentation`HelpLookup[
+        If[
+         StringMatchQ[
+          StringReplace[{
+            URL["http://arxiv.org/abs/1106.5016"], None}, "paclet:" :> ""], 
+          "paclet*"], 
+         Part[
+          Part[{{"http://web.ist.utl.pt/renato.fonseca/susyno.html", 
+             StringReplace[{
+               URL["http://web.ist.utl.pt/renato.fonseca/susyno.html"], None},
+               "paclet:" :> ""]}, {"arXiv:1106.5016 [hep-ph]", 
+             StringReplace[{
+               URL["http://arxiv.org/abs/1106.5016"], None}, "paclet:" :> 
+              ""]}, {"R. Slansky, Phys.Rept. 79 (1981)", 
+             StringReplace[{
+               URL["http://dx.doi.org/10.1016/0370-1573(81)90092-2"], None}, 
+              "paclet:" :> ""]}, {}}, 2], 2], 
+         StringJoin["paclet:", 
+          Part[
+           Part[{{"http://web.ist.utl.pt/renato.fonseca/susyno.html", 
+              StringReplace[{
+                URL["http://web.ist.utl.pt/renato.fonseca/susyno.html"], 
+                None}, "paclet:" :> ""]}, {"arXiv:1106.5016 [hep-ph]", 
+              StringReplace[{
+                URL["http://arxiv.org/abs/1106.5016"], None}, "paclet:" :> 
+               ""]}, {"R. Slansky, Phys.Rept. 79 (1981)", 
+              StringReplace[{
+                URL["http://dx.doi.org/10.1016/0370-1573(81)90092-2"], None}, 
+               "paclet:" :> ""]}, {}}, 2], 
+           2]]]], "\<\"R. Slansky, Phys.Rept. 79 (1981)\"\>":>
+       Documentation`HelpLookup[
+        If[
+         StringMatchQ[
+          StringReplace[{
+            URL["http://dx.doi.org/10.1016/0370-1573(81)90092-2"], None}, 
+           "paclet:" :> ""], "paclet*"], 
+         Part[
+          Part[{{"http://web.ist.utl.pt/renato.fonseca/susyno.html", 
+             StringReplace[{
+               URL["http://web.ist.utl.pt/renato.fonseca/susyno.html"], None},
+               "paclet:" :> ""]}, {"arXiv:1106.5016 [hep-ph]", 
+             StringReplace[{
+               URL["http://arxiv.org/abs/1106.5016"], None}, "paclet:" :> 
+              ""]}, {"R. Slansky, Phys.Rept. 79 (1981)", 
+             StringReplace[{
+               URL["http://dx.doi.org/10.1016/0370-1573(81)90092-2"], None}, 
+              "paclet:" :> ""]}, {}}, 3], 2], 
+         StringJoin["paclet:", 
+          Part[
+           Part[{{"http://web.ist.utl.pt/renato.fonseca/susyno.html", 
+              StringReplace[{
+                URL["http://web.ist.utl.pt/renato.fonseca/susyno.html"], 
+                None}, "paclet:" :> ""]}, {"arXiv:1106.5016 [hep-ph]", 
+              StringReplace[{
+                URL["http://arxiv.org/abs/1106.5016"], None}, "paclet:" :> 
+               ""]}, {"R. Slansky, Phys.Rept. 79 (1981)", 
+              StringReplace[{
+                URL["http://dx.doi.org/10.1016/0370-1573(81)90092-2"], None}, 
+               "paclet:" :> ""]}, {}}, 3], 2]]]], 
        RowBox[{
         RowBox[{"{", "}"}], "\[LeftDoubleBracket]", "1", 
         "\[RightDoubleBracket]"}]:>Documentation`HelpLookup[
@@ -43,32 +131,28 @@ Cell[BoxData[GridBox[{
          StringMatchQ[
           Part[{}, 2], "paclet*"], 
          Part[
-          Part[{{}, {}, {}}, 1], 2], 
+          Part[{{"http://web.ist.utl.pt/renato.fonseca/susyno.html", 
+             StringReplace[{
+               URL["http://web.ist.utl.pt/renato.fonseca/susyno.html"], None},
+               "paclet:" :> ""]}, {"arXiv:1106.5016 [hep-ph]", 
+             StringReplace[{
+               URL["http://arxiv.org/abs/1106.5016"], None}, "paclet:" :> 
+              ""]}, {"R. Slansky, Phys.Rept. 79 (1981)", 
+             StringReplace[{
+               URL["http://dx.doi.org/10.1016/0370-1573(81)90092-2"], None}, 
+              "paclet:" :> ""]}, {}}, 4], 2], 
          StringJoin["paclet:", 
           Part[
-           Part[{{}, {}, {}}, 1], 2]]]], 
-       RowBox[{
-        RowBox[{"{", "}"}], "\[LeftDoubleBracket]", "1", 
-        "\[RightDoubleBracket]"}]:>Documentation`HelpLookup[
-        If[
-         StringMatchQ[
-          Part[{}, 2], "paclet*"], 
-         Part[
-          Part[{{}, {}, {}}, 2], 2], 
-         StringJoin["paclet:", 
-          Part[
-           Part[{{}, {}, {}}, 2], 2]]]], 
-       RowBox[{
-        RowBox[{"{", "}"}], "\[LeftDoubleBracket]", "1", 
-        "\[RightDoubleBracket]"}]:>Documentation`HelpLookup[
-        If[
-         StringMatchQ[
-          Part[{}, 2], "paclet*"], 
-         Part[
-          Part[{{}, {}, {}}, 3], 2], 
-         StringJoin["paclet:", 
-          Part[
-           Part[{{}, {}, {}}, 3], 2]]]]},
+           Part[{{"http://web.ist.utl.pt/renato.fonseca/susyno.html", 
+              StringReplace[{
+                URL["http://web.ist.utl.pt/renato.fonseca/susyno.html"], 
+                None}, "paclet:" :> ""]}, {"arXiv:1106.5016 [hep-ph]", 
+              StringReplace[{
+                URL["http://arxiv.org/abs/1106.5016"], None}, "paclet:" :> 
+               ""]}, {"R. Slansky, Phys.Rept. 79 (1981)", 
+              StringReplace[{
+                URL["http://dx.doi.org/10.1016/0370-1573(81)90092-2"], None}, 
+               "paclet:" :> ""]}, {}}, 4], 2]]]]},
        Appearance->None,
        MenuAppearance->Automatic]],
       LineSpacing->{1.4, 0}],
@@ -84,15 +168,21 @@ Cell[BoxData[GridBox[{
        Documentation`HelpLookup[
        "paclet:Susyno/ref/BetaFunctions2L"], "\<\"CanonicalForm\"\>":>
        Documentation`HelpLookup[
-       "paclet:Susyno/ref/CanonicalForm"], "\<\"Casimir\"\>":>
-       Documentation`HelpLookup["paclet:Susyno/ref/Casimir"], "\<\"CM\"\>":>
-       Documentation`HelpLookup["paclet:Susyno/ref/CM"], "\<\"DimR\"\>":>
+       "paclet:Susyno/ref/CanonicalForm"], "\<\"CartanMatrix\"\>":>
+       Documentation`HelpLookup[
+       "paclet:Susyno/ref/CartanMatrix"], "\<\"Casimir\"\>":>
+       Documentation`HelpLookup["paclet:Susyno/ref/Casimir"], "\<\"DimR\"\>":>
        Documentation`HelpLookup["paclet:Susyno/ref/DimR"], "\<\"E6\"\>":>
-       Documentation`HelpLookup["paclet:Susyno/ref/CM"], "\<\"E7\"\>":>
-       Documentation`HelpLookup["paclet:Susyno/ref/CM"], "\<\"E8\"\>":>
-       Documentation`HelpLookup["paclet:Susyno/ref/CM"], "\<\"F4\"\>":>
-       Documentation`HelpLookup["paclet:Susyno/ref/CM"], "\<\"G2\"\>":>
-       Documentation`HelpLookup["paclet:Susyno/ref/CM"], "\<\"Invariants\"\>":>
+       Documentation`HelpLookup[
+       "paclet:Susyno/ref/CartanMatrix"], "\<\"E7\"\>":>
+       Documentation`HelpLookup[
+       "paclet:Susyno/ref/CartanMatrix"], "\<\"E8\"\>":>
+       Documentation`HelpLookup[
+       "paclet:Susyno/ref/CartanMatrix"], "\<\"F4\"\>":>
+       Documentation`HelpLookup[
+       "paclet:Susyno/ref/CartanMatrix"], "\<\"G2\"\>":>
+       Documentation`HelpLookup[
+       "paclet:Susyno/ref/CartanMatrix"], "\<\"Invariants\"\>":>
        Documentation`HelpLookup[
        "paclet:Susyno/ref/Invariants"], "\<\"ListContract\"\>":>
        Documentation`HelpLookup[
@@ -108,21 +198,38 @@ Cell[BoxData[GridBox[{
        "paclet:Susyno/ref/RepMatrices"], "\<\"ShowLagrangian\"\>":>
        Documentation`HelpLookup[
        "paclet:Susyno/ref/ShowLagrangian"], "\<\"SO3\"\>":>
-       Documentation`HelpLookup["paclet:Susyno/ref/CM"], "\<\"SO32\"\>":>
-       Documentation`HelpLookup["paclet:Susyno/ref/CM"], "\<\"SO5\"\>":>
-       Documentation`HelpLookup["paclet:Susyno/ref/CM"], "\<\"SO6\"\>":>
-       Documentation`HelpLookup["paclet:Susyno/ref/CM"], "\<\"SO7\"\>":>
-       Documentation`HelpLookup["paclet:Susyno/ref/CM"], "\<\"SP2\"\>":>
-       Documentation`HelpLookup["paclet:Susyno/ref/CM"], "\<\"SP32\"\>":>
-       Documentation`HelpLookup["paclet:Susyno/ref/CM"], "\<\"SP4\"\>":>
-       Documentation`HelpLookup["paclet:Susyno/ref/CM"], "\<\"SP6\"\>":>
-       Documentation`HelpLookup["paclet:Susyno/ref/CM"], "\<\"SP8\"\>":>
-       Documentation`HelpLookup["paclet:Susyno/ref/CM"], "\<\"SU2\"\>":>
-       Documentation`HelpLookup["paclet:Susyno/ref/CM"], "\<\"SU3\"\>":>
-       Documentation`HelpLookup["paclet:Susyno/ref/CM"], "\<\"SU32\"\>":>
-       Documentation`HelpLookup["paclet:Susyno/ref/CM"], "\<\"SU4\"\>":>
-       Documentation`HelpLookup["paclet:Susyno/ref/CM"], "\<\"SU5\"\>":>
-       Documentation`HelpLookup["paclet:Susyno/ref/CM"], "\<\"Weights\"\>":>
+       Documentation`HelpLookup[
+       "paclet:Susyno/ref/CartanMatrix"], "\<\"SO32\"\>":>
+       Documentation`HelpLookup[
+       "paclet:Susyno/ref/CartanMatrix"], "\<\"SO5\"\>":>
+       Documentation`HelpLookup[
+       "paclet:Susyno/ref/CartanMatrix"], "\<\"SO6\"\>":>
+       Documentation`HelpLookup[
+       "paclet:Susyno/ref/CartanMatrix"], "\<\"SO7\"\>":>
+       Documentation`HelpLookup[
+       "paclet:Susyno/ref/CartanMatrix"], "\<\"SP2\"\>":>
+       Documentation`HelpLookup[
+       "paclet:Susyno/ref/CartanMatrix"], "\<\"SP32\"\>":>
+       Documentation`HelpLookup[
+       "paclet:Susyno/ref/CartanMatrix"], "\<\"SP4\"\>":>
+       Documentation`HelpLookup[
+       "paclet:Susyno/ref/CartanMatrix"], "\<\"SP6\"\>":>
+       Documentation`HelpLookup[
+       "paclet:Susyno/ref/CartanMatrix"], "\<\"SP8\"\>":>
+       Documentation`HelpLookup[
+       "paclet:Susyno/ref/CartanMatrix"], "\<\"SU2\"\>":>
+       Documentation`HelpLookup[
+       "paclet:Susyno/ref/CartanMatrix"], "\<\"SU3\"\>":>
+       Documentation`HelpLookup[
+       "paclet:Susyno/ref/CartanMatrix"], "\<\"SU32\"\>":>
+       Documentation`HelpLookup[
+       "paclet:Susyno/ref/CartanMatrix"], "\<\"SU4\"\>":>
+       Documentation`HelpLookup[
+       "paclet:Susyno/ref/CartanMatrix"], "\<\"SU5\"\>":>
+       Documentation`HelpLookup[
+       "paclet:Susyno/ref/CartanMatrix"], "\<\"U1\"\>":>
+       Documentation`HelpLookup[
+       "paclet:Susyno/ref/CartanMatrix"], "\<\"Weights\"\>":>
        Documentation`HelpLookup["paclet:Susyno/ref/Weights"]},
        Appearance->None,
        MenuAppearance->Automatic]],
@@ -132,12 +239,12 @@ Cell[BoxData[GridBox[{
      Cell[BoxData[
       ActionMenuBox[
        FrameBox["\<\"URL \[RightGuillemet]\"\>",
-        StripOnInput->False], {"\<\"Susyno/tutorial/Susyno\"\>":>
+        StripOnInput->False], {"\<\"Susyno/tutorial/SusynoTutorial\"\>":>
        None, "\<\"Copy Mathematica url\"\>":>
        Module[{DocumentationSearch`Private`nb$}, 
         DocumentationSearch`Private`nb$ = NotebookPut[
            Notebook[{
-             Cell["Susyno/tutorial/Susyno"]}, Visible -> False]]; 
+             Cell["Susyno/tutorial/SusynoTutorial"]}, Visible -> False]]; 
         SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
         FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
         NotebookClose[DocumentationSearch`Private`nb$]; Null], 
@@ -150,8 +257,8 @@ Cell[BoxData[GridBox[{
                MakeBoxes[
                 Hyperlink[
                 "http://reference.wolfram.com/mathematica/Susyno/tutorial/\
-Susyno.html"], StandardForm]], "Input", TextClipboardType -> "PlainText"]}, 
-            Visible -> False]]; 
+SusynoTutorial.html"], StandardForm]], "Input", TextClipboardType -> 
+              "PlainText"]}, Visible -> False]]; 
         SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
         FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
         NotebookClose[DocumentationSearch`Private`nb$]; 
@@ -160,7 +267,7 @@ Susyno.html"], StandardForm]], "Input", TextClipboardType -> "PlainText"]},
            URL[
             StringJoin[
             "http://reference.wolfram.com/mathematica/", 
-             "Susyno/tutorial/Susyno", ".html"]], None}]}]},
+             "Susyno/tutorial/SusynoTutorial", ".html"]], None}]}]},
        Appearance->None,
        MenuAppearance->Automatic]],
       LineSpacing->{1.4, 0}]
@@ -174,12 +281,12 @@ Cell["Susyno Tutorial", "Title",
  CellID->509267359],
 
 Cell["\<\
-Susyno is a package which calculates the 2-loop \[Beta] functions of SUSY \
-models. The input is just the gauge group, representations, number of \
-flavours and R-symmetries of the model. Susyno then automatically generates \
-the theory's Lagrangian and other group theoretical quantities. These are \
-then used to calculate the \[Beta] functions for all the parameters of the \
-model.\
+Susyno is a package which calculates the 2-loop renormalization group \
+equations (RGEs) of SUSY models. The input is just the gauge group, \
+representations, number of flavours and any abelian symmetries of the model. \
+Susyno then automatically generates the Lagrangian and other group \
+theoretical quantities. These are then used to calculate the \[Beta] \
+functions for all the parameters of the model.\
 \>", "Text",
  CellID->1534169418],
 
@@ -216,154 +323,149 @@ RGEs.\
 \>", "Text",
  CellID->24858853],
 
-Cell[BoxData[{
+Cell[BoxData[
  RowBox[{
-  RowBox[{
-   RowBox[{"groups", "=", 
-    RowBox[{"{", 
-     RowBox[{"SU2", ",", "SU3"}], "}"}]}], ";"}], "     ", 
   RowBox[{"(*", " ", 
-   RowBox[{"Set", " ", "the", " ", "simple", " ", "factor", " ", "groups"}], 
-   " ", "*)"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"norm", "=", 
-    RowBox[{"Sqrt", "[", 
-     RowBox[{"3", "/", "5"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+   "Set", " ", "the", " ", "gauge", " ", "factor", " ", "groups", " ", "and", 
+    " ", "the", " ", 
+    RowBox[{"fields", "/", "representations"}]}], " ", "*)"}], 
   "\[IndentingNewLine]", 
   RowBox[{"(*", " ", 
-   RowBox[{"Set", " ", "the", " ", "representations"}], " ", 
-   "*)"}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"Q", "=", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{
-       RowBox[{"1", "/", "6"}], " ", "norm"}], " ", ",", 
-      RowBox[{"{", "1", "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"1", ",", "0"}], "}"}]}], "}"}]}], ";"}], 
-  "    "}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"u", "=", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{
-       RowBox[{
-        RowBox[{"-", "2"}], "/", "3"}], " ", "norm"}], ",", 
-      RowBox[{"{", "0", "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], ";"}], 
-  " "}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"d", "=", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{
-       RowBox[{"1", "/", "3"}], " ", "norm"}], ",", 
-      RowBox[{"{", "0", "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], ";"}], 
-  "  "}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"L", "=", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{
-      RowBox[{
-       RowBox[{"-", "1"}], "/", "2"}], " ", "norm"}], ",", 
-     RowBox[{"{", "1", "}"}], ",", 
-     RowBox[{"{", 
-      RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"e", "=", 
-    RowBox[{"{", 
-     RowBox[{"norm", ",", 
-      RowBox[{"{", "0", "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ";"}], 
-  "                "}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"Hu", "=", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{
-      RowBox[{"1", "/", "2"}], " ", "norm"}], ",", 
-     RowBox[{"{", "1", "}"}], ",", 
-     RowBox[{"{", 
-      RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"Hd", "=", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{
-       RowBox[{
-        RowBox[{"-", "1"}], "/", "2"}], "norm"}], ",", 
-      RowBox[{"{", "1", "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ";"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"representations", "=", 
-    RowBox[{"{", 
-     RowBox[{
-     "Q", ",", "u", ",", "d", ",", "L", ",", "e", ",", "Hu", ",", "Hd"}], 
-     "}"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
-  RowBox[{"(*", " ", 
    RowBox[{
-   "Set", " ", "the", " ", "number", " ", "of", " ", "flavours", " ", "of", 
-    " ", "each", " ", "representation"}], " ", 
-   "*)"}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"nFlavours", "=", 
-    RowBox[{"{", 
-     RowBox[{
-     "3", ",", "3", ",", "3", ",", "3", ",", "3", ",", "1", ",", "1"}], 
-     "}"}]}], ";"}], "\[IndentingNewLine]", 
-  RowBox[{"(*", " ", 
-   RowBox[{
-    RowBox[{"Set", " ", "the", " ", "R"}], "-", 
-    RowBox[{"parity", " ", "of", " ", "each", " ", "representation"}]}], " ", 
-   "*)"}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"RParity", "=", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{"-", "1"}], ",", 
-      RowBox[{"-", "1"}], ",", 
-      RowBox[{"-", "1"}], ",", 
-      RowBox[{"-", "1"}], ",", 
-      RowBox[{"-", "1"}], ",", "1", ",", "1"}], "}"}]}], ";"}], 
+    RowBox[{
+    "Also", " ", "set", " ", "the", " ", "number", " ", "of", " ", "flavours",
+      " ", "and", " ", "R"}], "-", 
+    RowBox[{"parity", " ", "of", " ", "each", " ", "field"}]}], " ", "*)"}], 
   "\[IndentingNewLine]", "\[IndentingNewLine]", 
-  RowBox[{"(*", " ", 
-   RowBox[{
-    RowBox[{"Calculate", " ", "the", " ", "2"}], "-", 
-    RowBox[{"loop", " ", "\[Beta]", " ", "functions"}]}], " ", 
-   "*)"}]}], "\[IndentingNewLine]", 
- RowBox[{"BetaFunctions2L", "[", 
   RowBox[{
-  "groups", ",", "representations", ",", "nFlavours", ",", "RParity"}], 
-  "]"}]}], "Input",
- CellLabel->"In[2]:=",
+   RowBox[{
+    RowBox[{"norm", "=", 
+     RowBox[{"Sqrt", "[", 
+      RowBox[{"3", "/", "5"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Q", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"U1", "->", 
+        RowBox[{
+         RowBox[{"1", "/", "6"}], " ", "norm"}]}], " ", ",", 
+       RowBox[{"SU2", "->", 
+        RowBox[{"{", "1", "}"}]}], ",", 
+       RowBox[{"SU3", "->", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "0"}], "}"}]}], ",", 
+       RowBox[{"NFlavours", "\[Rule]", "3"}], ",", 
+       RowBox[{"DiscreteSym", "\[Rule]", 
+        RowBox[{"-", "1"}]}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"u", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"U1", "->", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "2"}], "/", "3"}], " ", "norm"}]}], " ", ",", 
+       RowBox[{"SU2", "->", 
+        RowBox[{"{", "0", "}"}]}], ",", 
+       RowBox[{"SU3", "->", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "1"}], "}"}]}], ",", 
+       RowBox[{"NFlavours", "\[Rule]", "3"}], ",", 
+       RowBox[{"DiscreteSym", "\[Rule]", 
+        RowBox[{"-", "1"}]}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"d", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"U1", "\[Rule]", 
+        RowBox[{
+         RowBox[{"1", "/", "3"}], " ", "norm"}]}], " ", ",", 
+       RowBox[{"SU2", "->", 
+        RowBox[{"{", "0", "}"}]}], ",", 
+       RowBox[{"SU3", "->", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "1"}], "}"}]}], ",", 
+       RowBox[{"NFlavours", "\[Rule]", "3"}], ",", 
+       RowBox[{"DiscreteSym", "\[Rule]", 
+        RowBox[{"-", "1"}]}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"L", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"U1", "\[Rule]", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "1"}], "/", "2"}], " ", "norm"}]}], " ", ",", 
+       RowBox[{"SU2", "->", 
+        RowBox[{"{", "1", "}"}]}], ",", 
+       RowBox[{"SU3", "->", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+       RowBox[{"NFlavours", "\[Rule]", "3"}], ",", 
+       RowBox[{"DiscreteSym", "\[Rule]", 
+        RowBox[{"-", "1"}]}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"e", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"U1", "\[Rule]", " ", "norm"}], " ", ",", 
+       RowBox[{"SU2", "->", 
+        RowBox[{"{", "0", "}"}]}], ",", 
+       RowBox[{"SU3", "->", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+       RowBox[{"NFlavours", "\[Rule]", "3"}], ",", 
+       RowBox[{"DiscreteSym", "\[Rule]", 
+        RowBox[{"-", "1"}]}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Hu", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"U1", "\[Rule]", " ", 
+        RowBox[{
+         RowBox[{"1", "/", "2"}], "norm"}]}], " ", ",", 
+       RowBox[{"SU2", "->", 
+        RowBox[{"{", "1", "}"}]}], ",", 
+       RowBox[{"SU3", "->", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+       RowBox[{"NFlavours", "\[Rule]", "1"}], ",", 
+       RowBox[{"DiscreteSym", "\[Rule]", "1"}]}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Hd", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"U1", "\[Rule]", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "1"}], "/", "2"}], "norm"}]}], " ", ",", 
+       RowBox[{"SU2", "->", 
+        RowBox[{"{", "1", "}"}]}], ",", 
+       RowBox[{"SU3", "->", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+       RowBox[{"NFlavours", "\[Rule]", "1"}], ",", 
+       RowBox[{"DiscreteSym", "\[Rule]", "1"}]}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"model", "=", 
+     RowBox[{"{", 
+      RowBox[{
+      "Q", ",", "u", ",", "d", ",", "L", ",", "e", ",", "Hu", ",", "Hd"}], 
+      "}"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"BetaFunctions2L", "[", "model", "]"}], ";"}]}]}]], "Input",
+ CellLabel->"In[1]:=",
  CellID->6265725],
 
 Cell["To view the Lagrangian being used by the program type", "Text",
  CellID->44162439],
 
 Cell[BoxData[
- RowBox[{"ShowLagrangian", "[", 
-  RowBox[{
-  "groups", ",", "representations", ",", "nFlavours", ",", "RParity"}], 
-  "]"}]], "Input",
- CellLabel->"In[2]:=",
+ RowBox[{"ShowLagrangian", "[", "model", "]"}]], "Input",
+ CellLabel->"In[11]:=",
  CellID->337054168]
 }, Open  ]],
 
@@ -421,9 +523,9 @@ Decomposes a direct product representation in its irreducible parts\
 Computes the invariant combinations of a product of 1,2 or 3 representations\
 \>", "TableText"]},
    {
-    ButtonBox["CM",
+    ButtonBox["CartanMatrix",
      BaseStyle->"Link",
-     ButtonData->"paclet:Susyno/ref/CM"], Cell[
+     ButtonData->"paclet:Susyno/ref/CartanMatrix"], Cell[
     "Computes the Cartan matrix of a group", "TableText"]},
    {
     ButtonBox["Casimir",
@@ -489,77 +591,82 @@ Cell[BoxData[GridBox[{
 Variables with all the information on the MSSM and NMSSM models ready to use\
 \>", "TableText"]},
    {
+    ButtonBox["U1",
+     BaseStyle->"Link",
+     ButtonData->"paclet:Susyno/ref/CartanMatrix"], Cell[
+    "The same as {}", "TableText"]},
+   {
     RowBox[{
      ButtonBox["SU2",
       BaseStyle->"Link",
-      ButtonData->"paclet:Susyno/ref/CM"], ",", 
+      ButtonData->"paclet:Susyno/ref/CartanMatrix"], ",", 
      ButtonBox["SU3",
       BaseStyle->"Link",
-      ButtonData->"paclet:Susyno/ref/CM"], ",", 
+      ButtonData->"paclet:Susyno/ref/CartanMatrix"], ",", 
      ButtonBox["SU4",
       BaseStyle->"Link",
-      ButtonData->"paclet:Susyno/ref/CM"], ",", 
+      ButtonData->"paclet:Susyno/ref/CartanMatrix"], ",", 
      ButtonBox["SU5",
       BaseStyle->"Link",
-      ButtonData->"paclet:Susyno/ref/CM"], ",", " ", "...", ",", 
+      ButtonData->"paclet:Susyno/ref/CartanMatrix"], ",", " ", "...", ",", 
      ButtonBox["SU32",
       BaseStyle->"Link",
-      ButtonData->"paclet:Susyno/ref/CM"]}], Cell[
+      ButtonData->"paclet:Susyno/ref/CartanMatrix"]}], Cell[
     "Cartan matrices of these simple groups", "TableText"]},
    {
     RowBox[{
      ButtonBox["SO3",
       BaseStyle->"Link",
-      ButtonData->"paclet:Susyno/ref/CM"], ",", 
+      ButtonData->"paclet:Susyno/ref/CartanMatrix"], ",", 
      ButtonBox["SO5",
       BaseStyle->"Link",
-      ButtonData->"paclet:Susyno/ref/CM"], ",", 
+      ButtonData->"paclet:Susyno/ref/CartanMatrix"], ",", 
      ButtonBox["SO6",
       BaseStyle->"Link",
-      ButtonData->"paclet:Susyno/ref/CM"], ",", 
+      ButtonData->"paclet:Susyno/ref/CartanMatrix"], ",", 
      ButtonBox["SO7",
       BaseStyle->"Link",
-      ButtonData->"paclet:Susyno/ref/CM"], ",", " ", "...", ",", 
+      ButtonData->"paclet:Susyno/ref/CartanMatrix"], ",", " ", "...", ",", 
      ButtonBox["SO32",
       BaseStyle->"Link",
-      ButtonData->"paclet:Susyno/ref/CM"]}], Cell[
+      ButtonData->"paclet:Susyno/ref/CartanMatrix"]}], Cell[
     "Cartan matrices of these simple groups (SO4 is not simple)", 
      "TableText"]},
    {
     RowBox[{
      ButtonBox["SP2",
       BaseStyle->"Link",
-      ButtonData->"paclet:Susyno/ref/CM"], ",", 
+      ButtonData->"paclet:Susyno/ref/CartanMatrix"], ",", 
      ButtonBox["SP4",
       BaseStyle->"Link",
-      ButtonData->"paclet:Susyno/ref/CM"], ",", 
+      ButtonData->"paclet:Susyno/ref/CartanMatrix"], ",", 
      ButtonBox["SP6",
       BaseStyle->"Link",
-      ButtonData->"paclet:Susyno/ref/CM"], ",", 
+      ButtonData->"paclet:Susyno/ref/CartanMatrix"], ",", 
      ButtonBox["SP8",
       BaseStyle->"Link",
-      ButtonData->"paclet:Susyno/ref/CM"], ",", " ", "...", ",", 
+      ButtonData->"paclet:Susyno/ref/CartanMatrix"], ",", " ", "...", ",", 
      ButtonBox["SP32",
       BaseStyle->"Link",
-      ButtonData->"paclet:Susyno/ref/CM"]}], Cell[
+      ButtonData->"paclet:Susyno/ref/CartanMatrix"]}], Cell[
     "Cartan matrices of these simple groups", "TableText"]},
    {
     RowBox[{
      ButtonBox["G2",
       BaseStyle->"Link",
-      ButtonData->"paclet:Susyno/ref/CM"], ",", 
+      ButtonData->"paclet:Susyno/ref/CartanMatrix"], ",", 
      ButtonBox["F4",
       BaseStyle->"Link",
-      ButtonData->"paclet:Susyno/ref/CM"], ",", 
+      ButtonData->"paclet:Susyno/ref/CartanMatrix"], ",", 
      ButtonBox["E6",
       BaseStyle->"Link",
-      ButtonData->"paclet:Susyno/ref/CM"], ",", 
+      ButtonData->"paclet:Susyno/ref/CartanMatrix"], ",", 
      ButtonBox["E7",
       BaseStyle->"Link",
-      ButtonData->"paclet:Susyno/ref/CM"], ",", 
+      ButtonData->"paclet:Susyno/ref/CartanMatrix"], ",", 
      ButtonBox["E8",
       BaseStyle->"Link",
-      ButtonData->"paclet:Susyno/ref/CM"]}], Cell[
+      ButtonData->"paclet:Susyno/ref/CartanMatrix"]}], Cell[
     "Cartan matrices of these simple groups", "TableText"]}
   }]], "DefinitionBox",
  CellID->856307529]
@@ -582,118 +689,136 @@ Cell[TextData[{
    BaseStyle->"Link",
    ButtonData->"paclet:Susyno/ref/BetaFunctions1L"]], "InlineFormula"],
  " (for 1-loop results). These functions require the details of the model: \
-gauge groups, representations/fields, number of flavours and R-parity of each \
-field. In particular Susyno does not need names of fields nor names of \
-parameters of the model; only the above defining elements of the model are \
-necessary."
+gauge groups, representations, number of flavours and abelian discrete \
+symmetry of each field (if any). In particular, Susyno does not need names of \
+fields nor names of parameters of the model; only the above defining elements \
+of the model are necessary."
 }], "Text",
  CellID->100635996],
+
+Cell[TextData[{
+ "The basic idea is to build a list of chiral superfields (I'll call them \
+simply ",
+ StyleBox["fields", "TI"],
+ "):"
+}], "Text",
+ CellID->423206022],
+
+Cell["A model is just a list of fields:", "MathCaption",
+ CellID->824451330],
+
+Cell["model={field1,field2,...};", "Code",
+ Evaluatable->False,
+ InitializationCell->False,
+ CellID->13441295],
+
+Cell["\<\
+Each field must contain the information on the representations under the \
+gauge groups, number of flavours, and abelian discrete symmetries (if any):\
+\>", "Text",
+ CellID->388589019],
+
+Cell["A generic example of a field: ", "MathCaption",
+ CellID->154743581],
+
+Cell["\<\
+field={g1->g1_rep,g2->g2_rep,...,NFlavours \[Rule] nf,DiscreteSym \[Rule] q};\
+\>", "Code",
+ Evaluatable->False,
+ InitializationCell->False,
+ CellID->487015284],
+
+Cell["where ...", "Text",
+ CellID->160230726],
+
+Cell[">>> g1,g2,... are the gauge factor groups;", "Text",
+ CellID->633280229],
+
+Cell["\<\
+>>> g1_rep, g2_rep, ... are the representations under the gauge factor groups \
+of the field;\
+\>", "Text",
+ CellID->4571369],
+
+Cell[">>> nf is the number of flavours/copies;", "Text",
+ CellID->455991224],
+
+Cell["\<\
+>>> q is the charge of the field under some abelian discrete symmetries (like \
+R-parity).\
+\>", "Text",
+ CellID->13923596],
 
 Cell[TextData[StyleBox["Groups", "Subsection"]], "Text",
  CellID->22581803],
 
 Cell[TextData[{
- "Susyno accepts a direct product of any simple Lie group - see the ",
+ "Susyno accepts a direct product of any Lie groups - see the ",
  Cell[BoxData[
-  ButtonBox["CM",
+  ButtonBox["CartanMatrix",
    BaseStyle->"Link",
-   ButtonData->"paclet:Susyno/ref/CM"]], "InlineFormula"],
- " method for more details. To define this we build a list of the gauge \
-simple factor groups of the model such as:"
+   ButtonData->"paclet:Susyno/ref/CartanMatrix"]], "InlineFormula"],
+ " method for details.  There are two important things to keep in mind:"
 }], "Text",
  CellID->58772511],
 
-Cell["For the MSSM:", "MathCaption",
- CellID->6421],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"groups", "=", 
-   RowBox[{"{", 
-    RowBox[{"SU2", ",", "SU3"}], "}"}]}], ";"}]], "Input",
- CellLabel->"In[1]:=",
- CellID->27111],
-
-Cell["For an SO(10) model:", "MathCaption",
- CellID->16269364],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"groups", "=", 
-   RowBox[{"{", "SO10", "}"}]}], ";"}]], "Input",
- CellLabel->"In[1]:=",
- CellID->300499189],
-
 Cell["\<\
-Note that U(1) factors are not to be included here. Susyno will be aware of \
-them from the number of hypercharges of each representation/field of the \
-model.\
+>>> The ordering of the factor groups must be consistent across all fields;\
 \>", "Text",
- CellID->419030989],
+ CellID->195708328],
+
+Cell[">>> U(1) factor groups must come first.", "Text",
+ CellID->193008405],
 
 Cell[CellGroupData[{
 
-Cell["Representations/fields", "Subsection",
+Cell["Representations", "Subsection",
  CellID->264470554],
 
 Cell["\<\
-Next a list of the representations/fields of the model must be given. To see \
-clearly, we may break things in parts,\
-\>", "Text",
- CellID->318703627],
-
-Cell["Generic example:", "MathCaption",
- CellID->62320258],
-
-Cell["representations={field1,field2,...};", "Code",
- Evaluatable->False,
- InitializationCell->False,
- CellID->250711831],
-
-Cell["and next provide the details for each field:", "Text",
- CellID->5971911],
-
-Cell["Generic example:", "MathCaption",
- CellID->38612641],
-
-Cell["\<\
-field={hChrg1, hChrg2, ..., hChrgM, rep_SimpleGroup1, rep_SimpleGroup2, ...};\
-\>", "Code",
- Evaluatable->False,
- InitializationCell->False,
- CellID->175675222],
-
-Cell["\<\
-So first come the hypercharges of the field if there are U(1) gauge groups. \
-These are just numbers. \
+A real number (hypercharge) specifies a representation of a U(1) factor \
+group. So we should write\
 \>", "Text",
  CellID->68464658],
 
-Cell["\<\
-After that come the representations of the field under each of the simple \
-[=non U(1)] gauge factor groups (see previous subsection). Often these \
-representations are specified by their dimension[3 of SU(3), 45 of SO(10), 24 \
-of SU(5), etc]. Susyno does not accept this because the dimensionality of a \
-representation can be an ambiguous label for it.\
-\>", "Text",
- CellID->14076788],
+Cell["To specify a U(1) representation we just need a real number:", \
+"MathCaption",
+ CellID->315402278],
+
+Cell["U1->(some number)", "Code",
+ Evaluatable->False,
+ InitializationCell->False,
+ CellID->38080131],
+
+Cell[TextData[{
+ "Things are a little more complicated for simple gauge groups like SU(n), \
+SO(n), .... Representations of these groups are often specified by their \
+dimension [",
+ StyleBox["3",
+  FontWeight->"Bold"],
+ " of SU(3), ",
+ StyleBox["45",
+  FontWeight->"Bold"],
+ " of SO(10), ",
+ StyleBox["24",
+  FontWeight->"Bold"],
+ " of SU(5), etc]. Susyno does not accept this because the dimensionality of \
+a representation can be an ambiguous label for it. For example, there are two \
+irreducible 15-dimensional representations of SU(3) [four if we include the \
+conjugated ones]."
+}], "Text",
+ CellID->87239316],
 
 Cell["\<\
-The program expects for each field and for each simple gauge factor group a \
-representation that should be specified by its Dynkin coefficients. These are \
-just a list of n non-negative integers where n is the group rank. To find n, \
-type\
+Instead, the program expects for each field and for each simple gauge factor \
+group a representation that should be specified by its Dynkin coefficients. \
+These are just a list of n non-negative integers where n is the group rank. \
+To find n, type\
 \>", "Text",
  CellID->719752033],
 
-Cell["This gives the rank of a group (generic example):", "MathCaption",
- CellID->486473223],
-
 Cell["Length[group]", "Code",
  CellID->99800453],
-
-Cell["such as", "Text",
- CellID->204011030],
 
 Cell["Rank of SU(3):", "MathCaption",
  CellID->38172770],
@@ -702,15 +827,15 @@ Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"Length", "[", "SU3", "]"}]], "Input",
- CellLabel->"In[4]:=",
+ CellLabel->"In[40]:=",
  CellID->252225000],
 
 Cell[BoxData["2"], "Output",
  ImageSize->{11, 15},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
- CellLabel->"Out[4]=",
- CellID->36566493]
+ CellLabel->"Out[40]=",
+ CellID->264615598]
 }, Open  ]],
 
 Cell["Rank of SO(10):", "MathCaption",
@@ -720,15 +845,15 @@ Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"Length", "[", "SO10", "]"}]], "Input",
- CellLabel->"In[5]:=",
+ CellLabel->"In[41]:=",
  CellID->453374297],
 
 Cell[BoxData["5"], "Output",
  ImageSize->{11, 15},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
- CellLabel->"Out[5]=",
- CellID->119483149]
+ CellLabel->"Out[41]=",
+ CellID->12440822]
 }, Open  ]],
 
 Cell["\<\
@@ -738,22 +863,22 @@ wants.\
 \>", "Text",
  CellID->186840582],
 
-Cell["\<\
-It might be needed some familiarity with expressing representations in this \
-notation.\
-\>", "Text",
- CellID->425758681],
-
-Cell["\<\
-One way is to read a reference such as R. Slansky, Phys.Rept. 79 (1981) where \
-there are long tables of the representations of each group and some of their \
-properties.\
-\>", "Text",
+Cell[TextData[{
+ "Some familiarity might be needed with this notation. One way to explore \
+this topic is to read a reference such as ",
+ ButtonBox["R. Slansky, Phys.Rept. 79 (1981)",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://dx.doi.org/10.1016/0370-1573(81)90092-2"], None}],
+ " where there are long tables of the representations of each group and some \
+of their properties."
+}], "Text",
  CellID->13545047],
 
 Cell[TextData[{
  "Another possibility is to explore the properties of each representation \
-(given in Dynkin coefficients) with some of the methods included in Susyno. ",
+(given in Dynkin coefficients) with some of the methods included in Susyno \
+itself. ",
  Cell[BoxData[
   ButtonBox["DimR",
    BaseStyle->"Link",
@@ -785,15 +910,15 @@ Cell[BoxData[
   RowBox[{"SU3", ",", 
    RowBox[{"{", 
     RowBox[{"1", ",", "1"}], "}"}]}], "]"}]], "Input",
- CellLabel->"In[6]:=",
+ CellLabel->"In[42]:=",
  CellID->514460268],
 
 Cell[BoxData["8"], "Output",
  ImageSize->{11, 15},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
- CellLabel->"Out[6]=",
- CellID->7003650]
+ CellLabel->"Out[42]=",
+ CellID->166118683]
 }, Open  ]],
 
 Cell["\<\
@@ -901,6 +1026,22 @@ Cell[BoxData[GridBox[{
        RowBox[{"fundamental", "'"}], "s", " ", "conjugate"}], ")"}]}]},
    {" ", 
     RowBox[{"{", 
+     RowBox[{"2", ",", "0", ",", "0", ",", "0"}], "}"}], 
+    StyleBox["15",
+     FontFamily->"Courier New",
+     FontWeight->"Bold"]},
+   {" ", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", "0", ",", "0", ",", "2"}], "}"}], 
+    StyleBox[
+     OverscriptBox[
+      StyleBox["15",
+       FontFamily->"Courier New",
+       FontWeight->"Bold"], "_"],
+     FontFamily->"Courier New",
+     FontWeight->"Bold"]},
+   {" ", 
+    RowBox[{"{", 
      RowBox[{"0", ",", "1", ",", "0", ",", "0"}], "}"}], 
     RowBox[{
      StyleBox["10",
@@ -997,157 +1138,91 @@ Cell[BoxData[GridBox[{
 Cell["Small list of useful representations.", "Caption",
  CellID->251894822],
 
-Cell["For the MSSM we would write:", "Text",
- CellID->49378656],
-
-Cell["Defining the representations/fields in the MSSM:", "MathCaption",
- CellID->185534725],
-
-Cell[BoxData[{
- RowBox[{
-  RowBox[{
-   RowBox[{"norm", "=", 
-    RowBox[{"Sqrt", "[", 
-     RowBox[{"3", "/", "5"}], "]"}]}], ";"}], " ", 
-  RowBox[{"(*", " ", 
-   RowBox[{
-   "normalization", " ", "constant", " ", "of", " ", "the", " ", 
-    "hypercharges"}], " ", "*)"}], "\[IndentingNewLine]", 
-  "\[IndentingNewLine]", 
-  RowBox[{"(*", " ", 
-   RowBox[{
-   "for", " ", "all", " ", "fields", " ", "the", " ", "order", " ", "is", " ", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{"U1", " ", "charge"}], ",", 
-      RowBox[{"SU2", " ", "rep"}], ",", 
-      RowBox[{"SU3", " ", "rep"}]}], "}"}]}], " ", 
-   "*)"}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"Q", "=", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{
-       RowBox[{"1", "/", "6"}], " ", "norm"}], " ", ",", 
-      RowBox[{"{", "1", "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"1", ",", "0"}], "}"}]}], "}"}]}], ";"}], 
-  "    "}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"u", "=", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{
-       RowBox[{
-        RowBox[{"-", "2"}], "/", "3"}], " ", "norm"}], ",", 
-      RowBox[{"{", "0", "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], ";"}], 
-  " "}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"d", "=", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{
-       RowBox[{"1", "/", "3"}], " ", "norm"}], ",", 
-      RowBox[{"{", "0", "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], ";"}], 
-  "  "}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"L", "=", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{
-      RowBox[{
-       RowBox[{"-", "1"}], "/", "2"}], " ", "norm"}], ",", 
-     RowBox[{"{", "1", "}"}], ",", 
-     RowBox[{"{", 
-      RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"e", "=", 
-    RowBox[{"{", 
-     RowBox[{"norm", ",", 
-      RowBox[{"{", "0", "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ";"}], 
-  "                "}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"Hu", "=", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{
-      RowBox[{"1", "/", "2"}], " ", "norm"}], ",", 
-     RowBox[{"{", "1", "}"}], ",", 
-     RowBox[{"{", 
-      RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"Hd", "=", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{
-       RowBox[{
-        RowBox[{"-", "1"}], "/", "2"}], "norm"}], ",", 
-      RowBox[{"{", "1", "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ";"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"representations", "=", 
-   RowBox[{"{", 
-    RowBox[{
-    "Q", ",", "u", ",", "d", ",", "L", ",", "e", ",", "Hu", ",", "Hd"}], 
-    "}"}]}], ";"}]}], "Input",
- CellLabel->"In[1]:=",
- CellID->55760109]
+Cell["\<\
+For example, in the MSSM we have the trivial ({0,0}), fundamental ({1,0}) and \
+anti-fundamental ({0,1}) representations of SU(3) and the trivial/singlet \
+({0}) and fundamental/doublet ({1}) representations of SU(2).\
+\>", "Text",
+ CellID->53721323]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell["Number of flavours and R-parity of fields", "Subsection",
+Cell["Number of flavours", "Subsection",
  CellID->130285366],
 
 Cell["\<\
-Lastly we need a list with the number of flavours of each \
-representation/field and another one with their R-parities.\
+Many models contain repetitions of some of the representations of the gauge \
+group. Instead of considering them distinct fields, we usually view these as \
+different flavours of a single field and Susyno needs to know how many \
+flavours there are in order to compute the \[Beta]-functions. The user must \
+use the expression\
 \>", "Text",
  CellID->346919154],
 
 Cell["\<\
-MSSM: build a list with the number of flavours and another one with the \
-R-parity of each field:\
-\>", "MathCaption",
- CellID->344511272],
+NFlavours \[Rule] (number of flavours)\
+\>", "Code",
+ Evaluatable->False,
+ InitializationCell->False,
+ CellID->109118134],
 
-Cell[BoxData[{
- RowBox[{
-  RowBox[{"nFlavours", "=", 
-   RowBox[{"{", 
-    RowBox[{"3", ",", "3", ",", "3", ",", "3", ",", "3", ",", "1", ",", "1"}],
-     "}"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"RParity", "=", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "1"}], ",", 
-     RowBox[{"-", "1"}], ",", 
-     RowBox[{"-", "1"}], ",", 
-     RowBox[{"-", "1"}], ",", 
-     RowBox[{"-", "1"}], ",", "1", ",", "1"}], "}"}]}], ";"}]}], "Input",
- CellLabel->"In[1]:=",
- CellID->797479195],
+Cell[TextData[{
+ "The number of flavours can be a number or a symbol like ",
+ Cell[BoxData["x"], "InlineFormula"],
+ ". If no NFlavours command is used in a particular field, that field is \
+assumed to have ",
+ Cell[BoxData[
+  RowBox[{"nf", "[", "i", "]"}]], "InlineFormula"],
+ " flavours, where i is the order of the field."
+}], "Text",
+ CellID->201997723]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Abelian discrete symmetries", "Subsection",
+ CellID->167242659],
+
+Cell[TextData[{
+ "There are models in which we must forbid some couplings and in order to do \
+that some abelian discrete symmetry is introduced. The MSSM is a good example \
+- in this case there is a ",
+ Cell[BoxData[
+  SubscriptBox["Z", "2"]], "InlineFormula"],
+ " symmetry called R-parity that imposes baryon and lepton number \
+conservation (at the perturbative level).  To tell the program about the \
+fields' charges under some ",
+ Cell[BoxData[
+  SubscriptBox["Z", "n"]], "InlineFormula"],
+ " symmetry the user must use the expression"
+}], "Text",
+ CellID->239542694],
+
+Cell["DiscreteSym \[Rule] (field charge) ", "Code",
+ Evaluatable->False,
+ InitializationCell->False,
+ CellID->421781349],
+
+Cell["The field charge must be a complex number with modulus 1.", "Text",
+ CellID->60958078],
+
+Cell[TextData[{
+ "If there are many ",
+ Cell[BoxData[
+  SubscriptBox["Z", "n"]], "InlineFormula"],
+ " symmetries we can always reduce them to a single one. But that is not \
+necessary since the program also accepts a list of charges  (one for each \
+abelian discrete symmetry). Note however that this number of charges must be \
+the same for all fields."
+}], "Text",
+ CellID->174451658],
 
 Cell["\<\
-If the flavours list is just {}, the program assumes the default generic \
-value {nf[1],nf[2],...}. If the R-parity list is {} Susyno assumes that it is \
-{1,1,...} (all fields with trivial R-parity).\
+If no DiscreteSym command is used in a particular field, that field is \
+assumed to have a trivial charge of 1.\
 \>", "Text",
- CellID->174451658]
+ CellID->6965007]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1156,63 +1231,56 @@ Cell["Calling BetaFunctions1L / BetaFunctions2L", "Subsection",
  CellID->305509497],
 
 Cell[TextData[{
- "Having ",
- Cell[BoxData["groups"], "InlineFormula"],
- ", ",
- Cell[BoxData["representations"], "InlineFormula"],
- ", ",
- Cell[BoxData["nFlavours"], "InlineFormula"],
- ", ",
- Cell[BoxData["RParity"], "InlineFormula"],
- " all set up, we may call"
+ "Assuming that we have saved in a variable ",
+ Cell[BoxData["model"], "InlineFormula"],
+ " all the model's data, we may then call"
 }], "Text",
  CellID->776410528],
 
-Cell[BoxData[
- RowBox[{"BetaFunctions1L", "[", 
-  RowBox[{
-  "groups", ",", "representations", ",", "nFlavours", ",", "RParity"}], 
-  "]"}]], "Input",
- CellLabel->"In[1]:=",
- CellID->187143367],
-
-Cell["for 1-loop \[Beta] functions or", "Text",
- CellID->975902753],
+Cell["1-loop \[Beta] functions", "MathCaption",
+ CellID->649717704],
 
 Cell[BoxData[
- RowBox[{"BetaFunctions2L", "[", 
-  RowBox[{
-  "groups", ",", "representations", ",", "nFlavours", ",", "RParity"}], 
-  "]"}]], "Input",
- CellLabel->"In[1]:=",
- CellID->49276152],
+ RowBox[{"BetaFunctions1L", "[", "model", "]"}]], "Input",
+ CellID->411943553],
 
-Cell[TextData[{
- "for 2-loop results. This will print the results on the screen. Adding an \
-extra argument ",
- Cell[BoxData["False"], "InlineFormula"],
- " will make the these methods return the  \[Beta] functions (instead of \
-printing them and returning ",
- Cell[BoxData["Null"], "InlineFormula"],
- "):"
-}], "Text",
+Cell["2-loop \[Beta] functions", "MathCaption",
+ CellID->209515848],
+
+Cell[BoxData[
+ RowBox[{"BetaFunctions2L", "[", "model", "]"}]], "Input",
+ CellID->87655055],
+
+Cell["\<\
+There is a Verbose option (by default set to True) which prints the results. \
+If we do not wish that to happen, we must use\
+\>", "Text",
  CellID->22160086],
 
-Cell[BoxData[{
+Cell["\<\
+1-loop \[Beta] functions (no printing)\
+\>", "MathCaption",
+ CellID->575302465],
+
+Cell[BoxData[
  RowBox[{"BetaFunctions1L", "[", 
-  RowBox[{
-  "groups", ",", "representations", ",", "nFlavours", ",", "RParity", ",", 
-   "False"}], "]"}], "\[IndentingNewLine]", 
+  RowBox[{"model", ",", 
+   RowBox[{"Verbose", "\[Rule]", "False"}]}], "]"}]], "Input",
+ CellID->28350640],
+
+Cell["\<\
+2-loop \[Beta] functions (no printing)\
+\>", "MathCaption",
+ CellID->295648887],
+
+Cell[BoxData[
  RowBox[{"BetaFunctions2L", "[", 
-  RowBox[{
-  "groups", ",", "representations", ",", "nFlavours", ",", "RParity", ",", 
-   "False"}], "]"}]}], "Input",
- CellLabel->"In[1]:=",
- CellID->376902685],
+  RowBox[{"model", ",", 
+   RowBox[{"Verbose", "\[Rule]", "False"}]}], "]"}]], "Input",
+ CellID->75071267],
 
 Cell[TextData[{
- " This is convenient if we want to save and latter process them. See \
-functions ",
+ "See functions ",
  Cell[BoxData[
   ButtonBox["BetaFunctions1L",
    BaseStyle->"Link",
@@ -1235,33 +1303,39 @@ Cell["Interpreting the output", "Section",
 
 Cell[TextData[{
  "After executing the ",
- Cell[BoxData["BetaFunctions1L"], "InlineFormula"],
+ Cell[BoxData[
+  ButtonBox["BetaFunctions1L",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/BetaFunctions1L"]], "InlineFormula"],
  " / ",
- Cell[BoxData["BetaFunctions2L"], "InlineFormula"],
- " functions the program starts printing the \[Beta] functions on the screen."
+ Cell[BoxData[
+  ButtonBox["BetaFunctions2L",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/BetaFunctions2L"]], "InlineFormula"],
+ " functions the program starts printing the \[Beta]- functions on the screen."
 }], "Text",
  CellID->16778654],
 
 Cell["\<\
-We must remember that as input there are no names of parameters; the program \
+We must remember that there are no names of parameters as input; the program \
 builds the Lagrangian automatically and assigns names to the parameters of \
 the model. \
 \>", "Text",
  CellID->38125756],
 
-Cell[TextData[StyleBox["Names of model parameters", "Subsection"]], "Text",
+Cell[TextData[StyleBox["Naming of model parameters", "Subsection"]], "Text",
  CellID->502385924],
 
 Cell["\<\
-One option would be to start given trivial names such as A,B,C,... as needed. \
-The problem with this approach is that the names of these variables do not \
-give any information about what kind of parameter they are representing.\
+One option would be to start giving trivial names such as A,B,C,... as \
+needed. The problem with this approach is that these names do not give any \
+information about the parameters they are representing.\
 \>", "Text",
  CellID->7204230],
 
 Cell["\<\
-Susyno takes a the following approach: the parameters' names indicate what \
-fields they are multiplying. For instance the up-quark Yukawas could be \
+Susyno takes the following approach: the parameters' names indicate what \
+fields they are multiplying. For instance, the up-quark Yukawas could be \
 something like y[Q,u,Hu,<flavours>]. The problem now is that the program does \
 not ask (and does not need) as input the field's names. Therefore there is no \
 such thing as 'Q', 'u' and 'Hu'. Instead the program identifies each field by \
@@ -1270,38 +1344,29 @@ representations/fields are given in the following order,\
 \>", "Text",
  CellID->58309820],
 
-Cell["\<\
-Order of the fields is the tag used by the program to identify them. In this \
-case, Q=1, u=2, d=3,...\
-\>", "MathCaption",
- CellID->674081572],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"representations", "=", 
-   RowBox[{"{", 
-    RowBox[{
-    "Q", ",", "u", ",", "d", ",", "L", ",", "e", ",", "Hu", ",", "Hd"}], 
-    "}"}]}], ";"}]], "Input",
- CellID->63683058],
+Cell["model = {Q, u, d, L, e, Hu, Hd};", "Code",
+ Evaluatable->False,
+ InitializationCell->False,
+ CellID->85331752],
 
 Cell["\<\
-then representation Q = 1, representation u = 2 and so on. So the up-quark \
-Yukawas would be y[1,2,6,...].\
+then field Q = 1, field u = 2 and so on. So the up-quark Yukawas would be \
+y[1,2,6,...].\
 \>", "Text",
  CellID->154281417],
 
 Cell["\<\
-There is on other non-trivial factor to consider. When running the program at \
-some point it will analyze say the triple products of Q,u, Hu. It will figure \
-out that these three representations form an invariant combination, therefore \
-a parameter y[1,2,6,...] is needed to multiply the whole expression.\
+There is one other non-trivial factor to consider. At some point during the \
+program's execution, Susyno will analyze the triple product of Q,u, Hu (for \
+example). It will figure out that these three gauge group representations \
+form an invariant combination, therefore a parameter y[1,2,6,...] is needed \
+to multiply the whole expression.\
 \>", "Text",
  CellID->653273530],
 
 Cell[TextData[{
- "The problem is a triple product of representations may form more than one \
-invariant combination.  An example of this would be ",
+ "The problem is that a triple product of representations may form more than \
+one invariant combination.  An example of this is ",
  StyleBox["8",
   FontWeight->"Bold"],
  " x ",
@@ -1319,12 +1384,14 @@ Cell[TextData[{
  StyleBox["8",
   FontWeight->"Bold"],
  " (see discussion above) of SU(3). The expressions of the invariants are \
-very long so we check only that there are two of them. See method ",
+very long so we only ",
+ "check",
+ " that there are two of them. See method ",
  Cell[BoxData[
   ButtonBox["Invariants",
    BaseStyle->"Link",
    ButtonData->"paclet:Susyno/ref/Invariants"]], "InlineFormula"],
- " for more details."
+ " for details."
 }], "MathCaption",
  CellID->40914729],
 
@@ -1340,21 +1407,21 @@ Cell[BoxData[
      RowBox[{"1", ",", "1"}], "}"}], ",", 
     RowBox[{"{", 
      RowBox[{"1", ",", "1"}], "}"}]}], "]"}], "]"}]], "Input",
- CellLabel->"In[9]:=",
+ CellLabel->"In[43]:=",
  CellID->14784177],
 
 Cell[BoxData["2"], "Output",
  ImageSize->{11, 15},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
- CellLabel->"Out[9]=",
- CellID->41833609]
+ CellLabel->"Out[43]=",
+ CellID->35220029]
 }, Open  ]],
 
 Cell["\<\
-Let's call these invariants Inv1, Inv2,...,InvN. The program will then need \
-more than one parameter: y[1,2,6,1,<flavours>] for Inv1, \
-y[1,2,6,2,<flavours>]  for Inv2,..., y[1,2,6,N,<flavours>]  for InvN.\
+Let us call these invariants Inv1, Inv2,..., InvN. The program will need more \
+than one parameter: y[1,2,6,1,<flavours>] for Inv1, y[1,2,6,2,<flavours>]  \
+for Inv2,..., y[1,2,6,N,<flavours>]  for InvN.\
 \>", "Text",
  CellID->224561642],
 
@@ -1371,9 +1438,9 @@ is superfluous since it is always 1). \
 Cell["\<\
 Finally there are the flavours. Again using the up-quark Yukawas of the MSSM \
 as example, the complete parameter is y[1,2,6,1,i,j]. The flavour indices i \
-and j are of field1=Q and field2=u respectively. field6=Hu does not have one \
-because Susyno knows that there is only one flavour of Hu so there is no need \
-for an index.\
+and j are of field 1=Q and field 2=u respectively. Field 6=Hu does not have \
+one because Susyno knows that there is only one flavour of Hu so there is no \
+need for an index.\
 \>", "Text",
  CellID->58656751],
 
@@ -1404,22 +1471,21 @@ terms. ",
  CellID->42414503],
 
 Cell["\<\
-y[field1, field2, field3, InvIndex, < flav1 >, < flav2 >, < flav3 >]
-mu[field1, field2, InvIndex, < flav1 >, < flav2 >]
-l[field1, InvIndex, < flav1 >]\[LineSeparator]h[field1, field2, field3, \
-InvIndex, < flav1 >, < flav2 >, < flav3 >]
-b[field1, field2, InvIndex, < flav1 >, < flav2 >]
-s[field1, InvIndex, < flav1 >]
-m2[field1, field2, InvIndex, < flav1 >, < flav2 >]
-\
+y[field1, field2, field3, InvIndex, <flav1>, <flav2>, <flav3>]
+mu[field1, field2, InvIndex, <flav1>, <flav2>]
+l[field1, InvIndex, <flav1>]\[LineSeparator]h[field1, field2, field3, \
+InvIndex, <flav1>, <flav2>, <flav3>]
+b[field1, field2, InvIndex, <flav1>, <flav2>]
+s[field1, InvIndex, <flav1>]
+m2[field1, field2, InvIndex, <flav1>, <flav2>]\
 \>", "Code",
  Evaluatable->False,
  InitializationCell->False,
  CellID->220050688],
 
 Cell["\<\
-For the MSSM in the form described in this tutorial (with representations = \
-{Q, u, d, L, e, Hu, Hd}), the complete list of parameters is the following:\
+For the MSSM in the form described in this tutorial (model = {Q, u, d, L, e, \
+Hu, Hd}), the complete list of parameters is the following:\
 \>", "Text",
  CellID->212841405],
 
@@ -1552,13 +1618,11 @@ Cell[BoxData[GridBox[{
    "Rows" -> {False, True, {False}, False}, "RowsIndexed" -> {}}},
  CellID->117867006],
 
-Cell["\<\
-List of MSSM parameters  for representations = {Q, u, d, L, e, Hu, Hd}.\
-\>", "Caption",
+Cell["List of MSSM parameters for model = {Q, u, d, L, e, Hu, Hd}.", "Caption",
  CellID->77697423],
 
 Cell[TextData[{
- "In this table, I added the ",
+ "In this table, I have added the ",
  Cell[BoxData[
   RowBox[{"g", "[", "i", "]"}]], "InlineFormula"],
  " coupling constants and gaugino masses ",
@@ -1687,9 +1751,9 @@ parameters of the model.\
  CellID->74743838],
 
 Cell["\<\
-For example, two SU(2) doublets vectorA={a[1],a[2]} and vectorB={b[1],b[2]} \
-form an invariant a[1]b[2]-a[2]b[1]. If these were fields in a model, Susyno \
-would find out that this combination exists and would form a term \
+For example, two SU(2) doublets - vectorA={a[1],a[2]} and vectorB={b[1],b[2]} \
+- form an invariant a[1]b[2]-a[2]b[1]. If these were fields in a model, \
+Susyno would find out that this combination exists and would form a term \
 mu[...](a[1]b[2]-a[2]b[1]). The problem is that any expression \
 C(a[1]b[2]-a[2]b[1]) is also an invariant.  The effect of this is that we may \
 think we have in the Lagrangian mu[...](a[1]b[2]-a[2]b[1]) but instead we \
@@ -1699,27 +1763,22 @@ is clearly a parameter normalization problem. \
  CellID->22005238],
 
 Cell["\<\
-That's why it may be important to look at the Lagrangian. To view the \
-Lagrangian, type\
+That is why it may be important to look at the Lagrangian. To view it, type\
 \>", "Text",
  CellID->275674183],
 
 Cell["\<\
-The variables groups, representations, nFlavours, RParity are the inputs \
-discussed in previous section.\
+Use the ShowLagrangian function to view the Lagrangian used by the program.\
 \>", "MathCaption",
  CellID->603378766],
 
 Cell[BoxData[
- RowBox[{"ShowLagrangian", "[", 
-  RowBox[{
-  "groups", ",", "representations", ",", "nFlavours", ",", "RParity"}], 
-  "]"}]], "Input",
+ RowBox[{"ShowLagrangian", "[", "model", "]"}]], "Input",
  CellLabel->"In[328]:=",
  CellID->62206324],
 
 Cell[TextData[{
- "This will show the superpotential W and ",
+ "This will print the superpotential W and ",
  Cell[BoxData[
   SubscriptBox["\[GothicCapitalL]", "soft"]], "InlineFormula"],
  " in extended form. In general we can write these as"
@@ -1895,31 +1954,28 @@ Cell[TextData[{
  CellID->159960695],
 
 Cell[TextData[{
- "There is the option of having the results in tensor form {Y,\[Mu],L,h,b,s, ",
+ "The function itself returns the list of tensors {Y,\[Mu],L,h,b,s, ",
  Cell[BoxData[
   SuperscriptBox["m", "2"]], "InlineFormula"],
- "}:"
+ "}."
 }], "Text",
  CellID->117256491],
 
-Cell[TextData[{
- "Returns the tensors  {Y,\[Mu],L,h,b,s, ",
- Cell[BoxData[
-  SuperscriptBox["m", "2"]], "InlineFormula"],
- "}. Use the command ",
- Cell[BoxData[
-  ButtonBox["Normal",
-   BaseStyle->"Link",
-   ButtonData->"paclet:ref/Normal"]], "InlineFormula"],
- " to convert the output."
-}], "MathCaption",
+Cell["\<\
+Again, there is a Verbose option (set to True by default) that controls the \
+printing process.\
+\>", "Text",
+ CellID->750652415],
+
+Cell["\<\
+Use Verbose->False if there is no need to have the Lagrangian printed.\
+\>", "MathCaption",
  CellID->22987297],
 
 Cell[BoxData[
  RowBox[{"ShowLagrangian", "[", 
-  RowBox[{
-  "groups", ",", "representations", ",", "nFlavours", ",", "RParity", ",", 
-   "True"}], "]"}]], "Input",
+  RowBox[{"model", ",", " ", 
+   RowBox[{"Verbose", "\[Rule]", "False"}]}], "]"}]], "Input",
  CellLabel->"In[328]:=",
  CellID->7600290],
 
@@ -1929,8 +1985,17 @@ Cell[TextData[{
   ButtonBox["ShowLagrangian",
    BaseStyle->"Link",
    ButtonData->"paclet:Susyno/ref/ShowLagrangian"]], "InlineFormula"],
- " will generate the model Lagrangian even if the \[Beta]-function methods \
-have not been called before. This means that this method can be used to \
+ " will generate the model Lagrangian even if neither  ",
+ Cell[BoxData[
+  ButtonBox["BetaFunctions1L",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/BetaFunctions1L"]], "InlineFormula"],
+ "  nor ",
+ Cell[BoxData[
+  ButtonBox["BetaFunctions2L",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/BetaFunctions2L"]], "InlineFormula"],
+ "  have not been called before. This means that this function can be used to \
 generate the superpotential W and ",
  Cell[BoxData[
   SubscriptBox["\[GothicCapitalL]", "soft"]], "InlineFormula"],
@@ -1940,7 +2005,7 @@ functions."
  CellID->441445416],
 
 Cell["\<\
-There is another way to handle the normalization problem we have been \
+There is another way of handling the normalization problem we have been \
 discussing. Susyno uses the following convention for the normalization of the \
 invariants:\
 \>", "Text",
@@ -2063,7 +2128,7 @@ Cell[BoxData[
     RowBox[{"1", ",", "0"}], "}"}], ",", 
    RowBox[{"{", 
     RowBox[{"0", ",", "1"}], "}"}]}], "]"}]], "Input",
- CellLabel->"In[31]:=",
+ CellLabel->"In[44]:=",
  CellID->229943877],
 
 Cell[BoxData[
@@ -2081,8 +2146,8 @@ Cell[BoxData[
  ImageSize->{221, 15},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
- CellLabel->"Out[31]=",
- CellID->575569216]
+ CellLabel->"Out[44]=",
+ CellID->91737904]
 }, Open  ]],
 
 Cell[TextData[{
@@ -2123,7 +2188,7 @@ Cell[CellGroupData[{
 Cell["More examples", "Section",
  CellID->323535181],
 
-Cell["Here are some more complete model examples.", "Text",
+Cell["Here are some other models.", "Text",
  CellID->19160971],
 
 Cell[TextData[StyleBox["NMSSM", "Subsection"]], "Text",
@@ -2131,118 +2196,297 @@ Cell[TextData[StyleBox["NMSSM", "Subsection"]], "Text",
 
 Cell[BoxData[{
  RowBox[{
-  RowBox[{
-   RowBox[{"groups", "=", 
-    RowBox[{"{", 
-     RowBox[{"SU2", ",", "SU3"}], "}"}]}], ";"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"norm", "=", "1"}], ";"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+  RowBox[{"norm", "=", "1"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Q", "=", 
    RowBox[{"{", 
     RowBox[{
-     RowBox[{
-      RowBox[{"1", "/", "6"}], " ", "norm"}], " ", ",", 
-     RowBox[{"{", "1", "}"}], ",", 
-     RowBox[{"{", 
-      RowBox[{"1", ",", "0"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+     RowBox[{"U1", "->", 
+      RowBox[{
+       RowBox[{"1", "/", "6"}], " ", "norm"}]}], " ", ",", 
+     RowBox[{"SU2", "->", 
+      RowBox[{"{", "1", "}"}]}], ",", 
+     RowBox[{"SU3", "->", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "0"}], "}"}]}], ",", 
+     RowBox[{"NFlavours", "\[Rule]", "3"}], ",", 
+     RowBox[{"DiscreteSym", "\[Rule]", 
+      RowBox[{"-", "1"}]}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"u", "=", 
    RowBox[{"{", 
     RowBox[{
-     RowBox[{
+     RowBox[{"U1", "->", 
       RowBox[{
-       RowBox[{"-", "2"}], "/", "3"}], " ", "norm"}], ",", 
-     RowBox[{"{", "0", "}"}], ",", 
-     RowBox[{"{", 
-      RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"-", "2"}], "/", "3"}], " ", "norm"}]}], " ", ",", 
+     RowBox[{"SU2", "->", 
+      RowBox[{"{", "0", "}"}]}], ",", 
+     RowBox[{"SU3", "->", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "1"}], "}"}]}], ",", 
+     RowBox[{"NFlavours", "\[Rule]", "3"}], ",", 
+     RowBox[{"DiscreteSym", "\[Rule]", 
+      RowBox[{"-", "1"}]}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"d", "=", 
    RowBox[{"{", 
     RowBox[{
-     RowBox[{
-      RowBox[{"1", "/", "3"}], "norm"}], ",", 
-     RowBox[{"{", "0", "}"}], ",", 
-     RowBox[{"{", 
-      RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+     RowBox[{"U1", "\[Rule]", 
+      RowBox[{
+       RowBox[{"1", "/", "3"}], " ", "norm"}]}], " ", ",", 
+     RowBox[{"SU2", "->", 
+      RowBox[{"{", "0", "}"}]}], ",", 
+     RowBox[{"SU3", "->", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "1"}], "}"}]}], ",", 
+     RowBox[{"NFlavours", "\[Rule]", "3"}], ",", 
+     RowBox[{"DiscreteSym", "\[Rule]", 
+      RowBox[{"-", "1"}]}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"L", "=", 
    RowBox[{"{", 
     RowBox[{
-     RowBox[{
+     RowBox[{"U1", "\[Rule]", 
       RowBox[{
-       RowBox[{"-", "1"}], "/", "2"}], " ", "norm"}], ",", 
-     RowBox[{"{", "1", "}"}], ",", 
-     RowBox[{"{", 
-      RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"-", "1"}], "/", "2"}], " ", "norm"}]}], " ", ",", 
+     RowBox[{"SU2", "->", 
+      RowBox[{"{", "1", "}"}]}], ",", 
+     RowBox[{"SU3", "->", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+     RowBox[{"NFlavours", "\[Rule]", "3"}], ",", 
+     RowBox[{"DiscreteSym", "\[Rule]", 
+      RowBox[{"-", "1"}]}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"e", "=", 
    RowBox[{"{", 
-    RowBox[{"norm", ",", 
-     RowBox[{"{", "0", "}"}], ",", 
-     RowBox[{"{", 
-      RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"U1", "\[Rule]", " ", "norm"}], " ", ",", 
+     RowBox[{"SU2", "->", 
+      RowBox[{"{", "0", "}"}]}], ",", 
+     RowBox[{"SU3", "->", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+     RowBox[{"NFlavours", "\[Rule]", "3"}], ",", 
+     RowBox[{"DiscreteSym", "\[Rule]", 
+      RowBox[{"-", "1"}]}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Hu", "=", 
    RowBox[{"{", 
     RowBox[{
-     RowBox[{
-      RowBox[{"1", "/", "2"}], "norm"}], ",", 
-     RowBox[{"{", "1", "}"}], ",", 
-     RowBox[{"{", 
-      RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+     RowBox[{"U1", "\[Rule]", " ", 
+      RowBox[{
+       RowBox[{"1", "/", "2"}], "norm"}]}], " ", ",", 
+     RowBox[{"SU2", "->", 
+      RowBox[{"{", "1", "}"}]}], ",", 
+     RowBox[{"SU3", "->", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+     RowBox[{"NFlavours", "\[Rule]", "1"}], ",", 
+     RowBox[{"DiscreteSym", "\[Rule]", "1"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Hd", "=", 
    RowBox[{"{", 
     RowBox[{
-     RowBox[{
+     RowBox[{"U1", "\[Rule]", " ", 
       RowBox[{
-       RowBox[{"-", "1"}], "/", "2"}], "norm"}], ",", 
-     RowBox[{"{", "1", "}"}], ",", 
-     RowBox[{"{", 
-      RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  StyleBox[
-   RowBox[{
-    RowBox[{"S", "=", 
-     RowBox[{"{", 
-      RowBox[{"0", ",", 
-       RowBox[{"{", "0", "}"}], ",", 
-       RowBox[{"{", 
-        RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ";"}],
-   FontFamily->"Courier New"], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"-", "1"}], "/", "2"}], "norm"}]}], " ", ",", 
+     RowBox[{"SU2", "->", 
+      RowBox[{"{", "1", "}"}]}], ",", 
+     RowBox[{"SU3", "->", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+     RowBox[{"NFlavours", "\[Rule]", "1"}], ",", 
+     RowBox[{"DiscreteSym", "\[Rule]", "1"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
-   RowBox[{"representations", "=", 
+   RowBox[{"S", "=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"U1", "\[Rule]", "0"}], " ", ",", 
+      RowBox[{"SU2", "->", 
+       RowBox[{"{", "0", "}"}]}], ",", 
+      RowBox[{"SU3", "->", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+      RowBox[{"NFlavours", "\[Rule]", "1"}], ",", 
+      RowBox[{"DiscreteSym", "\[Rule]", "1"}]}], "}"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"model", "=", 
     RowBox[{"{", 
      RowBox[{
      "Q", ",", "u", ",", "d", ",", "L", ",", "e", ",", "Hu", ",", "Hd", ",", 
       "S"}], "}"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"nFlavours", "=", 
-   RowBox[{"{", 
-    RowBox[{
-    "3", ",", "3", ",", "3", ",", "3", ",", "3", ",", "1", ",", "1", ",", 
-     "1"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"BetaFunctions2L", "[", "model", "]"}], ";"}]}], "Input",
+ CellLabel->"In[15]:=",
+ CellID->64279527],
+
+Cell[TextData[StyleBox["Cubic NMSSM", "Subsection"]], "Text",
+ CellID->731454495],
+
+Cell[BoxData[{
  RowBox[{
   RowBox[{
-   RowBox[{"RParity", "=", 
+   RowBox[{"w", "=", 
+    RowBox[{"E", "^", 
+     RowBox[{"(", 
+      RowBox[{"2", 
+       RowBox[{"\[Pi]", "/", "3"}], " ", "\[ImaginaryI]"}], ")"}]}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Q", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"U1", "->", 
+      RowBox[{"1", "/", "6"}]}], "  ", ",", 
+     RowBox[{"SU2", "->", 
+      RowBox[{"{", "1", "}"}]}], ",", 
+     RowBox[{"SU3", "->", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "0"}], "}"}]}], ",", 
+     RowBox[{"NFlavours", "\[Rule]", "3"}], ",", 
+     RowBox[{"DiscreteSym", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "1"}], ",", "w"}], "}"}]}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"u", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"U1", "->", 
+      RowBox[{
+       RowBox[{"-", "2"}], "/", "3"}]}], "  ", ",", 
+     RowBox[{"SU2", "->", 
+      RowBox[{"{", "0", "}"}]}], ",", 
+     RowBox[{"SU3", "->", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "1"}], "}"}]}], ",", 
+     RowBox[{"NFlavours", "\[Rule]", "3"}], ",", 
+     RowBox[{"DiscreteSym", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "1"}], ",", "w"}], "}"}]}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"d", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"U1", "\[Rule]", 
+      RowBox[{"1", "/", "3"}]}], "  ", ",", 
+     RowBox[{"SU2", "->", 
+      RowBox[{"{", "0", "}"}]}], ",", 
+     RowBox[{"SU3", "->", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "1"}], "}"}]}], ",", 
+     RowBox[{"NFlavours", "\[Rule]", "3"}], ",", 
+     RowBox[{"DiscreteSym", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "1"}], ",", "w"}], "}"}]}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"L", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"U1", "\[Rule]", 
+      RowBox[{
+       RowBox[{"-", "1"}], "/", "2"}]}], "  ", ",", 
+     RowBox[{"SU2", "->", 
+      RowBox[{"{", "1", "}"}]}], ",", 
+     RowBox[{"SU3", "->", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+     RowBox[{"NFlavours", "\[Rule]", "3"}], ",", 
+     RowBox[{"DiscreteSym", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "1"}], ",", "w"}], "}"}]}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"e", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"U1", "\[Rule]", " ", "1"}], " ", ",", 
+     RowBox[{"SU2", "->", 
+      RowBox[{"{", "0", "}"}]}], ",", 
+     RowBox[{"SU3", "->", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+     RowBox[{"NFlavours", "\[Rule]", "3"}], ",", 
+     RowBox[{"DiscreteSym", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "1"}], ",", "w"}], "}"}]}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Hu", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"U1", "\[Rule]", " ", 
+      RowBox[{"1", "/", "2"}]}], " ", ",", 
+     RowBox[{"SU2", "->", 
+      RowBox[{"{", "1", "}"}]}], ",", 
+     RowBox[{"SU3", "->", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+     RowBox[{"NFlavours", "\[Rule]", "1"}], ",", 
+     RowBox[{"DiscreteSym", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "w"}], "}"}]}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Hd", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"U1", "\[Rule]", " ", 
+      RowBox[{
+       RowBox[{"-", "1"}], "/", "2"}]}], " ", ",", 
+     RowBox[{"SU2", "->", 
+      RowBox[{"{", "1", "}"}]}], ",", 
+     RowBox[{"SU3", "->", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+     RowBox[{"NFlavours", "\[Rule]", "1"}], ",", 
+     RowBox[{"DiscreteSym", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "w"}], "}"}]}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"S", "=", 
     RowBox[{"{", 
      RowBox[{
-      RowBox[{"-", "1"}], ",", 
-      RowBox[{"-", "1"}], ",", 
-      RowBox[{"-", "1"}], ",", 
-      RowBox[{"-", "1"}], ",", 
-      RowBox[{"-", "1"}], ",", "1", ",", "1", ",", "1"}], "}"}]}], ";"}], 
+      RowBox[{"U1", "\[Rule]", "0"}], " ", ",", 
+      RowBox[{"SU2", "->", 
+       RowBox[{"{", "0", "}"}]}], ",", 
+      RowBox[{"SU3", "->", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+      RowBox[{"NFlavours", "\[Rule]", "1"}], ",", 
+      RowBox[{"DiscreteSym", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "w"}], "}"}]}]}], "}"}]}], ";"}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{"BetaFunctions2L", "[", 
+ RowBox[{
   RowBox[{
-  "groups", ",", "representations", ",", "nFlavours", ",", "RParity"}], 
-  "]"}]}], "Input",
- CellID->691071667],
+   RowBox[{"model", "=", 
+    RowBox[{"{", 
+     RowBox[{
+     "Q", ",", "u", ",", "d", ",", "L", ",", "e", ",", "Hu", ",", "Hd", ",", 
+      "S"}], "}"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"BetaFunctions2L", "[", "model", "]"}], ";"}]}], "Input",
+ CellLabel->"In[26]:=",
+ CellID->290326339],
 
 Cell[CellGroupData[{
 
@@ -2250,141 +2494,167 @@ Cell[TextData[StyleBox["General MSSM", "Subsection"]], "Subsection",
  CellID->132997645],
 
 Cell["\<\
-The following code is for a MSSM-like model but with no R-parity and an \
-undefined number of each representations.\
+The following code is for a MSSM-like model with R-parity violation and an \
+undefined number of copies of each representation.\
 \>", "Text",
  CellID->164721189],
 
-Cell[BoxData[{
+Cell[BoxData[
  RowBox[{
-  RowBox[{
-   RowBox[{"groups", "=", 
-    RowBox[{"{", 
-     RowBox[{"SU2", ",", "SU3"}], "}"}]}], ";"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"norm", "=", 
-    RowBox[{"Sqrt", "[", 
-     RowBox[{"3", "/", "5"}], "]"}]}], ";"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"Q", "=", 
-   RowBox[{"{", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Set", " ", "the", " ", "gauge", " ", "factor", " ", "groups", " ", "and", 
+    " ", "the", " ", 
+    RowBox[{"fields", "/", "representations"}]}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
     RowBox[{
-     RowBox[{
-      RowBox[{"1", "/", "6"}], " ", "norm"}], " ", ",", 
-     RowBox[{"{", "1", "}"}], ",", 
+    "Also", " ", "set", " ", "the", " ", "number", " ", "of", " ", "flavours",
+      " ", "and", " ", "R"}], "-", 
+    RowBox[{"parity", " ", "of", " ", "each", " ", "field"}]}], " ", "*)"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"norm", "=", 
+     RowBox[{"Sqrt", "[", 
+      RowBox[{"3", "/", "5"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Q", "=", 
      RowBox[{"{", 
-      RowBox[{"1", ",", "0"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"u", "=", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{
       RowBox[{
-       RowBox[{"-", "2"}], "/", "3"}], " ", "norm"}], ",", 
-     RowBox[{"{", "0", "}"}], ",", 
+       RowBox[{"U1", "->", 
+        RowBox[{
+         RowBox[{"1", "/", "6"}], " ", "norm"}]}], " ", ",", 
+       RowBox[{"SU2", "->", 
+        RowBox[{"{", "1", "}"}]}], ",", 
+       RowBox[{"SU3", "->", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "0"}], "}"}]}]}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"u", "=", 
      RowBox[{"{", 
-      RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"d", "=", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{
-      RowBox[{"1", "/", "3"}], "norm"}], ",", 
-     RowBox[{"{", "0", "}"}], ",", 
-     RowBox[{"{", 
-      RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"L", "=", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{
       RowBox[{
-       RowBox[{"-", "1"}], "/", "2"}], " ", "norm"}], ",", 
-     RowBox[{"{", "1", "}"}], ",", 
+       RowBox[{"U1", "->", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "2"}], "/", "3"}], " ", "norm"}]}], " ", ",", 
+       RowBox[{"SU2", "->", 
+        RowBox[{"{", "0", "}"}]}], ",", 
+       RowBox[{"SU3", "->", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "1"}], "}"}]}]}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"d", "=", 
      RowBox[{"{", 
-      RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"e", "=", 
-   RowBox[{"{", 
-    RowBox[{"norm", ",", 
-     RowBox[{"{", "0", "}"}], ",", 
-     RowBox[{"{", 
-      RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"Hu", "=", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{
-      RowBox[{"1", "/", "2"}], "norm"}], ",", 
-     RowBox[{"{", "1", "}"}], ",", 
-     RowBox[{"{", 
-      RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"Hd", "=", 
-    RowBox[{"{", 
-     RowBox[{
       RowBox[{
-       RowBox[{
-        RowBox[{"-", "1"}], "/", "2"}], "norm"}], ",", 
-      RowBox[{"{", "1", "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ";"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"representations", "=", 
-    RowBox[{"{", 
-     RowBox[{
-     "Q", ",", "u", ",", "d", ",", "L", ",", "e", ",", "Hu", ",", "Hd"}], 
-     "}"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{"BetaFunctions2L", "[", 
-  RowBox[{"groups", ",", "representations", ",", 
-   RowBox[{"{", "}"}], ",", 
-   RowBox[{"{", "}"}]}], "]"}]}], "Input",
- CellID->203408044],
+       RowBox[{"U1", "\[Rule]", 
+        RowBox[{
+         RowBox[{"1", "/", "3"}], " ", "norm"}]}], " ", ",", 
+       RowBox[{"SU2", "->", 
+        RowBox[{"{", "0", "}"}]}], ",", 
+       RowBox[{"SU3", "->", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "1"}], "}"}]}]}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"L", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"U1", "\[Rule]", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "1"}], "/", "2"}], " ", "norm"}]}], " ", ",", 
+       RowBox[{"SU2", "->", 
+        RowBox[{"{", "1", "}"}]}], ",", 
+       RowBox[{"SU3", "->", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0"}], "}"}]}]}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"e", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"U1", "\[Rule]", " ", "norm"}], " ", ",", 
+       RowBox[{"SU2", "->", 
+        RowBox[{"{", "0", "}"}]}], ",", 
+       RowBox[{"SU3", "->", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0"}], "}"}]}]}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Hu", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"U1", "\[Rule]", " ", 
+        RowBox[{
+         RowBox[{"1", "/", "2"}], "norm"}]}], " ", ",", 
+       RowBox[{"SU2", "->", 
+        RowBox[{"{", "1", "}"}]}], ",", 
+       RowBox[{"SU3", "->", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0"}], "}"}]}]}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Hd", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"U1", "\[Rule]", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "1"}], "/", "2"}], "norm"}]}], " ", ",", 
+       RowBox[{"SU2", "->", 
+        RowBox[{"{", "1", "}"}]}], ",", 
+       RowBox[{"SU3", "->", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0"}], "}"}]}]}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"model", "=", 
+     RowBox[{"{", 
+      RowBox[{
+      "Q", ",", "u", ",", "d", ",", "L", ",", "e", ",", "Hu", ",", "Hd"}], 
+      "}"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"BetaFunctions2L", "[", "model", "]"}], ";"}]}]}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->117496310],
 
 Cell[TextData[StyleBox["SO(10) model", "Subsection"]], "Text",
  CellID->212393141],
 
 Cell["\<\
-The following code is for an SO(10) model with an unspecified number of \
-10-dimensional and 16-dimensional representations.\
+The following code is for an SO(10) model with one 10-dimensional \
+representations and three 16-dimensional representations.\
 \>", "Text",
  CellID->355991212],
 
 Cell[BoxData[{
  RowBox[{
-  RowBox[{
-   RowBox[{"groups", "=", 
-    RowBox[{"{", "SO10", "}"}]}], ";"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{
   RowBox[{"rep10", "=", 
    RowBox[{"{", 
-    RowBox[{"{", 
-     RowBox[{"1", ",", "0", ",", "0", ",", "0", ",", "0"}], "}"}], "}"}]}], 
+    RowBox[{
+     RowBox[{"SO10", "->", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "0", ",", "0", ",", "0", ",", "0"}], "}"}]}], ",", 
+     RowBox[{"NFlavours", "\[Rule]", "1"}]}], "}"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{"rep16", "=", 
     RowBox[{"{", 
-     RowBox[{"{", 
-      RowBox[{"0", ",", "0", ",", "0", ",", "0", ",", "1"}], "}"}], "}"}]}], 
-   ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"representations", "=", 
-    RowBox[{"{", 
-     RowBox[{"rep10", ",", "rep16"}], "}"}]}], ";"}], 
+     RowBox[{
+      RowBox[{"SO10", "->", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0", ",", "0", ",", "0", ",", "1"}], "}"}]}], ",", 
+      RowBox[{"NFlavours", "\[Rule]", "3"}]}], "}"}]}], ";"}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{"BetaFunctions2L", "[", 
-  RowBox[{"groups", ",", "representations", ",", 
-   RowBox[{"{", "}"}], ",", 
-   RowBox[{"{", "}"}]}], "]"}]}], "Input",
+  RowBox[{"{", 
+   RowBox[{"rep10", ",", "rep16"}], "}"}], "]"}]}], "Input",
+ CellLabel->"In[37]:=",
  CellID->162008933]
 }, Open  ]]
 }, Open  ]],
@@ -2394,12 +2664,31 @@ Cell[CellGroupData[{
 Cell["FURTHER READING", "TutorialMoreAboutSection",
  CellID->23220180],
 
-Cell["[Susyno's manual / paper to be published]", "TutorialMoreAbout",
+Cell[TextData[{
+ "Susyno's website: ",
+ ButtonBox["http://web.ist.utl.pt/renato.fonseca/susyno.html",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://web.ist.utl.pt/renato.fonseca/susyno.html"], None}]
+}], "TutorialMoreAbout",
+ CellID->4029634],
+
+Cell[TextData[{
+ "Susyno's manual: ",
+ ButtonBox["arXiv:1106.5016 [hep-ph]",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://arxiv.org/abs/1106.5016"], None}]
+}], "TutorialMoreAbout",
  CellID->1567025153],
 
-Cell["\<\
-For lists of group representations see R. Slansky, Phys.Rept. 79 (1981)\
-\>", "TutorialMoreAbout",
+Cell[TextData[{
+ "For lists of group representations see ",
+ ButtonBox["R. Slansky, Phys.Rept. 79 (1981)",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://dx.doi.org/10.1016/0370-1573(81)90092-2"], None}]
+}], "TutorialMoreAbout",
  CellID->9400535],
 
 Cell[TextData[{
@@ -2422,20 +2711,21 @@ WindowTitle->"Susyno Tutorial - Wolfram Mathematica",
 TaggingRules->{
  "ModificationHighlight" -> False, 
   "Metadata" -> {
-   "built" -> "{2011, 2, 8, 16, 0, 44.8906250}", "context" -> "Susyno`", 
+   "built" -> "{2012, 3, 2, 12, 17, 0.3593750}", "context" -> "Susyno`", 
     "keywords" -> {"Susyno Tutorial RGE SUSY"}, "index" -> True, "label" -> 
     "Susyno Tutorial", "language" -> "en", "paclet" -> "Susyno", "status" -> 
     "None", "summary" -> 
-    "Susyno is a package which calculates the 2-loop \\[Beta] functions of \
-SUSY models. The input is just the gauge group, representations, number of \
-flavours and R-symmetries of the model. Susyno then automatically generates \
-the theory's Lagrangian and other group theoretical quantities. These are \
-then used to calculate the \\[Beta] functions for all the parameters of the \
-model. Some of the internally used methods are exposed to the user. In \
-particular there are group theoretical methods that may be useful. This \
-package should work on Mathematica 7 and latter.", "synonyms" -> {}, "title" -> 
-    "Susyno Tutorial", "type" -> "Tutorial", "uri" -> 
-    "Susyno/tutorial/Susyno"}, "SearchTextTranslated" -> ""},
+    "Susyno is a package which calculates the 2-loop renormalization group \
+equations (RGEs) of SUSY models. The input is just the gauge group, \
+representations, number of flavours and any abelian symmetries of the model. \
+Susyno then automatically generates the Lagrangian and other group \
+theoretical quantities. These are then used to calculate the \\[Beta] \
+functions for all the parameters of the model. Some of the internally used \
+methods are exposed to the user. In particular there are group theoretical \
+methods that may be useful. This package should work on Mathematica 7 and \
+latter.", "synonyms" -> {}, "title" -> "Susyno Tutorial", "type" -> 
+    "Tutorial", "uri" -> "Susyno/tutorial/SusynoTutorial"}, 
+  "SearchTextTranslated" -> ""},
 FrontEndVersion->"7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
 StyleDefinitions->Notebook[{
    Cell[
@@ -2469,328 +2759,360 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[596, 21, 78, 1, 70, "TutorialColorBar"],
-Cell[677, 24, 209, 6, 70, "LinkTrail"],
-Cell[889, 32, 6329, 136, 70, "AnchorBarGrid",
+Cell[677, 24, 178, 5, 70, "LinkTrail"],
+Cell[858, 31, 11556, 244, 70, "AnchorBarGrid",
  CellID->1],
 Cell[CellGroupData[{
-Cell[7243, 172, 52, 1, 70, "Title",
+Cell[12439, 279, 52, 1, 70, "Title",
  CellID->509267359],
-Cell[7298, 175, 430, 8, 70, "Text",
+Cell[12494, 282, 452, 8, 70, "Text",
  CellID->1534169418],
-Cell[7731, 185, 175, 4, 70, "Text",
+Cell[12949, 292, 175, 4, 70, "Text",
  CellID->99754619],
-Cell[7909, 191, 147, 6, 70, "Text",
+Cell[13127, 298, 147, 6, 70, "Text",
  CellID->421768310],
-Cell[8059, 199, 66, 1, 70, "MathCaption",
+Cell[13277, 306, 66, 1, 70, "MathCaption",
  CellID->836781195],
-Cell[8128, 202, 95, 3, 70, "Input",
+Cell[13346, 309, 95, 3, 70, "Input",
  CellID->2058623809],
 Cell[CellGroupData[{
-Cell[8248, 209, 60, 1, 70, "Section",
+Cell[13466, 316, 60, 1, 70, "Section",
  CellID->2591],
-Cell[8311, 212, 128, 4, 70, "Text",
+Cell[13529, 319, 128, 4, 70, "Text",
  CellID->24858853],
-Cell[8442, 218, 4148, 137, 70, "Input",
+Cell[13660, 325, 4646, 135, 70, "Input",
  CellID->6265725],
-Cell[12593, 357, 88, 1, 70, "Text",
+Cell[18309, 462, 88, 1, 70, "Text",
  CellID->44162439],
-Cell[12684, 360, 192, 6, 70, "Input",
+Cell[18400, 465, 115, 3, 70, "Input",
  CellID->337054168]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[12913, 371, 56, 1, 70, "Section",
+Cell[18552, 473, 56, 1, 70, "Section",
  CellID->8978917],
-Cell[12972, 374, 642, 20, 70, "DefinitionBox",
+Cell[18611, 476, 642, 20, 70, "DefinitionBox",
  CellID->306150231],
-Cell[13617, 396, 61, 1, 70, "Caption",
+Cell[19256, 498, 61, 1, 70, "Caption",
  CellID->25601712],
-Cell[13681, 399, 1707, 49, 70, "DefinitionBox",
+Cell[19320, 501, 1727, 49, 70, "DefinitionBox",
  CellID->110605517],
-Cell[15391, 450, 65, 1, 70, "Caption",
+Cell[21050, 552, 65, 1, 70, "Caption",
  CellID->108810841],
-Cell[15459, 453, 519, 15, 70, "DefinitionBox",
+Cell[21118, 555, 519, 15, 70, "DefinitionBox",
  CellID->70978957],
-Cell[15981, 470, 64, 1, 70, "Caption",
+Cell[21640, 572, 64, 1, 70, "Caption",
  CellID->145991187]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[16082, 476, 58, 1, 70, "Section",
+Cell[21741, 578, 58, 1, 70, "Section",
  CellID->199085598],
-Cell[16143, 479, 2711, 85, 70, "DefinitionBox",
+Cell[21802, 581, 3055, 90, 70, "DefinitionBox",
  CellID->856307529]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[18891, 569, 53, 1, 70, "Section",
+Cell[24894, 676, 53, 1, 70, "Section",
  CellID->53920555],
-Cell[18947, 572, 708, 17, 70, "Text",
+Cell[24950, 679, 728, 17, 70, "Text",
  CellID->100635996],
-Cell[19658, 591, 75, 1, 70, "Text",
+Cell[25681, 698, 166, 6, 70, "Text",
+ CellID->423206022],
+Cell[25850, 706, 76, 1, 70, "MathCaption",
+ CellID->824451330],
+Cell[25929, 709, 110, 3, 70, "Code",
+ Evaluatable->False,
+ InitializationCell->False,
+ CellID->13441295],
+Cell[26042, 714, 194, 4, 70, "Text",
+ CellID->388589019],
+Cell[26239, 720, 73, 1, 70, "MathCaption",
+ CellID->154743581],
+Cell[26315, 723, 170, 5, 70, "Code",
+ Evaluatable->False,
+ InitializationCell->False,
+ CellID->487015284],
+Cell[26488, 730, 45, 1, 70, "Text",
+ CellID->160230726],
+Cell[26536, 733, 78, 1, 70, "Text",
+ CellID->633280229],
+Cell[26617, 736, 135, 4, 70, "Text",
+ CellID->4571369],
+Cell[26755, 742, 76, 1, 70, "Text",
+ CellID->455991224],
+Cell[26834, 745, 133, 4, 70, "Text",
+ CellID->13923596],
+Cell[26970, 751, 75, 1, 70, "Text",
  CellID->22581803],
-Cell[19736, 594, 349, 9, 70, "Text",
+Cell[27048, 754, 318, 8, 70, "Text",
  CellID->58772511],
-Cell[20088, 605, 51, 1, 70, "MathCaption",
- CellID->6421],
-Cell[20142, 608, 164, 6, 70, "Input",
- CellID->27111],
-Cell[20309, 616, 62, 1, 70, "MathCaption",
- CellID->16269364],
-Cell[20374, 619, 142, 5, 70, "Input",
- CellID->300499189],
-Cell[20519, 626, 203, 5, 70, "Text",
- CellID->419030989],
+Cell[27369, 764, 119, 3, 70, "Text",
+ CellID->195708328],
+Cell[27491, 769, 75, 1, 70, "Text",
+ CellID->193008405],
 Cell[CellGroupData[{
-Cell[20747, 635, 64, 1, 70, "Subsection",
+Cell[27591, 774, 57, 1, 70, "Subsection",
  CellID->264470554],
-Cell[20814, 638, 161, 4, 70, "Text",
- CellID->318703627],
-Cell[20978, 644, 58, 1, 70, "MathCaption",
- CellID->62320258],
-Cell[21039, 647, 121, 3, 70, "Code",
- Evaluatable->False,
- InitializationCell->False,
- CellID->250711831],
-Cell[21163, 652, 78, 1, 70, "Text",
- CellID->5971911],
-Cell[21244, 655, 58, 1, 70, "MathCaption",
- CellID->38612641],
-Cell[21305, 658, 170, 5, 70, "Code",
- Evaluatable->False,
- InitializationCell->False,
- CellID->175675222],
-Cell[21478, 665, 145, 4, 70, "Text",
+Cell[27651, 777, 142, 4, 70, "Text",
  CellID->68464658],
-Cell[21626, 671, 398, 7, 70, "Text",
- CellID->14076788],
-Cell[22027, 680, 285, 6, 70, "Text",
+Cell[27796, 783, 105, 2, 70, "MathCaption",
+ CellID->315402278],
+Cell[27904, 787, 101, 3, 70, "Code",
+ Evaluatable->False,
+ InitializationCell->False,
+ CellID->38080131],
+Cell[28008, 792, 617, 17, 70, "Text",
+ CellID->87239316],
+Cell[28628, 811, 294, 6, 70, "Text",
  CellID->719752033],
-Cell[22315, 688, 92, 1, 70, "MathCaption",
- CellID->486473223],
-Cell[22410, 691, 48, 1, 70, "Code",
+Cell[28925, 819, 48, 1, 70, "Code",
  CellID->99800453],
-Cell[22461, 694, 43, 1, 70, "Text",
- CellID->204011030],
-Cell[22507, 697, 56, 1, 70, "MathCaption",
+Cell[28976, 822, 56, 1, 70, "MathCaption",
  CellID->38172770],
 Cell[CellGroupData[{
-Cell[22588, 702, 104, 3, 70, "Input",
+Cell[29057, 827, 105, 3, 70, "Input",
  CellID->252225000],
-Cell[22695, 707, 157, 5, 36, "Output",
- CellID->36566493]
+Cell[29165, 832, 159, 5, 36, "Output",
+ CellID->264615598]
 }, Open  ]],
-Cell[22867, 715, 56, 1, 70, "MathCaption",
+Cell[29339, 840, 56, 1, 70, "MathCaption",
  CellID->9207279],
 Cell[CellGroupData[{
-Cell[22948, 720, 105, 3, 70, "Input",
+Cell[29420, 845, 106, 3, 70, "Input",
  CellID->453374297],
-Cell[23056, 725, 158, 5, 36, "Output",
- CellID->119483149]
+Cell[29529, 850, 158, 5, 36, "Output",
+ CellID->12440822]
 }, Open  ]],
-Cell[23229, 733, 202, 5, 70, "Text",
+Cell[29702, 858, 202, 5, 70, "Text",
  CellID->186840582],
-Cell[23434, 740, 131, 4, 70, "Text",
- CellID->425758681],
-Cell[23568, 746, 213, 5, 70, "Text",
+Cell[29907, 865, 424, 10, 70, "Text",
  CellID->13545047],
-Cell[23784, 753, 640, 19, 70, "Text",
+Cell[30334, 877, 649, 20, 70, "Text",
  CellID->291374766],
-Cell[24427, 774, 170, 4, 70, "MathCaption",
+Cell[30986, 899, 170, 4, 70, "MathCaption",
  CellID->454189483],
 Cell[CellGroupData[{
-Cell[24622, 782, 174, 6, 70, "Input",
+Cell[31181, 907, 175, 6, 70, "Input",
  CellID->514460268],
-Cell[24799, 790, 156, 5, 36, "Output",
- CellID->7003650]
+Cell[31359, 915, 159, 5, 36, "Output",
+ CellID->166118683]
 }, Open  ]],
-Cell[24970, 798, 138, 4, 70, "Text",
+Cell[31533, 923, 138, 4, 70, "Text",
  CellID->186880836],
-Cell[25111, 804, 5278, 190, 70, "DefinitionBox3Col",
+Cell[31674, 929, 5710, 206, 70, "DefinitionBox3Col",
  CellID->3225],
-Cell[30392, 996, 76, 1, 70, "Caption",
+Cell[37387, 1137, 76, 1, 70, "Caption",
  CellID->251894822],
-Cell[30471, 999, 63, 1, 70, "Text",
- CellID->49378656],
-Cell[30537, 1002, 91, 1, 70, "MathCaption",
- CellID->185534725],
-Cell[30631, 1005, 2898, 101, 70, "Input",
- CellID->55760109]
+Cell[37466, 1140, 260, 5, 70, "Text",
+ CellID->53721323]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[33566, 1111, 83, 1, 70, "Subsection",
+Cell[37763, 1150, 60, 1, 70, "Subsection",
  CellID->130285366],
-Cell[33652, 1114, 163, 4, 70, "Text",
+Cell[37826, 1153, 370, 7, 70, "Text",
  CellID->346919154],
-Cell[33818, 1120, 148, 4, 70, "MathCaption",
- CellID->344511272],
-Cell[33969, 1126, 502, 16, 70, "Input",
- CellID->797479195],
-Cell[34474, 1144, 244, 5, 70, "Text",
- CellID->174451658]
+Cell[38199, 1162, 131, 5, 70, "Code",
+ Evaluatable->False,
+ InitializationCell->False,
+ CellID->109118134],
+Cell[38333, 1169, 356, 9, 70, "Text",
+ CellID->201997723]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[34755, 1154, 83, 1, 70, "Subsection",
+Cell[38726, 1183, 69, 1, 70, "Subsection",
+ CellID->167242659],
+Cell[38798, 1186, 574, 13, 70, "Text",
+ CellID->239542694],
+Cell[39375, 1201, 120, 3, 70, "Code",
+ Evaluatable->False,
+ InitializationCell->False,
+ CellID->421781349],
+Cell[39498, 1206, 92, 1, 70, "Text",
+ CellID->60958078],
+Cell[39593, 1209, 386, 9, 70, "Text",
+ CellID->174451658],
+Cell[39982, 1220, 153, 4, 70, "Text",
+ CellID->6965007]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[40172, 1229, 83, 1, 70, "Subsection",
  CellID->305509497],
-Cell[34841, 1157, 293, 11, 70, "Text",
+Cell[40258, 1232, 179, 5, 70, "Text",
  CellID->776410528],
-Cell[35137, 1170, 193, 6, 70, "Input",
- CellID->187143367],
-Cell[35333, 1178, 67, 1, 70, "Text",
- CellID->975902753],
-Cell[35403, 1181, 192, 6, 70, "Input",
- CellID->49276152],
-Cell[35598, 1189, 336, 9, 70, "Text",
+Cell[40440, 1239, 67, 1, 70, "MathCaption",
+ CellID->649717704],
+Cell[40510, 1242, 92, 2, 70, "Input",
+ CellID->411943553],
+Cell[40605, 1246, 67, 1, 70, "MathCaption",
+ CellID->209515848],
+Cell[40675, 1249, 91, 2, 70, "Input",
+ CellID->87655055],
+Cell[40769, 1253, 167, 4, 70, "Text",
  CellID->22160086],
-Cell[35937, 1200, 376, 10, 70, "Input",
- CellID->376902685],
-Cell[36316, 1212, 445, 14, 70, "Text",
+Cell[40939, 1259, 89, 3, 70, "MathCaption",
+ CellID->575302465],
+Cell[41031, 1264, 154, 4, 70, "Input",
+ CellID->28350640],
+Cell[41188, 1270, 89, 3, 70, "MathCaption",
+ CellID->295648887],
+Cell[41280, 1275, 154, 4, 70, "Input",
+ CellID->75071267],
+Cell[41437, 1281, 379, 13, 70, "Text",
  CellID->471652425]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[36810, 1232, 61, 1, 70, "Section",
+Cell[41865, 1300, 61, 1, 70, "Section",
  CellID->21141493],
-Cell[36874, 1235, 262, 7, 70, "Text",
+Cell[41929, 1303, 439, 13, 70, "Text",
  CellID->16778654],
-Cell[37139, 1244, 210, 5, 70, "Text",
+Cell[42371, 1318, 210, 5, 70, "Text",
  CellID->38125756],
-Cell[37352, 1251, 95, 1, 70, "Text",
+Cell[42584, 1325, 96, 1, 70, "Text",
  CellID->502385924],
-Cell[37450, 1254, 271, 5, 70, "Text",
+Cell[42683, 1328, 247, 5, 70, "Text",
  CellID->7204230],
-Cell[37724, 1261, 570, 9, 70, "Text",
+Cell[42933, 1335, 569, 9, 70, "Text",
  CellID->58309820],
-Cell[38297, 1272, 153, 4, 70, "MathCaption",
- CellID->674081572],
-Cell[38453, 1278, 211, 7, 70, "Input",
- CellID->63683058],
-Cell[38667, 1287, 151, 4, 70, "Text",
+Cell[43505, 1346, 116, 3, 70, "Code",
+ Evaluatable->False,
+ InitializationCell->False,
+ CellID->85331752],
+Cell[43624, 1351, 133, 4, 70, "Text",
  CellID->154281417],
-Cell[38821, 1293, 352, 6, 70, "Text",
+Cell[43760, 1357, 387, 7, 70, "Text",
  CellID->653273530],
-Cell[39176, 1301, 323, 13, 70, "Text",
+Cell[44150, 1366, 322, 13, 70, "Text",
  CellID->69440856],
-Cell[39502, 1316, 406, 12, 70, "MathCaption",
+Cell[44475, 1381, 411, 14, 70, "MathCaption",
  CellID->40914729],
 Cell[CellGroupData[{
-Cell[39933, 1332, 337, 11, 70, "Input",
+Cell[44911, 1399, 338, 11, 70, "Input",
  CellID->14784177],
-Cell[40273, 1345, 157, 5, 36, "Output",
- CellID->41833609]
+Cell[45252, 1412, 158, 5, 36, "Output",
+ CellID->35220029]
 }, Open  ]],
-Cell[40445, 1353, 250, 5, 70, "Text",
+Cell[45425, 1420, 247, 5, 70, "Text",
  CellID->224561642],
-Cell[40698, 1360, 465, 8, 70, "Text",
+Cell[45675, 1427, 465, 8, 70, "Text",
  CellID->115676422],
-Cell[41166, 1370, 372, 7, 70, "Text",
+Cell[46143, 1437, 375, 7, 70, "Text",
  CellID->58656751],
-Cell[41541, 1379, 70, 1, 70, "Text",
+Cell[46521, 1446, 70, 1, 70, "Text",
  CellID->48947923],
-Cell[41614, 1382, 670, 21, 70, "MathCaption",
+Cell[46594, 1449, 670, 21, 70, "MathCaption",
  CellID->42414503],
-Cell[42287, 1405, 462, 12, 70, "Code",
+Cell[47267, 1472, 433, 11, 70, "Code",
  Evaluatable->False,
  InitializationCell->False,
  CellID->220050688],
-Cell[42752, 1419, 197, 4, 70, "Text",
+Cell[47703, 1485, 182, 4, 70, "Text",
  CellID->212841405],
-Cell[42952, 1425, 3792, 127, 70, "DefinitionBox3Col",
+Cell[47888, 1491, 3792, 127, 70, "DefinitionBox3Col",
  CellID->117867006],
-Cell[46747, 1554, 117, 3, 70, "Caption",
+Cell[51683, 1620, 98, 1, 70, "Caption",
  CellID->77697423],
-Cell[46867, 1559, 292, 9, 70, "Text",
+Cell[51784, 1623, 297, 9, 70, "Text",
  CellID->518844087],
-Cell[47162, 1570, 195, 6, 70, "Text",
+Cell[52084, 1634, 195, 6, 70, "Text",
  CellID->182805404],
-Cell[47360, 1578, 526, 15, 70, "Text",
+Cell[52282, 1642, 526, 15, 70, "Text",
  CellID->809320560],
-Cell[47889, 1595, 2400, 80, 70, "Text",
+Cell[52811, 1659, 2400, 80, 70, "Text",
  CellID->28169906],
 Cell[CellGroupData[{
-Cell[50314, 1679, 69, 1, 70, "Subsection",
+Cell[55236, 1743, 69, 1, 70, "Subsection",
  CellID->434412357],
-Cell[50386, 1682, 146, 4, 70, "Text",
+Cell[55308, 1746, 146, 4, 70, "Text",
  CellID->74743838],
-Cell[50535, 1688, 615, 10, 70, "Text",
+Cell[55457, 1752, 619, 10, 70, "Text",
  CellID->22005238],
-Cell[51153, 1700, 132, 4, 70, "Text",
+Cell[56079, 1764, 119, 3, 70, "Text",
  CellID->275674183],
-Cell[51288, 1706, 156, 4, 70, "MathCaption",
+Cell[56201, 1769, 126, 3, 70, "MathCaption",
  CellID->603378766],
-Cell[51447, 1712, 193, 6, 70, "Input",
+Cell[56330, 1774, 115, 3, 70, "Input",
  CellID->62206324],
-Cell[51643, 1720, 226, 6, 70, "Text",
+Cell[56448, 1779, 227, 6, 70, "Text",
  CellID->813068499],
-Cell[51872, 1728, 629, 20, 70, "Text",
+Cell[56678, 1787, 629, 20, 70, "Text",
  CellID->18075909],
-Cell[52504, 1750, 1239, 42, 70, "Text",
+Cell[57310, 1809, 1239, 42, 70, "Text",
  CellID->143483544],
-Cell[53746, 1794, 2186, 85, 70, "Text",
+Cell[58552, 1853, 2186, 85, 70, "Text",
  CellID->689775355],
-Cell[55935, 1881, 399, 13, 70, "Text",
+Cell[60741, 1940, 399, 13, 70, "Text",
  CellID->159960695],
-Cell[56337, 1896, 195, 6, 70, "Text",
+Cell[61143, 1955, 186, 6, 70, "Text",
  CellID->117256491],
-Cell[56535, 1904, 325, 11, 70, "MathCaption",
+Cell[61332, 1963, 139, 4, 70, "Text",
+ CellID->750652415],
+Cell[61474, 1969, 120, 3, 70, "MathCaption",
  CellID->22987297],
-Cell[56863, 1917, 206, 6, 70, "Input",
+Cell[61597, 1974, 182, 5, 70, "Input",
  CellID->7600290],
-Cell[57072, 1925, 556, 14, 70, "Text",
+Cell[61782, 1981, 834, 23, 70, "Text",
  CellID->441445416],
-Cell[57631, 1941, 206, 5, 70, "Text",
+Cell[62619, 2006, 208, 5, 70, "Text",
  CellID->97450775],
-Cell[57840, 1948, 409, 13, 70, "Text",
+Cell[62830, 2013, 409, 13, 70, "Text",
  CellID->299293111],
-Cell[58252, 1963, 941, 29, 70, "Text",
+Cell[63242, 2028, 941, 29, 70, "Text",
  CellID->455643976],
-Cell[59196, 1994, 1132, 33, 70, "Text",
+Cell[64186, 2059, 1132, 33, 70, "Text",
  CellID->37891906],
-Cell[60331, 2029, 712, 25, 70, "MathCaption",
+Cell[65321, 2094, 712, 25, 70, "MathCaption",
  CellID->177859870],
 Cell[CellGroupData[{
-Cell[61068, 2058, 240, 8, 70, "Input",
+Cell[66058, 2123, 240, 8, 70, "Input",
  CellID->229943877],
-Cell[61311, 2068, 467, 16, 36, "Output",
- CellID->575569216]
+Cell[66301, 2133, 466, 16, 36, "Output",
+ CellID->91737904]
 }, Open  ]],
-Cell[61793, 2087, 978, 29, 70, "Text",
+Cell[66782, 2152, 978, 29, 70, "Text",
  CellID->69981609]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[62820, 2122, 52, 1, 70, "Section",
+Cell[67809, 2187, 52, 1, 70, "Section",
  CellID->323535181],
-Cell[62875, 2125, 78, 1, 70, "Text",
+Cell[67864, 2190, 62, 1, 70, "Text",
  CellID->19160971],
-Cell[62956, 2128, 75, 1, 70, "Text",
+Cell[67929, 2193, 75, 1, 70, "Text",
  CellID->416897326],
-Cell[63034, 2131, 3367, 113, 70, "Input",
- CellID->691071667],
+Cell[68007, 2196, 4283, 133, 70, "Input",
+ CellID->64279527],
+Cell[72293, 2331, 81, 1, 70, "Text",
+ CellID->731454495],
+Cell[72377, 2334, 4737, 154, 70, "Input",
+ CellID->290326339],
 Cell[CellGroupData[{
-Cell[66426, 2248, 88, 1, 70, "Subsection",
+Cell[77139, 2492, 88, 1, 70, "Subsection",
  CellID->132997645],
-Cell[66517, 2251, 159, 4, 70, "Text",
+Cell[77230, 2495, 171, 4, 70, "Text",
  CellID->164721189],
-Cell[66679, 2257, 2652, 90, 70, "Input",
- CellID->203408044],
-Cell[69334, 2349, 82, 1, 70, "Text",
+Cell[77404, 2501, 3806, 121, 70, "Input",
+ CellID->117496310],
+Cell[81213, 2624, 82, 1, 70, "Text",
  CellID->212393141],
-Cell[69419, 2352, 168, 4, 70, "Text",
+Cell[81298, 2627, 169, 4, 70, "Text",
  CellID->355991212],
-Cell[69590, 2358, 913, 29, 70, "Input",
+Cell[81470, 2633, 770, 24, 70, "Input",
  CellID->162008933]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[70552, 2393, 70, 1, 70, "TutorialMoreAboutSection",
+Cell[82289, 2663, 70, 1, 70, "TutorialMoreAboutSection",
  CellID->23220180],
-Cell[70625, 2396, 91, 1, 70, "TutorialMoreAbout",
+Cell[82362, 2666, 254, 7, 70, "TutorialMoreAbout",
+ CellID->4029634],
+Cell[82619, 2675, 214, 7, 70, "TutorialMoreAbout",
  CellID->1567025153],
-Cell[70719, 2399, 126, 3, 70, "TutorialMoreAbout",
+Cell[82836, 2684, 257, 7, 70, "TutorialMoreAbout",
  CellID->9400535],
-Cell[70848, 2404, 241, 6, 70, "TutorialMoreAbout",
+Cell[83096, 2693, 241, 6, 70, "TutorialMoreAbout",
  CellID->189317751]
 }, Open  ]]
 }, Open  ]],
-Cell[71116, 2414, 23, 0, 70, "FooterCell"]
+Cell[83364, 2703, 23, 0, 70, "FooterCell"]
 }
 ]
 *)

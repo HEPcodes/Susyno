@@ -1,12 +1,11 @@
 (* Paclet Info File *)
 
-(* created 2011/01/11*)
+(* created 2011/09/06*)
 
 Paclet[
     Name -> "Susyno",
-    Version -> "1.0.0",
+    Version -> "1.1.0",
     MathematicaVersion -> "7+",
-    Creator -> "Renato Fonseca",
     Extensions -> 
         {
             {"Documentation", Language -> "English", MainPage -> "Tutorials/SusynoTutorial"}

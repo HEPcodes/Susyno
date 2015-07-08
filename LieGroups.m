@@ -25,8 +25,8 @@ ClearAll["`*"];
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
-CM[name_String,numberId_Integer]:=Module[{result},
-result="Unknown simple lie algebra. Try SU(n) [n>1],SO(n) [n=3 or >4],Sp(2n) [n>1] or the exceptionals G(2),F(4),E(6),E(7),E(8).";
+CartanMatrix[name_String,numberId_Integer]:=Module[{result},
+result="Unknown lie algebra. Try U(1),SU(n) [n>1],SO(n) [n=3 or >4],Sp(2n) [n>1] or the exceptionals G(2),F(4),E(6),E(7),E(8).";
 
 (* Classical algebras *)
 
@@ -55,13 +55,13 @@ result[[numberId-2,numberId]]=-1;
 (* Classical algebras, with alternative names *)
 
 If[ToUpperCase[name]=="SU", (*   SU (n+1)=A (n)   *)
-result=CM["A", numberId-1]];
+result=CartanMatrix["A", numberId-1]];
 If[ToUpperCase[name]=="SP"&&EvenQ[numberId], (*   Sp (2n)=C (n)   *)
-result=CM["C", numberId/2]];
+result=CartanMatrix["C", numberId/2]];
 If[ToUpperCase[name]=="SO"&&!EvenQ[numberId], (*   SO (2n+1)=B (n)   *)
-result=CM["B", (numberId-1)/2]];
+result=CartanMatrix["B", (numberId-1)/2]];
 If[ToUpperCase[name]=="SO"&&EvenQ[numberId], (*   SO (2n)=D (n)   *)
-result=CM["D", numberId/2]];
+result=CartanMatrix["D", numberId/2]];
 
 
 (* Exceptional algebras *)
@@ -85,20 +85,21 @@ Return[result];
 
 (*Assign to some variables the groups' Cartan matrix*)
 Do[
-Evaluate[ToExpression["SU"<>ToString[i]]]=Evaluate[ToExpression["Su"<>ToString[i]]]=Evaluate[ToExpression["su"<>ToString[i]]]=CM["SU",i];
+Evaluate[ToExpression["SU"<>ToString[i]]]=Evaluate[ToExpression["Su"<>ToString[i]]]=Evaluate[ToExpression["su"<>ToString[i]]]=CartanMatrix["SU",i];
 ,{i,2,32}]
 Do[
-Evaluate[ToExpression["SO"<>ToString[i]]]=Evaluate[ToExpression["So"<>ToString[i]]]=Evaluate[ToExpression["so"<>ToString[i]]]=CM["SO",i];
+Evaluate[ToExpression["SO"<>ToString[i]]]=Evaluate[ToExpression["So"<>ToString[i]]]=Evaluate[ToExpression["so"<>ToString[i]]]=CartanMatrix["SO",i];
 ,{i,5,32}]
 Do[
-Evaluate[ToExpression["SP"<>ToString[i]]]=Evaluate[ToExpression["Sp"<>ToString[i]]]=Evaluate[ToExpression["sp"<>ToString[i]]]=CM["SP",i];
+Evaluate[ToExpression["SP"<>ToString[i]]]=Evaluate[ToExpression["Sp"<>ToString[i]]]=Evaluate[ToExpression["sp"<>ToString[i]]]=CartanMatrix["SP",i];
 ,{i,2,32,2}]
-E6=e6=CM["E",6];
-E7=e7=CM["E",7];
-E8=e8=CM["E",8];
-G2=g2=CM["G",2];
-F4=f4=CM["F",4];
-SO3=So3=so3=CM["SO",3];
+E6=e6=CartanMatrix["E",6];
+E7=e7=CartanMatrix["E",7];
+E8=e8=CartanMatrix["E",8];
+G2=g2=CartanMatrix["G",2];
+F4=f4=CartanMatrix["F",4];
+SO3=So3=so3=CartanMatrix["SO",3];
+U1=u1=CartanMatrix["U",1]=CartanMatrix["u",1]={};
 
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
@@ -162,6 +163,7 @@ Return[result];
 ]
 
 DominantConjugate[cm_,weight_]:=Module[{index,dWeight,i,mD},
+If[cm=={{2}},Return[If[weight[[1]]<0,{-weight,1},{weight,0}]]];(*for SU2 the code below would not work*)
 index=0;
 dWeight=weight;
 i=1;
@@ -412,7 +414,7 @@ Return[result];
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 (* Calculates the generators of a irrep based on the Chevalley-Serre relations *)
-RepGenerators[cm_,maxW_]:=RepGenerators[cm,maxW]=Module[{aux1,aux2,aux3,aux4,aux5,aux6,aux7,aux8,n,listw,listAux,listAux2,up,down,dim,dim1,dim2,dim3,col,matrixT,matrix,index,posBegin,posEnd,begin,end,b1,e1,b2,e2,matrixE,matrixF,matrixH},
+RepMinimalMatrices[cm_,maxW_]:=RepMinimalMatrices[cm,maxW]=Module[{aux1,aux2,aux3,aux4,aux5,aux6,aux7,aux8,n,listw,listAux,listAux2,up,down,dim,dim1,dim2,dim3,col,matrixT,matrix,index,posBegin,posEnd,begin,end,b1,e1,b2,e2,matrixE,matrixF,matrixH},
 n=Length[cm];
 listw=Weights[cm,maxW];
 
@@ -609,7 +611,7 @@ RepMatrices[input__]:=RepMatrices[input]=If[Depth[{input}]==4,Return[RepMatrices
 RepMatricesBaseMethod[cm_,maxW_]:=Module[{listE,listF,listH,listTotal,n,pRoots,sR,cR,dimG,dimR,rep,matrixCholesky,aux,j},
 n=Length[cm];
 pRoots=PositiveRoots[cm];
-rep=RepGenerators[cm,maxW];
+rep=RepMinimalMatrices[cm,maxW];
 listE=Table[SparseArray[rep[[i,1]]],{i,n}];
 listF=Table[SparseArray[rep[[i,2]]],{i,n}];
 listH=Table[SparseArray[rep[[i,3]]],{i,n}];
@@ -666,8 +668,8 @@ Return[listTotal];
 IsSymmetric[invariant_,vars_]:=Module[{aux1,result},
 result=0;
 aux1=invariant/.{vars[[1]]->vars[[2]],vars[[2]]->vars[[1]]};
-If[invariant-aux1==0,result=1]; (* symmetric *)
-If[invariant+aux1==0,result=2]; (* skew-symmetric *)
+If[Expand[invariant-aux1]==0,result=1]; (* symmetric *)
+If[Expand[invariant+aux1]==0,result=2]; (* skew-symmetric *)
 Return[result];
 ];
 
@@ -730,8 +732,8 @@ Off[Solve::"svars"];
 n=Length[cm];
 w1=Weights[cm,rep1];
 w2=Weights[cm,rep2];
-r1=RepGenerators[cm,rep1];
-r2=RepGenerators[cm,rep2];
+r1=RepMinimalMatrices[cm,rep1];
+r2=RepMinimalMatrices[cm,rep2];
 
 If[conj,
 Do[
@@ -877,9 +879,9 @@ n=Length[cm];
 w1=Weights[cm,rep1];
 w2=Weights[cm,rep2];
 w3=Weights[cm,rep3];
-r1=RepGenerators[cm,rep1];
-r2=RepGenerators[cm,rep2];
-r3=RepGenerators[cm,rep3];
+r1=RepMinimalMatrices[cm,rep1];
+r2=RepMinimalMatrices[cm,rep2];
+r3=RepMinimalMatrices[cm,rep3];
 
 If[conj,
 Do[

@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       145,          7]
-NotebookDataLength[     27403,        966]
-NotebookOptionsPosition[     22209,        796]
-NotebookOutlinePosition[     24016,        844]
-CellTagsIndexPosition[     23931,        839]
+NotebookDataLength[     27518,        969]
+NotebookOptionsPosition[     22328,        799]
+NotebookOutlinePosition[     24135,        847]
+CellTagsIndexPosition[     24050,        842]
 WindowTitle->Invariants - Wolfram Mathematica
 WindowFrame->Normal*)
 
@@ -140,14 +140,14 @@ Cell[TextData[Cell[BoxData[
   Evaluator->None,
   Method->"Preemptive"]]]], "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->531559401],
+ CellID->268504155],
 
 Cell[TextData[{
  Cell[BoxData["group"], "InlineFormula"],
  " should be the ",
  ButtonBox["Cartan matrix",
   BaseStyle->"Link",
-  ButtonData->"paclet:Susyno/ref/CM"],
+  ButtonData->"paclet:Susyno/ref/CartanMatrix"],
  " of the intended group;"
 }], "Notes",
  CellID->1067943069],
@@ -210,17 +210,17 @@ Cell[TextData[{
  " These fields have group indices: ",
  Cell[BoxData[
   RowBox[{"a", "[", 
-   RowBox[{"Ind_group1", ",", " ", "Ind_group2", ",", "..."}], "]"}]], 
+   RowBox[{"ind_group1", ",", " ", "ind_group2", ",", "..."}], "]"}]], 
   "InlineFormula"],
  ", ",
  Cell[BoxData[
   RowBox[{"b", "[", 
-   RowBox[{"Ind_group1", ",", " ", "Ind_group2", ",", "..."}], "]"}]], 
+   RowBox[{"ind_group1", ",", " ", "ind_group2", ",", "..."}], "]"}]], 
   "InlineFormula"],
  ", ",
  Cell[BoxData[
   RowBox[{"c", "[", 
-   RowBox[{"Ind_group1", ",", " ", "Ind_group2", ",", "..."}], "]"}]], 
+   RowBox[{"ind_group1", ",", " ", "ind_group2", ",", "..."}], "]"}]], 
   "InlineFormula"],
  ";"
 }], "Notes",
@@ -256,7 +256,7 @@ Cell[TextData[ButtonBox["EXAMPLES",
      FrontEnd`SelectedNotebook[], After, 
      CellContents]}]& )]], "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->252561235],
+ CellID->150111399],
 
 Cell[CellGroupData[{
 
@@ -265,7 +265,7 @@ Cell[TextData[{
  "\[NonBreakingSpace]\[NonBreakingSpace]",
  Cell["(1)", "ExampleCount"]
 }], "ExampleSection",
- CellID->752818978],
+ CellID->248615],
 
 Cell["If a and b are SU2 doublets [={1}], they form an invariant:", \
 "ExampleText",
@@ -295,7 +295,7 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[1]=",
- CellID->79010837]
+ CellID->401099180]
 }, Open  ]],
 
 Cell["\<\
@@ -351,7 +351,7 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[2]=",
- CellID->228662902]
+ CellID->673530696]
 }, Open  ]],
 
 Cell["\<\
@@ -395,7 +395,7 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[3]=",
- CellID->244611057]
+ CellID->214857738]
 }, Open  ]],
 
 Cell["\<\
@@ -436,8 +436,8 @@ Cell[BoxData[
 }, Open  ]],
 
 Cell["\<\
-... but there should be another way since conjugate of the {1,0} \
-representation is also known...it is {0,1}:\
+... but there should be another way to do this since the conjugate of the \
+{1,0} representation is also known...it is {0,1}:\
 \>", "ExampleText",
  CellID->178491849],
 
@@ -488,9 +488,10 @@ soft mass ",
  Cell[BoxData[
   SuperscriptBox["Q", "*"]], "InlineFormula"],
  Cell[BoxData[
-  SubscriptBox[
-   SuperscriptBox["m", "2"], "Q"]], "InlineFormula"],
- "Q then ",
+  RowBox[{
+   SubscriptBox[
+    SuperscriptBox["m", "2"], "Q"], "Q"}]], "InlineFormula"],
+ " then ",
  Cell[BoxData[
   SuperscriptBox["Q", "*"]], "InlineFormula"],
  " is in a very special basis of the representation {0,1} since it is exactly \
@@ -546,7 +547,7 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[6]=",
- CellID->474920353],
+ CellID->82742420],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -561,7 +562,7 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[6]=",
- CellID->125740231]
+ CellID->12438969]
 }, Open  ]],
 
 Cell["... and say that oldBVector=M.newBVector, then", "ExampleText",
@@ -603,7 +604,7 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[7]=",
- CellID->359681533]
+ CellID->227176342]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -636,7 +637,7 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[8]=",
- CellID->166873224]
+ CellID->465219768]
 }, Open  ]],
 
 Cell[TextData[{
@@ -644,18 +645,20 @@ Cell[TextData[{
 + a[3] b'[3]. This means that ",
  Cell[BoxData[
   RowBox[{
-   RowBox[{
-    SuperscriptBox["M", 
-     RowBox[{"-", "1"}]], ".", 
-    SubscriptBox["rep", 
-     RowBox[{"{", 
-      RowBox[{"0", ",", "1"}], "}"}]], ".", "M"}], "=", 
+   RowBox[{"-", 
+    RowBox[{
+     SuperscriptBox["M", 
+      RowBox[{"-", "1"}]], ".", 
+     SubscriptBox["rep", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "1"}], "}"}]], ".", "M"}]}], "=", 
    SubscriptBox["rep", 
     SuperscriptBox[
      RowBox[{"{", 
       RowBox[{"1", ",", "0"}], "}"}], "*"]]}]], "InlineFormula"],
- ". As discussed above, this matrix M won't change the RGEs of a model since \
-it is just a (unitary) redefinition of fields."
+ " (there is also the minus sign, which is irrelevant). As discussed above, \
+this matrix M won't change the RGEs of a model since it is just a (unitary) \
+redefinition of fields."
 }], "ExampleText",
  CellID->502041565],
 
@@ -802,7 +805,7 @@ WindowTitle->"Invariants - Wolfram Mathematica",
 TaggingRules->{
  "ModificationHighlight" -> False, 
   "Metadata" -> {
-   "built" -> "{2011, 2, 8, 15, 59, 44.8593750}", "context" -> "Susyno`", 
+   "built" -> "{2012, 3, 2, 12, 15, 31.2812500}", "context" -> "Susyno`", 
     "keywords" -> {}, "index" -> True, "label" -> "Susyno Paclet Symbol", 
     "language" -> "en", "paclet" -> "Susyno", "status" -> "None", "summary" -> 
     "Invariants[group, rep1, < conjugate >] Calculates the invariants of rep1 \
@@ -831,14 +834,14 @@ StyleDefinitions->Notebook[{
 (*CellTagsOutline
 CellTagsIndex->{
  "PrimaryExamplesSection"->{
-  Cell[7505, 245, 461, 13, 70, "PrimaryExamplesSection",
+  Cell[7515, 245, 461, 13, 70, "PrimaryExamplesSection",
    CellTags->"PrimaryExamplesSection",
-   CellID->252561235]}
+   CellID->150111399]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"PrimaryExamplesSection", 23788, 832}
+ {"PrimaryExamplesSection", 23907, 835}
  }
 *)
 (*NotebookFileOutline
@@ -856,118 +859,118 @@ Cell[3238, 91, 1122, 29, 70, "Usage",
 Cell[CellGroupData[{
 Cell[4397, 125, 580, 17, 70, "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->531559401],
-Cell[4980, 144, 226, 8, 70, "Notes",
+ CellID->268504155],
+Cell[4980, 144, 236, 8, 70, "Notes",
  CellID->1067943069],
-Cell[5209, 154, 181, 5, 70, "Notes",
+Cell[5219, 154, 181, 5, 70, "Notes",
  CellID->41030773],
-Cell[5393, 161, 306, 9, 70, "Notes",
+Cell[5403, 161, 306, 9, 70, "Notes",
  CellID->400920173],
-Cell[5702, 172, 444, 16, 70, "Notes",
+Cell[5712, 172, 444, 16, 70, "Notes",
  CellID->75953507],
-Cell[6149, 190, 1002, 36, 70, "Notes",
+Cell[6159, 190, 1002, 36, 70, "Notes",
  CellID->10758554],
-Cell[7154, 228, 154, 6, 70, "Notes",
+Cell[7164, 228, 154, 6, 70, "Notes",
  CellID->335181877],
-Cell[7311, 236, 157, 4, 70, "Notes",
+Cell[7321, 236, 157, 4, 70, "Notes",
  CellID->898809850]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[7505, 245, 461, 13, 70, "PrimaryExamplesSection",
+Cell[7515, 245, 461, 13, 70, "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->252561235],
+ CellID->150111399],
 Cell[CellGroupData[{
-Cell[7991, 262, 148, 5, 70, "ExampleSection",
- CellID->752818978],
-Cell[8142, 269, 104, 2, 70, "ExampleText",
+Cell[8001, 262, 145, 5, 70, "ExampleSection",
+ CellID->248615],
+Cell[8149, 269, 104, 2, 70, "ExampleText",
  CellID->513681956],
 Cell[CellGroupData[{
-Cell[8271, 275, 189, 6, 70, "Input",
+Cell[8278, 275, 189, 6, 70, "Input",
  CellID->196926373],
-Cell[8463, 283, 392, 14, 36, "Output",
- CellID->79010837]
+Cell[8470, 283, 393, 14, 36, "Output",
+ CellID->401099180]
 }, Open  ]],
-Cell[8870, 300, 114, 3, 70, "ExampleText",
+Cell[8878, 300, 114, 3, 70, "ExampleText",
  CellID->155872588],
 Cell[CellGroupData[{
-Cell[9009, 307, 223, 7, 70, "Input",
+Cell[9017, 307, 223, 7, 70, "Input",
  CellID->459878862],
-Cell[9235, 316, 1082, 37, 58, "Output",
- CellID->228662902]
+Cell[9243, 316, 1082, 37, 58, "Output",
+ CellID->673530696]
 }, Open  ]],
-Cell[10332, 356, 142, 4, 70, "ExampleText",
+Cell[10340, 356, 142, 4, 70, "ExampleText",
  CellID->307224643],
 Cell[CellGroupData[{
-Cell[10499, 364, 180, 6, 70, "Input",
+Cell[10507, 364, 180, 6, 70, "Input",
  CellID->744812328],
-Cell[10682, 372, 768, 25, 43, "Output",
- CellID->244611057]
+Cell[10690, 372, 768, 25, 43, "Output",
+ CellID->214857738]
 }, Open  ]],
-Cell[11465, 400, 135, 4, 70, "ExampleText",
+Cell[11473, 400, 135, 4, 70, "ExampleText",
  CellID->285596647],
 Cell[CellGroupData[{
-Cell[11625, 408, 252, 8, 70, "Input",
+Cell[11633, 408, 252, 8, 70, "Input",
  CellID->125780274],
-Cell[11880, 418, 466, 16, 36, "Output",
+Cell[11888, 418, 466, 16, 36, "Output",
  CellID->108371985]
 }, Open  ]],
-Cell[12361, 437, 161, 4, 70, "ExampleText",
+Cell[12369, 437, 176, 4, 70, "ExampleText",
  CellID->178491849],
 Cell[CellGroupData[{
-Cell[12547, 445, 237, 8, 70, "Input",
+Cell[12570, 445, 237, 8, 70, "Input",
  CellID->3239219],
-Cell[12787, 455, 466, 16, 36, "Output",
+Cell[12810, 455, 466, 16, 36, "Output",
  CellID->339767475]
 }, Open  ]],
-Cell[13268, 474, 1182, 28, 70, "ExampleText",
+Cell[13291, 474, 1201, 29, 70, "ExampleText",
  CellID->880463711],
-Cell[14453, 504, 116, 3, 70, "ExampleText",
+Cell[14495, 505, 116, 3, 70, "ExampleText",
  CellID->24660760],
 Cell[CellGroupData[{
-Cell[14594, 511, 683, 22, 70, "Input",
+Cell[14636, 512, 683, 22, 70, "Input",
  CellID->84067663],
-Cell[15280, 535, 376, 13, 36, "Output",
- CellID->474920353],
-Cell[15659, 550, 385, 13, 36, "Output",
- CellID->125740231]
+Cell[15322, 536, 375, 13, 36, "Output",
+ CellID->82742420],
+Cell[15700, 551, 384, 13, 36, "Output",
+ CellID->12438969]
 }, Open  ]],
-Cell[16059, 566, 88, 1, 70, "ExampleText",
+Cell[16099, 567, 88, 1, 70, "ExampleText",
  CellID->15033159],
 Cell[CellGroupData[{
-Cell[16172, 571, 459, 15, 70, "Input",
+Cell[16212, 572, 459, 15, 70, "Input",
  CellID->330752585],
-Cell[16634, 588, 514, 17, 36, "Output",
- CellID->359681533]
+Cell[16674, 589, 514, 17, 36, "Output",
+ CellID->227176342]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[17185, 610, 292, 10, 70, "Input",
+Cell[17225, 611, 292, 10, 70, "Input",
  CellID->291355122],
-Cell[17480, 622, 475, 16, 36, "Output",
- CellID->166873224]
+Cell[17520, 623, 475, 16, 36, "Output",
+ CellID->465219768]
 }, Open  ]],
-Cell[17970, 641, 618, 18, 70, "ExampleText",
+Cell[18010, 642, 697, 20, 70, "ExampleText",
  CellID->502041565],
-Cell[18591, 661, 41, 1, 70, "ExampleText",
+Cell[18710, 664, 41, 1, 70, "ExampleText",
  CellID->4363169],
-Cell[18635, 664, 133, 4, 70, "ExampleText",
+Cell[18754, 667, 133, 4, 70, "ExampleText",
  CellID->259255305],
 Cell[CellGroupData[{
-Cell[18793, 672, 854, 32, 70, "Input",
+Cell[18912, 675, 854, 32, 70, "Input",
  CellID->595169869],
-Cell[19650, 706, 1456, 49, 54, "Output",
+Cell[19769, 709, 1456, 49, 54, "Output",
  CellID->182372882]
 }, Open  ]],
-Cell[21121, 758, 424, 10, 70, "ExampleText",
+Cell[21240, 761, 424, 10, 70, "ExampleText",
  CellID->597458693]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[21594, 774, 419, 12, 70, "TutorialsSection",
+Cell[21713, 777, 419, 12, 70, "TutorialsSection",
  CellID->250839057],
-Cell[22016, 788, 151, 3, 70, "Tutorials",
+Cell[22135, 791, 151, 3, 70, "Tutorials",
  CellID->341631938]
 }, Open  ]],
-Cell[22182, 794, 23, 0, 70, "FooterCell"]
+Cell[22301, 797, 23, 0, 70, "FooterCell"]
 }
 ]
 *)

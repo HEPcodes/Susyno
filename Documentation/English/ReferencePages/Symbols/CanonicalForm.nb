@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       145,          7]
-NotebookDataLength[     13062,        458]
-NotebookOptionsPosition[      9697,        347]
-NotebookOutlinePosition[     11266,        392]
-CellTagsIndexPosition[     11181,        387]
+NotebookDataLength[     13054,        458]
+NotebookOptionsPosition[      9694,        347]
+NotebookOutlinePosition[     11261,        392]
+CellTagsIndexPosition[     11176,        387]
 WindowTitle->CanonicalForm - Wolfram Mathematica
 WindowFrame->Normal*)
 
@@ -125,7 +125,7 @@ Cell[TextData[Cell[BoxData[
   Evaluator->None,
   Method->"Preemptive"]]]], "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->182192308],
+ CellID->425158211],
 
 Cell[TextData[{
  Cell[BoxData["expression"], "InlineFormula"],
@@ -174,7 +174,7 @@ Cell[TextData[ButtonBox["EXAMPLES",
      FrontEnd`SelectedNotebook[], After, 
      CellContents]}]& )]], "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->663168675],
+ CellID->14016754],
 
 Cell[CellGroupData[{
 
@@ -183,7 +183,7 @@ Cell[TextData[{
  "\[NonBreakingSpace]\[NonBreakingSpace]",
  Cell["(1)", "ExampleCount"]
 }], "ExampleSection",
- CellID->112944209],
+ CellID->22656569],
 
 Cell[TextData[{
  "To ",
@@ -217,7 +217,7 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[1]=",
- CellID->403450973]
+ CellID->13713522]
 }, Open  ]],
 
 Cell["CanonicalForm solves this problem:", "ExampleText",
@@ -248,7 +248,7 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[2]=",
- CellID->585869878]
+ CellID->104984988]
 }, Open  ]],
 
 Cell["\<\
@@ -281,7 +281,7 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[3]=",
- CellID->76919035]
+ CellID->738083568]
 }, Open  ]],
 
 Cell["\<\
@@ -316,7 +316,7 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[4]=",
- CellID->329910326]
+ CellID->72504541]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
@@ -353,7 +353,7 @@ WindowTitle->"CanonicalForm - Wolfram Mathematica",
 TaggingRules->{
  "ModificationHighlight" -> False, 
   "Metadata" -> {
-   "built" -> "{2011, 2, 8, 15, 59, 20.2500000}", "context" -> "Susyno`", 
+   "built" -> "{2012, 3, 2, 12, 14, 2.7812500}", "context" -> "Susyno`", 
     "keywords" -> {}, "index" -> True, "label" -> "Susyno Paclet Symbol", 
     "language" -> "en", "paclet" -> "Susyno", "status" -> "None", "summary" -> 
     "CanonicalForm[expression, < indices >] Simplifies an expression written \
@@ -379,14 +379,14 @@ StyleDefinitions->Notebook[{
 (*CellTagsOutline
 CellTagsIndex->{
  "PrimaryExamplesSection"->{
-  Cell[5312, 163, 461, 13, 70, "PrimaryExamplesSection",
+  Cell[5312, 163, 460, 13, 70, "PrimaryExamplesSection",
    CellTags->"PrimaryExamplesSection",
-   CellID->663168675]}
+   CellID->14016754]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"PrimaryExamplesSection", 11038, 380}
+ {"PrimaryExamplesSection", 11034, 380}
  }
 *)
 (*NotebookFileOutline
@@ -404,7 +404,7 @@ Cell[3256, 91, 479, 14, 70, "Usage",
 Cell[CellGroupData[{
 Cell[3772, 110, 580, 17, 70, "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->182192308],
+ CellID->425158211],
 Cell[4355, 129, 176, 4, 70, "Notes",
  CellID->1067943069],
 Cell[4534, 135, 510, 14, 70, "Notes",
@@ -413,53 +413,53 @@ Cell[5047, 151, 228, 7, 70, "Notes",
  CellID->527236478]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[5312, 163, 461, 13, 70, "PrimaryExamplesSection",
+Cell[5312, 163, 460, 13, 70, "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->663168675],
+ CellID->14016754],
 Cell[CellGroupData[{
-Cell[5798, 180, 148, 5, 70, "ExampleSection",
- CellID->112944209],
-Cell[5949, 187, 159, 7, 70, "ExampleText",
+Cell[5797, 180, 147, 5, 70, "ExampleSection",
+ CellID->22656569],
+Cell[5947, 187, 159, 7, 70, "ExampleText",
  CellID->340423719],
 Cell[CellGroupData[{
-Cell[6133, 198, 244, 9, 70, "Input",
+Cell[6131, 198, 244, 9, 70, "Input",
  CellID->335129954],
-Cell[6380, 209, 286, 10, 36, "Output",
- CellID->403450973]
+Cell[6378, 209, 285, 10, 36, "Output",
+ CellID->13713522]
 }, Open  ]],
-Cell[6681, 222, 77, 1, 70, "ExampleText",
+Cell[6678, 222, 77, 1, 70, "ExampleText",
  CellID->349902954],
 Cell[CellGroupData[{
-Cell[6783, 227, 369, 13, 70, "Input",
+Cell[6780, 227, 369, 13, 70, "Input",
  CellID->110289986],
-Cell[7155, 242, 233, 8, 36, "Output",
- CellID->585869878]
+Cell[7152, 242, 233, 8, 36, "Output",
+ CellID->104984988]
 }, Open  ]],
-Cell[7403, 253, 178, 4, 70, "ExampleText",
+Cell[7400, 253, 178, 4, 70, "ExampleText",
  CellID->88602366],
 Cell[CellGroupData[{
-Cell[7606, 261, 289, 10, 70, "Input",
+Cell[7603, 261, 289, 10, 70, "Input",
  CellID->34272094],
-Cell[7898, 273, 285, 10, 36, "Output",
- CellID->76919035]
+Cell[7895, 273, 286, 10, 36, "Output",
+ CellID->738083568]
 }, Open  ]],
-Cell[8198, 286, 122, 3, 70, "ExampleText",
+Cell[8196, 286, 122, 3, 70, "ExampleText",
  CellID->253472969],
 Cell[CellGroupData[{
-Cell[8345, 293, 440, 15, 70, "Input",
+Cell[8343, 293, 440, 15, 70, "Input",
  CellID->531476255],
-Cell[8788, 310, 233, 8, 36, "Output",
- CellID->329910326]
+Cell[8786, 310, 232, 8, 36, "Output",
+ CellID->72504541]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[9082, 325, 419, 12, 70, "TutorialsSection",
+Cell[9079, 325, 419, 12, 70, "TutorialsSection",
  CellID->250839057],
-Cell[9504, 339, 151, 3, 70, "Tutorials",
+Cell[9501, 339, 151, 3, 70, "Tutorials",
  CellID->341631938]
 }, Open  ]],
-Cell[9670, 345, 23, 0, 70, "FooterCell"]
+Cell[9667, 345, 23, 0, 70, "FooterCell"]
 }
 ]
 *)

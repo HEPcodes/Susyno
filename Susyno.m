@@ -32,7 +32,10 @@ Return[result];
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
-CalculateSusyY[cm_,listRep_,hypercharges_,numberOfFlavours_,discreteCharges_]:=CalculateSusyY[cm,listRep,hypercharges,numberOfFlavours,discreteCharges]=Module[{sum,hyperSum,discreteChargesSum,vector,aux1,matrix,vectorContent,tableVariables,partialTable,vectorA,vectorB,vectorC},
+CalculateSusyY[cm_,listRep_,hypercharges_,numberOfFlavours_,discreteCharges_]:=CalculateSusyY[cm,listRep,hypercharges,numberOfFlavours,discreteCharges]=Module[{sum,hyperSum,discreteChargesSum,vector,aux1,matrix,vectorContent,tableVariables,partialTable,vectorA,vectorB,vectorC,maxInvIndex,subsRule,x1,x2,x3,x4,id},
+
+maxInvIndex=1;
+
 
 (* Build the sum of invariants and change some names *)
 sum=0;
@@ -45,14 +48,15 @@ aux1=Invariants[cm,listRep[[i1]],listRep[[i2]],listRep[[i3]],False];
 
 (*Kills some antisymmetric terms with 1 flavour*)
  Do[
-If[i1==i2&&NumberQ[numberOfFlavours[[i1]]]==True&&numberOfFlavours[[i1]]==1&&IsSymmetric[aux1[[i]],{a,b}]==2,aux1[[i]]=0];
-If[i1==i3&&NumberQ[numberOfFlavours[[i1]]]==True&&numberOfFlavours[[i1]]==1&&IsSymmetric[aux1[[i]],{a,c}]==2,aux1[[i]]=0];
-If[i2==i3&&NumberQ[numberOfFlavours[[i2]]]==True&&numberOfFlavours[[i2]]==1&&IsSymmetric[aux1[[i]],{b,c}]==2,aux1[[i]]=0];
-,{i,Length[aux1]}];
+Which[i1==i2==i3&&(numberOfFlavours[[i1]]===1||numberOfFlavours[[i1]]===2)&&IsSymmetric[aux1[[i0]],{a,b}]==2&&IsSymmetric[aux1[[i0]],{b,c}]==2,aux1[[i0]]=0,i1==i2&&numberOfFlavours[[i1]]===1&&IsSymmetric[aux1[[i0]],{a,b}]==2,aux1[[i0]]=0,i1==i3&&numberOfFlavours[[i1]]===1&&IsSymmetric[aux1[[i0]],{a,c}]==2,aux1[[i0]]=0,i2==i3&&numberOfFlavours[[i2]]===1&&IsSymmetric[aux1[[i0]],{b,c}]==2,aux1[[i0]]=0];
+
+If[i0>maxInvIndex&&!(aux1[[i0]]===0),maxInvIndex=i0]; (*retain max i value*)
+
+,{i0,Length[aux1]}];
 (*/Kills some antisymmetric terms with 1 flavour*)
 
 aux1=aux1 /. {a:>Subscript[a, i1],b:>Subscript[b, i2],c:>Subscript[c, i3]};
-sum+=Sum[y[i1,i2,i3,i,f1,f2,f3]aux1[[i]],{i,Length[aux1]}];
+sum+=Sum[y[i1,i2,i3,i0,f1,f2,f3]aux1[[i0]],{i0,Length[aux1]}];
 ];
 ,{i1,Length[listRep]},{i2,i1,Length[listRep]},{i3,i2,Length[listRep]}];
 
@@ -76,7 +80,11 @@ matrix=6  matrix[[1;;Length[vector]/3,Length[vector]/3+1;;2Length[vector]/3,2Len
 
 matrix=matrix+Trs[matrix,{1,3,2}]+Trs[matrix,{2,1,3}]+Trs[matrix,{2,3,1}]+Trs[matrix,{3,1,2}]+Trs[matrix,{3,2,1}];
 
-matrix=SparseArray[Expand[ArrayRules[matrix]]/.x_+y__:>Length[x+y]x,Dimensions[matrix]];
+(* next 4 lines ensures that multiple invariants in r1 x r2 x r2 is possible *)
+subsRule=Table[{y[x1_,x2_,x3_,id_,x4___]->KroneckerDelta[id,i0]y[x1,x2,x3,id,x4]},{i0,maxInvIndex}];
+aux1=ArrayRules[matrix]/.subsRule;
+aux1=SparseArray[Expand[#]/.x_+y__:>Length[x+y]x,Dimensions[matrix]]&/@aux1;
+matrix=Plus@@aux1;
 ,
 matrix=SparseArray[{},{Length[vector]/3,Length[vector]/3,Length[vector]/3}];
 ];
@@ -106,7 +114,7 @@ If[hyperSum==0 hyperSum && discreteChargesSum==0discreteChargesSum+1,
 aux1=Invariants[cm,listRep[[i1]],listRep[[i2]],False];
 (*Kills some antisymmetric terms with 1 flavour*)
 Do[
-If[i1==i2&&NumberQ[numberOfFlavours[[i1]]]==True&&numberOfFlavours[[i1]]==1&&IsSymmetric[aux1[[i]],{a,b}]==2,aux1[[i]]=0];
+If[i1==i2&&numberOfFlavours[[i1]]===1&&IsSymmetric[aux1[[i]],{a,b}]==2,aux1[[i]]=0];
 ,{i,Length[aux1]}];
 (*/Kills some antisymmetric terms with 1 flavour*)
 aux1=aux1 /. {a:>Subscript[a, i1],b:>Subscript[b, i2]};
@@ -149,8 +157,8 @@ aux3=0 discreteCharges[[1]]+1;
 
 aux1=Position[listRep,aux1];
 aux2=Position[hypercharges,aux2];
-aux3==Position[discreteCharges,aux3];
-aux1=Intersection[aux1,aux2]; (*just finds at most one position with an invariant under all gauge groups*)
+aux3=Position[discreteCharges,aux3];
+aux1=Intersection[aux1,aux2,aux3]; (*just finds at most one position with an invariant under all gauge groups*)
 result=SparseArray[{},{Sum[Times@@DimR[cm,listRep[[i]]],{i,Length[listRep]}]}];
 If[aux1!={},
 position=Sum[Times@@DimR[cm,listRep[[i]]],{i,aux1[[1,1]]}];
@@ -217,16 +225,6 @@ Return[SparseArray[(ArrayRules[aux]/.l->s),Dimensions[aux]]];
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
-
-IsSymmetric[invariant_,vars_]:=Module[{aux1,result},
-result=0;
-aux1=invariant/.{vars[[1]]->vars[[2]],vars[[2]]->vars[[1]]};
-If[invariant-aux1==0,result=1]; (*symmetric*)
-If[invariant+aux1==0,result=2]; (*antisymmetric*)
-Return[result];
-]
-
-(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
 SetSymmetryAtributes[cm_,listReps_,matrices_,numberOfFlavours_]:=Module[{l1,l2,l3,l4,l5,l6,l7,aux1,aux2,aux3,listParameters,res,res2,head,newHead},
 Clear[y,y2,mu,mu2,l,l2,h,h2,b,b2,s,s2,m2,m22];
@@ -306,7 +304,7 @@ res=ToExpression[StringSplit[res,"="][[2]]];
 res2=StringReplace[ToString[res],{"x1"->"x1_","x2"->"x2_","x3"->"x3_"}];
 aux1={};
 Do[
-If[NumberQ[numberOfFlavours[[k]]]==True&&numberOfFlavours[[k]]==1,
+If[numberOfFlavours[[k]]==1,
 aux1=Join[aux1, Position[res,k]];
 ];
 ,{k,Length[numberOfFlavours]}];
@@ -356,7 +354,7 @@ result=CanonicalForm/@Expand[(result /.{y3->y,mu3->mu,l3->l,h3->h,b3->b,s3->s,m2
 ];
 
  (*some final simplification of the flavour variables*)
-Return[result/.{f1->i,f2->j,f3->k,\[Alpha][i_]:>FromCharacterCode[108+i]}];
+Return[result/.{f1->i,f2->j,f3->k,\[Alpha][i_]:>ToExpression[FromCharacterCode[108+i]]}];
 ];
 
 
@@ -434,7 +432,9 @@ Return[aux];
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
-SearchAndCalcBeta1Loop[cm_,listReps_,hypercharges_,matrices_,functions_,numberOfFlavours_,printForm_Symbol:True]:=Module[{mY,mMu,mL,mH,mB,mM2,mS,position,entry,betaFuctionResult,coefficient,parameters,result},
+Options[SearchAndCalcBeta1Loop]={Verbose->True};
+
+SearchAndCalcBeta1Loop[cm_,listReps_,hypercharges_,matrices_,functions_,numberOfFlavours_,OptionsPattern[]]:=Module[{mY,mMu,mL,mH,mB,mM2,mS,position,entry,betaFuctionResult,coefficient,parameters,result},
 
 Clear[y,y2,mu,mu2,l,l2,h,h2,b,b2,s,s2,m2, m22];
 mY=Sort[DeleteDuplicates[Cases[ArrayRules[matrices[[1]]],y[x__,x1_,x2_,x3_]:>y[x],-1]]];
@@ -451,12 +451,11 @@ Do[
 betaFuctionResult=\[Beta]g1[group];
 {betaFuctionResult}=ApplySymmetries[{betaFuctionResult},1,cm,listReps,matrices,numberOfFlavours];
 
-If[printForm,
+If[OptionValue[Verbose],
 Print[
 \!\(\*SuperscriptBox["\[Beta]", "\"\<(1)\>\""]\), " of ",g[group]];Print[betaFuctionResult];Print["* * * * *"];
-,
-result=Append[result,{g[group],betaFuctionResult}];
 ];
+result=Append[result,{g[group],betaFuctionResult}];
 
 ,{group,Length[cm]+Length[hypercharges[[1]]]}];
 
@@ -464,12 +463,11 @@ Do[
 betaFuctionResult=\[Beta]M1[group];
 {betaFuctionResult}=ApplySymmetries[{betaFuctionResult},1,cm,listReps,matrices,numberOfFlavours];
 
-If[printForm,
+If[OptionValue[Verbose],
 Print[
 \!\(\*SuperscriptBox["\[Beta]", "\"\<(1)\>\""]\), " of ",M[group]];Print[betaFuctionResult];Print["* * * * *"];
-,
-result=Append[result,{M[group],betaFuctionResult}];
 ];
+result=Append[result,{M[group],betaFuctionResult}];
 
 ,{group,Length[cm]+Length[hypercharges[[1]]]}];
 
@@ -483,22 +481,22 @@ betaFuctionResult=Expand [ functions[[i1]]@@position] ;
 {entry,betaFuctionResult}=ApplySymmetries[{entry,betaFuctionResult},2,cm,listReps,matrices,numberOfFlavours];
 
 
-If[printForm,
+If[OptionValue[Verbose],
 Print[
 \!\(\*SuperscriptBox["\[Beta]", "\"\<(1)\>\""]\), " of ",entry];Print[betaFuctionResult];Print["* * * * *"];
-,
-result=Append[result,{entry,betaFuctionResult}];
 ];
+result=Append[result,{entry,betaFuctionResult}];
 
 ,{i1,7},{i2,Length[parameters[[i1]]]}];
 
-If[printForm,result=Null;];
 Return[result];
 ]
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
-SearchAndCalcBeta2Loop[cm_,listReps_,hypercharges_,matrices_,functions_,numberOfFlavours_,printForm_Symbol:True]:=Module[{mY,mMu,mL,mH,mB,mM2,mS,position,entry,betaFuctionResult1,betaFuctionResult2,coefficient,parameters,result},
+Options[SearchAndCalcBeta2Loop]={Verbose->True};
+
+SearchAndCalcBeta2Loop[cm_,listReps_,hypercharges_,matrices_,functions_,numberOfFlavours_,OptionsPattern[]]:=Module[{mY,mMu,mL,mH,mB,mM2,mS,position,entry,betaFuctionResult1,betaFuctionResult2,coefficient,parameters,result},
 
 Clear[y,y2,mu,mu2,l,l2,h,h2,b,b2,s,s2,m2, m22];
 mY=Sort[DeleteDuplicates[Cases[ArrayRules[matrices[[1]]],y[x__,x1_,x2_,x3_]:>y[x],-1]]];
@@ -516,14 +514,14 @@ betaFuctionResult1=\[Beta]g1[group];
 betaFuctionResult2=\[Beta]g2[group];
 {betaFuctionResult1,betaFuctionResult2}=ApplySymmetries[{betaFuctionResult1,betaFuctionResult2},1,cm,listReps,matrices,numberOfFlavours];
 
-If[printForm,
+If[OptionValue[Verbose],
 Print[
 \!\(\*SuperscriptBox["\[Beta]", "\"\<(1)\>\""]\), " of ",g[group]];Print[betaFuctionResult1];Print["* * * * *"];
 Print[
 \!\(\*SuperscriptBox["\[Beta]", "\"\<(2)\>\""]\), " of ",g[group]];Print[betaFuctionResult2];Print["* * * * *"];
-,
-result=Append[result,{g[group],betaFuctionResult1,betaFuctionResult2}];
 ];
+
+result=Append[result,{g[group],betaFuctionResult1,betaFuctionResult2}];
 
 ,{group,Length[cm]+Length[hypercharges[[1]]]}];
 
@@ -532,14 +530,14 @@ betaFuctionResult1=\[Beta]M1[group];
 betaFuctionResult2=\[Beta]M2[group];
 {betaFuctionResult1,betaFuctionResult2}=ApplySymmetries[{betaFuctionResult1,betaFuctionResult2},1,cm,listReps,matrices,numberOfFlavours];
 
-If[printForm,
+If[OptionValue[Verbose],
 Print[
 \!\(\*SuperscriptBox["\[Beta]", "\"\<(1)\>\""]\), " of ",M[group]];Print[betaFuctionResult1];Print["* * * * *"];
 Print[
 \!\(\*SuperscriptBox["\[Beta]", "\"\<(2)\>\""]\), " of ",M[group]];Print[betaFuctionResult2];Print["* * * * *"]; 
-,
-result=Append[result,{M[group],betaFuctionResult1,betaFuctionResult2}];
 ];
+
+result=Append[result,{M[group],betaFuctionResult1,betaFuctionResult2}];
 
 ,{group,Length[cm]+Length[hypercharges[[1]]]}];
 
@@ -553,33 +551,39 @@ betaFuctionResult2=Expand [ functions[[i1,2]]@@position ] ;
 
 {entry,betaFuctionResult1,betaFuctionResult2}=ApplySymmetries[{entry,betaFuctionResult1,betaFuctionResult2},2,cm,listReps,matrices,numberOfFlavours];
 
-If[printForm,
+If[OptionValue[Verbose],
 Print[
 \!\(\*SuperscriptBox["\[Beta]", "\"\<(1)\>\""]\), " of ",entry];Print[betaFuctionResult1];Print["* * * * *"];
 Print[
 \!\(\*SuperscriptBox["\[Beta]", "\"\<(2)\>\""]\), " of ",entry];Print[betaFuctionResult2];Print["* * * * *"];
-,
-result=Append[result,{entry,betaFuctionResult1,betaFuctionResult2}];
 ];
+
+result=Append[result,{entry,betaFuctionResult1,betaFuctionResult2}];
 
 ,{i1,7},{i2,Length[parameters[[i1]]]}];
 
-If[printForm,result=Null;];
 Return[result];
 ]
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
-BetaFunctions1L[cm_,listRepsWithY_,numberOfFlavours_,discreteCharges_,printForm_Symbol:True]:=Module[{auxCounter,listReps,hypercharges,matrices,numberOfFlavoursMod,discreteChargesMod,result},
+Options[BetaFunctions1L]={Verbose->True};
+
+BetaFunctions1L[userInput_,OptionsPattern[]]:=Module[{cm,listRepsWithY,numberOfFlavours,discreteCharges,nU1s,listReps,hypercharges,matrices,numberOfFlavoursMod,discreteChargesMod,result},
+
+(* Check the input for errors and parse input *)
+If[!CheckInput[userInput,OptionValue[Verbose]],
+Return[];];
+{cm,listRepsWithY,discreteCharges,numberOfFlavours}=ParseInput[userInput][[2;;5]];
 
 Clear[y,y2,h,h2,mu,mu2,h,h2,b,b2,s,s2,m2,m22];
 
 (*Separate listReps from hypercharges *)
-auxCounter=1;
-While[auxCounter<=Length[listRepsWithY[[1]]]&&ToString[Head[listRepsWithY[[1,auxCounter]]]]!="List",auxCounter++];
+nU1s=Count[cm,{}];
+cm=cm[[nU1s+1;;-1]];
 
-hypercharges=#[[1;;auxCounter-1]]&/@listRepsWithY;
-listReps=#[[auxCounter;;Length[listRepsWithY[[1]]]]]&/@listRepsWithY;
+hypercharges=#[[1;;nU1s]]&/@listRepsWithY;
+listReps=#[[nU1s+1;;Length[listRepsWithY[[1]]]]]&/@listRepsWithY;
 (*/Separate listReps from hypercharges *)
 
 (* If the number of flavours was not set, give the generic name nf[i] *)
@@ -592,21 +596,29 @@ If[Length[discreteChargesMod]!=Length[listReps],discreteChargesMod=Table[1,{i,Le
 
 matrices=StandardInitialization[cm,listReps,hypercharges,numberOfFlavoursMod,discreteChargesMod];
 
-result=SearchAndCalcBeta1Loop[cm,listReps,hypercharges,matrices,{\[Beta]Y1,\[Beta]\[Mu]1,\[Beta]L1,\[Beta]H1,\[Beta]B1,\[Beta]S1,\[Beta]2M1},numberOfFlavoursMod,printForm];
+result=SearchAndCalcBeta1Loop[cm,listReps,hypercharges,matrices,{\[Beta]Y1,\[Beta]\[Mu]1,\[Beta]L1,\[Beta]H1,\[Beta]B1,\[Beta]S1,\[Beta]2M1},numberOfFlavoursMod,Verbose->OptionValue[Verbose]];
 Return[result];
 ]
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
-BetaFunctions2L[cm_,listRepsWithY_,numberOfFlavours_,discreteCharges_,printForm_Symbol:True]:=Module[{auxCounter,listReps,hypercharges,matrices,numberOfFlavoursMod,discreteChargesMod,result},
+Options[BetaFunctions2L]={Verbose->True};
+
+BetaFunctions2L[userInput_,OptionsPattern[]]:=Module[{cm,listRepsWithY,numberOfFlavours,discreteCharges,nU1s,listReps,hypercharges,matrices,numberOfFlavoursMod,discreteChargesMod,result},
+
+(* Check the input for errors and parse input *)
+If[!CheckInput[userInput,OptionValue[Verbose]],
+Return[];];
+{cm,listRepsWithY,discreteCharges,numberOfFlavours}=ParseInput[userInput][[2;;5]];
+
 Clear[y,y2,h,h2,mu,mu2,h,h2,b,b2,s,s2,m2,m22];
 
 (*Separate listReps from hypercharges *)
-auxCounter=1;
-While[auxCounter<=Length[listRepsWithY[[1]]]&&ToString[Head[listRepsWithY[[1,auxCounter]]]]!="List",auxCounter++];
+nU1s=Count[cm,{}];
+cm=cm[[nU1s+1;;-1]];
 
-hypercharges=#[[1;;auxCounter-1]]&/@listRepsWithY;
-listReps=#[[auxCounter;;Length[listRepsWithY[[1]]]]]&/@listRepsWithY;
+hypercharges=#[[1;;nU1s]]&/@listRepsWithY;
+listReps=#[[nU1s+1;;Length[listRepsWithY[[1]]]]]&/@listRepsWithY;
 (*/Separate listReps from hypercharges *)
 
 (* If the number of flavours was not set, give the generic name nf[i] *)
@@ -619,19 +631,30 @@ If[Length[discreteChargesMod]!=Length[listReps],discreteChargesMod=Table[1,{i,Le
 
 matrices=StandardInitialization[cm,listReps,hypercharges,numberOfFlavoursMod,discreteChargesMod];
 
-result=SearchAndCalcBeta2Loop[cm,listReps,hypercharges,matrices,{{\[Beta]Y1,\[Beta]Y2},{\[Beta]\[Mu]1,\[Beta]\[Mu]2},{\[Beta]L1,\[Beta]L2},{\[Beta]H1,\[Beta]H2},{\[Beta]B1,\[Beta]B2},{\[Beta]S1,\[Beta]S2},{\[Beta]2M1,\[Beta]2M2}},numberOfFlavoursMod,printForm];
+result=SearchAndCalcBeta2Loop[cm,listReps,hypercharges,matrices,{{\[Beta]Y1,\[Beta]Y2},{\[Beta]\[Mu]1,\[Beta]\[Mu]2},{\[Beta]L1,\[Beta]L2},{\[Beta]H1,\[Beta]H2},{\[Beta]B1,\[Beta]B2},{\[Beta]S1,\[Beta]S2},{\[Beta]2M1,\[Beta]2M2}},numberOfFlavoursMod,Verbose->OptionValue[Verbose]];
 Return[result];
 ]
 
-ShowLagrangian[cm_,listRepsWithY_,numberOfFlavours_,discreteCharges_,printForm_Symbol:True]:=Module[{auxCounter,listReps,hypercharges,matrices,numberOfFlavoursMod,discreteChargesMod,auxDim,vectorNoFlav,result},
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+Options[ShowLagrangian]={Verbose->True};
+
+ShowLagrangian[userInput_,OptionsPattern[]]:=Module[{cm,listRepsWithY,numberOfFlavours,discreteCharges,nU1s,listReps,hypercharges,matrices,numberOfFlavoursMod,discreteChargesMod,auxDim,vectorNoFlav,result},
+
+(* Check the input for errors and parse input *)
+If[!CheckInput[userInput,OptionValue[Verbose]],
+Return[];];
+{cm,listRepsWithY,discreteCharges,numberOfFlavours}=ParseInput[userInput][[2;;5]];
+
+
 Clear[y,y2,h,h2,mu,mu2,h,h2,b,b2,s,s2,m2,m22];
 
 (*Separate listReps from hypercharges *)
-auxCounter=1;
-While[auxCounter<=Length[listRepsWithY[[1]]]&&ToString[Head[listRepsWithY[[1,auxCounter]]]]!="List",auxCounter++];
+nU1s=Count[cm,{}];
+cm=cm[[nU1s+1;;-1]];
 
-hypercharges=#[[1;;auxCounter-1]]&/@listRepsWithY;
-listReps=#[[auxCounter;;Length[listRepsWithY[[1]]]]]&/@listRepsWithY;
+hypercharges=#[[1;;nU1s]]&/@listRepsWithY;
+listReps=#[[nU1s+1;;Length[listRepsWithY[[1]]]]]&/@listRepsWithY;
 (*/Separate listReps from hypercharges *)
 
 (* If the number of flavours was not set, give the generic name nf[i] *)
@@ -644,16 +667,11 @@ If[Length[discreteChargesMod]!=Length[listReps],discreteChargesMod=Table[1,{i,Le
 
 matrices=StandardInitialization[cm,listReps,hypercharges,numberOfFlavoursMod,discreteChargesMod];
 
-If[!printForm,  (* IF printForm=False, just return the tensors {y,\[Mu],L,h,b,s,m2} ... *)
 
-(*SetSymmetryAtributes finds all the parameters of the model and sees if they have flavour symmetries/antisymetries*)
-SetSymmetryAtributes[cm,listReps,matrices,numberOfFlavoursMod];
-matrices=Table[SparseArray[(ArrayRules[matrices[[i1]]] /.{y2->y3,mu2->mu3,l2->l3,h2->h3,b2->b3,s2->s3,m22->m23})/.{f1->i,f2->j,f3->k},Dimensions[matrices[[i1]]]],{i1,Length[matrices]}];
-Clear[y,y2,mu,mu2,l,l2,h,h2,b,b2,s,s2,m2, m22];
-matrices=Table[SparseArray[ArrayRules[matrices[[i1]]] /.{y3->y,mu3->mu,l3->l,h3->h,b3->b,s3->s,m23->m2},Dimensions[matrices[[i1]]]],{i1,Length[matrices]}];
 
-Return[matrices];
-,        (* ... or ELSE print the Lagrangian in expanded form *)
+
+
+
 
 auxDim=DimR[cm,#]&/@ listReps;
 vectorNoFlav=Table[Array[Fld[i],auxDim[[i]]],{i,Length[listReps]}];
@@ -671,18 +689,19 @@ matrices[[3]].vectorFlav[f1],
 matrices[[6]].vectorFlav[f1],
 matrices[[7]].Conjugate[vectorFlav[f2]].vectorFlav[f1]
 };
-
 result=Expand[result  /.{f1->i,f2->j,f3->k,y2->y3,mu2->mu3,l2->l3,h2->h3,b2->b3,s2->s3,m22->m23}] ;
+
+matrices=Table[SparseArray[(ArrayRules[matrices[[i1]]] /.{y2->y3,mu2->mu3,l2->l3,h2->h3,b2->b3,s2->s3,m22->m23})/.{f1->i,f2->j,f3->k},Dimensions[matrices[[i1]]]],{i1,Length[matrices]}];
 
 (* Make Mathematica forget the symmetries of the parameters of the model *)
 Clear[y,y2,mu,mu2,l,l2,h,h2,b,b2,s,s2,m2,m22];
 
 result=CanonicalForm[#,{i,j,k}]&/@Expand[(result /.{y3->y,mu3->mu,l3->l,h3->h,b3->b,s3->s,m23->m2}) ];
+matrices=Table[SparseArray[ArrayRules[matrices[[i1]]] /.{y3->y,mu3->mu,l3->l,h3->h,b3->b,s3->s,m23->m2},Dimensions[matrices[[i1]]]],{i1,Length[matrices]}];
 
 
 
-
-
+If[OptionValue[Verbose], 
 Print[">>>>>> Each rep/field is named Fld[<rep index>][<gauge indexes>,<flav if any>] <<<<<<"];
 Print[""];Print["Y part:"];Print[result[[1]]];
 Print[""];Print["\[Mu] part:"];Print[result[[2]]];
@@ -693,10 +712,128 @@ Print[""];Print["S part:"];Print[result[[6]]];
 Print[""];Print["M2 part:"];Print[result[[7]]];
 Print[""];Print[">>>>>>  End <<<<<<"];
 ];
+
+Return[matrices];
+
+];
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+(* Converts the user input into four lists: groups,content,nFlavs,dSym *)
+ParseInput[userInput_]:=Module[{aux,aux2,groups,content,nFlavs,dSym},
+
+aux=DeleteCases[#,x_/;MemberQ[x,NFlavours]||MemberQ[x,DiscreteSym]][[All,1]]&/@userInput;
+aux2=DeleteDuplicates[aux];
+
+(* Different fields have different gauge groups *)
+If[Length[aux2]>1,
+Return[{False,Null,Null,Null,Null}];,
+Null];
+
+groups=aux2[[1]];
+
+content=DeleteCases[#,x_/;MemberQ[x,NFlavours]||MemberQ[x,DiscreteSym]][[All,2]]&/@userInput;
+
+
+(* Discrete symmetries can be omitted. In that case,  the default value is 1 (no discrete symmetry) *)
+dSym=Cases[#,(DiscreteSym->x_)->x,-1]&/@userInput;
+dSym=Table[If[dSym[[i]]==={},1,dSym[[i,1]]],{i,Length[userInput]}];
+
+
+(* Number of flavours of a field can be omitted. In that case, the default value is nf[i] where i is the position of the field *)
+nFlavs=Cases[#,(NFlavours->x_)->x,-1]&/@userInput;
+nFlavs=Table[If[nFlavs[[i]]==={},nf[i],nFlavs[[i,1]]],{i,Length[userInput]}];
+
+
+Return[{True,groups,content,dSym,nFlavs}];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+CheckInput[userInput_,printForm_Symbol:True]:=Module[{cm,listRepsWithY,discreteCharges,numberOfFlavours,n,cmSize,check,cmOk,finalOk, representationsOk,aux,nU1s,auxCounter,hypercharges,listReps},
+
+If[Length[userInput]==0,
+Print[Hyperlink["[ERROR CODE 01]", 
+  "paclet:Susyno/ref/Error01"]," Invalid model. A model consists of a list of fields."];
+Print["*** There might be more problems with this input. Susyno will check it once the above problems are solved. ***"];
+Return[False];
+];
+
+{cmOk,cm,listRepsWithY,discreteCharges,numberOfFlavours}=ParseInput[userInput];
+finalOk=True;
+
+If[!cmOk,
+Print[Hyperlink["[ERROR CODE 02]", 
+  "paclet:Susyno/ref/Error02"]," The gauge factor groups of each field must be the same and given in the same order."];
+finalOk=False;
+];
+
+(* --------------------------------------------- cm --------------------------------------------- *)
+n=Length[cm];
+
+Do[
+check=False;
+cmSize=Length[cm[[i]]];
+
+If[cmSize>0||cm[[i]]==={},
+If[cm[[i]]===U1||cm[[i]]=== CartanMatrix["A",cmSize]||cm[[i]]=== CartanMatrix["B",cmSize]||cm[[i]]=== CartanMatrix["C",cmSize]||cm[[i]]=== CartanMatrix["D",cmSize],check=True];
+
+If[cmSize==2&&cm[[i]]=== CartanMatrix["G",cmSize],check=True];
+If[cmSize==4&&cm[[i]]=== CartanMatrix["F",cmSize],check=True];
+If[6<=cmSize<=8&&cm[[i]]=== CartanMatrix["E",cmSize],check=True];
+];
+If[!check,
+Print[Hyperlink["[ERROR CODE 03]", 
+  "paclet:Susyno/ref/Error03"]," The gauge factor group ",Style[cm[[i]],Bold]," is not valid. Try something like U1, SU2, SU3, SO10, E6 ..."];
+cmOk=False;
+finalOk=False;
+];
+,{i,n}];
+
+aux=Flatten[Position[cm,{}]];
+nU1s=Length[aux];
+If[aux!=Range[nU1s],
+Print[Hyperlink["[ERROR CODE 04]","paclet:Susyno/ref/Error04"]," The U1 factor groups must be the first ones."];cmOk=False;
+];
+
+If[!cmOk,
+Print["*** There might be more problems with this input. Susyno will check it once the above problems are solved. ***"];
+Return[False];];
+
+(* --------------------------------------------- listRepsWithY --------------------------------------------- *)
+
+n=Length[listRepsWithY];
+Do[
+hypercharges=listRepsWithY[[i,1;;nU1s]];
+listReps=listRepsWithY[[i,nU1s+1;;-1]];
+
+If[!(And@@NumericQ/@hypercharges),
+Print[Hyperlink["[ERROR CODE 05]","paclet:Susyno/ref/Error05"]," Some of the hypercharges of ",Style["field #",Bold],Style[i,Bold], " are not correct. Make sure that they are all numbers."];
+finalOk=False;
+];
+
+Do[
+If[Length[listReps[[j]]]!=Length[cm[[nU1s+j]]]||!(And@@IntegerQ/@ listReps[[j]]&&And@@NonNegative/@ listReps[[j]]),
+Print[Hyperlink["[ERROR CODE 06]","paclet:Susyno/ref/Error06"]," \"",listReps[[j]] ,"\" of ",Style["field #",Bold],Style[i,Bold], " is not a valid representation of simple group #",j,"."];finalOk=False;]
+,{j,Length[listReps]}];
+
+,{i,n}];
+
+(* --------------------------------------------- discreteCharges --------------------------------------------- *)
+
+If[Length[DeleteDuplicates[Length[#]&/@discreteCharges]]>1&&!(And@@(NumericQ/@discreteCharges)),Print[Hyperlink["[ERROR CODE 07]","paclet:Susyno/ref/Error07"]," Different fields have a different number of ",Style["discrete symmetries",Bold]];
+finalOk=False;];
+
+If[!And@@(Abs[#]===1&/@Flatten[discreteCharges]),
+Print[Hyperlink["[ERROR CODE 08]","paclet:Susyno/ref/Error08"]," All ",Style["discrete charges",Bold]," should have modulus equal to 1."];
+finalOk=False;
+];
+
+Return[finalOk];
 ];
 
 
 (* Variables that have the complete input for the MSSM and NMSSM *)
+MSSM={{{}->1/(2 Sqrt[15]),{{2}}->{1},{{2,-1},{-1,2}}->{1,0},NFlavours->3,DiscreteSym->-1},{{}->-(2/Sqrt[15]),{{2}}->{0},{{2,-1},{-1,2}}->{0,1},NFlavours->3,DiscreteSym->-1},{{}->1/Sqrt[15],{{2}}->{0},{{2,-1},{-1,2}}->{0,1},NFlavours->3,DiscreteSym->-1},{{}->-(Sqrt[(3/5)]/2),{{2}}->{1},{{2,-1},{-1,2}}->{0,0},NFlavours->3,DiscreteSym->-1},{{}->Sqrt[3/5],{{2}}->{0},{{2,-1},{-1,2}}->{0,0},NFlavours->3,DiscreteSym->-1},{{}->Sqrt[3/5]/2,{{2}}->{1},{{2,-1},{-1,2}}->{0,0},NFlavours->1,DiscreteSym->1},{{}->-(Sqrt[(3/5)]/2),{{2}}->{1},{{2,-1},{-1,2}}->{0,0},NFlavours->1,DiscreteSym->1}};
 
-MSSM=Sequence[{{{2}},{{2,-1},{-1,2}}},{{1/(2 Sqrt[15]),{1},{1,0}},{-(2/Sqrt[15]),{0},{0,1}},{1/Sqrt[15],{0},{0,1}},{-(Sqrt[(3/5)]/2),{1},{0,0}},{Sqrt[3/5],{0},{0,0}},{Sqrt[3/5]/2,{1},{0,0}},{-(Sqrt[(3/5)]/2),{1},{0,0}}},{3,3,3,3,3,1,1},{-1,-1,-1,-1,-1,1,1}];
-NMSSM=Sequence[{{{2}},{{2,-1},{-1,2}}},{{1/6,{1},{1,0}},{-(2/3),{0},{0,1}},{1/3,{0},{0,1}},{-(1/2),{1},{0,0}},{1,{0},{0,0}},{1/2,{1},{0,0}},{-(1/2),{1},{0,0}},{0,{0},{0,0}}},{3,3,3,3,3,1,1,1},{-1,-1,-1,-1,-1,1,1,1}];
+NMSSM={{{}->1/(2 Sqrt[15]),{{2}}->{1},{{2,-1},{-1,2}}->{1,0},NFlavours->3,DiscreteSym->-1},{{}->-(2/Sqrt[15]),{{2}}->{0},{{2,-1},{-1,2}}->{0,1},NFlavours->3,DiscreteSym->-1},{{}->1/Sqrt[15],{{2}}->{0},{{2,-1},{-1,2}}->{0,1},NFlavours->3,DiscreteSym->-1},{{}->-(Sqrt[(3/5)]/2),{{2}}->{1},{{2,-1},{-1,2}}->{0,0},NFlavours->3,DiscreteSym->-1},{{}->Sqrt[3/5],{{2}}->{0},{{2,-1},{-1,2}}->{0,0},NFlavours->3,DiscreteSym->-1},{{}->Sqrt[3/5]/2,{{2}}->{1},{{2,-1},{-1,2}}->{0,0},NFlavours->1,DiscreteSym->1},{{}->-(Sqrt[(3/5)]/2),{{2}}->{1},{{2,-1},{-1,2}}->{0,0},NFlavours->1,DiscreteSym->1},{{}->0,{{2}}->{0},{{2,-1},{-1,2}}->{0,0},NFlavours->1,DiscreteSym->1}};
