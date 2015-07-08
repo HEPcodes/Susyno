@@ -1,19 +1,19 @@
-(* Content-type: application/mathematica *)
+(* Content-type: application/vnd.wolfram.mathematica *)
 
 (*** Wolfram Notebook File ***)
 (* http://www.wolfram.com/nb *)
 
-(* CreatedBy='Mathematica 7.0' *)
+(* CreatedBy='Mathematica 9.0' *)
 
 (*CacheID: 234*)
 (* Internal cache information:
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
-NotebookDataPosition[       145,          7]
-NotebookDataLength[      9919,        332]
-NotebookOptionsPosition[      7107,        241]
-NotebookOutlinePosition[      8673,        286]
-CellTagsIndexPosition[      8589,        281]
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     10396,        348]
+NotebookOptionsPosition[      7280,        249]
+NotebookOutlinePosition[      9061,        298]
+CellTagsIndexPosition[      8977,        293]
 WindowTitle->ConjugateIrrep - Wolfram Mathematica
 WindowFrame->Normal*)
 
@@ -84,10 +84,10 @@ ConjugateIrrep.html"], StandardForm]], "Input", TextClipboardType ->
    "RowsIndexed" -> {}}},
  CellID->1],
 
-Cell[CellGroupData[{
-
 Cell["ConjugateIrrep", "ObjectName",
  CellID->1224892054],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[GridBox[{
    {"", Cell[TextData[{
@@ -103,8 +103,7 @@ conjugate to ",
  GridBoxBackground->{
   "Columns" -> {{None}}, "ColumnsIndexed" -> {}, "Rows" -> {{None}}, 
    "RowsIndexed" -> {}}},
- CellID->982511436]
-}, Open  ]],
+ CellID->982511436],
 
 Cell[CellGroupData[{
 
@@ -125,7 +124,7 @@ Cell[TextData[Cell[BoxData[
   Evaluator->None,
   Method->"Preemptive"]]]], "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->283900292],
+ CellID->279396115],
 
 Cell[TextData[{
  Cell[BoxData["group"], "InlineFormula"],
@@ -136,7 +135,8 @@ Cell[TextData[{
  " of a simple group."
 }], "Notes",
  CellID->1067943069]
-}, Closed]],
+}, Closed]]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -153,16 +153,16 @@ Cell[TextData[ButtonBox["EXAMPLES",
      FrontEnd`SelectedNotebook[], After, 
      CellContents]}]& )]], "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->91401959],
+ CellID->3340707],
 
 Cell[CellGroupData[{
 
 Cell[TextData[{
  "Basic Examples",
  "\[NonBreakingSpace]\[NonBreakingSpace]",
- Cell["(1)", "ExampleCount"]
+ Cell["(2)", "ExampleCount"]
 }], "ExampleSection",
- CellID->12471916],
+ CellID->434011656],
 
 Cell["\<\
 Compute the conjugate representation to {1, 0, 2, 0} of the SU(5) group:\
@@ -189,6 +189,13 @@ Cell[BoxData[
  CellID->201611465]
 }, Open  ]],
 
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[Cell["\t", "ExampleDelimiter"],
+  $Line = 0; Null]], "ExampleDelimiter",
+ CellID->29196542],
+
 Cell["The Dynkin coefficients can be symbolic:", "ExampleText",
  CellID->312700170],
 
@@ -200,7 +207,7 @@ Cell[BoxData[
    RowBox[{"{", 
     RowBox[{"x1", ",", "x2", ",", "x3", ",", "x4", ",", "x5"}], "}"}]}], 
   "]"}]], "Input",
- CellLabel->"In[2]:=",
+ CellLabel->"In[1]:=",
  CellID->192311210],
 
 Cell[BoxData[
@@ -209,8 +216,9 @@ Cell[BoxData[
  ImageSize->{132, 15},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
- CellLabel->"Out[2]=",
+ CellLabel->"Out[1]=",
  CellID->10171402]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
@@ -241,21 +249,22 @@ Cell[" ", "FooterCell"]
 },
 Saveable->False,
 ScreenStyleEnvironment->"Working",
-WindowSize->{725, 566},
+WindowSize->{725, 729},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
 WindowTitle->"ConjugateIrrep - Wolfram Mathematica",
 TaggingRules->{
  "ModificationHighlight" -> False, 
   "Metadata" -> {
-   "built" -> "{2013, 8, 7, 2, 26, 44.3750000}", "context" -> "Susyno`", 
+   "built" -> "{2014, 7, 24, 0, 39, 9.3875021}", "context" -> "Susyno`", 
     "keywords" -> {}, "index" -> True, "label" -> "Susyno Paclet Symbol", 
     "language" -> "en", "paclet" -> "Susyno", "status" -> "None", "summary" -> 
     "ConjugateIrrep[group, rep] Computes the Dynkin indices of the \
 representation conjugate to rep", "synonyms" -> {}, "title" -> 
     "ConjugateIrrep", "type" -> "Symbol", "uri" -> 
-    "Susyno/ref/ConjugateIrrep"}, "SearchTextTranslated" -> ""},
+    "Susyno/ref/ConjugateIrrep"}, "LinkTrails" -> "", "SearchTextTranslated" -> 
+  ""},
 CellContext->"Global`",
-FrontEndVersion->"7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
 StyleDefinitions->Notebook[{
    Cell[
     StyleData[
@@ -264,8 +273,11 @@ StyleDefinitions->Notebook[{
     StyleData["Input"], CellContext -> "Global`"], 
    Cell[
     StyleData["Output"], CellContext -> "Global`"]}, Visible -> False, 
-  FrontEndVersion -> "7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
-   StyleDefinitions -> "Default.nb"]
+  FrontEndVersion -> "9.0 for Microsoft Windows (64-bit) (January 25, 2013)", 
+  StyleDefinitions -> 
+  FrontEnd`FileName[{$RootDirectory, "C:", "Program Files", 
+     "Wolfram Research", "Mathematica", "10.0", "AddOns", "Applications"}, 
+    "Default_Style_MyVersion.nb", CharacterEncoding -> "WindowsANSI"]]
 ]
 (* End of Notebook Content *)
 
@@ -273,67 +285,71 @@ StyleDefinitions->Notebook[{
 (*CellTagsOutline
 CellTagsIndex->{
  "PrimaryExamplesSection"->{
-  Cell[4632, 142, 460, 13, 70, "PrimaryExamplesSection",
+  Cell[4644, 142, 459, 13, 70, "PrimaryExamplesSection",
    CellTags->"PrimaryExamplesSection",
-   CellID->91401959]}
+   CellID->3340707]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"PrimaryExamplesSection", 8447, 274}
+ {"PrimaryExamplesSection", 8836, 286}
  }
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[595, 21, 76, 1, 70, "SymbolColorBar"],
-Cell[674, 24, 178, 5, 70, "LinkTrail"],
-Cell[855, 31, 2322, 53, 70, "AnchorBarGrid",
+Cell[607, 21, 76, 1, 70, "SymbolColorBar"],
+Cell[686, 24, 178, 5, 70, "LinkTrail"],
+Cell[867, 31, 2322, 53, 70, "AnchorBarGrid",
  CellID->1],
-Cell[CellGroupData[{
-Cell[3202, 88, 57, 1, 70, "ObjectName",
+Cell[3192, 86, 57, 1, 70, "ObjectName",
  CellID->1224892054],
-Cell[3262, 91, 483, 14, 70, "Usage",
- CellID->982511436]
+Cell[CellGroupData[{
+Cell[3274, 91, 483, 14, 70, "Usage",
+ CellID->982511436],
+Cell[CellGroupData[{
+Cell[3782, 109, 580, 17, 70, "NotesSection",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->279396115],
+Cell[4365, 128, 230, 8, 70, "Notes",
+ CellID->1067943069]
+}, Closed]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[3782, 110, 580, 17, 70, "NotesSection",
- CellGroupingRules->{"SectionGrouping", 50},
- CellID->283900292],
-Cell[4365, 129, 230, 8, 70, "Notes",
- CellID->1067943069]
-}, Closed]],
-Cell[CellGroupData[{
-Cell[4632, 142, 460, 13, 70, "PrimaryExamplesSection",
+Cell[4644, 142, 459, 13, 70, "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->91401959],
+ CellID->3340707],
 Cell[CellGroupData[{
-Cell[5117, 159, 147, 5, 70, "ExampleSection",
- CellID->12471916],
-Cell[5267, 166, 122, 3, 70, "ExampleText",
+Cell[5128, 159, 148, 5, 70, "ExampleSection",
+ CellID->434011656],
+Cell[5279, 166, 122, 3, 70, "ExampleText",
  CellID->32979335],
 Cell[CellGroupData[{
-Cell[5414, 173, 204, 6, 70, "Input",
+Cell[5426, 173, 204, 6, 70, "Input",
  CellID->280814282],
-Cell[5621, 181, 223, 7, 36, "Output",
+Cell[5633, 181, 223, 7, 36, "Output",
  CellID->201611465]
 }, Open  ]],
-Cell[5859, 191, 83, 1, 70, "ExampleText",
+Cell[CellGroupData[{
+Cell[5893, 193, 124, 3, 70, "ExampleDelimiter",
+ CellID->29196542],
+Cell[6020, 198, 83, 1, 70, "ExampleText",
  CellID->312700170],
 Cell[CellGroupData[{
-Cell[5967, 196, 223, 7, 70, "Input",
+Cell[6128, 203, 223, 7, 70, "Input",
  CellID->192311210],
-Cell[6193, 205, 238, 7, 36, "Output",
+Cell[6354, 212, 238, 7, 36, "Output",
  CellID->10171402]
 }, Open  ]]
 }, Open  ]]
+}, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[6492, 219, 419, 12, 70, "TutorialsSection",
+Cell[6665, 227, 419, 12, 70, "TutorialsSection",
  CellID->250839057],
-Cell[6914, 233, 151, 3, 70, "Tutorials",
+Cell[7087, 241, 151, 3, 70, "Tutorials",
  CellID->341631938]
 }, Open  ]],
-Cell[7080, 239, 23, 0, 70, "FooterCell"]
+Cell[7253, 247, 23, 0, 70, "FooterCell"]
 }
 ]
 *)

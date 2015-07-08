@@ -1,19 +1,19 @@
-(* Content-type: application/mathematica *)
+(* Content-type: application/vnd.wolfram.mathematica *)
 
 (*** Wolfram Notebook File ***)
 (* http://www.wolfram.com/nb *)
 
-(* CreatedBy='Mathematica 7.0' *)
+(* CreatedBy='Mathematica 9.0' *)
 
 (*CacheID: 234*)
 (* Internal cache information:
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
-NotebookDataPosition[       145,          7]
-NotebookDataLength[     26023,        821]
-NotebookOptionsPosition[     21619,        677]
-NotebookOutlinePosition[     23312,        723]
-CellTagsIndexPosition[     23227,        718]
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     27011,        856]
+NotebookOptionsPosition[     22196,        700]
+NotebookOutlinePosition[     24107,        750]
+CellTagsIndexPosition[     24022,        745]
 WindowTitle->HookContentFormula - Wolfram Mathematica
 WindowFrame->Normal*)
 
@@ -84,10 +84,10 @@ HookContentFormula.html"], StandardForm]], "Input", TextClipboardType ->
    "RowsIndexed" -> {}}},
  CellID->1],
 
-Cell[CellGroupData[{
-
 Cell["HookContentFormula", "ObjectName",
  CellID->1224892054],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[GridBox[{
    {"", Cell[TextData[{
@@ -103,8 +103,7 @@ Young tableau with cells filled with the numbers 0,\[CenterEllipsis],n \
  GridBoxBackground->{
   "Columns" -> {{None}}, "ColumnsIndexed" -> {}, "Rows" -> {{None}}, 
    "RowsIndexed" -> {}}},
- CellID->982511436]
-}, Open  ]],
+ CellID->982511436],
 
 Cell[CellGroupData[{
 
@@ -125,7 +124,7 @@ Cell[TextData[Cell[BoxData[
   Evaluator->None,
   Method->"Preemptive"]]]], "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->445366566],
+ CellID->275076451],
 
 Cell[TextData[{
  "Recall that a partition {",
@@ -272,7 +271,8 @@ indices, then the number of degrees of freedom in \[Mu] is given by  ",
  " (see examples below)."
 }], "Notes",
  CellID->957558026]
-}, Closed]],
+}, Closed]]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -289,16 +289,16 @@ Cell[TextData[ButtonBox["EXAMPLES",
      FrontEnd`SelectedNotebook[], After, 
      CellContents]}]& )]], "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->580072328],
+ CellID->650051393],
 
 Cell[CellGroupData[{
 
 Cell[TextData[{
  "Basic Examples",
  "\[NonBreakingSpace]\[NonBreakingSpace]",
- Cell["(1)", "ExampleCount"]
+ Cell["(3)", "ExampleCount"]
 }], "ExampleSection",
- CellID->118462422],
+ CellID->268486844],
 
 Cell[TextData[{
  "Consider n SU(2) doubles ",
@@ -401,8 +401,15 @@ Cell[BoxData[
  CellID->756805595]
 }, Open  ]],
 
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[Cell["\t", "ExampleDelimiter"],
+  $Line = 0; Null]], "ExampleDelimiter",
+ CellID->90754780],
+
 Cell[TextData[{
- "Likewise, SU(3) triplets ",
+ "SU(3) triplets ",
  Cell[BoxData[
   SubscriptBox["q", "i"]], "InlineFormula"],
  " form trilinear terms ",
@@ -437,7 +444,7 @@ Cell[BoxData[
   RowBox[{
    RowBox[{"{", 
     RowBox[{"1", ",", "1", ",", "1"}], "}"}], ",", "x"}], "]"}]], "Input",
- CellLabel->"In[3]:=",
+ CellLabel->"In[1]:=",
  CellID->466967494],
 
 Cell[BoxData[
@@ -452,12 +459,20 @@ Cell[BoxData[
  ImageSize->{130, 32},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
- CellLabel->"Out[3]=",
+ CellLabel->"Out[1]=",
  CellID->491325787]
+}, Open  ]]
 }, Open  ]],
 
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[Cell["\t", "ExampleDelimiter"],
+  $Line = 0; Null]], "ExampleDelimiter",
+ CellID->78663977],
+
 Cell[TextData[{
- "Consider now some copies of a representation R such that quartic terms ",
+ "Consider some copies of a representation R such that quartic terms ",
  Cell[BoxData[
   SubscriptBox["c", "ijkl"]], "InlineFormula"],
  " ",
@@ -494,7 +509,7 @@ Cell[BoxData[
   RowBox[{
    RowBox[{"{", 
     RowBox[{"3", ",", "1"}], "}"}], ",", "n"}], "]"}]], "Input",
- CellLabel->"In[4]:=",
+ CellLabel->"In[1]:=",
  CellID->533790247],
 
 Cell[BoxData[
@@ -510,7 +525,7 @@ Cell[BoxData[
  ImageSize->{166, 32},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
- CellLabel->"Out[4]=",
+ CellLabel->"Out[1]=",
  CellID->79326881]
 }, Open  ]],
 
@@ -526,14 +541,14 @@ Cell[BoxData[
   RowBox[{
    RowBox[{"{", 
     RowBox[{"3", ",", "1"}], "}"}], ",", "1"}], "]"}]], "Input",
- CellLabel->"In[5]:=",
+ CellLabel->"In[2]:=",
  CellID->363910599],
 
 Cell[BoxData["0"], "Output",
  ImageSize->{11, 15},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
- CellLabel->"Out[5]=",
+ CellLabel->"Out[2]=",
  CellID->167835888]
 }, Open  ]],
 
@@ -558,15 +573,16 @@ Cell[BoxData[
   RowBox[{
    RowBox[{"{", 
     RowBox[{"3", ",", "1"}], "}"}], ",", "2"}], "]"}]], "Input",
- CellLabel->"In[6]:=",
+ CellLabel->"In[3]:=",
  CellID->122307077],
 
 Cell[BoxData["3"], "Output",
  ImageSize->{11, 15},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
- CellLabel->"Out[6]=",
+ CellLabel->"Out[3]=",
  CellID->546268760]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
@@ -668,7 +684,14 @@ Cell[TextData[{
   ButtonBox["SnIrrepDim",
    BaseStyle->"Link",
    ButtonData->"paclet:Susyno/ref/SnIrrepDim"]], "InlineFormula"],
- " "
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
+  ButtonBox["SnIrrepGenerators",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/SnIrrepGenerators"]], "InlineFormula"]
 }], "RelatedLinks",
  CellID->1038487239]
 }, Open  ]],
@@ -677,22 +700,23 @@ Cell[" ", "FooterCell"]
 },
 Saveable->False,
 ScreenStyleEnvironment->"Working",
-WindowSize->{725, 566},
+WindowSize->{725, 729},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
 WindowTitle->"HookContentFormula - Wolfram Mathematica",
 TaggingRules->{
  "ModificationHighlight" -> False, 
   "Metadata" -> {
-   "built" -> "{2013, 8, 7, 2, 27, 9.5937500}", "context" -> "Susyno`", 
+   "built" -> "{2014, 7, 24, 0, 39, 16.0039229}", "context" -> "Susyno`", 
     "keywords" -> {}, "index" -> True, "label" -> "Susyno Paclet Symbol", 
     "language" -> "en", "paclet" -> "Susyno", "status" -> "None", "summary" -> 
     "HookContentFormula[partition, n] Applies the Hook Content Formula to a \
 semi-standard Young tableau with cells filled with the numbers \
 0,\\[CenterEllipsis],n (repetitions are allowed) - see reference below", 
     "synonyms" -> {}, "title" -> "HookContentFormula", "type" -> "Symbol", 
-    "uri" -> "Susyno/ref/HookContentFormula"}, "SearchTextTranslated" -> ""},
+    "uri" -> "Susyno/ref/HookContentFormula"}, "LinkTrails" -> "", 
+  "SearchTextTranslated" -> ""},
 CellContext->"Global`",
-FrontEndVersion->"7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
 StyleDefinitions->Notebook[{
    Cell[
     StyleData[
@@ -701,8 +725,11 @@ StyleDefinitions->Notebook[{
     StyleData["Input"], CellContext -> "Global`"], 
    Cell[
     StyleData["Output"], CellContext -> "Global`"]}, Visible -> False, 
-  FrontEndVersion -> "7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
-   StyleDefinitions -> "Default.nb"]
+  FrontEndVersion -> "9.0 for Microsoft Windows (64-bit) (January 25, 2013)", 
+  StyleDefinitions -> 
+  FrontEnd`FileName[{$RootDirectory, "C:", "Program Files", 
+     "Wolfram Research", "Mathematica", "10.0", "AddOns", "Applications"}, 
+    "Default_Style_MyVersion.nb", CharacterEncoding -> "WindowsANSI"]]
 ]
 (* End of Notebook Content *)
 
@@ -710,119 +737,127 @@ StyleDefinitions->Notebook[{
 (*CellTagsOutline
 CellTagsIndex->{
  "PrimaryExamplesSection"->{
-  Cell[11269, 278, 461, 13, 70, "PrimaryExamplesSection",
+  Cell[11281, 278, 461, 13, 70, "PrimaryExamplesSection",
    CellTags->"PrimaryExamplesSection",
-   CellID->580072328]}
+   CellID->650051393]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"PrimaryExamplesSection", 23083, 711}
+ {"PrimaryExamplesSection", 23878, 738}
  }
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[599, 21, 76, 1, 70, "SymbolColorBar"],
-Cell[678, 24, 178, 5, 70, "LinkTrail"],
-Cell[859, 31, 2338, 53, 70, "AnchorBarGrid",
+Cell[611, 21, 76, 1, 70, "SymbolColorBar"],
+Cell[690, 24, 178, 5, 70, "LinkTrail"],
+Cell[871, 31, 2338, 53, 70, "AnchorBarGrid",
  CellID->1],
-Cell[CellGroupData[{
-Cell[3222, 88, 61, 1, 70, "ObjectName",
+Cell[3212, 86, 61, 1, 70, "ObjectName",
  CellID->1224892054],
-Cell[3286, 91, 554, 14, 70, "Usage",
- CellID->982511436]
+Cell[CellGroupData[{
+Cell[3298, 91, 554, 14, 70, "Usage",
+ CellID->982511436],
+Cell[CellGroupData[{
+Cell[3877, 109, 580, 17, 70, "NotesSection",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->275076451],
+Cell[4460, 128, 494, 14, 70, "Notes",
+ CellID->1067943069],
+Cell[4957, 144, 4945, 87, 70, "Input",
+ CellID->124506618],
+Cell[9905, 233, 245, 7, 70, "Notes",
+ CellID->37512995],
+Cell[10153, 242, 343, 9, 70, "Notes",
+ CellID->174386973],
+Cell[10499, 253, 733, 19, 70, "Notes",
+ CellID->957558026]
+}, Closed]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[3877, 110, 580, 17, 70, "NotesSection",
- CellGroupingRules->{"SectionGrouping", 50},
- CellID->445366566],
-Cell[4460, 129, 494, 14, 70, "Notes",
- CellID->1067943069],
-Cell[4957, 145, 4945, 87, 70, "Input",
- CellID->124506618],
-Cell[9905, 234, 245, 7, 70, "Notes",
- CellID->37512995],
-Cell[10153, 243, 343, 9, 70, "Notes",
- CellID->174386973],
-Cell[10499, 254, 733, 19, 70, "Notes",
- CellID->957558026]
-}, Closed]],
-Cell[CellGroupData[{
-Cell[11269, 278, 461, 13, 70, "PrimaryExamplesSection",
+Cell[11281, 278, 461, 13, 70, "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->580072328],
+ CellID->650051393],
 Cell[CellGroupData[{
-Cell[11755, 295, 148, 5, 70, "ExampleSection",
- CellID->118462422],
-Cell[11906, 302, 898, 29, 70, "ExampleText",
+Cell[11767, 295, 148, 5, 70, "ExampleSection",
+ CellID->268486844],
+Cell[11918, 302, 898, 29, 70, "ExampleText",
  CellID->32979335],
 Cell[CellGroupData[{
-Cell[12829, 335, 228, 8, 70, "Input",
+Cell[12841, 335, 228, 8, 70, "Input",
  CellID->280814282],
-Cell[13060, 345, 278, 10, 53, "Output",
+Cell[13072, 345, 278, 10, 53, "Output",
  CellID->290627310]
 }, Open  ]],
-Cell[13353, 358, 564, 20, 70, "ExampleText",
+Cell[13365, 358, 564, 20, 70, "ExampleText",
  CellID->84766177],
 Cell[CellGroupData[{
-Cell[13942, 382, 202, 7, 70, "Input",
+Cell[13954, 382, 202, 7, 70, "Input",
  CellID->100421489],
-Cell[14147, 391, 258, 9, 53, "Output",
+Cell[14159, 391, 258, 9, 53, "Output",
  CellID->756805595]
 }, Open  ]],
-Cell[14420, 403, 836, 27, 70, "ExampleText",
+Cell[CellGroupData[{
+Cell[14454, 405, 124, 3, 70, "ExampleDelimiter",
+ CellID->90754780],
+Cell[14581, 410, 826, 27, 70, "ExampleText",
  CellID->13657069],
 Cell[CellGroupData[{
-Cell[15281, 434, 196, 6, 70, "Input",
+Cell[15432, 441, 196, 6, 70, "Input",
  CellID->466967494],
-Cell[15480, 442, 356, 13, 53, "Output",
+Cell[15631, 449, 356, 13, 53, "Output",
  CellID->491325787]
+}, Open  ]]
 }, Open  ]],
-Cell[15851, 458, 905, 29, 70, "ExampleText",
+Cell[CellGroupData[{
+Cell[16036, 468, 124, 3, 70, "ExampleDelimiter",
+ CellID->78663977],
+Cell[16163, 473, 901, 29, 70, "ExampleText",
  CellID->91711931],
 Cell[CellGroupData[{
-Cell[16781, 491, 186, 6, 70, "Input",
+Cell[17089, 506, 186, 6, 70, "Input",
  CellID->533790247],
-Cell[16970, 499, 392, 14, 53, "Output",
+Cell[17278, 514, 392, 14, 53, "Output",
  CellID->79326881]
 }, Open  ]],
-Cell[17377, 516, 121, 3, 70, "ExampleText",
+Cell[17685, 531, 121, 3, 70, "ExampleText",
  CellID->355368670],
 Cell[CellGroupData[{
-Cell[17523, 523, 186, 6, 70, "Input",
+Cell[17831, 538, 186, 6, 70, "Input",
  CellID->363910599],
-Cell[17712, 531, 158, 5, 36, "Output",
+Cell[18020, 546, 158, 5, 36, "Output",
  CellID->167835888]
 }, Open  ]],
-Cell[17885, 539, 344, 12, 70, "ExampleText",
+Cell[18193, 554, 344, 12, 70, "ExampleText",
  CellID->425108623],
 Cell[CellGroupData[{
-Cell[18254, 555, 186, 6, 70, "Input",
+Cell[18562, 570, 186, 6, 70, "Input",
  CellID->122307077],
-Cell[18443, 563, 158, 5, 36, "Output",
+Cell[18751, 578, 158, 5, 36, "Output",
  CellID->546268760]
 }, Open  ]]
 }, Open  ]]
+}, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[18662, 575, 417, 12, 70, "SeeAlsoSection",
+Cell[18982, 591, 417, 12, 70, "SeeAlsoSection",
  CellID->1255426704],
-Cell[19082, 589, 448, 11, 70, "SeeAlso",
+Cell[19402, 605, 448, 11, 70, "SeeAlso",
  CellID->929782353]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[19567, 605, 419, 12, 70, "TutorialsSection",
+Cell[19887, 621, 419, 12, 70, "TutorialsSection",
  CellID->250839057],
-Cell[19989, 619, 151, 3, 70, "Tutorials",
+Cell[20309, 635, 151, 3, 70, "Tutorials",
  CellID->341631938]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[20177, 627, 427, 12, 70, "RelatedLinksSection",
+Cell[20497, 643, 427, 12, 70, "RelatedLinksSection",
  CellID->1584193535],
-Cell[20607, 641, 970, 31, 70, "RelatedLinks",
+Cell[20927, 657, 1227, 38, 70, "RelatedLinks",
  CellID->1038487239]
 }, Open  ]],
-Cell[21592, 675, 23, 0, 70, "FooterCell"]
+Cell[22169, 698, 23, 0, 70, "FooterCell"]
 }
 ]
 *)

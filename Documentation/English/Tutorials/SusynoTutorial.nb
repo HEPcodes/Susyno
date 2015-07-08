@@ -1,19 +1,19 @@
-(* Content-type: application/mathematica *)
+(* Content-type: application/vnd.wolfram.mathematica *)
 
 (*** Wolfram Notebook File ***)
 (* http://www.wolfram.com/nb *)
 
-(* CreatedBy='Mathematica 7.0' *)
+(* CreatedBy='Mathematica 9.0' *)
 
 (*CacheID: 234*)
 (* Internal cache information:
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
-NotebookDataPosition[       145,          7]
-NotebookDataLength[    139314,       4408]
-NotebookOptionsPosition[    125060,       3932]
-NotebookOutlinePosition[    127278,       3986]
-CellTagsIndexPosition[    127235,       3983]
+NotebookDataPosition[       157,          7]
+NotebookDataLength[    138929,       4419]
+NotebookOptionsPosition[    124467,       3940]
+NotebookOutlinePosition[    126899,       3997]
+CellTagsIndexPosition[    126856,       3994]
 WindowTitle->Susyno Tutorial - Wolfram Mathematica
 WindowFrame->Normal*)
 
@@ -170,7 +170,9 @@ Cell[BoxData[GridBox[{
        Documentation`HelpLookup[
        "paclet:Susyno/ref/CMtoName"], "\<\"ConjugateIrrep\"\>":>
        Documentation`HelpLookup[
-       "paclet:Susyno/ref/ConjugateIrrep"], "\<\"DecomposeSnProduct\"\>":>
+       "paclet:Susyno/ref/ConjugateIrrep"], "\<\"DecomposeRep\"\>":>
+       Documentation`HelpLookup[
+       "paclet:Susyno/ref/DecomposeRep"], "\<\"DecomposeSnProduct\"\>":>
        Documentation`HelpLookup[
        "paclet:Susyno/ref/DecomposeSnProduct"], "\<\"DimR\"\>":>
        Documentation`HelpLookup[
@@ -209,11 +211,15 @@ Cell[BoxData[GridBox[{
        Documentation`HelpLookup[
        "paclet:Susyno/ref/PositiveRoots"], "\<\"ReduceRepProduct\"\>":>
        Documentation`HelpLookup[
-       "paclet:Susyno/ref/ReduceRepProduct"], "\<\"RepMatrices\"\>":>
-       Documentation`HelpLookup[
+       "paclet:Susyno/ref/ReduceRepProduct"], \
+"\<\"RegularSubgroupProjectionMatrix\"\>":>Documentation`HelpLookup[
+       "paclet:Susyno/ref/RegularSubgroupProjectionMatrix"], "\<\"RepMatrices\
+\"\>":>Documentation`HelpLookup[
        "paclet:Susyno/ref/RepMatrices"], "\<\"RepMinimalMatrices\"\>":>
        Documentation`HelpLookup[
-       "paclet:Susyno/ref/RepMinimalMatrices"], "\<\"RepsUpToDimN\"\>":>
+       "paclet:Susyno/ref/RepMinimalMatrices"], "\<\"RepName\"\>":>
+       Documentation`HelpLookup[
+       "paclet:Susyno/ref/RepName"], "\<\"RepsUpToDimN\"\>":>
        Documentation`HelpLookup[
        "paclet:Susyno/ref/RepsUpToDimN"], "\<\"RepsUpToDimNNoConjugates\"\>":>
        Documentation`HelpLookup[
@@ -227,7 +233,9 @@ Cell[BoxData[GridBox[{
        Documentation`HelpLookup[
        "paclet:Susyno/ref/SnClassOrder"], "\<\"SnIrrepDim\"\>":>
        Documentation`HelpLookup[
-       "paclet:Susyno/ref/SnIrrepDim"], "\<\"SO3\"\>":>
+       "paclet:Susyno/ref/SnIrrepDim"], "\<\"SnIrrepGenerators\"\>":>
+       Documentation`HelpLookup[
+       "paclet:Susyno/ref/SnIrrepGenerators"], "\<\"SO3\"\>":>
        Documentation`HelpLookup[
        "paclet:Susyno/ref/CartanMatrix"], "\<\"SO32\"\>":>
        Documentation`HelpLookup[
@@ -257,8 +265,10 @@ Cell[BoxData[GridBox[{
        Documentation`HelpLookup[
        "paclet:Susyno/ref/CartanMatrix"], "\<\"SU5\"\>":>
        Documentation`HelpLookup[
-       "paclet:Susyno/ref/CartanMatrix"], "\<\"TriangularAnomalyValue\"\>":>
-       Documentation`HelpLookup[
+       "paclet:Susyno/ref/CartanMatrix"], \
+"\<\"SubgroupEmbeddingCoefficients\"\>":>Documentation`HelpLookup[
+       "paclet:Susyno/ref/SubgroupEmbeddingCoefficients"], \
+"\<\"TriangularAnomalyValue\"\>":>Documentation`HelpLookup[
        "paclet:Susyno/ref/TriangularAnomalyValue"], "\<\"U1\"\>":>
        Documentation`HelpLookup[
        "paclet:Susyno/ref/CartanMatrix"], "\<\"Weights\"\>":>
@@ -662,6 +672,13 @@ discrete ",
      " group in its irreducible parts"
     }], "TableText"]},
    {
+    ButtonBox["DecomposeRep",
+     BaseStyle->"Link",
+     ButtonData->"paclet:Susyno/ref/DecomposeRep"], Cell["\<\
+Decomposes a representation of a group G into a list of irreducible \
+representations of a subgroup H of G\
+\>", "TableText"]},
+   {
     ButtonBox["DimR",
      BaseStyle->"Link",
      ButtonData->"paclet:Susyno/ref/DimR"], Cell[
@@ -752,6 +769,14 @@ of a group\
 Decomposes a direct product representation in its irreducible parts\
 \>", "TableText"]},
    {
+    ButtonBox["RegularSubgroupProjectionMatrix",
+     BaseStyle->"Link",
+     ButtonData->"paclet:Susyno/ref/RegularSubgroupProjectionMatrix"], 
+    Cell["\<\
+Computes the projection matrix for a regular embedding of a subgroup of some \
+group\
+\>", "TableText"]},
+   {
     ButtonBox["RepMatrices",
      BaseStyle->"Link",
      ButtonData->"paclet:Susyno/ref/RepMatrices"], Cell["\<\
@@ -763,6 +788,13 @@ Computes (in some basis) the explicit matrices of any representation\
      ButtonData->"paclet:Susyno/ref/RepMinimalMatrices"], Cell["\<\
 Computes (in some basis) the explicit representation matrices of the \
 generators appearing in the Chevalley-Serre relations\
+\>", "TableText"]},
+   {
+    ButtonBox["RepName",
+     BaseStyle->"Link",
+     ButtonData->"paclet:Susyno/ref/RepName"], Cell["\<\
+Returns a string with the name of a representation (given by its Dynkin \
+coefficients) of a group\
 \>", "TableText"]},
    {
     ButtonBox["RepsUpToDimN",
@@ -813,6 +845,24 @@ for each pair of conjugate representations only one of them\
      " group"
     }], "TableText"]},
    {
+    ButtonBox["SnIrrepGenerators",
+     BaseStyle->"Link",
+     ButtonData->"paclet:Susyno/ref/SnIrrepGenerators"], Cell[TextData[{
+     "Calculates the representation matrices of the (12) and (12...n) \
+elements of the ",
+     Cell[BoxData[
+      FormBox[
+       SubscriptBox["S", "n"], TraditionalForm]], "InlineMath"],
+     " group"
+    }], "TableText"]},
+   {
+    ButtonBox["SubgroupEmbeddingCoefficients",
+     BaseStyle->"Link",
+     ButtonData->"paclet:Susyno/ref/SubgroupEmbeddingCoefficients"], Cell["\<\
+Computes the relation between the invariants/Clebsch-Gordon coefficients of a \
+group G with those one would get by just considering a given subgroup of G\
+\>", "TableText"]},
+   {
     ButtonBox["TriangularAnomalyValue",
      BaseStyle->"Link",
      ButtonData->"paclet:Susyno/ref/TriangularAnomalyValue"], Cell["\<\
@@ -826,7 +876,7 @@ anomalies\
 Computes the weights of a representation, including degeneracy\
 \>", "TableText"]}
   }]], "DefinitionBox",
- CellID->68806805],
+ CellID->10757663],
 
 Cell["List of available functions in Susyno.", "Caption",
  CellID->372671765]
@@ -1456,116 +1506,74 @@ Cell[BoxData[
 Cell[BoxData[
  GraphicsBox[
   TagBox[RasterBox[CompressedData["
-1:eJztmouNLLsNRMdwJE7JITgBp+HcHNT4A2yjp/krStze2TungAesJLKKQ1VL
-Fw/62z/++fd//PXxePz7v//96y+Px//+fgIAAAAAAAAAAAAAMITL/256/B92
-/rZibtMVtdywxxcGi9FFW7o6lUu79jNxkRKGixI5d3jnzl5wp6PWIstdGKnE
-tcEUf0QlViLK4aIkEhfpWtGR+PQ85h6VbnB0rrqcT7NllrMUskPxYHeBo/bl
-cBEu2tSKfHKOj7oamURPt1VZzn0hO0yWukJd6I5yW7HAH1HtOyrix0W4aEfL
-LuXmsfZzqVyXRunK1udCyqYnDLmW/jWJ6O5jV2X521mTc3NxES7aF3pWjkq6
-2uU8r7ZcmsyULrUziR9ER5U8Cnk5ny/tUykzC9K4CBcta527MeUo5dLpcupC
-x1BslBKZ1KlzKpUoogv8OZVeXvIt4CJcJJanl30JfpxgOc9LdkZMPw+jvyPO
-qNSkb8nkZakUarGJAbqoIr1Ptda9ZGvyCt2alfQnLnodiqKK9D5Vq3vljxVj
-3hxdR81Kdx01zt9iUyYXRHHRpvSnuSivJzoSfwvcc/68dEMBg2GDiSJV926N
-mHHRZgGDYYOJItWIiwAAAAAAAAAAAAAAAAAAAAAAAADwITheGvzI64I7X7mI
-Wsmrle979ZGLtnR1Kv3liS6Ki5IwXKSrj/Ds4E5HrUWWuzBSiWuDKf6ISqxE
-lMNFSSQu2pQ+Lj73NL601w2OzlWX82m2zHKWQnYoHuxKW3DUghwuwkVrukd6
-5JMzedTVyCR6uv0JlnNfyA6Tpa5QF7qj3FYs8EdUU47CRWUkLlqDaB5rP5fK
-dWmUrmx9LqRsesKQa+lfk4juPnZVlr+dNTk3FxfhopZcqVXuTumoPP282nJp
-MlO61M4kfhAdVfIo5OV8vrRPpcwsSOMiXNSSu+TaTd90lHLpdDl1oWMoNkqJ
-TOrUOZVKFNEF/pxKLy/5FnARLhLLU86rx9elYBtlGR6vcGfE9PMw+jvijEpN
-+pZMXpZKoRabGKCLKtL7VGvdS7Ymr9CtWUl/4qLXoSiqSO9TdbtXYif3TTDe
-k5Z011Hj/C02ZXJBFBdtSuMim/t7TeWe8+elGwoYDBtMFKm6d2vEjIs2CxgM
-G0wUqUZcBAAAAAAAAAAAAAAAAAAAAAAAAIAPwfHS4EdeF9z5ykXUSl6tfN+r
-j1y0patT6S9PdFFclIThIl19hGcHdzpqLbLchZFKXBtM8UdUYiWiHC5KInHR
-pvRx8bmn8aW9bnB0rrqcT7NllrMUskPxYFfagqMW5HARLlrTPdIjn5zJo65G
-JtHT7U+wnPtCdpgsdYW60B3ltmKBP6KachQuKiNx0RpE81j7uVSuS6N0Zetz
-IWXTE4ZcS/+aRHT3sauy/O2sybm5uAgXteRKrXJ3Skfl6efVlkuTmdKldibx
-g+iokkchL+fzpX0qZWZBGhfhopbcJddu+qajlEuny6kLHUOxUUpkUqfOqVSi
-iC7w51R6ecm3gItwkViecl49vi4F2yjL8HiFOyOmn4fR3xFnVGrSt2TyslQK
-tdjEAF1Ukd6nWutesjV5hW7NSvoTF70ORVFFep+q270SO7lvgvGetKS7jhrn
-b7EpkwuiuGhTGhfZ3N9rKvecPy/dUMBg2GCiSNW9WyNmXLRZwGDYYKJINeIi
-AAAAAAAAAAAAAAAAAAAAAAAAAHwIjpcGP/K64M5XLqJW8mrl+1595KItXZ1K
-f3mii+KiJAwX6eojPDu401FrkeUujFTi2mCKP6ISKxHlcFESiYs2pY+Lzz2N
-L+11g6Nz1eV8mi2znKWQHYoHu9IWHLUgh4tw0ZrukR755EwedTUyiZ5uf4Ll
-3Beyw2SpK9SF7ii3FQv8EdWUo3BRGYmL1iCax9rPpXJdGqUrW58LKZueMORa
-+tckoruPXZXlb2dNzs3FRbioJVdqlbtTOipPP6+2XJrMlC61M4kfREeVPAp5
-OZ8v7VMpMwvSuAgXteQuuXbTNx2lXDpdTl3oGIqNUiKTOnVOpRJFdIE/p9LL
-S74FXISLxPKU8+rxdSnYRlmGxyvcGTH9PIz+jjijUpO+JZOXpVKoxSYG6KKK
-9D7VWveSrckrdGtW0p+46HUoiirS+1Td7pXYyX0TjPekJd111Dh/i02ZXBDF
-RZvSuMjm/l5Tuef8eemGAgbDBhNFqu7dGjHjos0CBsMGE0WqERcBAAAAAAAA
-AAAAAAAAAAAAAAAA4ENwvDT4kdcFd75yEbWSVyvf9+ojF23p6lT6yxNdFBcl
-YbhIVx/h2cGdjlqLLHdhpBLXBlP8EZVYiSiHi5JIXLQpfVx87ml8aa8bHJ2r
-LufTbJnlLIXsUDzYlbbgqAU5XISL1nSP9MgnZ/Koq5FJ9HT7EyznvpAdJktd
-oS50R7mtWOCPqKYchYvKSFy0BtE81n4ulevSKF3Z+lxI2fSEIdfSvyYR3X3s
-qix/O2tybi4uwkUtuVKr3J3SUXn6ebXl0mSmdKmdSfwgOqrkUcjL+Xxpn0qZ
-WZDGRbioJXfJtZu+6Sjl0uly6kLHUGyUEpnUqXMqlSiiC/w5lV5e8i3gIlwk
-lqecV4+vS8E2yjI8XuHOiOnnYfR3xBmVmvQtmbwslUItNjFAF1Wk96nWupds
-TV6hW7OS/sRFr0NRVJHep+p2r8RO7ptgvCct6a6jxvlbbMrkgigu2pTGRTb3
-95rKPefPSzcUMBg2mChSde/WiBkXbRYwGDaYKFKNuAgAAAAAAAAAAAAAAAAA
-AAAAAAAAH4LjpcGPvC6485WLqJW8Wvm+Vx+5aEtXp9JfnuiiuCgJw0W6+gjP
-Du501FpkuQsjlbg2mOKPqMRKRDlclETiok3p4+JzT+NLe93g6Fx1OZ9myyxn
-KWSH4sGutAVHLcjhIly0pnukRz45k0ddjUyip9ufYDn3hewwWeoKdaE7ym3F
-An9ENeUoXFRG4qI1iOax9nOpXJdG6crW50LKpicMuZb+NYno7mNXZfnbWZNz
-c3ERLmrJlVrl7pSOytPPqy2XJjOlS+1M4gfRUSWPQl7O50v7VMrMgjQuwkUt
-uUuu3fRNRymXTpdTFzqGYqOUyKROnVOpRBFd4M+p9PKSbwEX4SKxPOW8enxd
-CrZRluHxCndGTD8Po78jzqjUpG/J5GWpFGqxiQG6qCK9T7XWvWRr8grdmpX0
-Jy56HYqiivQ+Vbd7JXZy3wTjPWlJdx01zt9iUyYXRHHRpjQusrm/11TuOX9e
-uqGAwbDBRJGqe7dGzLhos4DBsMFEkWrERQAAAAAAAAAAAAAAAAAAAAAAAAD4
-EBwvDX7kdcGdr1xEreTVyve9+shFW7o6lf7yRBfFRUkYLtLVR3h2cKej1iLL
-XRipxLXBFH9EJVYiyuGiJBIXbUofF597Gl/a6wZH56rL+TRbZjlLITsUD3al
-LThqQQ4X4aI13SM98smZPOpqZBI93f4Ey7kvZIfJUleoC91RbisW+COqKUfh
-ojISF61BNI+1n0vlujRKV7Y+F1I2PWHItfSvSUR3H7sqy9/Ompybi4twUUuu
-1Cp3p3RUnn5ebbk0mSldamcSP4iOKnkU8nI+X9qnUmYWpHERLmrJXXLtpm86
-Srl0upy60DEUG6VEJnXqnEoliugCf06ll5d8C7gIF4nlKefV4+tSsI2yDI9X
-uDNi+nkY/R1xRqUmfUsmL0ulUItNDNBFFel9qrXuJVuTV+jWrKQ/cdHrUBRV
-pPeput0rsZP7JhjvSUu666hx/habMrkgios2pXGRzf29pnLP+fPSDQUMhg0m
-ilTduzVixkWbBQyGDSaKVCMuAgAAAAAAAAAAAAAAAAAAAAAAAMCH4Hhp8COv
-C+585SJqJa9Wvu/VRy7a0tWp9JcnuiguSsJwka4+wrODOx21Flnuwkglrg2m
-+CMqsRJRDhclkbhoU/q4+NzT+NJeNzg6V13Op9kyy1kK2aF4sCttwVELcrgI
-F63pHumRT87kUVcjk+jp9idYzn0hO0yWukJd6I5yW7HAH1FNOQoXlZG4aA2i
-eaz9XCrXpVG6svW5kLLpCUOupX9NIrr72FVZ/nbW5NxcXISLWnKlVrk7paPy
-9PNqy6XJTOlSO5P4QXRUyaOQl/P50j6VMrMgjYtwUUvukms3fdNRyqXT5dSF
-jqHYKCUyqVPnVCpRRBf4cyq9vORbwEW4SCxPOa8eX5eCbZRleLzCnRHTz8Po
-74gzKjXpWzJ5WSqFWmxigC6qSO9TrXUv2Zq8QrdmJf2Ji16HoqgivU/V7V6J
-ndw3wXhPWtJdR43zt9iUyQVRXLQpjYts7u81lXvOn5duKGAwbDBRpOrerREz
-LtosYDBsMFGkGnERAAAAAAAAAAAAAAAAAAAAAAAAAD4Ex0uDH3ldcOcrF1Er
-ebXyfa8+ctGWrk6lvzzRRXFREoaLdPURnh3c6ai1yHIXRipxbTDFH1GJlYhy
-uCiJxEWb0sfF557Gl/a6wdG56nI+zZZZzlLIDsWDXWkLjlqQw0W4aE33SI98
-ciaPuhqZRE+3P8Fy7gvZYbLUFepCd5TbigX+iGrKUbiojMRFaxDNY+3nUrku
-jdKVrc+FlE1PGHIt/WsS0d3Hrsryt7Mm5+biIlzUkiu1yt0pHZWnn1dbLk1m
-SpfamcQPoqNKHoW8nM+X9qmUmQVpXISLWnKXXLvpm45SLp0upy50DMVGKZFJ
-nTqnUokiusCfU+nlJd8CLsJFYnnKefX4uhRsoyzD4xXujJh+HkZ/R5xRqUnf
-ksnLUinUYhMDdFFFep9qrXvJ1uQVujUr6U9c9DoURRXpfapu90rs5L4JxnvS
-ku46apy/xaZMLojiok1pXGRzf6+p3HP+vHRDAYNhg4kiVfdujZhx0WYBg2GD
-iSLViIsAAAAAAAAAAAAAAAAAAAAAAAAA8CE4Xhr8yOuCO1+5iFrJq5Xve/WR
-i7Z0dSr95YkuiouSMFykq4/w7OBOR61FlrswUolrgyn+iEqsRJTDRUkkLtqU
-Pi4+9zS+tNcNjs5Vl/NptsxylkJ2KB7sSltw1IIcLsJFa7pHeuSTM3nU1cgk
-err9CZZzX8gOk6WuUBe6o9xWLPBHVFOOwkVlJC5ag2geaz+XynVplK5sfS6k
-bHrCkGvpX5OI7j52VZa/nTU5NxcX4aKWXKlV7k7pqDz9vNpyaTJTutTOJH4Q
-HVXyKOTlfL60T6XMLEjjIlzUkrvk2k3fdJRy6XQ5daFjKDZKiUzq1DmVShTR
-Bf6cSi8v+RZwES4Sy1POq8fXpWAbZRker3BnxPTzMPo74oxKTfqWTF6WSqEW
-mxigiyrS+1Rr3Uu2Jq/QrVlJf+Ki16EoqkjvU3W7V2In900w3pOWdNdR4/wt
-NmVyQRQXbUrjIpv7e03lnvPnpRsKGAwbTBSpundrxIyLNgsYDBtMFKlGXAQA
-AAAAAAAAAAAAAAAAAAAAAACAD8Hx0uBHXhfc+cpF1EperQxWe+EZFNWp9Jcn
-uiguKsNwkaI+wrODOx21HDlbZLSVU6I6lViJKIeLysjB0/sPc1EpfbTOPY0v
-R6UbHJ2rLuelDJezFLJD8WDX2yLmrvHPiv7UuXSewUVJb0fs9Ie5yKZHPjmT
-R1sTmURPtz/Bcu4L2WGyFKmv+bOU00WX+SOqKUfhIiUyb0gXf56L8jJy8yif
-Z+TSKF3Z+lyodFfOoGjZpbXtTippxXf53aVxR+GiKDJviOUs8Qe7yOUpd6d0
-VJ5+Xm25NJkpXWpnEj+0NrfrqxHRNQl3qXUs69K4yI10S815FPJyPl/apxp3
-kd30TUeV6SXPpqOenX8FKZFJnTqnUokiusCfU+nlJd8CLmp9mLgox+PrUrCN
-sgyPV7gzYvp5GP0dcUalJn1LJi9LpVCLTQzQRRXpfaq17iVbk1fo1qykP3+b
-iy6rIpsYUP661g/Zp+p2r8RO7ptgvCct6a6jxvlbbMrkgigu2pTGRTb395qq
-vKduKGAwbDBRpOrerREzLtosYDBsMFGkGnERAAAAAAAAAAAAAAAAAAAAAAAA
-AD4Ex0uDH3ldcOcrF1ErebXyfa8+ctGWrk6lvzzRRXHROexjDbP5w4/0O3c2
-quF9hKwHFki6lQxurk4lViLK4SIb87GG2fnh0Tn59Dzmnp9ucHTYupxPs4+W
-sxSyQ/G0F9uyQNLlf3ObdeU+2UVrrhMJk8m3MszmD098ciaPWh2ZRE+3P8Fy
-7gvZYbKkbMpO23Wbua1Y4I+ophyFi9xf9MmG2TyXLE9uHqXbkUujdGXrc6HS
-XTmDqKXkKujuY1dFpxp3FC56Vr/dppf4jYbZcZHLU+5O6ag8/bzacmkyU7rU
-ziQmEU+qkkckVyR0/i5V68fq0p/soryMzzHMspHOLZpylHLpdDl1oWModk+J
-TOrUOZVKFNEF/pxKLy+xHy5Syvg0wySKOR5fl4Ltnv0tj1e4M2L6eRj9HXFG
-pSbNLBuVC0WTJZsYUP661g/Zp1rrXrI1eYVlz6P057u66Ok1XExUAsof0qp5
-n6rbqDWME96PexoVSXdtNs7fYlMmF0Rxka7y5xkmmtzRnf0hN8M9/M9LNxQw
-GDaYKFJ1L9yIGRfpWoNhg4ki1YhhAAAAAACAi/8AyKPLrQ==
+1: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
+M/4H/e4wKQ==
     "], {{0, 203}, {392, 0}}, {0, 255},
     ColorFunction->RGBColor],
    BoxForm`ImageTag["Byte", ColorSpace -> "RGB", Interleaving -> True],
@@ -1578,7 +1586,7 @@ GDaYKFJ1L9yIGRfpWoNhg4ki1YhhAAAAAACAi/8AyKPLrQ==
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[73]=",
- CellID->24310898]
+ CellID->10032627]
 }, Open  ]],
 
 Cell["List all the SO(10) representations up to dimension 1000 ...", \
@@ -3932,13 +3940,13 @@ Cell[" ", "FooterCell"]
 },
 Saveable->False,
 ScreenStyleEnvironment->"Working",
-WindowSize->{725, 566},
+WindowSize->{725, 729},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
 WindowTitle->"Susyno Tutorial - Wolfram Mathematica",
 TaggingRules->{
  "ModificationHighlight" -> False, 
   "Metadata" -> {
-   "built" -> "{2013, 8, 7, 2, 29, 41.4531250}", "context" -> "Susyno`", 
+   "built" -> "{2014, 7, 24, 0, 39, 47.2087622}", "context" -> "Susyno`", 
     "keywords" -> {"Susyno Tutorial RGE SUSY"}, "index" -> True, "label" -> 
     "Susyno Tutorial", "language" -> "en", "paclet" -> "Susyno", "status" -> 
     "None", "summary" -> 
@@ -3952,8 +3960,8 @@ methods are exposed to the user. In particular there are group theoretical \
 methods that may be useful on their own. This package should work on \
 Mathematica 7 and latter.", "synonyms" -> {}, "title" -> "Susyno Tutorial", 
     "type" -> "Tutorial", "uri" -> "Susyno/tutorial/SusynoTutorial"}, 
-  "SearchTextTranslated" -> ""},
-FrontEndVersion->"7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
+  "LinkTrails" -> "", "SearchTextTranslated" -> ""},
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
 StyleDefinitions->Notebook[{
    Cell[
     StyleData[
@@ -3971,8 +3979,11 @@ StyleDefinitions->Notebook[{
    Cell[
     StyleData["TutorialRelatedLinksSection"], 
     CellGroupingRules -> {"SectionGrouping", 30}]}, Visible -> False, 
-  FrontEndVersion -> "7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
-   StyleDefinitions -> "Default.nb"]
+  FrontEndVersion -> "9.0 for Microsoft Windows (64-bit) (January 25, 2013)", 
+  StyleDefinitions -> 
+  FrontEnd`FileName[{$RootDirectory, "C:", "Program Files", 
+     "Wolfram Research", "Mathematica", "10.0", "AddOns", "Applications"}, 
+    "Default_Style_MyVersion.nb", CharacterEncoding -> "WindowsANSI"]]
 ]
 (* End of Notebook Content *)
 
@@ -3985,431 +3996,431 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[596, 21, 78, 1, 70, "TutorialColorBar"],
-Cell[677, 24, 178, 5, 70, "LinkTrail"],
-Cell[858, 31, 13232, 276, 70, "AnchorBarGrid",
+Cell[608, 21, 78, 1, 70, "TutorialColorBar"],
+Cell[689, 24, 178, 5, 70, "LinkTrail"],
+Cell[870, 31, 13780, 286, 70, "AnchorBarGrid",
  CellID->1],
 Cell[CellGroupData[{
-Cell[14115, 311, 52, 1, 70, "Title",
+Cell[14675, 321, 52, 1, 70, "Title",
  CellID->509267359],
-Cell[14170, 314, 451, 8, 70, "Text",
+Cell[14730, 324, 451, 8, 70, "Text",
  CellID->1534169418],
-Cell[14624, 324, 188, 4, 70, "Text",
+Cell[15184, 334, 188, 4, 70, "Text",
  CellID->99754619],
-Cell[14815, 330, 147, 6, 70, "Text",
+Cell[15375, 340, 147, 6, 70, "Text",
  CellID->421768310],
-Cell[14965, 338, 66, 1, 70, "MathCaption",
+Cell[15525, 348, 66, 1, 70, "MathCaption",
  CellID->836781195],
-Cell[15034, 341, 95, 3, 70, "Input",
+Cell[15594, 351, 95, 3, 70, "Input",
  CellID->2058623809],
 Cell[CellGroupData[{
-Cell[15154, 348, 60, 1, 70, "Section",
+Cell[15714, 358, 60, 1, 70, "Section",
  CellID->2591],
-Cell[15217, 351, 128, 4, 70, "Text",
+Cell[15777, 361, 128, 4, 70, "Text",
  CellID->24858853],
-Cell[15348, 357, 4578, 142, 70, "Input",
+Cell[15908, 367, 4578, 142, 70, "Input",
  CellID->6265725],
-Cell[19929, 501, 91, 1, 70, "Text",
+Cell[20489, 511, 91, 1, 70, "Text",
  CellID->44162439],
-Cell[20023, 504, 189, 5, 70, "Input",
+Cell[20583, 514, 189, 5, 70, "Input",
  CellID->337054168],
-Cell[20215, 511, 244, 6, 70, "Text",
+Cell[20775, 521, 244, 6, 70, "Text",
  CellID->2420463],
-Cell[20462, 519, 2978, 86, 70, "Input",
+Cell[21022, 529, 2978, 86, 70, "Input",
  CellID->103283436],
-Cell[23443, 607, 137, 4, 70, "Text",
+Cell[24003, 617, 137, 4, 70, "Text",
  CellID->140455145],
-Cell[23583, 613, 76, 2, 70, "Input",
+Cell[24143, 623, 76, 2, 70, "Input",
  CellID->741878955]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[23696, 620, 56, 1, 70, "Section",
+Cell[24256, 630, 56, 1, 70, "Section",
  CellID->8978917],
-Cell[23755, 623, 7530, 205, 70, "DefinitionBox",
- CellID->68806805],
-Cell[31288, 830, 77, 1, 70, "Caption",
+Cell[24315, 633, 8975, 245, 70, "DefinitionBox",
+ CellID->10757663],
+Cell[33293, 880, 77, 1, 70, "Caption",
  CellID->372671765]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[31402, 836, 58, 1, 70, "Section",
+Cell[33407, 886, 58, 1, 70, "Section",
  CellID->199085598],
-Cell[31463, 839, 3170, 94, 70, "DefinitionBox",
+Cell[33468, 889, 3170, 94, 70, "DefinitionBox",
  CellID->856307529],
-Cell[34636, 935, 75, 1, 70, "Caption",
+Cell[36641, 985, 75, 1, 70, "Caption",
  CellID->272141116]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[34748, 941, 53, 1, 70, "Section",
+Cell[36753, 991, 53, 1, 70, "Section",
  CellID->53920555],
-Cell[34804, 944, 351, 7, 70, "Text",
+Cell[36809, 994, 351, 7, 70, "Text",
  CellID->100635996],
-Cell[35158, 953, 656, 12, 70, "Text",
+Cell[37163, 1003, 656, 12, 70, "Text",
  CellID->52686735],
-Cell[35817, 967, 159, 5, 70, "Text",
+Cell[37822, 1017, 159, 5, 70, "Text",
  CellID->18727667],
-Cell[35979, 974, 75, 1, 70, "Text",
+Cell[37984, 1024, 75, 1, 70, "Text",
  CellID->22581803],
-Cell[36057, 977, 132, 5, 70, "Text",
+Cell[38062, 1027, 132, 5, 70, "Text",
  CellID->58772511],
-Cell[36192, 984, 80, 1, 70, "MathCaption",
+Cell[38197, 1034, 80, 1, 70, "MathCaption",
  CellID->642168134],
-Cell[36275, 987, 113, 3, 70, "Code",
+Cell[38280, 1037, 113, 3, 70, "Code",
  Evaluatable->False,
  InitializationCell->False,
  CellID->193254294],
-Cell[36391, 992, 1207, 44, 70, "Text",
+Cell[38396, 1042, 1207, 44, 70, "Text",
  CellID->222930402],
-Cell[37601, 1038, 325, 10, 70, "Text",
+Cell[39606, 1088, 325, 10, 70, "Text",
  CellID->482677277],
 Cell[CellGroupData[{
-Cell[37951, 1052, 57, 1, 70, "Subsection",
+Cell[39956, 1102, 57, 1, 70, "Subsection",
  CellID->264470554],
-Cell[38011, 1055, 163, 5, 70, "Text",
+Cell[40016, 1105, 163, 5, 70, "Text",
  CellID->108668375],
-Cell[38177, 1062, 96, 1, 70, "MathCaption",
+Cell[40182, 1112, 96, 1, 70, "MathCaption",
  CellID->315402278],
-Cell[38276, 1065, 115, 3, 70, "Code",
+Cell[40281, 1115, 115, 3, 70, "Code",
  Evaluatable->False,
  InitializationCell->False,
  CellID->38080131],
-Cell[38394, 1070, 330, 11, 70, "Text",
+Cell[40399, 1120, 330, 11, 70, "Text",
  CellID->883632760],
-Cell[38727, 1083, 141, 4, 70, "MathCaption",
+Cell[40732, 1133, 141, 4, 70, "MathCaption",
  CellID->16054417],
-Cell[38871, 1089, 167, 7, 70, "Code",
+Cell[40876, 1139, 167, 7, 70, "Code",
  Evaluatable->False,
  InitializationCell->False,
  CellID->73467506],
-Cell[39041, 1098, 237, 8, 70, "Text",
+Cell[41046, 1148, 237, 8, 70, "Text",
  CellID->144278952],
-Cell[39281, 1108, 140, 4, 70, "Text",
+Cell[41286, 1158, 140, 4, 70, "Text",
  CellID->68464658],
-Cell[39424, 1114, 635, 17, 70, "Text",
+Cell[41429, 1164, 635, 17, 70, "Text",
  CellID->87239316],
-Cell[40062, 1133, 416, 7, 70, "Text",
+Cell[42067, 1183, 416, 7, 70, "Text",
  CellID->719752033],
-Cell[40481, 1142, 142, 4, 70, "MathCaption",
+Cell[42486, 1192, 142, 4, 70, "MathCaption",
  CellID->449503589],
-Cell[40626, 1148, 48, 1, 70, "Code",
+Cell[42631, 1198, 48, 1, 70, "Code",
  CellID->99800453],
-Cell[40677, 1151, 58, 1, 70, "Text",
+Cell[42682, 1201, 58, 1, 70, "Text",
  CellID->156137253],
-Cell[40738, 1154, 56, 1, 70, "MathCaption",
+Cell[42743, 1204, 56, 1, 70, "MathCaption",
  CellID->38172770],
 Cell[CellGroupData[{
-Cell[40819, 1159, 105, 3, 70, "Input",
+Cell[42824, 1209, 105, 3, 70, "Input",
  CellID->252225000],
-Cell[40927, 1164, 158, 5, 36, "Output",
+Cell[42932, 1214, 158, 5, 36, "Output",
  CellID->63758589]
 }, Open  ]],
-Cell[41100, 1172, 56, 1, 70, "MathCaption",
+Cell[43105, 1222, 56, 1, 70, "MathCaption",
  CellID->9207279],
 Cell[CellGroupData[{
-Cell[41181, 1177, 106, 3, 70, "Input",
+Cell[43186, 1227, 106, 3, 70, "Input",
  CellID->453374297],
-Cell[41290, 1182, 157, 5, 36, "Output",
+Cell[43295, 1232, 157, 5, 36, "Output",
  CellID->6817140]
 }, Open  ]],
-Cell[41462, 1190, 232, 5, 70, "Text",
+Cell[43467, 1240, 232, 5, 70, "Text",
  CellID->186840582],
-Cell[41697, 1197, 424, 10, 70, "Text",
+Cell[43702, 1247, 424, 10, 70, "Text",
  CellID->13545047],
-Cell[42124, 1209, 1069, 35, 70, "Text",
+Cell[44129, 1259, 1069, 35, 70, "Text",
  CellID->11593895],
-Cell[43196, 1246, 122, 3, 70, "MathCaption",
+Cell[45201, 1296, 122, 3, 70, "MathCaption",
  CellID->442062792],
 Cell[CellGroupData[{
-Cell[43343, 1253, 104, 3, 70, "Input",
+Cell[45348, 1303, 104, 3, 70, "Input",
  CellID->164262922],
-Cell[43450, 1258, 247, 8, 36, "Output",
+Cell[45455, 1308, 247, 8, 36, "Output",
  CellID->465793459]
 }, Open  ]],
-Cell[43712, 1269, 90, 1, 70, "MathCaption",
+Cell[45717, 1319, 90, 1, 70, "MathCaption",
  CellID->454189483],
 Cell[CellGroupData[{
-Cell[43827, 1274, 175, 6, 70, "Input",
+Cell[45832, 1324, 175, 6, 70, "Input",
  CellID->514460268],
-Cell[44005, 1282, 158, 5, 36, "Output",
+Cell[46010, 1332, 158, 5, 36, "Output",
  CellID->51936788]
 }, Open  ]],
-Cell[44178, 1290, 86, 1, 70, "MathCaption",
+Cell[46183, 1340, 86, 1, 70, "MathCaption",
  CellID->391015611],
 Cell[CellGroupData[{
-Cell[44289, 1295, 183, 6, 70, "Input",
+Cell[46294, 1345, 183, 6, 70, "Input",
  CellID->6045187],
-Cell[44475, 1303, 204, 7, 36, "Output",
+Cell[46480, 1353, 204, 7, 36, "Output",
  CellID->513888731]
 }, Open  ]],
-Cell[44694, 1313, 259, 5, 70, "MathCaption",
+Cell[46699, 1363, 259, 5, 70, "MathCaption",
  CellID->23262393],
 Cell[CellGroupData[{
-Cell[44978, 1322, 363, 10, 70, "Input",
+Cell[46983, 1372, 363, 10, 70, "Input",
  CellID->8034452],
-Cell[45344, 1334, 2768, 102, 105, "Output",
+Cell[47349, 1384, 2768, 102, 105, "Output",
  CellID->711731437]
 }, Open  ]],
-Cell[48127, 1439, 135, 4, 70, "MathCaption",
+Cell[50132, 1489, 135, 4, 70, "MathCaption",
  CellID->128278801],
 Cell[CellGroupData[{
-Cell[48287, 1447, 202, 6, 28, "Input",
+Cell[50292, 1497, 202, 6, 28, "Input",
  CellID->423173553],
-Cell[48492, 1455, 7189, 125, 224, "Output",
- CellID->24310898]
+Cell[50497, 1505, 4591, 83, 224, "Output",
+ CellID->10032627]
 }, Open  ]],
-Cell[55696, 1583, 104, 2, 70, "MathCaption",
+Cell[55103, 1591, 104, 2, 70, "MathCaption",
  CellID->45902345],
 Cell[CellGroupData[{
-Cell[55825, 1589, 138, 4, 70, "Input",
+Cell[55232, 1597, 138, 4, 70, "Input",
  CellID->743054358],
-Cell[55966, 1595, 2235, 54, 105, "Output",
+Cell[55373, 1603, 2235, 54, 105, "Output",
  CellID->937870822]
 }, Open  ]],
-Cell[58216, 1652, 83, 1, 70, "MathCaption",
+Cell[57623, 1660, 83, 1, 70, "MathCaption",
  CellID->7638888],
 Cell[CellGroupData[{
-Cell[58324, 1657, 867, 28, 70, "Input",
+Cell[57731, 1665, 867, 28, 70, "Input",
  CellID->323940946],
-Cell[59194, 1687, 4203, 149, 378, "Output",
+Cell[58601, 1695, 4203, 149, 378, "Output",
  CellID->99394052]
 }, Open  ]],
-Cell[63412, 1839, 138, 4, 70, "Text",
+Cell[62819, 1847, 138, 4, 70, "Text",
  CellID->186880836],
-Cell[63553, 1845, 5776, 208, 70, "DefinitionBox3Col",
+Cell[62960, 1853, 5776, 208, 70, "DefinitionBox3Col",
  CellID->3225],
-Cell[69332, 2055, 76, 1, 70, "Caption",
+Cell[68739, 2063, 76, 1, 70, "Caption",
  CellID->251894822],
-Cell[69411, 2058, 260, 5, 70, "Text",
+Cell[68818, 2066, 260, 5, 70, "Text",
  CellID->53721323]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[69708, 2068, 62, 1, 70, "Subsection",
+Cell[69115, 2076, 62, 1, 70, "Subsection",
  CellID->569253913],
-Cell[69773, 2071, 306, 9, 70, "Text",
+Cell[69180, 2079, 306, 9, 70, "Text",
  CellID->200422373],
-Cell[70082, 2082, 113, 3, 70, "MathCaption",
+Cell[69489, 2090, 113, 3, 70, "MathCaption",
  CellID->37869283],
-Cell[70198, 2087, 196, 7, 70, "Code",
+Cell[69605, 2095, 196, 7, 70, "Code",
  Evaluatable->False,
  InitializationCell->False,
  CellID->926124268],
-Cell[70397, 2096, 300, 6, 70, "Text",
+Cell[69804, 2104, 300, 6, 70, "Text",
  CellID->19008769]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[70734, 2107, 59, 1, 70, "Subsection",
+Cell[70141, 2115, 59, 1, 70, "Subsection",
  CellID->130285366],
-Cell[70796, 2110, 351, 6, 70, "Text",
+Cell[70203, 2118, 351, 6, 70, "Text",
  CellID->346919154],
-Cell[71150, 2118, 126, 3, 70, "MathCaption",
+Cell[70557, 2126, 126, 3, 70, "MathCaption",
  CellID->61719841],
-Cell[71279, 2123, 116, 3, 70, "Code",
+Cell[70686, 2131, 116, 3, 70, "Code",
  Evaluatable->False,
  InitializationCell->False,
  CellID->109118134],
-Cell[71398, 2128, 514, 17, 70, "Text",
+Cell[70805, 2136, 514, 17, 70, "Text",
  CellID->201997723]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[71949, 2150, 69, 1, 70, "Subsection",
+Cell[71356, 2158, 69, 1, 70, "Subsection",
  CellID->167242659],
-Cell[72021, 2153, 541, 13, 70, "Text",
+Cell[71428, 2161, 541, 13, 70, "Text",
  CellID->239542694],
-Cell[72565, 2168, 197, 7, 70, "MathCaption",
+Cell[71972, 2176, 197, 7, 70, "MathCaption",
  CellID->2940096],
-Cell[72765, 2177, 192, 7, 70, "Code",
+Cell[72172, 2185, 192, 7, 70, "Code",
  Evaluatable->False,
  InitializationCell->False,
  CellID->2614153],
-Cell[72960, 2186, 427, 12, 70, "Text",
+Cell[72367, 2194, 427, 12, 70, "Text",
  CellID->60958078]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[73424, 2203, 76, 1, 70, "Subsection",
+Cell[72831, 2211, 76, 1, 70, "Subsection",
  CellID->305509497],
-Cell[73503, 2206, 315, 10, 70, "Text",
+Cell[72910, 2214, 315, 10, 70, "Text",
  CellID->776410528],
-Cell[73821, 2218, 90, 1, 70, "MathCaption",
+Cell[73228, 2226, 90, 1, 70, "MathCaption",
  CellID->113794804],
-Cell[73914, 2221, 107, 3, 70, "Code",
+Cell[73321, 2229, 107, 3, 70, "Code",
  Evaluatable->False,
  InitializationCell->False,
  CellID->500943860],
-Cell[74024, 2226, 65, 1, 70, "Text",
+Cell[73431, 2234, 65, 1, 70, "Text",
  CellID->1770011],
-Cell[74092, 2229, 360, 13, 70, "Text",
+Cell[73499, 2237, 360, 13, 70, "Text",
  CellID->4606353],
-Cell[74455, 2244, 418, 15, 70, "Text",
+Cell[73862, 2252, 418, 15, 70, "Text",
  CellID->37823961],
-Cell[74876, 2261, 216, 6, 70, "Text",
+Cell[74283, 2269, 216, 6, 70, "Text",
  CellID->894467742],
-Cell[75095, 2269, 78, 1, 70, "MathCaption",
+Cell[74502, 2277, 78, 1, 70, "MathCaption",
  CellID->306896437],
-Cell[75176, 2272, 91, 3, 70, "Code",
+Cell[74583, 2280, 91, 3, 70, "Code",
  Evaluatable->False,
  InitializationCell->False,
  CellID->18640617],
-Cell[75270, 2277, 249, 5, 70, "Text",
+Cell[74677, 2285, 249, 5, 70, "Text",
  CellID->23106869],
-Cell[75522, 2284, 114, 3, 70, "MathCaption",
+Cell[74929, 2292, 114, 3, 70, "MathCaption",
  CellID->233307939],
-Cell[75639, 2289, 155, 7, 70, "Code",
+Cell[75046, 2297, 155, 7, 70, "Code",
  Evaluatable->False,
  InitializationCell->False,
  CellID->733532718],
-Cell[75797, 2298, 680, 16, 70, "Text",
+Cell[75204, 2306, 680, 16, 70, "Text",
  CellID->794685720],
-Cell[76480, 2316, 690, 20, 70, "Text",
+Cell[75887, 2324, 690, 20, 70, "Text",
  CellID->138040236],
-Cell[77173, 2338, 748, 23, 70, "Text",
+Cell[76580, 2346, 748, 23, 70, "Text",
  CellID->244906918]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[77970, 2367, 61, 1, 70, "Section",
+Cell[77377, 2375, 61, 1, 70, "Section",
  CellID->21141493],
-Cell[78034, 2370, 193, 4, 70, "Text",
+Cell[77441, 2378, 193, 4, 70, "Text",
  CellID->38125756],
-Cell[78230, 2376, 96, 1, 70, "Text",
+Cell[77637, 2384, 96, 1, 70, "Text",
  CellID->502385924],
-Cell[78329, 2379, 217, 5, 70, "Text",
+Cell[77736, 2387, 217, 5, 70, "Text",
  CellID->7204230],
-Cell[78549, 2386, 317, 6, 70, "Text",
+Cell[77956, 2394, 317, 6, 70, "Text",
  CellID->58309820],
-Cell[78869, 2394, 389, 7, 70, "Text",
+Cell[78276, 2402, 389, 7, 70, "Text",
  CellID->609915065],
-Cell[79261, 2403, 322, 13, 70, "Text",
+Cell[78668, 2411, 322, 13, 70, "Text",
  CellID->69440856],
-Cell[79586, 2418, 411, 14, 70, "MathCaption",
+Cell[78993, 2426, 411, 14, 70, "MathCaption",
  CellID->40914729],
-Cell[80000, 2434, 390, 13, 70, "Input",
+Cell[79407, 2442, 390, 13, 70, "Input",
  CellID->14784177],
-Cell[80393, 2449, 345, 7, 70, "Text",
+Cell[79800, 2457, 345, 7, 70, "Text",
  CellID->224561642],
-Cell[80741, 2458, 267, 5, 70, "Text",
+Cell[80148, 2466, 267, 5, 70, "Text",
  CellID->115676422],
-Cell[81011, 2465, 385, 7, 70, "Text",
+Cell[80418, 2473, 385, 7, 70, "Text",
  CellID->58656751],
-Cell[81399, 2474, 70, 1, 70, "Text",
+Cell[80806, 2482, 70, 1, 70, "Text",
  CellID->48947923],
-Cell[81472, 2477, 699, 22, 70, "MathCaption",
+Cell[80879, 2485, 699, 22, 70, "MathCaption",
  CellID->42414503],
-Cell[82174, 2501, 418, 11, 70, "Code",
+Cell[81581, 2509, 418, 11, 70, "Code",
  Evaluatable->False,
  InitializationCell->False,
  CellID->220050688],
-Cell[82595, 2514, 148, 4, 70, "Text",
+Cell[82002, 2522, 148, 4, 70, "Text",
  CellID->212841405],
-Cell[82746, 2520, 4857, 180, 70, "DefinitionBox3Col",
+Cell[82153, 2528, 4857, 180, 70, "DefinitionBox3Col",
  CellID->117867006],
-Cell[87606, 2702, 128, 4, 70, "Caption",
+Cell[87013, 2710, 128, 4, 70, "Caption",
  CellID->77697423],
-Cell[87737, 2708, 288, 9, 70, "Text",
+Cell[87144, 2716, 288, 9, 70, "Text",
  CellID->518844087],
-Cell[88028, 2719, 215, 7, 70, "Text",
+Cell[87435, 2727, 215, 7, 70, "Text",
  CellID->182805404],
-Cell[88246, 2728, 1004, 33, 70, "Text",
+Cell[87653, 2736, 1004, 33, 70, "Text",
  CellID->809320560],
-Cell[89253, 2763, 3143, 106, 70, "Text",
+Cell[88660, 2771, 3143, 106, 70, "Text",
  CellID->28169906],
 Cell[CellGroupData[{
-Cell[92421, 2873, 69, 1, 70, "Subsection",
+Cell[91828, 2881, 69, 1, 70, "Subsection",
  CellID->328280954],
-Cell[92493, 2876, 269, 5, 70, "Text",
+Cell[91900, 2884, 269, 5, 70, "Text",
  CellID->35620714],
-Cell[92765, 2883, 1065, 19, 70, "Text",
+Cell[92172, 2891, 1065, 19, 70, "Text",
  CellID->705244006],
-Cell[93833, 2904, 573, 9, 70, "Text",
+Cell[93240, 2912, 573, 9, 70, "Text",
  CellID->22585153],
-Cell[94409, 2915, 428, 9, 70, "Text",
+Cell[93816, 2923, 428, 9, 70, "Text",
  CellID->861667799],
-Cell[94840, 2926, 3284, 108, 70, "Text",
+Cell[94247, 2934, 3284, 108, 70, "Text",
  CellID->115964055],
-Cell[98127, 3036, 2683, 81, 70, "Text",
+Cell[97534, 3044, 2683, 81, 70, "Text",
  CellID->203604082],
-Cell[100813, 3119, 660, 16, 70, "Text",
+Cell[100220, 3127, 660, 16, 70, "Text",
  CellID->468847666],
-Cell[101476, 3137, 939, 33, 70, "Text",
+Cell[100883, 3145, 939, 33, 70, "Text",
  CellID->784599001],
-Cell[102418, 3172, 36, 1, 70, "Text",
+Cell[101825, 3180, 36, 1, 70, "Text",
  CellID->355839783],
-Cell[102457, 3175, 215, 5, 70, "Text",
+Cell[101864, 3183, 215, 5, 70, "Text",
  CellID->706517065],
-Cell[102675, 3182, 257, 8, 70, "Text",
+Cell[102082, 3190, 257, 8, 70, "Text",
  CellID->189190790],
-Cell[102935, 3192, 629, 20, 70, "Text",
+Cell[102342, 3200, 629, 20, 70, "Text",
  CellID->35640944],
-Cell[103567, 3214, 1239, 42, 70, "Text",
+Cell[102974, 3222, 1239, 42, 70, "Text",
  CellID->378868536]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[104843, 3261, 70, 1, 70, "Subsection",
+Cell[104250, 3269, 70, 1, 70, "Subsection",
  CellID->46215798],
-Cell[104916, 3264, 144, 4, 70, "Text",
+Cell[104323, 3272, 144, 4, 70, "Text",
  CellID->253915076],
-Cell[105063, 3270, 127, 3, 70, "MathCaption",
+Cell[104470, 3278, 127, 3, 70, "MathCaption",
  CellID->673078123],
-Cell[105193, 3275, 136, 3, 70, "Code",
+Cell[104600, 3283, 136, 3, 70, "Code",
  Evaluatable->False,
  InitializationCell->False,
  CellID->522906310],
-Cell[105332, 3280, 357, 7, 70, "Text",
+Cell[104739, 3288, 357, 7, 70, "Text",
  CellID->71332729],
-Cell[105692, 3289, 117, 3, 70, "MathCaption",
+Cell[105099, 3297, 117, 3, 70, "MathCaption",
  CellID->27998093],
-Cell[105812, 3294, 91, 3, 70, "Code",
+Cell[105219, 3302, 91, 3, 70, "Code",
  Evaluatable->False,
  InitializationCell->False,
  CellID->91713628]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[105952, 3303, 52, 1, 70, "Section",
+Cell[105359, 3311, 52, 1, 70, "Section",
  CellID->323535181],
-Cell[106007, 3306, 78, 1, 70, "Text",
+Cell[105414, 3314, 78, 1, 70, "Text",
  CellID->19160971],
-Cell[106088, 3309, 75, 1, 70, "Text",
+Cell[105495, 3317, 75, 1, 70, "Text",
  CellID->416897326],
-Cell[106166, 3312, 3775, 121, 70, "Input",
+Cell[105573, 3320, 3775, 121, 70, "Input",
  CellID->64279527],
-Cell[109944, 3435, 81, 1, 70, "Text",
+Cell[109351, 3443, 81, 1, 70, "Text",
  CellID->731454495],
-Cell[110028, 3438, 4542, 145, 70, "Input",
+Cell[109435, 3446, 4542, 145, 70, "Input",
  CellID->290326339],
 Cell[CellGroupData[{
-Cell[114595, 3587, 84, 1, 70, "Subsection",
+Cell[114002, 3595, 84, 1, 70, "Subsection",
  CellID->132997645],
-Cell[114682, 3590, 112, 3, 70, "Text",
+Cell[114089, 3598, 112, 3, 70, "Text",
  CellID->164721189],
-Cell[114797, 3595, 3511, 112, 70, "Input",
+Cell[114204, 3603, 3511, 112, 70, "Input",
  CellID->117496310],
-Cell[118311, 3709, 82, 1, 70, "Text",
+Cell[117718, 3717, 82, 1, 70, "Text",
  CellID->1082087],
-Cell[118396, 3712, 268, 7, 70, "Text",
+Cell[117803, 3720, 268, 7, 70, "Text",
  CellID->338373990],
-Cell[118667, 3721, 2335, 71, 70, "Input",
+Cell[118074, 3729, 2335, 71, 70, "Input",
  CellID->141518747],
-Cell[121005, 3794, 84, 1, 70, "Text",
+Cell[120412, 3802, 84, 1, 70, "Text",
  CellID->212393141],
-Cell[121092, 3797, 273, 8, 70, "Text",
+Cell[120499, 3805, 273, 8, 70, "Text",
  CellID->355991212],
-Cell[121368, 3807, 2541, 77, 70, "Input",
+Cell[120775, 3815, 2541, 77, 70, "Input",
  CellID->162008933]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[123958, 3890, 70, 1, 70, "TutorialMoreAboutSection",
+Cell[123365, 3898, 70, 1, 70, "TutorialMoreAboutSection",
  CellID->23220180],
-Cell[124031, 3893, 254, 7, 70, "TutorialMoreAbout",
+Cell[123438, 3901, 254, 7, 70, "TutorialMoreAbout",
  CellID->4029634],
-Cell[124288, 3902, 214, 7, 70, "TutorialMoreAbout",
+Cell[123695, 3910, 214, 7, 70, "TutorialMoreAbout",
  CellID->1567025153],
-Cell[124505, 3911, 257, 7, 70, "TutorialMoreAbout",
+Cell[123912, 3919, 257, 7, 70, "TutorialMoreAbout",
  CellID->9400535],
-Cell[124765, 3920, 241, 6, 70, "TutorialMoreAbout",
+Cell[124172, 3928, 241, 6, 70, "TutorialMoreAbout",
  CellID->189317751]
 }, Open  ]]
 }, Open  ]],
-Cell[125033, 3930, 23, 0, 70, "FooterCell"]
+Cell[124440, 3938, 23, 0, 70, "FooterCell"]
 }
 ]
 *)

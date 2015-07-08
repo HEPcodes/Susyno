@@ -1,19 +1,19 @@
-(* Content-type: application/mathematica *)
+(* Content-type: application/vnd.wolfram.mathematica *)
 
 (*** Wolfram Notebook File ***)
 (* http://www.wolfram.com/nb *)
 
-(* CreatedBy='Mathematica 7.0' *)
+(* CreatedBy='Mathematica 9.0' *)
 
 (*CacheID: 234*)
 (* Internal cache information:
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
-NotebookDataPosition[       145,          7]
-NotebookDataLength[     12640,        421]
-NotebookOptionsPosition[      9655,        324]
-NotebookOutlinePosition[     11205,        369]
-CellTagsIndexPosition[     11120,        364]
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     13111,        432]
+NotebookOptionsPosition[      9927,        332]
+NotebookOutlinePosition[     11690,        380]
+CellTagsIndexPosition[     11605,        375]
 WindowTitle->SnClassOrder - Wolfram Mathematica
 WindowFrame->Normal*)
 
@@ -84,10 +84,10 @@ SnClassOrder.html"], StandardForm]], "Input", TextClipboardType ->
    "RowsIndexed" -> {}}},
  CellID->1],
 
-Cell[CellGroupData[{
-
 Cell["SnClassOrder", "ObjectName",
  CellID->1224892054],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[GridBox[{
    {"", Cell[TextData[{
@@ -103,8 +103,7 @@ Cell[BoxData[GridBox[{
  GridBoxBackground->{
   "Columns" -> {{None}}, "ColumnsIndexed" -> {}, "Rows" -> {{None}}, 
    "RowsIndexed" -> {}}},
- CellID->982511436]
-}, Open  ]],
+ CellID->982511436],
 
 Cell[CellGroupData[{
 
@@ -125,7 +124,7 @@ Cell[TextData[Cell[BoxData[
   Evaluator->None,
   Method->"Preemptive"]]]], "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->358032673],
+ CellID->3540146],
 
 Cell[TextData[{
  Cell[BoxData[
@@ -172,7 +171,8 @@ the partition {",
  "+\[CenterEllipsis]=n."
 }], "Notes",
  CellID->235158835]
-}, Closed]],
+}, Closed]]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -189,7 +189,7 @@ Cell[TextData[ButtonBox["EXAMPLES",
      FrontEnd`SelectedNotebook[], After, 
      CellContents]}]& )]], "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->105550209],
+ CellID->25847334],
 
 Cell[CellGroupData[{
 
@@ -198,7 +198,7 @@ Cell[TextData[{
  "\[NonBreakingSpace]\[NonBreakingSpace]",
  Cell["(1)", "ExampleCount"]
 }], "ExampleSection",
- CellID->29198190],
+ CellID->27331048],
 
 Cell[TextData[{
  Cell[BoxData[
@@ -315,7 +315,15 @@ Cell[TextData[{
   ButtonBox["SnIrrepDim",
    BaseStyle->"Link",
    ButtonData->"paclet:Susyno/ref/SnIrrepDim"]], "InlineFormula"],
- " "
+ " ",
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
+  ButtonBox["SnIrrepGenerators",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/SnIrrepGenerators"]], "InlineFormula"]
 }], "RelatedLinks",
  CellID->461483061]
 }, Open  ]],
@@ -324,21 +332,21 @@ Cell[" ", "FooterCell"]
 },
 Saveable->False,
 ScreenStyleEnvironment->"Working",
-WindowSize->{725, 566},
+WindowSize->{725, 729},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
 WindowTitle->"SnClassOrder - Wolfram Mathematica",
 TaggingRules->{
  "ModificationHighlight" -> False, 
   "Metadata" -> {
-   "built" -> "{2013, 8, 7, 2, 29, 17.1406250}", "context" -> "Susyno`", 
+   "built" -> "{2014, 7, 24, 0, 39, 39.3705272}", "context" -> "Susyno`", 
     "keywords" -> {}, "index" -> True, "label" -> "Susyno Paclet Symbol", 
     "language" -> "en", "paclet" -> "Susyno", "status" -> "None", "summary" -> 
     "SnClassOrder[conjugacy class] Calculates the order/size of a conjugacy \
 class of S_n", "synonyms" -> {}, "title" -> "SnClassOrder", "type" -> 
-    "Symbol", "uri" -> "Susyno/ref/SnClassOrder"}, "SearchTextTranslated" -> 
-  ""},
+    "Symbol", "uri" -> "Susyno/ref/SnClassOrder"}, "LinkTrails" -> "", 
+  "SearchTextTranslated" -> ""},
 CellContext->"Global`",
-FrontEndVersion->"7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
 StyleDefinitions->Notebook[{
    Cell[
     StyleData[
@@ -347,8 +355,11 @@ StyleDefinitions->Notebook[{
     StyleData["Input"], CellContext -> "Global`"], 
    Cell[
     StyleData["Output"], CellContext -> "Global`"]}, Visible -> False, 
-  FrontEndVersion -> "7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
-   StyleDefinitions -> "Default.nb"]
+  FrontEndVersion -> "9.0 for Microsoft Windows (64-bit) (January 25, 2013)", 
+  StyleDefinitions -> 
+  FrontEnd`FileName[{$RootDirectory, "C:", "Program Files", 
+     "Wolfram Research", "Mathematica", "10.0", "AddOns", "Applications"}, 
+    "Default_Style_MyVersion.nb", CharacterEncoding -> "WindowsANSI"]]
 ]
 (* End of Notebook Content *)
 
@@ -356,73 +367,73 @@ StyleDefinitions->Notebook[{
 (*CellTagsOutline
 CellTagsIndex->{
  "PrimaryExamplesSection"->{
-  Cell[5684, 178, 461, 13, 70, "PrimaryExamplesSection",
+  Cell[5694, 178, 460, 13, 70, "PrimaryExamplesSection",
    CellTags->"PrimaryExamplesSection",
-   CellID->105550209]}
+   CellID->25847334]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"PrimaryExamplesSection", 10977, 357}
+ {"PrimaryExamplesSection", 11463, 368}
  }
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[593, 21, 76, 1, 70, "SymbolColorBar"],
-Cell[672, 24, 178, 5, 70, "LinkTrail"],
-Cell[853, 31, 2314, 53, 70, "AnchorBarGrid",
+Cell[605, 21, 76, 1, 70, "SymbolColorBar"],
+Cell[684, 24, 178, 5, 70, "LinkTrail"],
+Cell[865, 31, 2314, 53, 70, "AnchorBarGrid",
  CellID->1],
-Cell[CellGroupData[{
-Cell[3192, 88, 55, 1, 70, "ObjectName",
+Cell[3182, 86, 55, 1, 70, "ObjectName",
  CellID->1224892054],
-Cell[3250, 91, 496, 14, 70, "Usage",
- CellID->982511436]
+Cell[CellGroupData[{
+Cell[3262, 91, 496, 14, 70, "Usage",
+ CellID->982511436],
+Cell[CellGroupData[{
+Cell[3783, 109, 578, 17, 70, "NotesSection",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->3540146],
+Cell[4364, 128, 164, 5, 70, "Notes",
+ CellID->613073599],
+Cell[4531, 135, 266, 7, 70, "Notes",
+ CellID->106345268],
+Cell[4800, 144, 845, 28, 70, "Notes",
+ CellID->235158835]
+}, Closed]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[3783, 110, 580, 17, 70, "NotesSection",
- CellGroupingRules->{"SectionGrouping", 50},
- CellID->358032673],
-Cell[4366, 129, 164, 5, 70, "Notes",
- CellID->613073599],
-Cell[4533, 136, 266, 7, 70, "Notes",
- CellID->106345268],
-Cell[4802, 145, 845, 28, 70, "Notes",
- CellID->235158835]
-}, Closed]],
-Cell[CellGroupData[{
-Cell[5684, 178, 461, 13, 70, "PrimaryExamplesSection",
+Cell[5694, 178, 460, 13, 70, "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->105550209],
+ CellID->25847334],
 Cell[CellGroupData[{
-Cell[6170, 195, 147, 5, 70, "ExampleSection",
- CellID->29198190],
-Cell[6320, 202, 312, 7, 70, "ExampleText",
+Cell[6179, 195, 147, 5, 70, "ExampleSection",
+ CellID->27331048],
+Cell[6329, 202, 312, 7, 70, "ExampleText",
  CellID->32979335],
 Cell[CellGroupData[{
-Cell[6657, 213, 369, 10, 70, "Input",
+Cell[6666, 213, 369, 10, 70, "Input",
  CellID->298933796],
-Cell[7029, 225, 157, 5, 36, "Output",
+Cell[7038, 225, 157, 5, 36, "Output",
  CellID->21711148],
-Cell[7189, 232, 158, 5, 36, "Output",
+Cell[7198, 232, 158, 5, 36, "Output",
  CellID->922383539],
-Cell[7350, 239, 158, 5, 36, "Output",
+Cell[7359, 239, 158, 5, 36, "Output",
  CellID->110478182]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[7569, 251, 417, 12, 70, "SeeAlsoSection",
+Cell[7578, 251, 417, 12, 70, "SeeAlsoSection",
  CellID->1255426704],
-Cell[7989, 265, 184, 4, 70, "Tutorials",
+Cell[7998, 265, 184, 4, 70, "Tutorials",
  CellID->26828648]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[8210, 274, 419, 12, 70, "MoreAboutSection",
+Cell[8219, 274, 419, 12, 70, "MoreAboutSection",
  CellID->38303248],
-Cell[8632, 288, 981, 31, 70, "RelatedLinks",
+Cell[8641, 288, 1244, 39, 70, "RelatedLinks",
  CellID->461483061]
 }, Open  ]],
-Cell[9628, 322, 23, 0, 70, "FooterCell"]
+Cell[9900, 330, 23, 0, 70, "FooterCell"]
 }
 ]
 *)

@@ -1,19 +1,19 @@
-(* Content-type: application/mathematica *)
+(* Content-type: application/vnd.wolfram.mathematica *)
 
 (*** Wolfram Notebook File ***)
 (* http://www.wolfram.com/nb *)
 
-(* CreatedBy='Mathematica 7.0' *)
+(* CreatedBy='Mathematica 9.0' *)
 
 (*CacheID: 234*)
 (* Internal cache information:
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
-NotebookDataPosition[       145,          7]
-NotebookDataLength[     21032,        681]
-NotebookOptionsPosition[     17056,        552]
-NotebookOutlinePosition[     18677,        597]
-CellTagsIndexPosition[     18592,        592]
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     21507,        692]
+NotebookOptionsPosition[     17325,        559]
+NotebookOutlinePosition[     19163,        608]
+CellTagsIndexPosition[     19078,        603]
 WindowTitle->DecomposeSnProduct - Wolfram Mathematica
 WindowFrame->Normal*)
 
@@ -84,10 +84,10 @@ DecomposeSnProduct.html"], StandardForm]], "Input", TextClipboardType ->
    "RowsIndexed" -> {}}},
  CellID->1],
 
-Cell[CellGroupData[{
-
 Cell["DecomposeSnProduct", "ObjectName",
  CellID->1224892054],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[GridBox[{
    {"", Cell[TextData[{
@@ -106,8 +106,7 @@ permutation group ",
  GridBoxBackground->{
   "Columns" -> {{None}}, "ColumnsIndexed" -> {}, "Rows" -> {{None}}, 
    "RowsIndexed" -> {}}},
- CellID->982511436]
-}, Open  ]],
+ CellID->982511436],
 
 Cell[CellGroupData[{
 
@@ -128,7 +127,7 @@ Cell[TextData[Cell[BoxData[
   Evaluator->None,
   Method->"Preemptive"]]]], "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->156256977],
+ CellID->837063160],
 
 Cell[TextData[{
  "The irreducible representations of the permutation group ",
@@ -193,7 +192,8 @@ product: the output is a list {",
  "\[Times]\[CenterEllipsis]"
 }], "Notes",
  CellID->753473984]
-}, Closed]],
+}, Closed]]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -210,7 +210,7 @@ Cell[TextData[ButtonBox["EXAMPLES",
      FrontEnd`SelectedNotebook[], After, 
      CellContents]}]& )]], "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->40956716],
+ CellID->20701137],
 
 Cell[CellGroupData[{
 
@@ -219,7 +219,7 @@ Cell[TextData[{
  "\[NonBreakingSpace]\[NonBreakingSpace]",
  Cell["(1)", "ExampleCount"]
 }], "ExampleSection",
- CellID->454368135],
+ CellID->320543007],
 
 Cell[TextData[{
  "Consider ",
@@ -543,7 +543,14 @@ Cell[TextData[{
   ButtonBox["SnIrrepDim",
    BaseStyle->"Link",
    ButtonData->"paclet:Susyno/ref/SnIrrepDim"]], "InlineFormula"],
- " "
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
+  ButtonBox["SnIrrepGenerators",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/SnIrrepGenerators"]], "InlineFormula"]
 }], "RelatedLinks",
  CellID->1038487239]
 }, Open  ]],
@@ -552,21 +559,22 @@ Cell[" ", "FooterCell"]
 },
 Saveable->False,
 ScreenStyleEnvironment->"Working",
-WindowSize->{725, 566},
+WindowSize->{725, 729},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
 WindowTitle->"DecomposeSnProduct - Wolfram Mathematica",
 TaggingRules->{
  "ModificationHighlight" -> False, 
   "Metadata" -> {
-   "built" -> "{2013, 8, 7, 2, 26, 49.1718750}", "context" -> "Susyno`", 
+   "built" -> "{2014, 7, 24, 0, 39, 11.7951122}", "context" -> "Susyno`", 
     "keywords" -> {}, "index" -> True, "label" -> "Susyno Paclet Symbol", 
     "language" -> "en", "paclet" -> "Susyno", "status" -> "None", "summary" -> 
     "DecomposeSnProduct[list of partitions of n] Decomposes the product of \
 representations of the permutation group S_n in irreducible parts", 
     "synonyms" -> {}, "title" -> "DecomposeSnProduct", "type" -> "Symbol", 
-    "uri" -> "Susyno/ref/DecomposeSnProduct"}, "SearchTextTranslated" -> ""},
+    "uri" -> "Susyno/ref/DecomposeSnProduct"}, "LinkTrails" -> "", 
+  "SearchTextTranslated" -> ""},
 CellContext->"Global`",
-FrontEndVersion->"7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
 StyleDefinitions->Notebook[{
    Cell[
     StyleData[
@@ -575,8 +583,11 @@ StyleDefinitions->Notebook[{
     StyleData["Input"], CellContext -> "Global`"], 
    Cell[
     StyleData["Output"], CellContext -> "Global`"]}, Visible -> False, 
-  FrontEndVersion -> "7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
-   StyleDefinitions -> "Default.nb"]
+  FrontEndVersion -> "9.0 for Microsoft Windows (64-bit) (January 25, 2013)", 
+  StyleDefinitions -> 
+  FrontEnd`FileName[{$RootDirectory, "C:", "Program Files", 
+     "Wolfram Research", "Mathematica", "10.0", "AddOns", "Applications"}, 
+    "Default_Style_MyVersion.nb", CharacterEncoding -> "WindowsANSI"]]
 ]
 (* End of Notebook Content *)
 
@@ -584,105 +595,105 @@ StyleDefinitions->Notebook[{
 (*CellTagsOutline
 CellTagsIndex->{
  "PrimaryExamplesSection"->{
-  Cell[6403, 199, 460, 13, 70, "PrimaryExamplesSection",
+  Cell[6415, 199, 460, 13, 70, "PrimaryExamplesSection",
    CellTags->"PrimaryExamplesSection",
-   CellID->40956716]}
+   CellID->20701137]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"PrimaryExamplesSection", 18450, 585}
+ {"PrimaryExamplesSection", 18936, 596}
  }
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[599, 21, 76, 1, 70, "SymbolColorBar"],
-Cell[678, 24, 178, 5, 70, "LinkTrail"],
-Cell[859, 31, 2338, 53, 70, "AnchorBarGrid",
+Cell[611, 21, 76, 1, 70, "SymbolColorBar"],
+Cell[690, 24, 178, 5, 70, "LinkTrail"],
+Cell[871, 31, 2338, 53, 70, "AnchorBarGrid",
  CellID->1],
-Cell[CellGroupData[{
-Cell[3222, 88, 61, 1, 70, "ObjectName",
+Cell[3212, 86, 61, 1, 70, "ObjectName",
  CellID->1224892054],
-Cell[3286, 91, 591, 17, 70, "Usage",
- CellID->982511436]
+Cell[CellGroupData[{
+Cell[3298, 91, 591, 17, 70, "Usage",
+ CellID->982511436],
+Cell[CellGroupData[{
+Cell[3914, 112, 580, 17, 70, "NotesSection",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->837063160],
+Cell[4497, 131, 528, 16, 70, "Notes",
+ CellID->1067943069],
+Cell[5028, 149, 594, 19, 70, "Notes",
+ CellID->582793822],
+Cell[5625, 170, 741, 23, 70, "Notes",
+ CellID->753473984]
+}, Closed]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[3914, 113, 580, 17, 70, "NotesSection",
- CellGroupingRules->{"SectionGrouping", 50},
- CellID->156256977],
-Cell[4497, 132, 528, 16, 70, "Notes",
- CellID->1067943069],
-Cell[5028, 150, 594, 19, 70, "Notes",
- CellID->582793822],
-Cell[5625, 171, 741, 23, 70, "Notes",
- CellID->753473984]
-}, Closed]],
-Cell[CellGroupData[{
-Cell[6403, 199, 460, 13, 70, "PrimaryExamplesSection",
+Cell[6415, 199, 460, 13, 70, "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->40956716],
+ CellID->20701137],
 Cell[CellGroupData[{
-Cell[6888, 216, 148, 5, 70, "ExampleSection",
- CellID->454368135],
-Cell[7039, 223, 244, 7, 70, "ExampleText",
+Cell[6900, 216, 148, 5, 70, "ExampleSection",
+ CellID->320543007],
+Cell[7051, 223, 244, 7, 70, "ExampleText",
  CellID->32979335],
 Cell[CellGroupData[{
-Cell[7308, 234, 113, 3, 70, "Input",
+Cell[7320, 234, 113, 3, 70, "Input",
  CellID->474503469],
-Cell[7424, 239, 951, 29, 54, "Output",
+Cell[7436, 239, 951, 29, 54, "Output",
  CellID->427088958]
 }, Open  ]],
-Cell[8390, 271, 261, 7, 70, "ExampleText",
+Cell[8402, 271, 261, 7, 70, "ExampleText",
  CellID->763521970],
 Cell[CellGroupData[{
-Cell[8676, 282, 1194, 37, 70, "Input",
+Cell[8688, 282, 1194, 37, 70, "Input",
  CellID->280814282],
-Cell[9873, 321, 310, 9, 36, "Output",
+Cell[9885, 321, 310, 9, 36, "Output",
  CellID->396550785],
 Cell[CellGroupData[{
-Cell[10208, 334, 98, 2, 70, "Print",
+Cell[10220, 334, 98, 2, 70, "Print",
  CellID->485296440],
-Cell[10309, 338, 152, 3, 70, "Print",
+Cell[10321, 338, 152, 3, 70, "Print",
  CellID->60279877],
-Cell[10464, 343, 360, 9, 70, "Print",
+Cell[10476, 343, 360, 9, 70, "Print",
  CellID->289199188],
-Cell[10827, 354, 390, 10, 70, "Print",
+Cell[10839, 354, 390, 10, 70, "Print",
  CellID->620085649],
-Cell[11220, 366, 389, 10, 70, "Print",
+Cell[11232, 366, 389, 10, 70, "Print",
  CellID->10435575],
-Cell[11612, 378, 403, 10, 70, "Print",
+Cell[11624, 378, 403, 10, 70, "Print",
  CellID->140446283],
-Cell[12018, 390, 389, 10, 70, "Print",
+Cell[12030, 390, 389, 10, 70, "Print",
  CellID->38176322],
-Cell[12410, 402, 403, 10, 70, "Print",
+Cell[12422, 402, 403, 10, 70, "Print",
  CellID->125189955],
-Cell[12816, 414, 415, 10, 70, "Print",
+Cell[12828, 414, 415, 10, 70, "Print",
  CellID->75398702],
-Cell[13234, 426, 403, 10, 70, "Print",
+Cell[13246, 426, 403, 10, 70, "Print",
  CellID->371444477],
-Cell[13640, 438, 416, 10, 70, "Print",
+Cell[13652, 438, 416, 10, 70, "Print",
  CellID->596448161],
-Cell[14059, 450, 429, 10, 70, "Print",
+Cell[14071, 450, 429, 10, 70, "Print",
  CellID->598289927],
-Cell[14491, 462, 440, 10, 70, "Print",
+Cell[14503, 462, 440, 10, 70, "Print",
  CellID->187172730]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[15004, 480, 419, 12, 70, "TutorialsSection",
+Cell[15016, 480, 419, 12, 70, "TutorialsSection",
  CellID->250839057],
-Cell[15426, 494, 151, 3, 70, "Tutorials",
+Cell[15438, 494, 151, 3, 70, "Tutorials",
  CellID->341631938]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[15614, 502, 427, 12, 70, "RelatedLinksSection",
+Cell[15626, 502, 427, 12, 70, "RelatedLinksSection",
  CellID->1584193535],
-Cell[16044, 516, 970, 31, 70, "RelatedLinks",
+Cell[16056, 516, 1227, 38, 70, "RelatedLinks",
  CellID->1038487239]
 }, Open  ]],
-Cell[17029, 550, 23, 0, 70, "FooterCell"]
+Cell[17298, 557, 23, 0, 70, "FooterCell"]
 }
 ]
 *)

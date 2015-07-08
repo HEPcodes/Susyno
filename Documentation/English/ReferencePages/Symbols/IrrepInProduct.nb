@@ -1,19 +1,19 @@
-(* Content-type: application/mathematica *)
+(* Content-type: application/vnd.wolfram.mathematica *)
 
 (*** Wolfram Notebook File ***)
 (* http://www.wolfram.com/nb *)
 
-(* CreatedBy='Mathematica 7.0' *)
+(* CreatedBy='Mathematica 9.0' *)
 
 (*CacheID: 234*)
 (* Internal cache information:
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
-NotebookDataPosition[       145,          7]
-NotebookDataLength[     19222,        619]
-NotebookOptionsPosition[     15664,        505]
-NotebookOutlinePosition[     17322,        551]
-CellTagsIndexPosition[     17237,        546]
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     19931,        660]
+NotebookOptionsPosition[     16165,        542]
+NotebookOutlinePosition[     18040,        592]
+CellTagsIndexPosition[     17955,        587]
 WindowTitle->IrrepInProduct - Wolfram Mathematica
 WindowFrame->Normal*)
 
@@ -72,10 +72,10 @@ IrrepInProduct.html"], StandardForm]], "Input", TextClipboardType ->
    "RowsIndexed" -> {}}},
  CellID->1],
 
-Cell[CellGroupData[{
-
 Cell["IrrepInProduct", "ObjectName",
  CellID->1224892054],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[GridBox[{
    {"", Cell[TextData[{
@@ -99,8 +99,7 @@ computes the combinations of ",
  GridBoxBackground->{
   "Columns" -> {{None}}, "ColumnsIndexed" -> {}, "Rows" -> {{None}}, 
    "RowsIndexed" -> {}}},
- CellID->982511436]
-}, Open  ]],
+ CellID->982511436],
 
 Cell[CellGroupData[{
 
@@ -121,7 +120,7 @@ Cell[TextData[Cell[BoxData[
   Evaluator->None,
   Method->"Preemptive"]]]], "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->340512485],
+ CellID->283977121],
 
 Cell[TextData[{
  Cell[BoxData["group"], "InlineFormula"],
@@ -256,7 +255,8 @@ Cell[TextData[{
 gauge group (not just SU(2))."
 }], "Notes",
  CellID->329977022]
-}, Closed]],
+}, Closed]]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -273,7 +273,7 @@ Cell[TextData[ButtonBox["EXAMPLES",
      FrontEnd`SelectedNotebook[], After, 
      CellContents]}]& )]], "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->751929947],
+ CellID->895705022],
 
 Cell[CellGroupData[{
 
@@ -282,7 +282,7 @@ Cell[TextData[{
  "\[NonBreakingSpace]\[NonBreakingSpace]",
  Cell["(1)", "ExampleCount"]
 }], "ExampleSection",
- CellID->53215938],
+ CellID->161108366],
 
 Cell["\<\
 Two SU(2) doublets (={1}) contain a singlet (={0}) and a triplet (={2}). The \
@@ -353,27 +353,41 @@ Cell[BoxData["\<\"Gauge singlet in {1}x{1}:\"\>"], "Print",
  CellID->51510509],
 
 Cell[BoxData[
- GraphicsBox[
-  TagBox[RasterBox[CompressedData["
-1:eJztVcEJwzAQM3SAztCVOkIW6DgZ1037KAXbRNLdxU05QSA4jnTSOZfb8rgv
-l1LKdbvW7Xrd10QikUgkEj1Qf8nyRrvSXUReR8gpEg1Gac0XGFrd6xGbRquL
-PAIVR/lQJBrs0rgvITRZd3QUhVLbdZzct4mUL6GJQaHJ9VAqeOXfNhFyxyay
-vtjQKF/ddccmfkrqzm0jeWiSuzi1r7h62Fl9wOeAzMy5TWRDC63HOHj/bJyC
-5EJoQj11fKRbUXZAgV+KQI7g1L6Q84MA3y/kHEo+UdqFXOvvaDOyH9x2JPlE
-aTu5u9/EL+AJtVd6Hg==
-    "], {{0, 15}, {151, 0}}, {0, 255},
-    ColorFunction->RGBColor],
-   BoxForm`ImageTag["Byte", ColorSpace -> "RGB", Interleaving -> True],
-   Selectable->False],
-  BaseStyle->"ImageGraphics",
-  ImageSize->Automatic,
-  ImageSizeRaw->{151, 15},
-  PlotRange->{{0, 151}, {0, 15}}]], "Output",
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", 
+   TagBox[GridBox[{
+      {
+       RowBox[{
+        RowBox[{
+         RowBox[{"a", "[", "2", "]"}], " ", 
+         RowBox[{"b", "[", "1", "]"}]}], "-", 
+        RowBox[{
+         RowBox[{"a", "[", "1", "]"}], " ", 
+         RowBox[{"b", "[", "2", "]"}]}]}]}
+     },
+     GridBoxAlignment->{
+      "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}},
+        "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}],
+    Column], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[
+    SparseArray[
+    Automatic, {1}, 0, {
+     1, {{0, 1}, {{1}}}, {
+      Susyno`LieGroups`a[2] Susyno`LieGroups`b[1] - Susyno`LieGroups`a[1] 
+       Susyno`LieGroups`b[2]}}]]]]], "Output",
  ImageSize->{155, 15},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[1]//MatrixForm=",
- CellID->552443112],
+ CellID->292519076],
 
 Cell[CellGroupData[{
 
@@ -387,44 +401,67 @@ Cell[BoxData["\<\"Gauge triplet in {1}x{1}:\"\>"], "Print",
 }, Open  ]],
 
 Cell[BoxData[
- GraphicsBox[
-  TagBox[RasterBox[CompressedData["
-1:eJztnb2u2jAUgCP1SfpKXbugO7GVka1bGRkZGRkZGRkzMvIIjIyMrhukKMT2
-sZ34/Dg9n4QECTgn/uJjx9xrvn/9+vH1rWman/bxxz7+PTeKokjlfr+v1+vf
-Yfb7PXeMzLxeL8pKOJ1Oz+eT7HAysRcesPd8Pj8eD6pYzPF4JDuWWOA6J84S
-asR0eelwOHh33W63y+VCGYwaeWMbgvXibt/tdpRh2AugbVt3e+6AvOnwfny0
-y7sltwQMQlUBdzHFsd26e2G8Tz+rEtzKDFVvypaUEopjhzfexLXZbLAPPSSU
-sqI1AFzS0Zf9x+eUgIG3OaxWK9SD2kHFUPpkIwa8hlOMhJ4kloCB1whB1hom
-TJu13DckNhAg7UcLhI2klICBt/Jpsta7adw63L1uhYfeEKrPaEaKOoVLQIIl
-a715uyg47oVrLDcHTithPoxGTNdMyhoJVVri2HV+CfPhNWK7eOJ7H/nwGjFd
-7iI7VhWwG1FGsBgBvgepAuzKcTdqG2FkGUa8AyGWO+75LMOISZg2VCPEAC3C
-ncWVzH9iJDonI4d6jUye6RVOpUaGiaj5xAR0aBshAJiDIo6kIPUaqbraAeo1
-YhYqpVIjtXQKE6jUyIJRI9JQI9JQI9JQI9JANRL92xvgze5Gt7Tiw62sw0UD
-NpPmn7GNjJ6Hok3cgv2Vx/y5stxTdilrBLhCoi/7j88pYQEBF28jM08w9CSx
-hAlIC7igEfiCyWryNEbmX+FwwCmn7IJhJBRe9PSB9zSfeEsoGHDK4eCAU07Z
-C1nPnru3VAlZSAiYcvSbuKtsCVlICFjvEKWRZcSbXftyGMkKVWbA04woBHAZ
-8V667mAGO4x0yAJmbCPwCWJ03DOhCViOEXfcLtwIUsBijQCdMhc0AVMagbNu
-NEvTwxIwmZFhu3aHpt6z420jXAETZ61QwOzNIQR9wIxZSz4sAQtpI2KhD5iy
-H6lLB1fAOosiDTUiDTUiDTUiDTUiDTUiDSFGdN34HiFGdN34HiFGdE3sHjUi
-DTUiDQlGMNaNH81KuZNU3mmrrBKQkGAEY9346MuULdESMJBgRNeNH8JiRNeN
-B+BqI9jrxkdfGjXigLdufPPJaG/o47klIMFoRNeN98Lbs+u68S68RnTdeBf2
-0a+uGz+C3YgygsVIyn8hSQa7ctyN2+0W9aAKwDKMeAdCLPd38/EaqbEfgY2Q
-jV3ns4w2Yir8j60QXiM13iPARqJzMkJ4PB7eWT5rxPsLyKKYPK8omev16r1B
-s6aIfw08l2EicmcFvTqqaCOh32c33Q+FU0YyDWAOijiSItiGAMzytW0rfH6j
-0moHsDrgzsLmNKpYJrIwKfIrHKCKTkFZHn8BRUip4g==
-    "], {{0, 91}, {134, 0}}, {0, 255},
-    ColorFunction->RGBColor],
-   BoxForm`ImageTag["Byte", ColorSpace -> "RGB", Interleaving -> True],
-   Selectable->False],
-  BaseStyle->"ImageGraphics",
-  ImageSize->Automatic,
-  ImageSizeRaw->{134, 91},
-  PlotRange->{{0, 134}, {0, 91}}]], "Output",
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", 
+   TagBox[GridBox[{
+      {
+       FractionBox[
+        RowBox[{
+         SqrtBox["2"], " ", 
+         RowBox[{"a", "[", "2", "]"}], " ", 
+         RowBox[{"b", "[", "2", "]"}]}], 
+        SuperscriptBox["3", 
+         RowBox[{"1", "/", "4"}]]]},
+      {
+       RowBox[{
+        RowBox[{"-", 
+         FractionBox[
+          RowBox[{
+           RowBox[{"a", "[", "2", "]"}], " ", 
+           RowBox[{"b", "[", "1", "]"}]}], 
+          SuperscriptBox["3", 
+           RowBox[{"1", "/", "4"}]]]}], "-", 
+        FractionBox[
+         RowBox[{
+          RowBox[{"a", "[", "1", "]"}], " ", 
+          RowBox[{"b", "[", "2", "]"}]}], 
+         SuperscriptBox["3", 
+          RowBox[{"1", "/", "4"}]]]}]},
+      {
+       FractionBox[
+        RowBox[{
+         SqrtBox["2"], " ", 
+         RowBox[{"a", "[", "1", "]"}], " ", 
+         RowBox[{"b", "[", "1", "]"}]}], 
+        SuperscriptBox["3", 
+         RowBox[{"1", "/", "4"}]]]}
+     },
+     GridBoxAlignment->{
+      "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}},
+        "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}],
+    Column], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[
+    SparseArray[
+    Automatic, {3}, 0, {
+     1, {{0, 3}, {{3}, {2}, {1}}}, {
+      2^Rational[1, 2] 3^Rational[-1, 4] Susyno`LieGroups`a[1] 
+       Susyno`LieGroups`b[1], -3^Rational[-1, 4] Susyno`LieGroups`a[2] 
+        Susyno`LieGroups`b[1] - 3^Rational[-1, 4] Susyno`LieGroups`a[1] 
+       Susyno`LieGroups`b[2], 2^Rational[1, 2] 3^Rational[-1, 4] 
+       Susyno`LieGroups`a[2] Susyno`LieGroups`b[2]}}]]]]], "Output",
  ImageSize->{138, 91},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[1]//MatrixForm=",
- CellID->11025396],
+ CellID->557594027],
 
 Cell[BoxData["\<\" ... or (multiply by \\!\\(\\*SuperscriptBox[\\(3\\), \
 \\(1/4\\)]\\)) ...\"\>"], "Print",
@@ -505,22 +542,23 @@ Cell[" ", "FooterCell"]
 },
 Saveable->False,
 ScreenStyleEnvironment->"Working",
-WindowSize->{725, 566},
+WindowSize->{725, 729},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
 WindowTitle->"IrrepInProduct - Wolfram Mathematica",
 TaggingRules->{
  "ModificationHighlight" -> False, 
   "Metadata" -> {
-   "built" -> "{2013, 8, 7, 2, 27, 32.3750000}", "context" -> "Susyno`", 
+   "built" -> "{2014, 7, 24, 0, 39, 19.5082631}", "context" -> "Susyno`", 
     "keywords" -> {}, "index" -> True, "label" -> "Susyno Paclet Symbol", 
     "language" -> "en", "paclet" -> "Susyno", "status" -> "None", "summary" -> 
     "IrrepInProduct[group, {rep1, rep2, rep3}] Computes generalized \
 Clebsch-Gordon coefficients; it computes the combinations of rep1 x rep2 \
 which transform as a rep3 of the gauge group.", "synonyms" -> {}, "title" -> 
     "IrrepInProduct", "type" -> "Symbol", "uri" -> 
-    "Susyno/ref/IrrepInProduct"}, "SearchTextTranslated" -> ""},
+    "Susyno/ref/IrrepInProduct"}, "LinkTrails" -> "", "SearchTextTranslated" -> 
+  ""},
 CellContext->"Global`",
-FrontEndVersion->"7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
 StyleDefinitions->Notebook[{
    Cell[
     StyleData[
@@ -529,8 +567,11 @@ StyleDefinitions->Notebook[{
     StyleData["Input"], CellContext -> "Global`"], 
    Cell[
     StyleData["Output"], CellContext -> "Global`"]}, Visible -> False, 
-  FrontEndVersion -> "7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
-   StyleDefinitions -> "Default.nb"]
+  FrontEndVersion -> "9.0 for Microsoft Windows (64-bit) (January 25, 2013)", 
+  StyleDefinitions -> 
+  FrontEnd`FileName[{$RootDirectory, "C:", "Program Files", 
+     "Wolfram Research", "Mathematica", "10.0", "AddOns", "Applications"}, 
+    "Default_Style_MyVersion.nb", CharacterEncoding -> "WindowsANSI"]]
 ]
 (* End of Notebook Content *)
 
@@ -538,89 +579,89 @@ StyleDefinitions->Notebook[{
 (*CellTagsOutline
 CellTagsIndex->{
  "PrimaryExamplesSection"->{
-  Cell[7818, 262, 461, 13, 70, "PrimaryExamplesSection",
+  Cell[7830, 262, 461, 13, 70, "PrimaryExamplesSection",
    CellTags->"PrimaryExamplesSection",
-   CellID->751929947]}
+   CellID->895705022]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"PrimaryExamplesSection", 17094, 539}
+ {"PrimaryExamplesSection", 17812, 580}
  }
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[595, 21, 76, 1, 70, "SymbolColorBar"],
-Cell[674, 24, 178, 5, 70, "LinkTrail"],
-Cell[855, 31, 1867, 41, 70, "AnchorBarGrid",
+Cell[607, 21, 76, 1, 70, "SymbolColorBar"],
+Cell[686, 24, 178, 5, 70, "LinkTrail"],
+Cell[867, 31, 1867, 41, 70, "AnchorBarGrid",
  CellID->1],
-Cell[CellGroupData[{
-Cell[2747, 76, 57, 1, 70, "ObjectName",
+Cell[2737, 74, 57, 1, 70, "ObjectName",
  CellID->1224892054],
-Cell[2807, 79, 764, 22, 70, "Usage",
- CellID->982511436]
+Cell[CellGroupData[{
+Cell[2819, 79, 764, 22, 70, "Usage",
+ CellID->982511436],
+Cell[CellGroupData[{
+Cell[3608, 105, 580, 17, 70, "NotesSection",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->283977121],
+Cell[4191, 124, 236, 8, 70, "Notes",
+ CellID->1067943069],
+Cell[4430, 134, 181, 5, 70, "Notes",
+ CellID->41030773],
+Cell[4614, 141, 182, 4, 70, "Notes",
+ CellID->221237370],
+Cell[4799, 147, 767, 24, 70, "Notes",
+ CellID->400920173],
+Cell[5569, 173, 444, 16, 70, "Notes",
+ CellID->75953507],
+Cell[6016, 191, 979, 34, 70, "Notes",
+ CellID->10758554],
+Cell[6998, 227, 304, 12, 70, "Notes",
+ CellID->335181877],
+Cell[7305, 241, 157, 4, 70, "Notes",
+ CellID->898809850],
+Cell[7465, 247, 316, 9, 70, "Notes",
+ CellID->329977022]
+}, Closed]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[3608, 106, 580, 17, 70, "NotesSection",
- CellGroupingRules->{"SectionGrouping", 50},
- CellID->340512485],
-Cell[4191, 125, 236, 8, 70, "Notes",
- CellID->1067943069],
-Cell[4430, 135, 181, 5, 70, "Notes",
- CellID->41030773],
-Cell[4614, 142, 182, 4, 70, "Notes",
- CellID->221237370],
-Cell[4799, 148, 767, 24, 70, "Notes",
- CellID->400920173],
-Cell[5569, 174, 444, 16, 70, "Notes",
- CellID->75953507],
-Cell[6016, 192, 979, 34, 70, "Notes",
- CellID->10758554],
-Cell[6998, 228, 304, 12, 70, "Notes",
- CellID->335181877],
-Cell[7305, 242, 157, 4, 70, "Notes",
- CellID->898809850],
-Cell[7465, 248, 316, 9, 70, "Notes",
- CellID->329977022]
-}, Closed]],
-Cell[CellGroupData[{
-Cell[7818, 262, 461, 13, 70, "PrimaryExamplesSection",
+Cell[7830, 262, 461, 13, 70, "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->751929947],
+ CellID->895705022],
 Cell[CellGroupData[{
-Cell[8304, 279, 147, 5, 70, "ExampleSection",
- CellID->53215938],
-Cell[8454, 286, 192, 4, 70, "Notes",
+Cell[8316, 279, 148, 5, 70, "ExampleSection",
+ CellID->161108366],
+Cell[8467, 286, 192, 4, 70, "Notes",
  CellID->315923061],
 Cell[CellGroupData[{
-Cell[8671, 294, 1717, 54, 70, "Input",
+Cell[8684, 294, 1717, 54, 70, "Input",
  CellID->275367989],
-Cell[10391, 350, 122, 2, 23, "Print",
+Cell[10404, 350, 122, 2, 70, "Print",
  CellID->51510509],
-Cell[10516, 354, 825, 21, 50, "Output",
- CellID->552443112],
+Cell[10529, 354, 1149, 35, 50, "Output",
+ CellID->292519076],
 Cell[CellGroupData[{
-Cell[11366, 379, 98, 2, 70, "Print",
+Cell[11703, 393, 98, 2, 70, "Print",
  CellID->501595322],
-Cell[11467, 383, 122, 2, 23, "Print",
+Cell[11804, 397, 122, 2, 70, "Print",
  CellID->75520894]
 }, Open  ]],
-Cell[11604, 388, 1885, 38, 126, "Output",
- CellID->11025396],
-Cell[13492, 428, 172, 3, 70, "Print",
+Cell[11941, 402, 2049, 61, 126, "Output",
+ CellID->557594027],
+Cell[13993, 465, 172, 3, 70, "Print",
  CellID->407396728],
-Cell[13667, 433, 1283, 41, 87, "Output",
+Cell[14168, 470, 1283, 41, 87, "Output",
  CellID->114383041]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[15011, 481, 427, 12, 70, "RelatedLinksSection",
+Cell[15512, 518, 427, 12, 70, "RelatedLinksSection",
  CellID->1584193535],
-Cell[15441, 495, 181, 5, 70, "RelatedLinks",
+Cell[15942, 532, 181, 5, 70, "RelatedLinks",
  CellID->1038487239]
 }, Open  ]],
-Cell[15637, 503, 23, 0, 70, "FooterCell"]
+Cell[16138, 540, 23, 0, 70, "FooterCell"]
 }
 ]
 *)

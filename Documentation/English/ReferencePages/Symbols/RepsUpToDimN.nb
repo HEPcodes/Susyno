@@ -1,19 +1,19 @@
-(* Content-type: application/mathematica *)
+(* Content-type: application/vnd.wolfram.mathematica *)
 
 (*** Wolfram Notebook File ***)
 (* http://www.wolfram.com/nb *)
 
-(* CreatedBy='Mathematica 7.0' *)
+(* CreatedBy='Mathematica 9.0' *)
 
 (*CacheID: 234*)
 (* Internal cache information:
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
-NotebookDataPosition[       145,          7]
-NotebookDataLength[     17509,        576]
-NotebookOptionsPosition[     14172,        467]
-NotebookOutlinePosition[     15744,        512]
-CellTagsIndexPosition[     15659,        507]
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     16011,        535]
+NotebookOptionsPosition[     12748,        433]
+NotebookOutlinePosition[     14534,        481]
+CellTagsIndexPosition[     14449,        476]
 WindowTitle->RepsUpToDimN - Wolfram Mathematica
 WindowFrame->Normal*)
 
@@ -84,10 +84,10 @@ RepsUpToDimN.html"], StandardForm]], "Input", TextClipboardType ->
    "RowsIndexed" -> {}}},
  CellID->1],
 
-Cell[CellGroupData[{
-
 Cell["RepsUpToDimN", "ObjectName",
  CellID->1224892054],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[GridBox[{
    {"", Cell[TextData[{
@@ -105,8 +105,7 @@ Cell[BoxData[GridBox[{
  GridBoxBackground->{
   "Columns" -> {{None}}, "ColumnsIndexed" -> {}, "Rows" -> {{None}}, 
    "RowsIndexed" -> {}}},
- CellID->982511436]
-}, Open  ]],
+ CellID->982511436],
 
 Cell[CellGroupData[{
 
@@ -127,7 +126,7 @@ Cell[TextData[Cell[BoxData[
   Evaluator->None,
   Method->"Preemptive"]]]], "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->309034724],
+ CellID->482089437],
 
 Cell[TextData[{
  "Argument ",
@@ -140,12 +139,22 @@ Cell[TextData[{
 }], "Notes",
  CellID->416274567],
 
-Cell["\<\
-This method outputs a list o representations, each given by its Dynkin \
-coefficients.\
-\>", "Notes",
+Cell[TextData[{
+ "This method outputs a list o representations, each given by its Dynkin \
+coefficients. The option ",
+ Cell[BoxData[
+  RowBox[{"UseName", "->", "True"}]], "InlineFormula"],
+ " can be used to get the names of the representations instead (as given by \
+the ",
+ Cell[BoxData[
+  ButtonBox["RepName",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/RepName"]], "InlineFormula"],
+ " function)."
+}], "Notes",
  CellID->1067943069]
-}, Closed]],
+}, Closed]]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -162,7 +171,7 @@ Cell[TextData[ButtonBox["EXAMPLES",
      FrontEnd`SelectedNotebook[], After, 
      CellContents]}]& )]], "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->148866822],
+ CellID->681570509],
 
 Cell[CellGroupData[{
 
@@ -171,7 +180,7 @@ Cell[TextData[{
  "\[NonBreakingSpace]\[NonBreakingSpace]",
  Cell["(1)", "ExampleCount"]
 }], "ExampleSection",
- CellID->276192278],
+ CellID->232779980],
 
 Cell[TextData[{
  "List all representations of ",
@@ -262,148 +271,97 @@ Cell[BoxData[
  CellID->16402979]
 }, Open  ]],
 
-Cell["\<\
-One can confirm that all representations in the output list are indeed of \
-dimension smaller than or equal to 10000 by using the DimR function:\
-\>", "ExampleText",
- CellID->250137860],
+Cell["Get the names instead:", "ExampleText",
+ CellID->23985300],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"DimR", "[", 
-    RowBox[{"E6", ",", "#"}], "]"}], "&"}], "/@", 
-  RowBox[{"RepsUpToDimN", "[", 
-   RowBox[{"E6", ",", "10000"}], "]"}]}]], "Input",
+ RowBox[{"RepsUpToDimN", "[", 
+  RowBox[{"E6", ",", "10000", ",", 
+   RowBox[{"UseName", "\[Rule]", "True"}]}], "]"}]], "Input",
  CellLabel->"In[2]:=",
- CellID->100259156],
+ CellID->205549982],
 
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{
-  "1", ",", "78", ",", "2430", ",", "27", ",", "1728", ",", "351", ",", 
-   "3003", ",", "351", ",", "5824", ",", "2925", ",", "351", ",", "7371", ",",
-    "27", ",", "1728", ",", "650", ",", "7722", ",", "7371", ",", "5824", ",",
-    "351", ",", "7722", ",", "3003"}], "}"}]], "Output",
- ImageSize->{402, 33},
+   StyleBox["\<\"1\"\>",
+    StripOnInput->False,
+    FontWeight->Bold], ",", 
+   StyleBox["\<\"27\"\>",
+    StripOnInput->False,
+    FontWeight->Bold], ",", 
+   OverscriptBox[
+    StyleBox["\<\"27\"\>",
+     StripOnInput->False,
+     FontWeight->Bold], "_"], ",", 
+   StyleBox["\<\"78\"\>",
+    StripOnInput->False,
+    FontWeight->Bold], ",", 
+   StyleBox["\<\"351\"\>",
+    StripOnInput->False,
+    FontWeight->Bold], ",", 
+   OverscriptBox[
+    StyleBox["\<\"351\"\>",
+     StripOnInput->False,
+     FontWeight->Bold], "_"], ",", 
+   StyleBox["\<\"351'\"\>",
+    StripOnInput->False,
+    FontWeight->Bold], ",", 
+   OverscriptBox[
+    StyleBox["\<\"351'\"\>",
+     StripOnInput->False,
+     FontWeight->Bold], "_"], ",", 
+   StyleBox["\<\"650\"\>",
+    StripOnInput->False,
+    FontWeight->Bold], ",", 
+   StyleBox["\<\"1728\"\>",
+    StripOnInput->False,
+    FontWeight->Bold], ",", 
+   OverscriptBox[
+    StyleBox["\<\"1728\"\>",
+     StripOnInput->False,
+     FontWeight->Bold], "_"], ",", 
+   StyleBox["\<\"2430\"\>",
+    StripOnInput->False,
+    FontWeight->Bold], ",", 
+   StyleBox["\<\"2925\"\>",
+    StripOnInput->False,
+    FontWeight->Bold], ",", 
+   StyleBox["\<\"3003\"\>",
+    StripOnInput->False,
+    FontWeight->Bold], ",", 
+   OverscriptBox[
+    StyleBox["\<\"3003\"\>",
+     StripOnInput->False,
+     FontWeight->Bold], "_"], ",", 
+   StyleBox["\<\"5824\"\>",
+    StripOnInput->False,
+    FontWeight->Bold], ",", 
+   OverscriptBox[
+    StyleBox["\<\"5824\"\>",
+     StripOnInput->False,
+     FontWeight->Bold], "_"], ",", 
+   StyleBox["\<\"7371\"\>",
+    StripOnInput->False,
+    FontWeight->Bold], ",", 
+   OverscriptBox[
+    StyleBox["\<\"7371\"\>",
+     StripOnInput->False,
+     FontWeight->Bold], "_"], ",", 
+   StyleBox["\<\"7722\"\>",
+    StripOnInput->False,
+    FontWeight->Bold], ",", 
+   OverscriptBox[
+    StyleBox["\<\"7722\"\>",
+     StripOnInput->False,
+     FontWeight->Bold], "_"]}], "}"}]], "Output",
+ ImageSize->{398, 37},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[2]=",
- CellID->46385385]
-}, Open  ]],
-
-Cell["\<\
-In fact, we can easily sort the list of representations by dimension:\
-\>", "ExampleText",
- CellID->11819548],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[{
- RowBox[{"Sort", "[", 
-  RowBox[{
-   RowBox[{"RepsUpToDimN", "[", 
-    RowBox[{"E6", ",", "10000"}], "]"}], ",", 
-   RowBox[{
-    RowBox[{
-     RowBox[{"DimR", "[", 
-      RowBox[{"E6", ",", "#1"}], "]"}], "<", 
-     RowBox[{"DimR", "[", 
-      RowBox[{"E6", ",", "#2"}], "]"}]}], "&"}]}], 
-  "]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"DimR", "[", 
-    RowBox[{"E6", ",", "#"}], "]"}], "&"}], "/@", "%"}]}], "Input",
- CellLabel->"In[3]:=",
- CellID->105278369],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{"0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0"}], "}"}], 
-   ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0"}], "}"}], 
-   ",", 
-   RowBox[{"{", 
-    RowBox[{"0", ",", "0", ",", "0", ",", "0", ",", "1", ",", "0"}], "}"}], 
-   ",", 
-   RowBox[{"{", 
-    RowBox[{"0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "1"}], "}"}], 
-   ",", 
-   RowBox[{"{", 
-    RowBox[{"2", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0"}], "}"}], 
-   ",", 
-   RowBox[{"{", 
-    RowBox[{"0", ",", "1", ",", "0", ",", "0", ",", "0", ",", "0"}], "}"}], 
-   ",", 
-   RowBox[{"{", 
-    RowBox[{"0", ",", "0", ",", "0", ",", "1", ",", "0", ",", "0"}], "}"}], 
-   ",", 
-   RowBox[{"{", 
-    RowBox[{"0", ",", "0", ",", "0", ",", "0", ",", "2", ",", "0"}], "}"}], 
-   ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", "0", ",", "0", ",", "0", ",", "1", ",", "0"}], "}"}], 
-   ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", "0", ",", "0", ",", "0", ",", "0", ",", "1"}], "}"}], 
-   ",", 
-   RowBox[{"{", 
-    RowBox[{"0", ",", "0", ",", "0", ",", "0", ",", "1", ",", "1"}], "}"}], 
-   ",", 
-   RowBox[{"{", 
-    RowBox[{"0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "2"}], "}"}], 
-   ",", 
-   RowBox[{"{", 
-    RowBox[{"0", ",", "0", ",", "1", ",", "0", ",", "0", ",", "0"}], "}"}], 
-   ",", 
-   RowBox[{"{", 
-    RowBox[{"3", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0"}], "}"}], 
-   ",", 
-   RowBox[{"{", 
-    RowBox[{"0", ",", "0", ",", "0", ",", "0", ",", "3", ",", "0"}], "}"}], 
-   ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", "1", ",", "0", ",", "0", ",", "0", ",", "0"}], "}"}], 
-   ",", 
-   RowBox[{"{", 
-    RowBox[{"0", ",", "0", ",", "0", ",", "1", ",", "1", ",", "0"}], "}"}], 
-   ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", "0", ",", "0", ",", "1", ",", "0", ",", "0"}], "}"}], 
-   ",", 
-   RowBox[{"{", 
-    RowBox[{"0", ",", "1", ",", "0", ",", "0", ",", "1", ",", "0"}], "}"}], 
-   ",", 
-   RowBox[{"{", 
-    RowBox[{"2", ",", "0", ",", "0", ",", "0", ",", "1", ",", "0"}], "}"}], 
-   ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", "0", ",", "0", ",", "0", ",", "2", ",", "0"}], "}"}]}], 
-  "}"}]], "Output",
- ImageSize->{496, 101},
- ImageMargins->{{0, 0}, {0, 0}},
- ImageRegion->{{0, 1}, {0, 1}},
- CellLabel->"Out[3]=",
- CellID->37672571],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{
-  "1", ",", "27", ",", "27", ",", "78", ",", "351", ",", "351", ",", "351", 
-   ",", "351", ",", "650", ",", "1728", ",", "1728", ",", "2430", ",", "2925",
-    ",", "3003", ",", "3003", ",", "5824", ",", "5824", ",", "7371", ",", 
-   "7371", ",", "7722", ",", "7722"}], "}"}]], "Output",
- ImageSize->{398, 33},
- ImageMargins->{{0, 0}, {0, 0}},
- ImageRegion->{{0, 1}, {0, 1}},
- CellLabel->"Out[3]=",
- CellID->194119256]
+ CellID->388007747]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
@@ -456,6 +414,14 @@ Cell[TextData[{
   "InlineSeparator"],
  " ",
  Cell[BoxData[
+  ButtonBox["RepName",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/RepName"]], "InlineFormula"],
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
   ButtonBox["RepsUpToDimNNoConjugates",
    BaseStyle->"Link",
    ButtonData->"paclet:Susyno/ref/RepsUpToDimNNoConjugates"]], "InlineFormula"]
@@ -467,21 +433,21 @@ Cell[" ", "FooterCell"]
 },
 Saveable->False,
 ScreenStyleEnvironment->"Working",
-WindowSize->{725, 566},
+WindowSize->{725, 729},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
 WindowTitle->"RepsUpToDimN - Wolfram Mathematica",
 TaggingRules->{
  "ModificationHighlight" -> False, 
   "Metadata" -> {
-   "built" -> "{2013, 8, 7, 2, 28, 48.2812500}", "context" -> "Susyno`", 
+   "built" -> "{2014, 7, 24, 0, 39, 34.1070122}", "context" -> "Susyno`", 
     "keywords" -> {}, "index" -> True, "label" -> "Susyno Paclet Symbol", 
     "language" -> "en", "paclet" -> "Susyno", "status" -> "None", "summary" -> 
     "RepsUpToDimN[group, maxDim] Lists all representations of group with \
 dimension smaller or equal to maxDim ", "synonyms" -> {}, "title" -> 
     "RepsUpToDimN", "type" -> "Symbol", "uri" -> "Susyno/ref/RepsUpToDimN"}, 
-  "SearchTextTranslated" -> ""},
+  "LinkTrails" -> "", "SearchTextTranslated" -> ""},
 CellContext->"Global`",
-FrontEndVersion->"7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
 StyleDefinitions->Notebook[{
    Cell[
     StyleData[
@@ -490,8 +456,11 @@ StyleDefinitions->Notebook[{
     StyleData["Input"], CellContext -> "Global`"], 
    Cell[
     StyleData["Output"], CellContext -> "Global`"]}, Visible -> False, 
-  FrontEndVersion -> "7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
-   StyleDefinitions -> "Default.nb"]
+  FrontEndVersion -> "9.0 for Microsoft Windows (64-bit) (January 25, 2013)", 
+  StyleDefinitions -> 
+  FrontEnd`FileName[{$RootDirectory, "C:", "Program Files", 
+     "Wolfram Research", "Mathematica", "10.0", "AddOns", "Applications"}, 
+    "Default_Style_MyVersion.nb", CharacterEncoding -> "WindowsANSI"]]
 ]
 (* End of Notebook Content *)
 
@@ -499,85 +468,75 @@ StyleDefinitions->Notebook[{
 (*CellTagsOutline
 CellTagsIndex->{
  "PrimaryExamplesSection"->{
-  Cell[4839, 151, 461, 13, 70, "PrimaryExamplesSection",
+  Cell[5166, 160, 461, 13, 70, "PrimaryExamplesSection",
    CellTags->"PrimaryExamplesSection",
-   CellID->148866822]}
+   CellID->681570509]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"PrimaryExamplesSection", 15516, 500}
+ {"PrimaryExamplesSection", 14306, 469}
  }
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[593, 21, 76, 1, 70, "SymbolColorBar"],
-Cell[672, 24, 178, 5, 70, "LinkTrail"],
-Cell[853, 31, 2314, 53, 70, "AnchorBarGrid",
+Cell[605, 21, 76, 1, 70, "SymbolColorBar"],
+Cell[684, 24, 178, 5, 70, "LinkTrail"],
+Cell[865, 31, 2314, 53, 70, "AnchorBarGrid",
  CellID->1],
-Cell[CellGroupData[{
-Cell[3192, 88, 55, 1, 70, "ObjectName",
+Cell[3182, 86, 55, 1, 70, "ObjectName",
  CellID->1224892054],
-Cell[3250, 91, 557, 16, 70, "Usage",
- CellID->982511436]
+Cell[CellGroupData[{
+Cell[3262, 91, 557, 16, 70, "Usage",
+ CellID->982511436],
+Cell[CellGroupData[{
+Cell[3844, 111, 580, 17, 70, "NotesSection",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->482089437],
+Cell[4427, 130, 240, 9, 70, "Notes",
+ CellID->416274567],
+Cell[4670, 141, 447, 13, 70, "Notes",
+ CellID->1067943069]
+}, Closed]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[3844, 112, 580, 17, 70, "NotesSection",
- CellGroupingRules->{"SectionGrouping", 50},
- CellID->309034724],
-Cell[4427, 131, 240, 9, 70, "Notes",
- CellID->416274567],
-Cell[4670, 142, 132, 4, 70, "Notes",
- CellID->1067943069]
-}, Closed]],
-Cell[CellGroupData[{
-Cell[4839, 151, 461, 13, 70, "PrimaryExamplesSection",
+Cell[5166, 160, 461, 13, 70, "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->148866822],
+ CellID->681570509],
 Cell[CellGroupData[{
-Cell[5325, 168, 148, 5, 70, "ExampleSection",
- CellID->276192278],
-Cell[5476, 175, 199, 6, 70, "ExampleText",
+Cell[5652, 177, 148, 5, 70, "ExampleSection",
+ CellID->232779980],
+Cell[5803, 184, 199, 6, 70, "ExampleText",
  CellID->283112903],
 Cell[CellGroupData[{
-Cell[5700, 185, 136, 4, 70, "Input",
+Cell[6027, 194, 136, 4, 70, "Input",
  CellID->473091279],
-Cell[5839, 191, 2346, 70, 122, "Output",
+Cell[6166, 200, 2346, 70, 122, "Output",
  CellID->16402979]
 }, Open  ]],
-Cell[8200, 264, 195, 4, 70, "ExampleText",
- CellID->250137860],
+Cell[8527, 273, 64, 1, 70, "ExampleText",
+ CellID->23985300],
 Cell[CellGroupData[{
-Cell[8420, 272, 237, 8, 70, "Input",
- CellID->100259156],
-Cell[8660, 282, 457, 11, 54, "Output",
- CellID->46385385]
-}, Open  ]],
-Cell[9132, 296, 119, 3, 70, "ExampleText",
- CellID->11819548],
-Cell[CellGroupData[{
-Cell[9276, 303, 495, 17, 70, "Input",
- CellID->105278369],
-Cell[9774, 322, 2346, 70, 122, "Output",
- CellID->37672571],
-Cell[12123, 394, 458, 11, 54, "Output",
- CellID->194119256]
+Cell[8616, 278, 185, 5, 70, "Input",
+ CellID->205549982],
+Cell[8804, 285, 2110, 78, 58, "Output",
+ CellID->388007747]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[12642, 412, 419, 12, 70, "TutorialsSection",
+Cell[10975, 370, 419, 12, 70, "TutorialsSection",
  CellID->250839057],
-Cell[13064, 426, 151, 3, 70, "Tutorials",
+Cell[11397, 384, 151, 3, 70, "Tutorials",
  CellID->341631938]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[13252, 434, 427, 12, 70, "RelatedLinksSection",
+Cell[11585, 392, 427, 12, 70, "RelatedLinksSection",
  CellID->1584193535],
-Cell[13682, 448, 448, 14, 70, "RelatedLinks",
+Cell[12015, 406, 691, 22, 70, "RelatedLinks",
  CellID->56765791]
 }, Open  ]],
-Cell[14145, 465, 23, 0, 70, "FooterCell"]
+Cell[12721, 431, 23, 0, 70, "FooterCell"]
 }
 ]
 *)

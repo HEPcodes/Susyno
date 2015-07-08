@@ -30,10 +30,10 @@ BeginPackage["Susyno`ModelBuilding`",{"Susyno`LieGroups`","Susyno`SusyRGEs`","Su
 {fundamentalModel,definingVevs,gaugeRotation,matterRotation,boundaryConditions};
 
 (* These are the default Susyno names for the parameters of the model *)
-{originalParameters,parameterTransformationRule};
+{originalParameters,parameterTransformationRule,RenameParametersWithRules};
 
 (* parametersSymmetries contains the symmetries of the model parameters; the optional variable fieldNames contains a model's field names *)
-{parametersSymmetries,fieldNames};
+{parametersSymmetries,fieldNames,breakingVEVs};
 
 (* Simplify the parameter names and eliminate some of them *)
 {ExcludeUnrealizableParameters,CutUnwantedFlavourIndices,CutUnwantedInvariantIndices,UseFieldNames};
@@ -46,23 +46,27 @@ BeginPackage["Susyno`ModelBuilding`",{"Susyno`LieGroups`","Susyno`SusyRGEs`","Su
 
 {g,M,f,y,\[Mu],l,h,b,s,m2};
 
-{CalculateEverything};
+{CalculateEverything,CalculateBetaFunctions,BasisRotation};
 
 {PrintAllModelInformation};
 
+(* SSB: this is something which is set up only in the SSB sub-package *)
+{parentModel,childModel,parentReps,childReps};
+
 Begin["Private`"];
 
-(* This method should be form internal use only *)
-RenameParametersWithRules[model_, ruleList_]:=Module[{aux},
-
+(* This method should be for internal use only *)
+Options[RenameParametersWithRules]={Verbose->False};
+RenameParametersWithRules[model_, ruleList_,OptionsPattern[]]:=Module[{aux},
 lagrangian[model]^=lagrangian[model]//.ruleList;
 betaFunctions[model]^=betaFunctions[model]//.ruleList;
 parameters[model]^=parameters[model]//.ruleList;
 parameterTransformationRule[model]^=If[ValueQ[parameterTransformationRule[model]],Append[parameterTransformationRule[model],ruleList],{ruleList}];
+If[OptionValue[Verbose],PrintAllModelInformation[model]];
 ]
 
 (* If this method is called, all variables associated with a model are computed and made available *)
-Options[GenerateModel]={CalculateEverything->False,Verbose->True};
+Options[GenerateModel]={CalculateEverything->False,CalculateBetaFunctions->True,Verbose->True,BasisRotation->Null};
 GenerateModel[model_,OptionsPattern[]]:=Module[{},
 If[CheckModel[model],
 (* Reset transformation rules *)
@@ -70,12 +74,15 @@ parameterTransformationRule[model]^={};
 If[!ValueQ[parameterRenamingRules[model]],parameterRenamingRules[model]^={}]; (* These are user defined rules *)
 
 GenerateModelParameters[model];
-GenerateModelBetaFunctions[model];
 parameters[model]^=parameters[model]//.parameterRenamingRules[model];
+
+If[OptionValue[CalculateBetaFunctions],
+GenerateModelBetaFunctions[model];
 betaFunctions[model]^=betaFunctions[model]//.parameterRenamingRules[model];
+];
 
 If[OptionValue[CalculateEverything],
-CalculateLagrangian[model,Verbose->False];
+CalculateLagrangian[model,Verbose->False,BasisRotation->OptionValue[BasisRotation]];
 lagrangian[model]^=lagrangian[model]//.parameterRenamingRules[model];
 ];
 
@@ -120,7 +127,7 @@ anomalyValues=Total[nFlavs[model] (TriangularAnomalyValue[group[model],#]&/@reps
 (* XXXXXXXXXXXXXXXXXXXXXXXXX Generating the model's parameters XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
-(* Returns the position and multiplicity in 'reps' of the representations that form trilinear invariants with reps[[i]] and reps[[j]]. Only representations with a position bigger than j will be returned. The output is {{rep1 position, # invariants with rep1},...} *)
+(* Returns the position and multiplicity in 'reps' of the representations that form trilinear invariants with reps[[i]] and reps[[j]]. Only representations with a position bigger than j will be returned. The output is {{rep1 position, #invariants with rep1},...} *)
 SearchForInvariants[model_,i_,j_]:=Module[{aux,result,discreteCharge},
 aux=Simplify[ReduceRepProduct[group[model],{reps[model][[i]],reps[model][[j]]}]];
 discreteCharge=discreteSym[model][[i]] discreteSym[model][[j]];
@@ -228,9 +235,23 @@ flavours=Array[f,Switch[part,3,3,4,2,5,1,6,3,7,2,8,1]];
 
 types=temporaryParameters[[part,All,1]];
 types=Tally[types][[All,1]];
-(* Using "PermutationSymmetryOfInvariants[group[model],reps[model][[#]]]&/@types" only will not take into account fields may be distinguisable by the discrete symmetry charges. The solution used is to add temporarily a fake U1 group with these charges - *** NOTE: be sure that this trick works for a list of discrete charges *** *)
-repsPlusDiscreteCharges=Flatten[#,1]&/@Transpose[{reps[model],E^discreteSym[model]}];
-aux1=PermutationSymmetryOfInvariants[Join[group[model],U1],repsPlusDiscreteCharges[[#]]]&/@types;
+(* [OLD] Using "PermutationSymmetryOfInvariants[group[model],reps[model][[#]]]&/@types" only will not take into account fields may be distinguisable by the discrete symmetry charges. The solution used is to add temporarily a fake U1 group with these charges *)
+(* [NEW] Actually different fields (as given by the user) are distinct always even if they have the the same gauge representations and discrete charges. The trick then is to add a fake U1 with hypercharges which are always distinct amoungst different fields. This can be done term by term (fake hypercharges may vary from term to term) - TODO *)
+aux=Tally/@types;
+fakeHypercharges={};
+Do[
+sum=0;collect={};
+Do[
+AppendTo[collect,{aux[[j,i,1]]->i}];
+sum+=i aux[[j,i,2]];
+,{i,Length[aux[[j]]]-1}];
+AppendTo[collect,{aux[[j,-1,1]]->-sum/aux[[j,-1,2]]}];
+AppendTo[fakeHypercharges,types[[j]]/.Flatten[collect]];
+,{j,Length[aux]}];
+
+repsWithFakeHypercharges=MapThread[MapThread[Append,{##}]&,{reps[model][[#]]&/@types,fakeHypercharges}];
+(* [END] Adding fake hypercharges *)
+aux1=PermutationSymmetryOfInvariants[Append[group[model],U1],#]&/@repsWithFakeHypercharges;
 
 (* This is the master list: it for every combination of fields and every snIrrep allowed by it, there is an entry with {A,B,C,D,E},
 A=position of the indices involved;
@@ -338,10 +359,21 @@ AppendTo[rules,parameter[[0]][parameter[[1]],more___]->parameter[[0]][fieldNames
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX GENERATING THE LAGRANGIAN XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
-Options[CalculateLagrangian]={Verbose->True};
-CalculateLagrangian[model_,OptionsPattern[]]:=Module[{sum,inv,combinatorialFactor,fNames,result,parts,noU1sPositions,aux,ruleA,ruleB},
+Options[CalculateLagrangian]={Verbose->True,BasisRotation->Null};
+CalculateLagrangian[model_,OptionsPattern[]]:=Module[{sum,inv,combinatorialFactor,fNames,result,parts,noU1sPositions,aux,ruleA,ruleB,rotationOfRepresentations,start,end,rotationRule,hasFlavors,vectorDimensions,vector1,vector2},
 result={};
 fNames=If[ValueQ[fieldNames[model]],fieldNames[model],Table[ToExpression["\[CapitalPhi]"<>ToString[i]],{i,Length[reps[model]]}]];
+
+
+(* If[OptionValue[BasisRotation]===Null,
+rotationOfRepresentations=Null;
+,
+aux=(Times@@DimR[group[model],#])&/@reps[model];
+start=Accumulate[aux]-aux+1;
+end=Accumulate[aux];
+
+rotationOfRepresentations=Table[OptionValue[BasisRotation][[start[[i]];;end[[i]],start[[i]];;end[[i]]]],{i,Length[reps[model]]}];
+]; *)
 
 parts={{1,2,3},{1,2},{1},{1,2,3},{1,2},{1}};
 
@@ -387,7 +419,21 @@ sum+=inv;
 ,{parameter,originalParameters[model][[9]]}];
 AppendTo[result,sum];
 
+(* Deal with possible rotations in matter field space *)
+If[OptionValue[BasisRotation]=!=Null,
+hasFlavors=(!(#===1))&/@nFlavs[model];
+vectorDimensions=DeleteCases[DimR[group[model],#],1]&/@reps[model];
+
+vector2=Flatten[Table[Array[If[hasFlavors[[nameI]],fNames[[nameI]][flavIdx],fNames[[nameI]]],vectorDimensions[[nameI]]]/.head_[]:>head,{nameI,Length[fNames]}]];
+vector1=vector2/.flavIdx->flavIdx_;
+
+rotationRule=MapThread[RuleDelayed,{vector1,Conjugate[OptionValue[BasisRotation]].vector2}];
+result=Expand[result/.rotationRule];
+];
+(* /Deal with possible rotations *)
+
 lagrangian[model]^=result;
+
 
 (* Print the result if needed *)
 If[OptionValue[Verbose],PrintLagrangian[model]];
@@ -414,7 +460,7 @@ lagrangian[model]^=lagrangian[model]//.parameterRenamingRules[model];
 ];
 
 spacing=StringJoin@@ConstantArray[" ",6];
-tab=TabView[{spacing<>"Model Information"<>spacing->PrintModelInformation[model],spacing<>"Gauge group"<>spacing->PrintModelGaugeGoup[model],spacing<>"Representations"<>spacing->PrintModelRepresentations[model],spacing<>"Parameters in model"<>spacing->PrintModelParameters[model],spacing<>"Lagrangian"<>spacing->PrintLagrangian[model],spacing<>"BetaFunctions"<>spacing->PrintModelBetaFunctions[model]},1,LabelStyle->{Darker[Red],FontFamily->"Consolas",FontSize->13,Bold},ControlPlacement->Top,Appearance->None,FrameMargins->20,Alignment->{Left,Automatic},ImageSize->{6 170,Automatic}];
+tab=TabView[{spacing<>"Model Information"<>spacing->PrintModelInformation[model],spacing<>"Gauge group"<>spacing->PrintModelGaugeGoup[model],spacing<>"Representations"<>spacing->PrintModelRepresentations[model],spacing<>"Parameters in model"<>spacing->PrintModelParameters[model],spacing<>"Lagrangian"<>spacing->PrintLagrangian[model],spacing<>"BetaFunctions"<>spacing->PrintModelBetaFunctions[model]},1,LabelStyle->{Darker[Red],FontFamily->"Consolas",FontSize->13,Bold},ControlPlacement->Top,Appearance->None,FrameMargins->20,Alignment->{Left,Automatic},ImageSize->{(*6 170*)Automatic,Automatic}];
 Print[tab];
 ];
 
@@ -506,7 +552,7 @@ If[nFlavs[model][[aux2]]=!=1,AppendTo[syms,k]];
 out={};
 Do[
 aux1=Which[Length[parametersSymmetries[model][[i,j,2,k]]]==1,{"symmetric"},Length[parametersSymmetries[model][[i,j,2,k]]]==Total[parametersSymmetries[model][[i,j,2,k]]],{"antisymmetric"},True,{"transforms as the ",parametersSymmetries[model][[i,j,2,k]]," representation of ",Subscript["S", Total[parametersSymmetries[model][[i,j,2,k]]]]}];
-out=Join[out,aux1,{" under a permutation of the flavor indices ",Fold[#1/.#2&,(f/@parametersSymmetries[model][[i,j,1,k]]),parameterRenamingRules[model]],", "}];
+out=Join[out,aux1,{" under a permutation of the flavor indices ",Fold[#1/.#2&,(f/@parametersSymmetries[model][[i,j,1,k]]),parameterRenamingRules[model]],", "}]; (* Note - this line is fine: parametersSymmetries[model][[i,j,1,k]] contains the position of the field in the parameter, and this is the same as the flavor index number even if 'previous' fields are unflavored *)
 ,{k,syms}];
 If[Length[syms]>0,
 PrependTo[out,"  ("];

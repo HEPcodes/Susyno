@@ -97,7 +97,9 @@ aux1=expr[[FindInvariantRep[model]]]/.b[x1_,x2_,x3_]:>b[x1,x3]; (* No need for t
 (* Find the f[2] flavour and delete it together with the representation index (which is suppose to correspond to a singlet)*)
 aux2=Position[aux1,f[2]];
 aux3=aux2;
-aux3[[1;;-1,-2]]=1+0aux3[[1;;-1,-2]];
+Do[
+aux3[[i,-2]]=1;
+,{i,Length[aux3]}];
 aux3=Join[aux2,aux3];
 
 result=Delete[aux1,aux3];

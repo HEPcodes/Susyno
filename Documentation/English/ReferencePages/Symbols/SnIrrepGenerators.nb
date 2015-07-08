@@ -1,0 +1,693 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     22054,        683]
+NotebookOptionsPosition[     18139,        557]
+NotebookOutlinePosition[     19999,        607]
+CellTagsIndexPosition[     19914,        602]
+WindowTitle->SnIrrepGenerators - Wolfram Mathematica
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[" ", "SymbolColorBar",
+ CellMargins->{{Inherited, Inherited}, {-5, 0}}],
+
+Cell[TextData[{
+ ButtonBox["Mathematica",
+  BaseStyle->{"Link", "LinkTrail"},
+  ButtonData->"paclet:Susyno/guide/Susyno"],
+ StyleBox[" > ", "LinkTrailSeparator"]
+}], "LinkTrail"],
+
+Cell[BoxData[GridBox[{
+   {Cell["SUSYNO PACLET SYMBOL", "PacletNameCell"], Cell[TextData[Cell[BoxData[
+     ActionMenuBox[
+      FrameBox["\<\"URL \[RightGuillemet]\"\>",
+       StripOnInput->False], {"\<\"Susyno/ref/SnIrrepGenerators\"\>":>
+      None, "\<\"Copy Mathematica url\"\>":>
+      Module[{DocumentationSearch`Private`nb$}, 
+       DocumentationSearch`Private`nb$ = NotebookPut[
+          Notebook[{
+            Cell["Susyno/ref/SnIrrepGenerators"]}, Visible -> False]]; 
+       SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+       FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+       NotebookClose[DocumentationSearch`Private`nb$]; Null], 
+      Delimiter, "\<\"Copy web url\"\>":>
+      Module[{DocumentationSearch`Private`nb$}, 
+       DocumentationSearch`Private`nb$ = NotebookPut[
+          Notebook[{
+            Cell[
+             BoxData[
+              MakeBoxes[
+               Hyperlink[
+               "http://reference.wolfram.com/mathematica/Susyno/ref/\
+SnIrrepGenerators.html"], StandardForm]], "Input", TextClipboardType -> 
+             "PlainText"]}, Visible -> False]]; 
+       SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+       FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+       NotebookClose[DocumentationSearch`Private`nb$]; 
+       Null], "\<\"Go to web url\"\>":>FrontEndExecute[{
+        NotebookLocate[{
+          URL[
+           StringJoin[
+           "http://reference.wolfram.com/mathematica/", 
+            "Susyno/ref/SnIrrepGenerators", ".html"]], None}]}]},
+      Appearance->None,
+      MenuAppearance->Automatic]],
+     LineSpacing->{1.4, 0}]], "AnchorBar"]}
+  }]], "AnchorBarGrid",
+ GridBoxOptions->{GridBoxItemSize->{"Columns" -> {
+     Scaled[0.65], {
+      Scaled[0.34]}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+   "RowsIndexed" -> {}}},
+ CellID->1],
+
+Cell["SnIrrepGenerators", "ObjectName",
+ CellID->1224892054],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[GridBox[{
+   {"", Cell[TextData[{
+     Cell[BoxData[
+      RowBox[{"SnIrrepGenerators", "[", "representation", "]"}]], 
+      "InlineFormula"],
+     " \[LineSeparator]Calculates the representation matrices of the (12) and \
+(12...n) elements of the ",
+     Cell[BoxData[
+      SubscriptBox["S", "n"]], "InlineFormula"],
+     " group"
+    }]]}
+  }]], "Usage",
+ GridBoxOptions->{
+ GridBoxBackground->{
+  "Columns" -> {{None}}, "ColumnsIndexed" -> {}, "Rows" -> {{None}}, 
+   "RowsIndexed" -> {}}},
+ CellID->982511436],
+
+Cell[CellGroupData[{
+
+Cell[TextData[Cell[BoxData[
+ ButtonBox[
+  FrameBox[
+   StyleBox[
+    RowBox[{"MORE", " ", "INFORMATION"}], "NotesFrameText"],
+   StripOnInput->False],
+  Appearance->{Automatic, None},
+  BaseStyle->None,
+  ButtonFunction:>(FrontEndExecute[{
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], All, ButtonCell], 
+     FrontEndToken["OpenCloseGroup"], 
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], After, CellContents]}]& ),
+  Evaluator->None,
+  Method->"Preemptive"]]]], "NotesSection",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->13689534],
+
+Cell[TextData[{
+ Cell[BoxData["representation"], "InlineFormula"],
+ " must be a partition of some integer n, as irreducible representations of  ",
+ Cell[BoxData[
+  SubscriptBox["S", "n"]], "InlineFormula"],
+ " are specified in this way;"
+}], "Notes",
+ CellID->613073599],
+
+Cell[TextData[{
+ "Note with the (12) and (12...n) elements of the ",
+ Cell[BoxData[
+  SubscriptBox["S", "n"]], "InlineFormula"],
+ " group alone, it is possible to generate all remaining group elements, for \
+any n;"
+}], "Notes",
+ CellID->1067943069],
+
+Cell[TextData[{
+ "This function returns two real orthogonal/unitary matrices which are the \
+representation matrices of the elements (12) and (12...n) elements of the ",
+ Cell[BoxData[
+  SubscriptBox["S", "n"]], "InlineFormula"],
+ " group. If orthogonality is not required, the option ",
+ StyleBox["OrthogonalizeGenerators\[Rule]False", "InlineCode"],
+ " can be used \[LongDash] the resulting matrices have less complicated \
+values, and the code is executed faster."
+}], "Notes",
+ CellID->98186647]
+}, Closed]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["EXAMPLES",
+ BaseStyle->None,
+ Appearance->{Automatic, None},
+ Evaluator->None,
+ Method->"Preemptive",
+ ButtonFunction:>(FrontEndExecute[{
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], All, ButtonCell], 
+    FrontEndToken["OpenCloseGroup"], 
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], After, 
+     CellContents]}]& )]], "PrimaryExamplesSection",
+ CellTags->"PrimaryExamplesSection",
+ CellID->356052526],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Basic Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(2)", "ExampleCount"]
+}], "ExampleSection",
+ CellID->74531358],
+
+Cell[TextData[{
+ Cell[BoxData[
+  SubscriptBox["S", "3"]], "InlineFormula"],
+ " has 3 irreducible representations: {3}, {2,1}, {1,1,1}. For example the \
+elements (12) and (123) of the irrep {2,1} can be written as follows:"
+}], "ExampleText",
+ CellID->447494391],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"gens", "=", 
+   RowBox[{"SnIrrepGenerators", "[", 
+    RowBox[{"{", 
+     RowBox[{"2", ",", "1"}], "}"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"MatrixForm", "/@", "gens"}]}], "Input",
+ CellLabel->"In[1]:=",
+ CellID->640503189],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   TagBox[
+    RowBox[{"(", "\[NoBreak]", GridBox[{
+       {
+        FractionBox["1", "2"], 
+        RowBox[{"-", 
+         FractionBox[
+          SqrtBox["3"], "2"]}]},
+       {
+        RowBox[{"-", 
+         FractionBox[
+          SqrtBox["3"], "2"]}], 
+        RowBox[{"-", 
+         FractionBox["1", "2"]}]}
+      },
+      GridBoxAlignment->{
+       "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, 
+        "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+    Function[BoxForm`e$, 
+     MatrixForm[BoxForm`e$]]], ",", 
+   TagBox[
+    RowBox[{"(", "\[NoBreak]", GridBox[{
+       {
+        RowBox[{"-", 
+         FractionBox["1", "2"]}], 
+        FractionBox[
+         SqrtBox["3"], "2"]},
+       {
+        RowBox[{"-", 
+         FractionBox[
+          SqrtBox["3"], "2"]}], 
+        RowBox[{"-", 
+         FractionBox["1", "2"]}]}
+      },
+      GridBoxAlignment->{
+       "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, 
+        "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+    Function[BoxForm`e$, 
+     MatrixForm[BoxForm`e$]]]}], "}"}]], "Output",
+ ImageSize->{205, 63},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[1]=",
+ CellID->273948078]
+}, Open  ]],
+
+Cell["\<\
+By multiplying repeatedly these matrices together we get 6 matrices:\
+\>", "ExampleText",
+ CellID->32979335],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MatrixForm", "/@", 
+  RowBox[{"FixedPoint", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Sort", "[", 
+      RowBox[{"DeleteDuplicates", "[", 
+       RowBox[{"Join", "[", 
+        RowBox[{"#", ",", 
+         RowBox[{"Dot", "@@@", 
+          RowBox[{"Tuples", "[", 
+           RowBox[{"#", ",", "2"}], "]"}]}]}], "]"}], "]"}], "]"}], "&"}], 
+    ",", "gens"}], "]"}]}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->281335393],
+
+Cell[BoxData[
+ GraphicsBox[
+  TagBox[RasterBox[CompressedData["
+1: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
+RZMrN2HnACNoFSAAFwjKDQAAAIjhP0ZxhpE=
+    "], {{0, 63}, {497, 0}}, {0, 255},
+    ColorFunction->RGBColor],
+   BoxForm`ImageTag["Byte", ColorSpace -> "RGB", Interleaving -> True],
+   Selectable->False],
+  BaseStyle->"ImageGraphics",
+  ImageSize->Automatic,
+  ImageSizeRaw->{497, 63},
+  PlotRange->{{0, 497}, {0, 63}}]], "Output",
+ ImageSize->{501, 63},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[2]=",
+ CellID->8619220]
+}, Open  ]],
+
+Cell[TextData[{
+ "If the representation does not need to be unitary, then we can use the \
+option ",
+ StyleBox["OrthogonalizeGenerators", "InlineCode"],
+ ":"
+}], "ExampleText",
+ CellID->20498925],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+gens=SnIrrepGenerators[{2,1},OrthogonalizeGenerators\[Rule]False];
+MatrixForm/@gens\
+\>", "Input",
+ CellLabel->"In[3]:=",
+ CellID->91661810],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   TagBox[
+    RowBox[{"(", "\[NoBreak]", GridBox[{
+       {"1", "0"},
+       {
+        RowBox[{"-", "1"}], 
+        RowBox[{"-", "1"}]}
+      },
+      GridBoxAlignment->{
+       "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, 
+        "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+    Function[BoxForm`e$, 
+     MatrixForm[BoxForm`e$]]], ",", 
+   TagBox[
+    RowBox[{"(", "\[NoBreak]", GridBox[{
+       {"0", "1"},
+       {
+        RowBox[{"-", "1"}], 
+        RowBox[{"-", "1"}]}
+      },
+      GridBoxAlignment->{
+       "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, 
+        "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+    Function[BoxForm`e$, 
+     MatrixForm[BoxForm`e$]]]}], "}"}]], "Output",
+ ImageSize->{145, 28},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[3]=",
+ CellID->536683213]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[Cell["\t", "ExampleDelimiter"],
+  $Line = 0; Null]], "ExampleDelimiter",
+ CellID->324607423],
+
+Cell[TextData[{
+ "The function ",
+ StyleBox["SnIrrepGenerators", "InlineCode"],
+ " works even for very big irreducible representations of ",
+ Cell[BoxData[
+  SubscriptBox["S", "n"]], "InlineFormula"],
+ ". For example, it can compute the representation matrices of the \
+42-dimension representation {3,3,2} of ",
+ Cell[BoxData[
+  SubscriptBox["S", "8"]], "InlineFormula"],
+ ". Note however that a significant amount of time is used to orthogonalize \
+the resulting matrices, as such, if this is not required, the option ",
+ StyleBox["OrthogonalizeGenerators", "InlineCode"],
+ " should be used:"
+}], "ExampleText",
+ CellID->42214145],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Timing", "[", 
+  RowBox[{
+   RowBox[{"SnIrrepGenerators", "[", 
+    RowBox[{"{", 
+     RowBox[{"3", ",", "3", ",", "2"}], "}"}], "]"}], ";"}], "]"}]], "Input",
+ CellLabel->"In[1]:=",
+ CellID->333761032],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"214.15625`8.351330666777113", ",", "Null"}], "}"}]], "Output",
+ ImageSize->{127, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[1]=",
+ CellID->20960101]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Timing", "[", 
+  RowBox[{
+   RowBox[{"SnIrrepGenerators", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"3", ",", "3", ",", "2"}], "}"}], ",", 
+     RowBox[{"OrthogonalizeGenerators", "\[Rule]", "False"}]}], "]"}], ";"}], 
+  "]"}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->616528551],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0.8125`5.930423282930536", ",", "Null"}], "}"}]], "Output",
+ ImageSize->{113, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[2]=",
+ CellID->88623395]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["RELATED LINKS",
+ BaseStyle->None,
+ Appearance->{Automatic, None},
+ Evaluator->None,
+ Method->"Preemptive",
+ ButtonFunction:>(FrontEndExecute[{
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], All, ButtonCell], 
+    FrontEndToken["OpenCloseGroup"], 
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], After, 
+     CellContents]}]& )]], "RelatedLinksSection",
+ CellID->1584193535],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["HookContentFormula",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/HookContentFormula"]], "InlineFormula"],
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
+  ButtonBox["DecomposeSnProduct",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/DecomposeSnProduct"]], "InlineFormula"],
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
+  ButtonBox["SnClassCharacter",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/SnClassCharacter"]], "InlineFormula"],
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
+  ButtonBox["SnClassOrder",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/SnClassOrder"]], "InlineFormula"],
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
+  ButtonBox["SnIrrepDim",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/SnIrrepDim"]], "InlineFormula"],
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
+  ButtonBox["Invariants",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/Invariants"]], "InlineFormula"],
+ " "
+}], "RelatedLinks",
+ CellID->1038487239]
+}, Open  ]],
+
+Cell[" ", "FooterCell"]
+},
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+WindowSize->{725, 729},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowTitle->"SnIrrepGenerators - Wolfram Mathematica",
+TaggingRules->{
+ "ModificationHighlight" -> False, 
+  "Metadata" -> {
+   "built" -> "{2014, 7, 24, 0, 39, 41.4399069}", "context" -> "Susyno`", 
+    "keywords" -> {"Sn; SnIrrepGenerators; Susyno"}, "index" -> True, "label" -> 
+    "Susyno Paclet Symbol", "language" -> "en", "paclet" -> "Susyno", 
+    "status" -> "None", "summary" -> 
+    "SnIrrepGenerators[representation] Calculates the representation matrices \
+of the (12) and (12...n) elements of the S_n group", "synonyms" -> {}, 
+    "title" -> "SnIrrepGenerators", "type" -> "Symbol", "uri" -> 
+    "Susyno/ref/SnIrrepGenerators"}, "LinkTrails" -> "", 
+  "SearchTextTranslated" -> ""},
+CellContext->"Global`",
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[
+    StyleDefinitions -> FrontEnd`FileName[{"Wolfram"}, "Reference.nb"]]], 
+   Cell[
+    StyleData["Input"], CellContext -> "Global`"], 
+   Cell[
+    StyleData["Output"], CellContext -> "Global`"]}, Visible -> False, 
+  FrontEndVersion -> "9.0 for Microsoft Windows (64-bit) (January 25, 2013)", 
+  StyleDefinitions -> 
+  FrontEnd`FileName[{$RootDirectory, "C:", "Program Files", 
+     "Wolfram Research", "Mathematica", "10.0", "AddOns", "Applications"}, 
+    "Default_Style_MyVersion.nb", CharacterEncoding -> "WindowsANSI"]]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "PrimaryExamplesSection"->{
+  Cell[5045, 152, 461, 13, 70, "PrimaryExamplesSection",
+   CellTags->"PrimaryExamplesSection",
+   CellID->356052526]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"PrimaryExamplesSection", 19771, 595}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[610, 21, 76, 1, 70, "SymbolColorBar"],
+Cell[689, 24, 178, 5, 70, "LinkTrail"],
+Cell[870, 31, 1879, 41, 70, "AnchorBarGrid",
+ CellID->1],
+Cell[2752, 74, 60, 1, 70, "ObjectName",
+ CellID->1224892054],
+Cell[CellGroupData[{
+Cell[2837, 79, 528, 16, 70, "Usage",
+ CellID->982511436],
+Cell[CellGroupData[{
+Cell[3390, 99, 579, 17, 70, "NotesSection",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->13689534],
+Cell[3972, 118, 270, 7, 70, "Notes",
+ CellID->613073599],
+Cell[4245, 127, 249, 7, 70, "Notes",
+ CellID->1067943069],
+Cell[4497, 136, 499, 10, 70, "Notes",
+ CellID->98186647]
+}, Closed]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5045, 152, 461, 13, 70, "PrimaryExamplesSection",
+ CellTags->"PrimaryExamplesSection",
+ CellID->356052526],
+Cell[CellGroupData[{
+Cell[5531, 169, 147, 5, 70, "ExampleSection",
+ CellID->74531358],
+Cell[5681, 176, 262, 6, 70, "ExampleText",
+ CellID->447494391],
+Cell[CellGroupData[{
+Cell[5968, 186, 274, 8, 70, "Input",
+ CellID->640503189],
+Cell[6245, 196, 1831, 59, 84, "Output",
+ CellID->273948078]
+}, Open  ]],
+Cell[8091, 258, 118, 3, 70, "ExampleText",
+ CellID->32979335],
+Cell[CellGroupData[{
+Cell[8234, 265, 444, 14, 47, "Input",
+ CellID->281335393],
+Cell[8681, 281, 3694, 68, 84, "Output",
+ CellID->8619220]
+}, Open  ]],
+Cell[12390, 352, 195, 6, 70, "ExampleText",
+ CellID->20498925],
+Cell[CellGroupData[{
+Cell[12610, 362, 150, 5, 70, "Input",
+ CellID->91661810],
+Cell[12763, 369, 1482, 45, 49, "Output",
+ CellID->536683213]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14282, 419, 125, 3, 70, "ExampleDelimiter",
+ CellID->324607423],
+Cell[14410, 424, 631, 15, 70, "ExampleText",
+ CellID->42214145],
+Cell[CellGroupData[{
+Cell[15066, 443, 226, 7, 70, "Input",
+ CellID->333761032],
+Cell[15295, 452, 232, 7, 36, "Output",
+ CellID->20960101]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15564, 464, 314, 10, 70, "Input",
+ CellID->616528551],
+Cell[15881, 476, 229, 7, 36, "Output",
+ CellID->88623395]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16183, 491, 427, 12, 70, "RelatedLinksSection",
+ CellID->1584193535],
+Cell[16613, 505, 1484, 47, 70, "RelatedLinks",
+ CellID->1038487239]
+}, Open  ]],
+Cell[18112, 555, 23, 0, 70, "FooterCell"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

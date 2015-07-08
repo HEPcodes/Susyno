@@ -1,19 +1,19 @@
-(* Content-type: application/mathematica *)
+(* Content-type: application/vnd.wolfram.mathematica *)
 
 (*** Wolfram Notebook File ***)
 (* http://www.wolfram.com/nb *)
 
-(* CreatedBy='Mathematica 7.0' *)
+(* CreatedBy='Mathematica 9.0' *)
 
 (*CacheID: 234*)
 (* Internal cache information:
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
-NotebookDataPosition[       145,          7]
-NotebookDataLength[     16592,        543]
-NotebookOptionsPosition[     13631,        449]
-NotebookOutlinePosition[     15165,        493]
-CellTagsIndexPosition[     15080,        488]
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     16810,        547]
+NotebookOptionsPosition[     13643,        449]
+NotebookOutlinePosition[     15395,        497]
+CellTagsIndexPosition[     15310,        492]
 WindowTitle->GenerateModel - Wolfram Mathematica
 WindowFrame->Normal*)
 
@@ -84,10 +84,10 @@ GenerateModel.html"], StandardForm]], "Input", TextClipboardType ->
    "RowsIndexed" -> {}}},
  CellID->1],
 
-Cell[CellGroupData[{
-
 Cell["GenerateModel", "ObjectName",
  CellID->1224892054],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[GridBox[{
    {"", Cell[TextData[{
@@ -101,8 +101,7 @@ Cell[BoxData[GridBox[{
  GridBoxBackground->{
   "Columns" -> {{None}}, "ColumnsIndexed" -> {}, "Rows" -> {{None}}, 
    "RowsIndexed" -> {}}},
- CellID->982511436]
-}, Open  ]],
+ CellID->982511436],
 
 Cell[CellGroupData[{
 
@@ -123,7 +122,7 @@ Cell[TextData[Cell[BoxData[
   Evaluator->None,
   Method->"Preemptive"]]]], "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->180420732],
+ CellID->222362710],
 
 Cell[TextData[{
  Cell[BoxData["model"], "InlineFormula"],
@@ -264,7 +263,8 @@ Cell[TextData[{
  "."
 }], "Notes",
  CellID->509768460]
-}, Closed]],
+}, Closed]]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -281,7 +281,7 @@ Cell[TextData[ButtonBox["EXAMPLES",
      FrontEnd`SelectedNotebook[], After, 
      CellContents]}]& )]], "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->246921727],
+ CellID->252912614],
 
 Cell[CellGroupData[{
 
@@ -290,7 +290,7 @@ Cell[TextData[{
  "\[NonBreakingSpace]\[NonBreakingSpace]",
  Cell["(1)", "ExampleCount"]
 }], "ExampleSection",
- CellID->574037037],
+ CellID->228719283],
 
 Cell["The MSSM:", "ExampleText",
  CellID->283112903],
@@ -449,20 +449,21 @@ Cell[" ", "FooterCell"]
 },
 Saveable->False,
 ScreenStyleEnvironment->"Working",
-WindowSize->{725, 566},
+WindowSize->{725, 729},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
 WindowTitle->"GenerateModel - Wolfram Mathematica",
 TaggingRules->{
  "ModificationHighlight" -> False, 
   "Metadata" -> {
-   "built" -> "{2013, 8, 7, 2, 27, 4.9218750}", "context" -> "Susyno`", 
+   "built" -> "{2014, 7, 24, 0, 39, 14.8851758}", "context" -> "Susyno`", 
     "keywords" -> {}, "index" -> True, "label" -> "Susyno Paclet Symbol", 
     "language" -> "en", "paclet" -> "Susyno", "status" -> "None", "summary" -> 
     "GenerateModel[model] Computes several properties of a given model", 
     "synonyms" -> {}, "title" -> "GenerateModel", "type" -> "Symbol", "uri" -> 
-    "Susyno/ref/GenerateModel"}, "SearchTextTranslated" -> ""},
+    "Susyno/ref/GenerateModel"}, "LinkTrails" -> "", "SearchTextTranslated" -> 
+  ""},
 CellContext->"Global`",
-FrontEndVersion->"7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
 StyleDefinitions->Notebook[{
    Cell[
     StyleData[
@@ -471,8 +472,11 @@ StyleDefinitions->Notebook[{
     StyleData["Input"], CellContext -> "Global`"], 
    Cell[
     StyleData["Output"], CellContext -> "Global`"]}, Visible -> False, 
-  FrontEndVersion -> "7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
-   StyleDefinitions -> "Default.nb"]
+  FrontEndVersion -> "9.0 for Microsoft Windows (64-bit) (January 25, 2013)", 
+  StyleDefinitions -> 
+  FrontEnd`FileName[{$RootDirectory, "C:", "Program Files", 
+     "Wolfram Research", "Mathematica", "10.0", "AddOns", "Applications"}, 
+    "Default_Style_MyVersion.nb", CharacterEncoding -> "WindowsANSI"]]
 ]
 (* End of Notebook Content *)
 
@@ -480,71 +484,71 @@ StyleDefinitions->Notebook[{
 (*CellTagsOutline
 CellTagsIndex->{
  "PrimaryExamplesSection"->{
-  Cell[8492, 270, 461, 13, 70, "PrimaryExamplesSection",
+  Cell[8504, 270, 461, 13, 70, "PrimaryExamplesSection",
    CellTags->"PrimaryExamplesSection",
-   CellID->246921727]}
+   CellID->252912614]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"PrimaryExamplesSection", 14937, 481}
+ {"PrimaryExamplesSection", 15167, 485}
  }
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[594, 21, 76, 1, 70, "SymbolColorBar"],
-Cell[673, 24, 178, 5, 70, "LinkTrail"],
-Cell[854, 31, 2318, 53, 70, "AnchorBarGrid",
+Cell[606, 21, 76, 1, 70, "SymbolColorBar"],
+Cell[685, 24, 178, 5, 70, "LinkTrail"],
+Cell[866, 31, 2318, 53, 70, "AnchorBarGrid",
  CellID->1],
-Cell[CellGroupData[{
-Cell[3197, 88, 56, 1, 70, "ObjectName",
+Cell[3187, 86, 56, 1, 70, "ObjectName",
  CellID->1224892054],
-Cell[3256, 91, 428, 12, 70, "Usage",
- CellID->982511436]
+Cell[CellGroupData[{
+Cell[3268, 91, 428, 12, 70, "Usage",
+ CellID->982511436],
+Cell[CellGroupData[{
+Cell[3721, 107, 580, 17, 70, "NotesSection",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->222362710],
+Cell[4304, 126, 1132, 40, 70, "Notes",
+ CellID->1067943069],
+Cell[5439, 168, 380, 7, 70, "Notes",
+ CellID->22424971],
+Cell[5822, 177, 447, 16, 70, "Notes",
+ CellID->394246396],
+Cell[6272, 195, 433, 13, 70, "Notes",
+ CellID->303834471],
+Cell[6708, 210, 736, 19, 70, "Notes",
+ CellID->369147650],
+Cell[7447, 231, 627, 20, 70, "Notes",
+ CellID->374087497],
+Cell[8077, 253, 378, 11, 70, "Notes",
+ CellID->509768460]
+}, Closed]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[3721, 108, 580, 17, 70, "NotesSection",
- CellGroupingRules->{"SectionGrouping", 50},
- CellID->180420732],
-Cell[4304, 127, 1132, 40, 70, "Notes",
- CellID->1067943069],
-Cell[5439, 169, 380, 7, 70, "Notes",
- CellID->22424971],
-Cell[5822, 178, 447, 16, 70, "Notes",
- CellID->394246396],
-Cell[6272, 196, 433, 13, 70, "Notes",
- CellID->303834471],
-Cell[6708, 211, 736, 19, 70, "Notes",
- CellID->369147650],
-Cell[7447, 232, 627, 20, 70, "Notes",
- CellID->374087497],
-Cell[8077, 254, 378, 11, 70, "Notes",
- CellID->509768460]
-}, Closed]],
-Cell[CellGroupData[{
-Cell[8492, 270, 461, 13, 70, "PrimaryExamplesSection",
+Cell[8504, 270, 461, 13, 70, "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->246921727],
+ CellID->252912614],
 Cell[CellGroupData[{
-Cell[8978, 287, 148, 5, 70, "ExampleSection",
- CellID->574037037],
-Cell[9129, 294, 52, 1, 70, "ExampleText",
+Cell[8990, 287, 148, 5, 70, "ExampleSection",
+ CellID->228719283],
+Cell[9141, 294, 52, 1, 70, "ExampleText",
  CellID->283112903],
-Cell[9184, 297, 3508, 114, 70, "Input",
+Cell[9196, 297, 3508, 114, 70, "Input",
  CellID->239043150],
-Cell[12695, 413, 81, 1, 70, "ExampleText",
+Cell[12707, 413, 81, 1, 70, "ExampleText",
  CellID->618185856],
-Cell[12779, 416, 188, 5, 70, "Input",
+Cell[12791, 416, 188, 5, 70, "Input",
  CellID->705999126]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[13016, 427, 419, 12, 70, "TutorialsSection",
+Cell[13028, 427, 419, 12, 70, "TutorialsSection",
  CellID->250839057],
-Cell[13438, 441, 151, 3, 70, "Tutorials",
+Cell[13450, 441, 151, 3, 70, "Tutorials",
  CellID->341631938]
 }, Open  ]],
-Cell[13604, 447, 23, 0, 70, "FooterCell"]
+Cell[13616, 447, 23, 0, 70, "FooterCell"]
 }
 ]
 *)

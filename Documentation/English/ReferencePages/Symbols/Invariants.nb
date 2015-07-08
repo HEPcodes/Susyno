@@ -1,19 +1,19 @@
-(* Content-type: application/mathematica *)
+(* Content-type: application/vnd.wolfram.mathematica *)
 
 (*** Wolfram Notebook File ***)
 (* http://www.wolfram.com/nb *)
 
-(* CreatedBy='Mathematica 7.0' *)
+(* CreatedBy='Mathematica 9.0' *)
 
 (*CacheID: 234*)
 (* Internal cache information:
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
-NotebookDataPosition[       145,          7]
-NotebookDataLength[     26954,        955]
-NotebookOptionsPosition[     22126,        793]
-NotebookOutlinePosition[     23682,        837]
-CellTagsIndexPosition[     23597,        832]
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     60866,       2134]
+NotebookOptionsPosition[     51395,       1812]
+NotebookOutlinePosition[     53309,       1862]
+CellTagsIndexPosition[     53223,       1857]
 WindowTitle->Invariants - Wolfram Mathematica
 WindowFrame->Normal*)
 
@@ -84,10 +84,10 @@ Invariants.html"], StandardForm]], "Input", TextClipboardType ->
    "RowsIndexed" -> {}}},
  CellID->1],
 
-Cell[CellGroupData[{
-
 Cell["Invariants", "ObjectName",
  CellID->1224892054],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[GridBox[{
    {"", Cell[TextData[{
@@ -97,19 +97,20 @@ Cell[BoxData[GridBox[{
         RowBox[{"{", 
          RowBox[{"rep1", ",", " ", "rep2", ",", " ", "..."}], "}"}]}], "]"}]],
        "InlineFormula"],
-     "\[LineSeparator]Calculates the invariants of ",
+     "\[LineSeparator]Calculates the linear combinations of the components of \
+",
      Cell[BoxData["rep1"], "InlineFormula"],
      " x ",
      Cell[BoxData["rep2"], "InlineFormula"],
-     " x \[CenterEllipsis]"
+     " x \[CenterEllipsis] which are invariant under the action of the group. \
+These are also known as the Clebsch-Gordon coefficients."
     }]]}
   }]], "Usage",
  GridBoxOptions->{
  GridBoxBackground->{
   "Columns" -> {{None}}, "ColumnsIndexed" -> {}, "Rows" -> {{None}}, 
    "RowsIndexed" -> {}}},
- CellID->982511436]
-}, Open  ]],
+ CellID->982511436],
 
 Cell[CellGroupData[{
 
@@ -130,7 +131,7 @@ Cell[TextData[Cell[BoxData[
   Evaluator->None,
   Method->"Preemptive"]]]], "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->195041733],
+ CellID->286213341],
 
 Cell[TextData[{
  Cell[BoxData["group"], "InlineFormula"],
@@ -259,8 +260,96 @@ for any group (not just SU(2)) - see also the method ",
    ButtonData->"paclet:Susyno/ref/IrrepInProduct"]], "InlineFormula"],
  "."
 }], "Notes",
- CellID->329977022]
-}, Closed]],
+ CellID->329977022],
+
+Cell[TextData[{
+ "The optional input ",
+ Cell[BoxData[
+  RowBox[{"TensorForm", "\[Rule]", "True"}]], "InlineFormula"],
+ " can be used to convert the output of this function into a pure tensor with \
+numerical factors. When this optional parameter is used, the output is of the \
+form ",
+ Cell[BoxData[
+  RowBox[{"{", 
+   RowBox[{"tensor", ",", "variables"}], "}"}]], "InlineFormula"],
+ " where ",
+ Cell[BoxData[
+  RowBox[{"tensor", "[", 
+   RowBox[{"[", "1", "]"}], "]"}]], "InlineFormula"],
+ ",  ",
+ Cell[BoxData[
+  RowBox[{"tensor", "[", 
+   RowBox[{"[", "2", "]"}], "]"}]], "InlineFormula"],
+ ",  \[CenterEllipsis] contain the Clebsch-Gordon coefficients for each \
+invariant, and ",
+ Cell[BoxData["variables"], "InlineFormula"],
+ " is the list of field names and components used when  using ",
+ Cell[BoxData[
+  RowBox[{"TensorForm", "\[Rule]", "False"}]], "InlineFormula"],
+ ". As such, ",
+ StyleBox["Invariants[group,{rep1, rep2, ...}, TensorForm\[Rule]False]", 
+  "InlineCode"],
+ " is the same as ",
+ StyleBox["Fold[Dot,#1,Reverse[#2]]&@@Invariants[group,{rep1, rep2, \
+...},TensorForm\[Rule]True]", "InlineCode"]
+}], "Notes",
+ CellID->273098746],
+
+Cell[TextData[{
+ "When a given representation appears repeated in the product ",
+ Cell[BoxData["rep1"], "InlineFormula"],
+ " x ",
+ Cell[BoxData["rep2"], "InlineFormula"],
+ " x \[CenterEllipsis], the resulting invariants will have \
+symmetries/anti-symmetries under permutations of the corresponding fields. \
+The  ",
+ Cell[BoxData["Invariants"], "InlineFormula"],
+ " function organizes the invariants in irreducible representations of this \
+permutation group, as given by the output of ",
+ Cell[BoxData[
+  ButtonBox["PermutationSymmetryOfInvariants",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/PermutationSymmetryOfInvariants"]], 
+  "InlineFormula"],
+ " (see examples below)."
+}], "Notes",
+ CellID->392955586],
+
+Cell[TextData[{
+ "The invariants/Clebsch-Gordon coefficients returned by this function follow \
+the following general normalization convention. Writing each invariant as ",
+ Cell[BoxData[
+  UnderscriptBox["\[Sum]", 
+   RowBox[{"i", ",", "j", ",", "..."}]]], "InlineFormula"],
+ "(",
+ Cell[BoxData[
+  SubscriptBox["c", 
+   RowBox[{"ij", "..."}]]], "InlineFormula"],
+ " ",
+ Cell[BoxData["rep1"], "InlineFormula"],
+ "[i] x ",
+ Cell[BoxData["rep2"], "InlineFormula"],
+ "[j] x \[CenterEllipsis]), then the normalization convention is  ",
+ Cell[BoxData[
+  UnderscriptBox["\[Sum]", 
+   RowBox[{"i", ",", "j", ",", "..."}]]], "InlineFormula"],
+ Cell[BoxData[
+  RowBox[{
+   RowBox[{"|", 
+    SubscriptBox["c", 
+     RowBox[{"ij", "..."}]], 
+    SuperscriptBox["|", "2"]}], "="}]], "InlineFormula"],
+ Cell[BoxData[
+  SqrtBox[
+   RowBox[{
+    RowBox[{"dim", 
+     RowBox[{"(", "rep1", ")"}], "dim", 
+     RowBox[{"(", "rep2", ")"}]}], "..."}]]], "InlineFormula"],
+ ". Here, i,j, ... are the components of each representation."
+}], "Notes",
+ CellID->8342471]
+}, Closed]]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -277,16 +366,16 @@ Cell[TextData[ButtonBox["EXAMPLES",
      FrontEnd`SelectedNotebook[], After, 
      CellContents]}]& )]], "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->132666956],
+ CellID->535663645],
 
 Cell[CellGroupData[{
 
 Cell[TextData[{
  "Basic Examples",
  "\[NonBreakingSpace]\[NonBreakingSpace]",
- Cell["(1)", "ExampleCount"]
+ Cell["(7)", "ExampleCount"]
 }], "ExampleSection",
- CellID->19140300],
+ CellID->216313351],
 
 Cell["\<\
 If a and b are SU(2) doublets [={1}], they form an invariant:\
@@ -309,17 +398,167 @@ Cell[BoxData[
  RowBox[{"{", 
   RowBox[{
    RowBox[{
-    RowBox[{"a", "[", "2", "]"}], " ", 
-    RowBox[{"b", "[", "1", "]"}]}], "-", 
+    RowBox[{"-", 
+     RowBox[{"a", "[", "2", "]"}]}], " ", 
+    RowBox[{"b", "[", "1", "]"}]}], "+", 
    RowBox[{
     RowBox[{"a", "[", "1", "]"}], " ", 
     RowBox[{"b", "[", "2", "]"}]}]}], "}"}]], "Output",
- ImageSize->{149, 15},
+ ImageSize->{157, 15},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[1]=",
- CellID->162871902]
+ CellID->9945298]
 }, Open  ]],
+
+Cell["The same thing but in a tensor form:", "ExampleText",
+ CellID->229125790],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"temp", "=", 
+  RowBox[{"Invariants", "[", 
+   RowBox[{"SU2", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", "1", "}"}], ",", 
+      RowBox[{"{", "1", "}"}]}], "}"}], ",", 
+    RowBox[{"TensorForm", "\[Rule]", "True"}]}], "]"}]}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->388700568],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   TagBox[
+    RowBox[{"SparseArray", "[", 
+     RowBox[{
+      InterpretationBox[
+       RowBox[{"\<\"<\"\>", "\[InvisibleSpace]", "2", 
+        "\[InvisibleSpace]", "\<\">\"\>"}],
+       SequenceForm["<", 2, ">"],
+       Editable->False], ",", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "2", ",", "2"}], "}"}]}], "]"}],
+    False,
+    Editable->False], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"a", "[", "1", "]"}], ",", 
+       RowBox[{"a", "[", "2", "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"b", "[", "1", "]"}], ",", 
+       RowBox[{"b", "[", "2", "]"}]}], "}"}]}], "}"}]}], "}"}]], "Output",
+ ImageSize->{396, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[2]=",
+ CellID->133530223]
+}, Open  ]],
+
+Cell[TextData[{
+ "The second part,",
+ StyleBox[" temp[[2]]", "InlineCode"],
+ ", is just the variables used when ",
+ StyleBox["TensorForm\[Rule]False", "InlineCode"],
+ ". As for the first part, ",
+ StyleBox["temp[[1]]", "InlineCode"],
+ ", it contains the list of invariants in a tensor form. Given that in this \
+case there is just one invariant contraction, the list contains just one \
+element:"
+}], "ExampleText",
+ CellID->572665028],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"temp", "[", 
+   RowBox[{"[", 
+    RowBox[{"1", ",", "1"}], "]"}], "]"}], "//", "MatrixForm"}]], "Input",
+ CellLabel->"In[3]:=",
+ CellID->3736054],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", GridBox[{
+     {"0", "1"},
+     {
+      RowBox[{"-", "1"}], "0"}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[
+   SparseArray[
+    Automatic, {2, 2}, 0, {1, {{0, 1, 2}, {{2}, {1}}}, {1, -1}}]]]]], "Output",
+ ImageSize->{54, 28},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[3]//MatrixForm=",
+ CellID->47969139]
+}, Open  ]],
+
+Cell[TextData[{
+ "We can use both ",
+ StyleBox["temp[[1]]", "InlineCode"],
+ " and",
+ StyleBox[" temp[[2]]", "InlineCode"],
+ " to recover the first result, obtained without the  ",
+ StyleBox["TensorForm\[Rule]True", "InlineCode"],
+ " option:"
+}], "ExampleText",
+ CellID->776959355],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{" ", 
+  StyleBox[
+   RowBox[{
+    RowBox[{
+     RowBox[{"Fold", "[", 
+      RowBox[{"Dot", ",", "#1", ",", 
+       RowBox[{"Reverse", "[", "#2", "]"}]}], "]"}], "&"}], "@@", "temp"}], 
+   "InlineCode"]}]], "Input",
+ CellLabel->"In[4]:=",
+ CellID->6508772],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"-", 
+     RowBox[{"a", "[", "2", "]"}]}], " ", 
+    RowBox[{"b", "[", "1", "]"}]}], "+", 
+   RowBox[{
+    RowBox[{"a", "[", "1", "]"}], " ", 
+    RowBox[{"b", "[", "2", "]"}]}]}], "}"}]], "Output",
+ ImageSize->{157, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[4]=",
+ CellID->343944330]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[Cell["\t", "ExampleDelimiter"],
+  $Line = 0; Null]], "ExampleDelimiter",
+ CellID->619907533],
 
 Cell["\<\
 How to put together two SU(2) doublets (a and b) and a triplet c?\
@@ -336,7 +575,7 @@ Cell[BoxData[
      RowBox[{"{", "1", "}"}], ",", 
      RowBox[{"{", "1", "}"}], ",", 
      RowBox[{"{", "2", "}"}]}], "}"}]}], "]"}]], "Input",
- CellLabel->"In[2]:=",
+ CellLabel->"In[1]:=",
  CellID->459878862],
 
 Cell[BoxData[
@@ -375,7 +614,7 @@ Cell[BoxData[
  ImageSize->{488, 37},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
- CellLabel->"Out[2]=",
+ CellLabel->"Out[1]=",
  CellID->709250]
 }, Open  ]],
 
@@ -392,7 +631,7 @@ Cell[BoxData[
   RowBox[{
    SuperscriptBox["3", 
     RowBox[{"1", "/", "4"}]], " ", "%"}], " ", "]"}]], "Input",
- CellLabel->"In[3]:=",
+ CellLabel->"In[2]:=",
  CellID->744812328],
 
 Cell[BoxData[
@@ -419,9 +658,17 @@ Cell[BoxData[
  ImageSize->{471, 22},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
- CellLabel->"Out[3]=",
+ CellLabel->"Out[2]=",
  CellID->780334933]
+}, Open  ]]
 }, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[Cell["\t", "ExampleDelimiter"],
+  $Line = 0; Null]], "ExampleDelimiter",
+ CellID->10855458],
 
 Cell["\<\
 If a is in the SU(3) fundamental representation [={1,0}] and b in its \
@@ -443,7 +690,7 @@ Cell[BoxData[
    RowBox[{"Conjugations", "->", 
     RowBox[{"{", 
      RowBox[{"False", ",", "True"}], "}"}]}]}], "]"}]], "Input",
- CellLabel->"In[4]:=",
+ CellLabel->"In[1]:=",
  CellID->125780274],
 
 Cell[BoxData[
@@ -461,7 +708,7 @@ Cell[BoxData[
  ImageSize->{221, 15},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
- CellLabel->"Out[4]=",
+ CellLabel->"Out[1]=",
  CellID->547169760]
 }, Open  ]],
 
@@ -482,7 +729,7 @@ Cell[BoxData[
       RowBox[{"1", ",", "0"}], "}"}], ",", 
      RowBox[{"{", 
       RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], "]"}]], "Input",
- CellLabel->"In[5]:=",
+ CellLabel->"In[2]:=",
  CellID->3239219],
 
 Cell[BoxData[
@@ -500,14 +747,22 @@ Cell[BoxData[
  ImageSize->{221, 15},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
- CellLabel->"Out[5]=",
+ CellLabel->"Out[2]=",
  CellID->96088639]
+}, Open  ]]
 }, Open  ]],
 
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[Cell["\t", "ExampleDelimiter"],
+  $Line = 0; Null]], "ExampleDelimiter",
+ CellID->537300161],
+
 Cell["\<\
-Consider now the 10-dimensional representation of SO(10), which is real. \
-However, in a general basis, the representation matrices might not be real \
-and as a consequence we get\
+Consider the 10-dimensional representation of SO(10), which is real. However, \
+in a general basis, the representation matrices might not be real and as a \
+consequence we get\
 \>", "ExampleText",
  CellID->227005108],
 
@@ -523,7 +778,7 @@ Cell[BoxData[
      RowBox[{"{", 
       RowBox[{"1", ",", "0", ",", "0", ",", "0", ",", "0"}], "}"}]}], "}"}]}],
    "]"}]], "Input",
- CellLabel->"In[6]:=",
+ CellLabel->"In[1]:=",
  CellID->440424632],
 
 Cell[BoxData[
@@ -562,7 +817,7 @@ Cell[BoxData[
  ImageSize->{452, 33},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
- CellLabel->"Out[6]=",
+ CellLabel->"Out[1]=",
  CellID->429779945]
 }, Open  ]],
 
@@ -570,8 +825,9 @@ Cell[TextData[{
  "In fact, Susyno assumes a basis where n of the algebra generators are \
 diagonal (n=group rank). The quantum numbers of fields are easily read off in \
 this basis, but it is easy to check that this basis always leads to group \
-representation matrices which are not real. Use the Conjugation option in the \
-cases where there is a field \[Phi] and its conjugate ",
+representation matrices which are not real. Nevertheless, one can use the ",
+ StyleBox["Conjugation", "InlineCode"],
+ " option in the cases where there is a field \[Phi] and its conjugate ",
  Cell[BoxData[
   SuperscriptBox["\[Phi]", "*"]], "InlineFormula"],
  " (in mass terms for example):"
@@ -593,7 +849,7 @@ Cell[BoxData[
    RowBox[{"Conjugations", "->", 
     RowBox[{"{", 
      RowBox[{"False", ",", "True"}], "}"}]}]}], "]"}]], "Input",
- CellLabel->"In[7]:=",
+ CellLabel->"In[2]:=",
  CellID->388476289],
 
 Cell[BoxData[
@@ -632,12 +888,20 @@ Cell[BoxData[
  ImageSize->{459, 33},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
- CellLabel->"Out[7]=",
+ CellLabel->"Out[2]=",
  CellID->666374976]
+}, Open  ]]
 }, Open  ]],
 
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[Cell["\t", "ExampleDelimiter"],
+  $Line = 0; Null]], "ExampleDelimiter",
+ CellID->111069935],
+
 Cell["\<\
-More complicated cases where group is a list of simple factors is also \
+More complicated cases where group is a list of simple factors are also \
 possible:\
 \>", "ExampleText",
  CellID->259255305],
@@ -676,7 +940,7 @@ Cell[BoxData[{
     RowBox[{"SU2", ",", "SU3"}], "}"}], ",", 
    RowBox[{"{", 
     RowBox[{"Q", ",", "u", ",", "Hu"}], "}"}]}], "]"}]}], "Input",
- CellLabel->"In[8]:=",
+ CellLabel->"In[1]:=",
  CellID->595169869],
 
 Cell[BoxData[
@@ -727,7 +991,7 @@ Cell[BoxData[
  ImageSize->{484, 33},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
- CellLabel->"Out[8]=",
+ CellLabel->"Out[1]=",
  CellID->316621270]
 }, Open  ]],
 
@@ -738,10 +1002,745 @@ Cell[TextData[{
  Cell[BoxData["b"], "InlineFormula"],
  ", the third ",
  Cell[BoxData["c"], "InlineFormula"],
- ", and so on. So in this last example, given that the groups are {SU2,SU3}, \
-each of these fields has two indices: (a or b or c)[SU2Index,SU3Index]."
+ ", and so on. So in this last example, given that the groups are ",
+ StyleBox["{SU2,SU3}", "InlineCode"],
+ ", each of these fields has two indices: (",
+ StyleBox["a", "InlineCode"],
+ " or ",
+ StyleBox["b", "InlineCode"],
+ " or ",
+ StyleBox["c", "InlineCode"],
+ ")",
+ StyleBox["[SU2Index,SU3Index]", "InlineCode"],
+ "."
 }], "ExampleText",
  CellID->597458693]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[Cell["\t", "ExampleDelimiter"],
+  $Line = 0; Null]], "ExampleDelimiter",
+ CellID->54810852],
+
+Cell["\<\
+We shall now consider what happens when some of the representations given are \
+repeated. In the first case we will consider the product 24 x 24 x 24 in \
+SU(5).\
+\>", "ExampleText",
+ CellID->84025473],
+
+Cell["The 24 of SU(5) is written as {1,0,0,1}:", "ExampleText",
+ CellID->30860286],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"RepName", "[", 
+  RowBox[{"SU5", ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "0", ",", "0", ",", "1"}], "}"}]}], "]"}]], "Input",
+ CellLabel->"In[1]:=",
+ CellID->679392214],
+
+Cell[BoxData[
+ StyleBox["\<\"24\"\>",
+  StripOnInput->False,
+  FontWeight->Bold]], "Output",
+ ImageSize->{18, 16},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[1]=",
+ CellID->60611843]
+}, Open  ]],
+
+Cell["Now let us compute the invariants of 24 x 24 x 24:", "ExampleText",
+ CellID->27706218],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"temp", "=", 
+   RowBox[{"Invariants", "[", 
+    RowBox[{"SU5", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"1", ",", "0", ",", "0", ",", "1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "0", ",", "0", ",", "1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "0", ",", "0", ",", "1"}], "}"}]}], "}"}]}], 
+    "]"}]}], ";"}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->189475799],
+
+Cell["There are two of them,", "ExampleText",
+ CellID->280142186],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Length", "[", "temp", "]"}]], "Input",
+ CellLabel->"In[3]:=",
+ CellID->160209096],
+
+Cell[BoxData["2"], "Output",
+ ImageSize->{11, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[3]=",
+ CellID->52808551]
+}, Open  ]],
+
+Cell["\<\
+and we can check what happens when we permute the a field with the b field:\
+\>", "ExampleText",
+ CellID->915604961],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"temp", "[", 
+   RowBox[{"[", "1", "]"}], "]"}], "===", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"temp", "[", 
+     RowBox[{"[", "1", "]"}], "]"}], "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"a", "\[Rule]", "b"}], ",", 
+      RowBox[{"b", "\[Rule]", "a"}]}], "}"}]}], 
+   ")"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"temp", "[", 
+    RowBox[{"[", "1", "]"}], "]"}], "===", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"-", 
+      RowBox[{"temp", "[", 
+       RowBox[{"[", "1", "]"}], "]"}]}], "/.", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "b"}], ",", 
+       RowBox[{"b", "\[Rule]", "a"}]}], "}"}]}], ")"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"temp", "[", 
+   RowBox[{"[", "2", "]"}], "]"}], "===", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"temp", "[", 
+     RowBox[{"[", "2", "]"}], "]"}], "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"a", "\[Rule]", "b"}], ",", 
+      RowBox[{"b", "\[Rule]", "a"}]}], "}"}]}], 
+   ")"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"temp", "[", 
+   RowBox[{"[", "2", "]"}], "]"}], "===", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"-", 
+     RowBox[{"temp", "[", 
+      RowBox[{"[", "2", "]"}], "]"}]}], "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"a", "\[Rule]", "b"}], ",", 
+      RowBox[{"b", "\[Rule]", "a"}]}], "}"}]}], ")"}]}]}], "Input",
+ CellLabel->"In[4]:=",
+ CellID->42780950],
+
+Cell[BoxData["True"], "Output",
+ ImageSize->{32, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[4]=",
+ CellID->105354111],
+
+Cell[BoxData["False"], "Output",
+ ImageSize->{39, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[4]=",
+ CellID->56049176],
+
+Cell[BoxData["False"], "Output",
+ ImageSize->{39, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[4]=",
+ CellID->205364209],
+
+Cell[BoxData["True"], "Output",
+ ImageSize->{32, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[4]=",
+ CellID->67024575]
+}, Open  ]],
+
+Cell[TextData[{
+ "So, the first invariant is symmetric under the permutation ",
+ StyleBox["{a->b,b->a}", "InlineCode"],
+ ", and the second is anti-symmetric. The other permutations of (",
+ StyleBox["a", "InlineCode"],
+ ",",
+ StyleBox["b", "InlineCode"],
+ ",",
+ StyleBox["c", "InlineCode"],
+ ") can be also checked. To do this in a systematic way, we can use the ",
+ StyleBox["TensorForm", "InlineCode"],
+ " option and make transposions of the tensors:"
+}], "ExampleText",
+ CellID->344019791],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"temp2", "=", 
+    RowBox[{
+     RowBox[{"Invariants", "[", 
+      RowBox[{"SU5", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"1", ",", "0", ",", "0", ",", "1"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"1", ",", "0", ",", "0", ",", "1"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"1", ",", "0", ",", "0", ",", "1"}], "}"}]}], "}"}], ",", 
+       RowBox[{"TensorForm", "\[Rule]", "True"}]}], "]"}], "[", 
+     RowBox[{"[", "1", "]"}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"possiblePermutations", "=", 
+    RowBox[{"Permutations", "[", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "2", ",", "3"}], "}"}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Produce", " ", "lists", " ", "with", " ", "elements", " ", 
+    RowBox[{"{", 
+     RowBox[{"permutation", ",", " ", 
+      RowBox[{"x", "\[Rule]", 
+       RowBox[{"<", 
+        RowBox[{"sign", " ", "change", " ", "of", " ", "invariant"}], 
+        ">"}]}]}], "}"}], " ", "for", " ", "both", " ", "invariants"}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"#", ",", 
+      RowBox[{
+       RowBox[{"Solve", "[", 
+        RowBox[{
+         RowBox[{"temp2", "[", 
+          RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", 
+         RowBox[{"x", " ", 
+          RowBox[{"Transpose", "[", 
+           RowBox[{
+            RowBox[{"temp2", "[", 
+             RowBox[{"[", "1", "]"}], "]"}], ",", "#"}], "]"}]}]}], "]"}], 
+       "[", 
+       RowBox[{"[", "1", "]"}], "]"}]}], "}"}], "&"}], "/@", 
+   "possiblePermutations"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"#", ",", 
+     RowBox[{
+      RowBox[{"Solve", "[", 
+       RowBox[{
+        RowBox[{"temp2", "[", 
+         RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", 
+        RowBox[{"x", " ", 
+         RowBox[{"Transpose", "[", 
+          RowBox[{
+           RowBox[{"temp2", "[", 
+            RowBox[{"[", "2", "]"}], "]"}], ",", "#"}], "]"}]}]}], "]"}], "[", 
+      RowBox[{"[", "1", "]"}], "]"}]}], "}"}], "&"}], "/@", 
+  "possiblePermutations"}]}], "Input",
+ CellLabel->"In[5]:=",
+ CellID->479334532],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "2", ",", "3"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", "\[Rule]", "1"}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "3", ",", "2"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", "\[Rule]", "1"}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2", ",", "1", ",", "3"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", "\[Rule]", "1"}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2", ",", "3", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", "\[Rule]", "1"}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"3", ",", "1", ",", "2"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", "\[Rule]", "1"}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"3", ",", "2", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", "\[Rule]", "1"}], "}"}]}], "}"}]}], "}"}]], "Output",
+ ImageSize->{422, 33},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[5]=",
+ CellID->806445915],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "2", ",", "3"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", "\[Rule]", "1"}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "3", ",", "2"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", "\[Rule]", 
+       RowBox[{"-", "1"}]}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2", ",", "1", ",", "3"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", "\[Rule]", 
+       RowBox[{"-", "1"}]}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2", ",", "3", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", "\[Rule]", "1"}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"3", ",", "1", ",", "2"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", "\[Rule]", "1"}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"3", ",", "2", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", "\[Rule]", 
+       RowBox[{"-", "1"}]}], "}"}]}], "}"}]}], "}"}]], "Output",
+ ImageSize->{437, 33},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[5]=",
+ CellID->251031641]
+}, Open  ]],
+
+Cell[TextData[{
+ "As can be seen, the first invariant never changes sign, while the second on \
+change sign according to the permutation sign. In other words, the first and \
+second invariants are in the trivial and anti-symmetric irreducible \
+representations of the ",
+ Cell[BoxData[
+  SubscriptBox["S", "3"]], "InlineFormula"],
+ " group. Indeed, we would have known this just by looking at the function ",
+ Cell[BoxData[
+  ButtonBox["PermutationSymmetryOfInvariants",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/PermutationSymmetryOfInvariants"]], 
+  "InlineFormula"],
+ "."
+}], "ExampleText",
+ CellID->181262989],
+
+Cell[TextData[{
+ "In a general notation, these two representations of  ",
+ Cell[BoxData[
+  SubscriptBox["S", "3"]], "InlineFormula"],
+ " are written as {3} and {1,1,1} (recall that the irreducible representation \
+of the permutation group ",
+ Cell[BoxData[
+  SubscriptBox["S", "n"]], "InlineFormula"],
+ " are given by the partitions of the integer n). Now notice the following: "
+}], "ExampleText",
+ CellID->392147702],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PermutationSymmetryOfInvariants", "[", 
+  RowBox[{"SU5", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0", ",", "0", ",", "1"}], "}"}]}], "}"}]}], 
+  "]"}]], "Input",
+ CellLabel->"In[6]:=",
+ CellID->324184734],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", "2", ",", "3"}], "}"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"{", "3", "}"}], "}"}], ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "1", ",", "1"}], "}"}], "}"}], ",", "1"}], "}"}]}],
+     "}"}]}], "}"}]], "Output",
+ ImageSize->{295, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[6]=",
+ CellID->98222451]
+}, Open  ]],
+
+Cell[TextData[{
+ "This output tells us the following (see  ",
+ Cell[BoxData[
+  ButtonBox["PermutationSymmetryOfInvariants",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/PermutationSymmetryOfInvariants"]], 
+  "InlineFormula"],
+ " for more information): a)- representations #1, #2 and #3 are equal; b)- \
+the invariants organize themselves in 1 irrep {3} plus 1 irrep {1,1,1} of ",
+ Cell[BoxData[
+  SubscriptBox["S", "3"]], "InlineFormula"],
+ ". By construction, the output of the Invariants function respects the \
+information given by ",
+ Cell[BoxData[
+  ButtonBox["PermutationSymmetryOfInvariants",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/PermutationSymmetryOfInvariants"]], 
+  "InlineFormula"],
+ " (and in particular the ordering of the irreps of ",
+ Cell[BoxData[
+  SubscriptBox["S", "3"]], "InlineFormula"],
+ ")."
+}], "ExampleText",
+ CellID->41970355]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[Cell["\t", "ExampleDelimiter"],
+  $Line = 0; Null]], "ExampleDelimiter",
+ CellID->259642841],
+
+Cell[TextData[{
+ "One is used to having invariants which are either completelly symmetric or \
+anti-symmetric under the permutation group. Both are 1-dimensional \
+representations of the ",
+ Cell[BoxData[
+  SubscriptBox["S", "n"]], "InlineFormula"],
+ " groups. However, in general more complicated situations can arrise where \
+the invariants are in other irreps of  ",
+ Cell[BoxData[
+  SubscriptBox["S", "n"]], "InlineFormula"],
+ ", which are not 1-dimensional. What does this mean in practice? To see this \
+we might consider the product of four doublets in SU(2):"
+}], "ExampleText",
+ CellID->537530654],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"temp", "=", 
+   RowBox[{"Invariants", "[", 
+    RowBox[{"SU2", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", "1", "}"}], ",", 
+       RowBox[{"{", "1", "}"}], ",", 
+       RowBox[{"{", "1", "}"}], ",", 
+       RowBox[{"{", "1", "}"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Length", "[", "temp", "]"}]}], "Input",
+ CellLabel->"In[1]:=",
+ CellID->184882421],
+
+Cell[BoxData["2"], "Output",
+ ImageSize->{11, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[1]=",
+ CellID->774049144]
+}, Open  ]],
+
+Cell[TextData[{
+ "As can be seen, two invariant combinations were found. Neither of them is \
+completelly symmetric nor anti-symmetric (nor a mixture of the two). This is \
+what ",
+ Cell[BoxData[
+  ButtonBox["PermutationSymmetryOfInvariants",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/PermutationSymmetryOfInvariants"]], 
+  "InlineFormula"],
+ "  tells us:"
+}], "ExampleText",
+ CellID->605082615],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PermutationSymmetryOfInvariants", "[", 
+  RowBox[{"SU2", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", "1", "}"}], ",", 
+     RowBox[{"{", "1", "}"}], ",", 
+     RowBox[{"{", "1", "}"}], ",", 
+     RowBox[{"{", "1", "}"}]}], "}"}]}], "]"}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->62530752],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", "2", ",", "3", ",", "4"}], "}"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"{", 
+        RowBox[{"2", ",", "2"}], "}"}], "}"}], ",", "1"}], "}"}], "}"}]}], 
+  "}"}]], "Output",
+ ImageSize->{217, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[2]=",
+ CellID->705299955]
+}, Open  ]],
+
+Cell[TextData[{
+ "The two invariants are in the {2,2} irreducible representation of ",
+ Cell[BoxData[
+  SubscriptBox["S", "4"]], "InlineFormula"],
+ ". Susyno can be used to check that this is indeed a two dimensional \
+representation of ",
+ Cell[BoxData[
+  SubscriptBox["S", "4"]], "InlineFormula"],
+ ":"
+}], "ExampleText",
+ CellID->376206384],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SnIrrepDim", "[", 
+  RowBox[{"{", 
+   RowBox[{"2", ",", "2"}], "}"}], "]"}]], "Input",
+ CellLabel->"In[3]:=",
+ CellID->163460897],
+
+Cell[BoxData["2"], "Output",
+ ImageSize->{11, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[3]=",
+ CellID->157112074]
+}, Open  ]],
+
+Cell[TextData[{
+ "So if we start with the first or second gauge invariant contraction of the \
+4 SU(2) doublets, and make permutations of the fields we will obtain linear \
+combinations of BOTH the first and second gauge invariant contractions. It is \
+possible to know exactly how they will transform without checking explicitly: \
+by construction the output of the ",
+ Cell[BoxData["Invariants"], "InlineFormula"],
+ " function follows the explicit irrep matrices given by ",
+ Cell[BoxData[
+  ButtonBox["SnIrrepGenerators",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/SnIrrepGenerators"]], "InlineFormula"],
+ ": under the transformations {a->b,b->a} and {a->b,b->c,c->d,d->a} which all \
+other permutations of ",
+ Cell[BoxData[
+  SubscriptBox["S", "4"]], "InlineFormula"],
+ ", the two invariants transforms as"
+}], "ExampleText",
+ CellID->727975633],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MatrixForm", "/@", 
+  RowBox[{"SnIrrepGenerators", "[", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "2"}], "}"}], "]"}]}]], "Input",
+ CellLabel->"In[4]:=",
+ CellID->392425571],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   TagBox[
+    RowBox[{"(", "\[NoBreak]", GridBox[{
+       {
+        FractionBox["1", "2"], 
+        RowBox[{"-", 
+         FractionBox[
+          SqrtBox["3"], "2"]}]},
+       {
+        RowBox[{"-", 
+         FractionBox[
+          SqrtBox["3"], "2"]}], 
+        RowBox[{"-", 
+         FractionBox["1", "2"]}]}
+      },
+      GridBoxAlignment->{
+       "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, 
+        "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+    Function[BoxForm`e$, 
+     MatrixForm[BoxForm`e$]]], ",", 
+   TagBox[
+    RowBox[{"(", "\[NoBreak]", GridBox[{
+       {
+        RowBox[{"-", "1"}], "0"},
+       {"0", "1"}
+      },
+      GridBoxAlignment->{
+       "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, 
+        "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+    Function[BoxForm`e$, 
+     MatrixForm[BoxForm`e$]]]}], "}"}]], "Output",
+ ImageSize->{171, 63},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[4]=",
+ CellID->15106773]
+}, Open  ]],
+
+Cell["by construction. We can check it as follows:", "ExampleText",
+ CellID->41907329],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"S4IrrepGenerators", "=", 
+    RowBox[{"SnIrrepGenerators", "[", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "2"}], "}"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"If", " ", "the", " ", "effect", " ", "of", " ", "changing", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"a", "\[Rule]", "b"}], ",", 
+      RowBox[{"b", "\[Rule]", "a"}]}], "}"}], " ", "and", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"a", "\[Rule]", "b"}], ",", 
+      RowBox[{"b", "\[Rule]", "c"}], ",", 
+      RowBox[{"c", "\[Rule]", "d"}], ",", 
+      RowBox[{"d", "\[Rule]", "a"}]}], "}"}], " ", "the", " ", "same", " ", 
+    "as", " ", "applying", " ", "the", " ", "first", " ", "and", " ", 
+    "second", " ", "S4IrrepGenerators", " ", "to", " ", "the", " ", 
+    RowBox[{"invariants", "?"}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Simplify", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"S4IrrepGenerators", "[", 
+     RowBox[{"[", "1", "]"}], "]"}], ".", "temp"}], "==", 
+   RowBox[{"(", 
+    RowBox[{"temp", "/.", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "b"}], ",", 
+       RowBox[{"b", "\[Rule]", "a"}]}], "}"}]}], ")"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Simplify", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"S4IrrepGenerators", "[", 
+     RowBox[{"[", "2", "]"}], "]"}], ".", "temp"}], "==", 
+   RowBox[{"(", 
+    RowBox[{"temp", "/.", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"a", "\[Rule]", "b"}], ",", 
+       RowBox[{"b", "\[Rule]", "c"}], ",", 
+       RowBox[{"c", "\[Rule]", "d"}], ",", 
+       RowBox[{"d", "\[Rule]", "a"}]}], "}"}]}], ")"}]}], "]"}]}], "Input",
+ CellLabel->"In[5]:=",
+ CellID->751377938],
+
+Cell[BoxData["True"], "Output",
+ ImageSize->{32, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[5]=",
+ CellID->236334335],
+
+Cell[BoxData["True"], "Output",
+ ImageSize->{32, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[5]=",
+ CellID->421811533]
+}, Open  ]]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]],
 
@@ -783,9 +1782,29 @@ Cell[TextData[ButtonBox["RELATED LINKS",
      CellContents]}]& )]], "RelatedLinksSection",
  CellID->1584193535],
 
-Cell[TextData[ButtonBox["IrrepInProduct",
- BaseStyle->"Link",
- ButtonData->"paclet:Susyno/ref/IrrepInProduct"]], "RelatedLinks",
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["IrrepInProduct",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/IrrepInProduct"]], "InlineFormula"],
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
+  ButtonBox["PermutationSymmetryOfInvariants",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/PermutationSymmetryOfInvariants"]], 
+  "InlineFormula"],
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
+  ButtonBox["SnIrrepGenerators",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/SnIrrepGenerators"]], "InlineFormula"]
+}], "RelatedLinks",
  CellID->1038487239]
 }, Open  ]],
 
@@ -793,20 +1812,23 @@ Cell[" ", "FooterCell"]
 },
 Saveable->False,
 ScreenStyleEnvironment->"Working",
-WindowSize->{725, 566},
+WindowSize->{725, 729},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
 WindowTitle->"Invariants - Wolfram Mathematica",
 TaggingRules->{
  "ModificationHighlight" -> False, 
   "Metadata" -> {
-   "built" -> "{2013, 8, 7, 2, 27, 25.3437500}", "context" -> "Susyno`", 
+   "built" -> "{2014, 7, 24, 0, 39, 18.3304766}", "context" -> "Susyno`", 
     "keywords" -> {}, "index" -> True, "label" -> "Susyno Paclet Symbol", 
     "language" -> "en", "paclet" -> "Susyno", "status" -> "None", "summary" -> 
-    "Invariants[group, {rep1, rep2, ...}] Calculates the invariants of rep1 x \
-rep2 x \\[CenterEllipsis]", "synonyms" -> {}, "title" -> "Invariants", "type" -> 
-    "Symbol", "uri" -> "Susyno/ref/Invariants"}, "SearchTextTranslated" -> ""},
+    "Invariants[group, {rep1, rep2, ...}] Calculates the linear combinations \
+of the components of rep1 x rep2 x \\[CenterEllipsis] which are invariant \
+under the action of the group. These are also known as the Clebsch-Gordon \
+coefficients.", "synonyms" -> {}, "title" -> "Invariants", "type" -> "Symbol",
+     "uri" -> "Susyno/ref/Invariants"}, "LinkTrails" -> "", 
+  "SearchTextTranslated" -> ""},
 CellContext->"Global`",
-FrontEndVersion->"7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
 StyleDefinitions->Notebook[{
    Cell[
     StyleData[
@@ -815,8 +1837,11 @@ StyleDefinitions->Notebook[{
     StyleData["Input"], CellContext -> "Global`"], 
    Cell[
     StyleData["Output"], CellContext -> "Global`"]}, Visible -> False, 
-  FrontEndVersion -> "7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
-   StyleDefinitions -> "Default.nb"]
+  FrontEndVersion -> "9.0 for Microsoft Windows (64-bit) (January 25, 2013)", 
+  StyleDefinitions -> 
+  FrontEnd`FileName[{$RootDirectory, "C:", "Program Files", 
+     "Wolfram Research", "Mathematica", "10.0", "AddOns", "Applications"}, 
+    "Default_Style_MyVersion.nb", CharacterEncoding -> "WindowsANSI"]]
 ]
 (* End of Notebook Content *)
 
@@ -824,139 +1849,293 @@ StyleDefinitions->Notebook[{
 (*CellTagsOutline
 CellTagsIndex->{
  "PrimaryExamplesSection"->{
-  Cell[7963, 266, 461, 13, 70, "PrimaryExamplesSection",
+  Cell[11043, 355, 461, 13, 70, "PrimaryExamplesSection",
    CellTags->"PrimaryExamplesSection",
-   CellID->132666956]}
+   CellID->535663645]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"PrimaryExamplesSection", 23454, 825}
+ {"PrimaryExamplesSection", 53079, 1850}
  }
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[591, 21, 76, 1, 70, "SymbolColorBar"],
-Cell[670, 24, 178, 5, 70, "LinkTrail"],
-Cell[851, 31, 2306, 53, 70, "AnchorBarGrid",
+Cell[603, 21, 76, 1, 70, "SymbolColorBar"],
+Cell[682, 24, 178, 5, 70, "LinkTrail"],
+Cell[863, 31, 2306, 53, 70, "AnchorBarGrid",
  CellID->1],
-Cell[CellGroupData[{
-Cell[3182, 88, 53, 1, 70, "ObjectName",
+Cell[3172, 86, 53, 1, 70, "ObjectName",
  CellID->1224892054],
-Cell[3238, 91, 621, 19, 70, "Usage",
- CellID->982511436]
+Cell[CellGroupData[{
+Cell[3250, 91, 760, 21, 70, "Usage",
+ CellID->982511436],
+Cell[CellGroupData[{
+Cell[4035, 116, 580, 17, 70, "NotesSection",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->286213341],
+Cell[4618, 135, 236, 8, 70, "Notes",
+ CellID->1067943069],
+Cell[4857, 145, 181, 5, 70, "Notes",
+ CellID->41030773],
+Cell[5041, 152, 182, 4, 70, "Notes",
+ CellID->221237370],
+Cell[5226, 158, 751, 24, 70, "Notes",
+ CellID->400920173],
+Cell[5980, 184, 444, 16, 70, "Notes",
+ CellID->75953507],
+Cell[6427, 202, 993, 35, 70, "Notes",
+ CellID->10758554],
+Cell[7423, 239, 154, 6, 70, "Notes",
+ CellID->335181877],
+Cell[7580, 247, 157, 4, 70, "Notes",
+ CellID->898809850],
+Cell[7740, 253, 325, 9, 70, "Notes",
+ CellID->329977022],
+Cell[8068, 264, 1152, 31, 70, "Notes",
+ CellID->273098746],
+Cell[9223, 297, 723, 18, 70, "Notes",
+ CellID->392955586],
+Cell[9949, 317, 1045, 32, 70, "Notes",
+ CellID->8342471]
+}, Closed]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[3896, 115, 580, 17, 70, "NotesSection",
- CellGroupingRules->{"SectionGrouping", 50},
- CellID->195041733],
-Cell[4479, 134, 236, 8, 70, "Notes",
- CellID->1067943069],
-Cell[4718, 144, 181, 5, 70, "Notes",
- CellID->41030773],
-Cell[4902, 151, 182, 4, 70, "Notes",
- CellID->221237370],
-Cell[5087, 157, 751, 24, 70, "Notes",
- CellID->400920173],
-Cell[5841, 183, 444, 16, 70, "Notes",
- CellID->75953507],
-Cell[6288, 201, 993, 35, 70, "Notes",
- CellID->10758554],
-Cell[7284, 238, 154, 6, 70, "Notes",
- CellID->335181877],
-Cell[7441, 246, 157, 4, 70, "Notes",
- CellID->898809850],
-Cell[7601, 252, 325, 9, 70, "Notes",
- CellID->329977022]
-}, Closed]],
-Cell[CellGroupData[{
-Cell[7963, 266, 461, 13, 70, "PrimaryExamplesSection",
+Cell[11043, 355, 461, 13, 70, "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->132666956],
+ CellID->535663645],
 Cell[CellGroupData[{
-Cell[8449, 283, 147, 5, 70, "ExampleSection",
- CellID->19140300],
-Cell[8599, 290, 112, 3, 70, "ExampleText",
+Cell[11529, 372, 148, 5, 70, "ExampleSection",
+ CellID->216313351],
+Cell[11680, 379, 112, 3, 70, "ExampleText",
  CellID->513681956],
 Cell[CellGroupData[{
-Cell[8736, 297, 232, 8, 70, "Input",
+Cell[11817, 386, 232, 8, 70, "Input",
  CellID->196926373],
-Cell[8971, 307, 372, 13, 36, "Output",
- CellID->162871902]
+Cell[12052, 396, 391, 14, 36, "Output",
+ CellID->9945298]
 }, Open  ]],
-Cell[9358, 323, 116, 3, 70, "ExampleText",
+Cell[12458, 413, 79, 1, 70, "ExampleText",
+ CellID->229125790],
+Cell[CellGroupData[{
+Cell[12562, 418, 316, 10, 70, "Input",
+ CellID->388700568],
+Cell[12881, 430, 845, 29, 36, "Output",
+ CellID->133530223]
+}, Open  ]],
+Cell[13741, 462, 435, 11, 70, "ExampleText",
+ CellID->572665028],
+Cell[CellGroupData[{
+Cell[14201, 477, 180, 6, 70, "Input",
+ CellID->3736054],
+Cell[14384, 485, 819, 25, 63, "Output",
+ CellID->47969139]
+}, Open  ]],
+Cell[15218, 513, 280, 9, 70, "ExampleText",
+ CellID->776959355],
+Cell[CellGroupData[{
+Cell[15523, 526, 278, 10, 70, "Input",
+ CellID->6508772],
+Cell[15804, 538, 393, 14, 36, "Output",
+ CellID->343944330]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16234, 557, 125, 3, 70, "ExampleDelimiter",
+ CellID->619907533],
+Cell[16362, 562, 116, 3, 70, "ExampleText",
  CellID->155872588],
 Cell[CellGroupData[{
-Cell[9499, 330, 268, 9, 70, "Input",
+Cell[16503, 569, 268, 9, 70, "Input",
  CellID->459878862],
-Cell[9770, 341, 1079, 37, 58, "Output",
+Cell[16774, 580, 1079, 37, 58, "Output",
  CellID->709250]
 }, Open  ]],
-Cell[10864, 381, 142, 4, 70, "ExampleText",
+Cell[17868, 620, 142, 4, 70, "ExampleText",
  CellID->307224643],
 Cell[CellGroupData[{
-Cell[11031, 389, 180, 6, 70, "Input",
+Cell[18035, 628, 180, 6, 70, "Input",
  CellID->744812328],
-Cell[11214, 397, 768, 25, 43, "Output",
+Cell[18218, 636, 768, 25, 43, "Output",
  CellID->780334933]
-}, Open  ]],
-Cell[11997, 425, 135, 4, 70, "ExampleText",
- CellID->285596647],
-Cell[CellGroupData[{
-Cell[12157, 433, 390, 13, 70, "Input",
- CellID->125780274],
-Cell[12550, 448, 466, 16, 36, "Output",
- CellID->547169760]
-}, Open  ]],
-Cell[13031, 467, 175, 4, 70, "ExampleText",
- CellID->178491849],
-Cell[CellGroupData[{
-Cell[13231, 475, 284, 10, 70, "Input",
- CellID->3239219],
-Cell[13518, 487, 465, 16, 36, "Output",
- CellID->96088639]
-}, Open  ]],
-Cell[13998, 506, 230, 5, 70, "ExampleText",
- CellID->227005108],
-Cell[CellGroupData[{
-Cell[14253, 515, 350, 11, 70, "Input",
- CellID->440424632],
-Cell[14606, 528, 1126, 37, 54, "Output",
- CellID->429779945]
-}, Open  ]],
-Cell[15747, 568, 521, 10, 70, "ExampleText",
- CellID->180242795],
-Cell[CellGroupData[{
-Cell[16293, 582, 455, 14, 70, "Input",
- CellID->388476289],
-Cell[16751, 598, 1126, 37, 54, "Output",
- CellID->666374976]
-}, Open  ]],
-Cell[17892, 638, 133, 4, 70, "ExampleText",
- CellID->259255305],
-Cell[CellGroupData[{
-Cell[18050, 646, 890, 33, 70, "Input",
- CellID->595169869],
-Cell[18943, 681, 1456, 49, 54, "Output",
- CellID->316621270]
-}, Open  ]],
-Cell[20414, 733, 432, 10, 70, "ExampleText",
- CellID->597458693]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[20895, 749, 419, 12, 70, "TutorialsSection",
+Cell[19035, 667, 124, 3, 70, "ExampleDelimiter",
+ CellID->10855458],
+Cell[19162, 672, 135, 4, 70, "ExampleText",
+ CellID->285596647],
+Cell[CellGroupData[{
+Cell[19322, 680, 390, 13, 70, "Input",
+ CellID->125780274],
+Cell[19715, 695, 466, 16, 36, "Output",
+ CellID->547169760]
+}, Open  ]],
+Cell[20196, 714, 175, 4, 70, "ExampleText",
+ CellID->178491849],
+Cell[CellGroupData[{
+Cell[20396, 722, 284, 10, 70, "Input",
+ CellID->3239219],
+Cell[20683, 734, 465, 16, 36, "Output",
+ CellID->96088639]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[21197, 756, 125, 3, 70, "ExampleDelimiter",
+ CellID->537300161],
+Cell[21325, 761, 226, 5, 70, "ExampleText",
+ CellID->227005108],
+Cell[CellGroupData[{
+Cell[21576, 770, 350, 11, 70, "Input",
+ CellID->440424632],
+Cell[21929, 783, 1126, 37, 54, "Output",
+ CellID->429779945]
+}, Open  ]],
+Cell[23070, 823, 575, 11, 70, "ExampleText",
+ CellID->180242795],
+Cell[CellGroupData[{
+Cell[23670, 838, 455, 14, 70, "Input",
+ CellID->388476289],
+Cell[24128, 854, 1126, 37, 54, "Output",
+ CellID->666374976]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[25303, 897, 125, 3, 70, "ExampleDelimiter",
+ CellID->111069935],
+Cell[25431, 902, 134, 4, 70, "ExampleText",
+ CellID->259255305],
+Cell[CellGroupData[{
+Cell[25590, 910, 890, 33, 70, "Input",
+ CellID->595169869],
+Cell[26483, 945, 1456, 49, 54, "Output",
+ CellID->316621270]
+}, Open  ]],
+Cell[27954, 997, 600, 19, 70, "ExampleText",
+ CellID->597458693]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[28591, 1021, 124, 3, 70, "ExampleDelimiter",
+ CellID->54810852],
+Cell[28718, 1026, 211, 5, 70, "ExampleText",
+ CellID->84025473],
+Cell[28932, 1033, 82, 1, 70, "ExampleText",
+ CellID->30860286],
+Cell[CellGroupData[{
+Cell[29039, 1038, 197, 6, 70, "Input",
+ CellID->679392214],
+Cell[29239, 1046, 221, 8, 37, "Output",
+ CellID->60611843]
+}, Open  ]],
+Cell[29475, 1057, 92, 1, 70, "ExampleText",
+ CellID->27706218],
+Cell[29570, 1060, 477, 15, 70, "Input",
+ CellID->189475799],
+Cell[30050, 1077, 65, 1, 70, "ExampleText",
+ CellID->280142186],
+Cell[CellGroupData[{
+Cell[30140, 1082, 105, 3, 70, "Input",
+ CellID->160209096],
+Cell[30248, 1087, 157, 5, 36, "Output",
+ CellID->52808551]
+}, Open  ]],
+Cell[30420, 1095, 126, 3, 70, "ExampleText",
+ CellID->915604961],
+Cell[CellGroupData[{
+Cell[30571, 1102, 1469, 52, 70, "Input",
+ CellID->42780950],
+Cell[32043, 1156, 161, 5, 36, "Output",
+ CellID->105354111],
+Cell[32207, 1163, 161, 5, 36, "Output",
+ CellID->56049176],
+Cell[32371, 1170, 162, 5, 36, "Output",
+ CellID->205364209],
+Cell[32536, 1177, 160, 5, 36, "Output",
+ CellID->67024575]
+}, Open  ]],
+Cell[32711, 1185, 491, 13, 70, "ExampleText",
+ CellID->344019791],
+Cell[CellGroupData[{
+Cell[33227, 1202, 2352, 69, 70, "Input",
+ CellID->479334532],
+Cell[35582, 1273, 1270, 43, 54, "Output",
+ CellID->806445915],
+Cell[36855, 1318, 1339, 46, 54, "Output",
+ CellID->251031641]
+}, Open  ]],
+Cell[38209, 1367, 627, 15, 70, "ExampleText",
+ CellID->181262989],
+Cell[38839, 1384, 418, 10, 70, "ExampleText",
+ CellID->392147702],
+Cell[CellGroupData[{
+Cell[39282, 1398, 433, 13, 70, "Input",
+ CellID->324184734],
+Cell[39718, 1413, 602, 22, 36, "Output",
+ CellID->98222451]
+}, Open  ]],
+Cell[40335, 1438, 882, 23, 70, "ExampleText",
+ CellID->41970355]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[41254, 1466, 125, 3, 70, "ExampleDelimiter",
+ CellID->259642841],
+Cell[41382, 1471, 606, 13, 70, "ExampleText",
+ CellID->537530654],
+Cell[CellGroupData[{
+Cell[42013, 1488, 431, 14, 70, "Input",
+ CellID->184882421],
+Cell[42447, 1504, 158, 5, 36, "Output",
+ CellID->774049144]
+}, Open  ]],
+Cell[42620, 1512, 409, 11, 70, "ExampleText",
+ CellID->605082615],
+Cell[CellGroupData[{
+Cell[43054, 1527, 324, 10, 70, "Input",
+ CellID->62530752],
+Cell[43381, 1539, 461, 17, 36, "Output",
+ CellID->705299955]
+}, Open  ]],
+Cell[43857, 1559, 343, 10, 70, "ExampleText",
+ CellID->376206384],
+Cell[CellGroupData[{
+Cell[44225, 1573, 153, 5, 70, "Input",
+ CellID->163460897],
+Cell[44381, 1580, 158, 5, 36, "Output",
+ CellID->157112074]
+}, Open  ]],
+Cell[44554, 1588, 862, 18, 70, "ExampleText",
+ CellID->727975633],
+Cell[CellGroupData[{
+Cell[45441, 1610, 195, 6, 70, "Input",
+ CellID->392425571],
+Cell[45639, 1618, 1632, 51, 84, "Output",
+ CellID->15106773]
+}, Open  ]],
+Cell[47286, 1672, 86, 1, 70, "ExampleText",
+ CellID->41907329],
+Cell[CellGroupData[{
+Cell[47397, 1677, 1765, 49, 70, "Input",
+ CellID->751377938],
+Cell[49165, 1728, 161, 5, 36, "Output",
+ CellID->236334335],
+Cell[49329, 1735, 161, 5, 36, "Output",
+ CellID->421811533]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[49563, 1748, 419, 12, 70, "TutorialsSection",
  CellID->250839057],
-Cell[21317, 763, 151, 3, 70, "Tutorials",
+Cell[49985, 1762, 151, 3, 70, "Tutorials",
  CellID->341631938]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[21505, 771, 427, 12, 70, "RelatedLinksSection",
+Cell[50173, 1770, 427, 12, 70, "RelatedLinksSection",
  CellID->1584193535],
-Cell[21935, 785, 149, 3, 70, "RelatedLinks",
+Cell[50603, 1784, 750, 23, 70, "RelatedLinks",
  CellID->1038487239]
 }, Open  ]],
-Cell[22099, 791, 23, 0, 70, "FooterCell"]
+Cell[51368, 1810, 23, 0, 70, "FooterCell"]
 }
 ]
 *)
