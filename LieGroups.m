@@ -49,7 +49,7 @@ BeginPackage["Susyno`LieGroups`"];
 {BlockDiagonalNTensor,GaugeRep};
 
 (* Options *)
-{UseName,TensorForm};
+{UseName,SortResult,TensorForm};
 
 Begin["`Private`"]
 
@@ -258,7 +258,7 @@ Return[result];
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
-DominantConjugate[cm_,weight_]:=Module[{index,dWeight,i,mD},
+DominantConjugate[cm_,weight_]:=DominantConjugate[cm,weight]=Module[{index,dWeight,i,mD},
 If[cm=={{2}},Return[If[weight[[1]]<0,{-weight,1},{weight,0}]]]; (* for SU2 the code below would not work *)
 index=0;
 dWeight=weight;
@@ -269,7 +269,7 @@ While[i<=Length[cm],
 If[dWeight[[i]]<0,
 index++;
 dWeight=ReflectWeight[cm,dWeight,i];
-i=mD[[i,1]];
+i=Min[mD[[i,1]],i+1]; (* Original reference suggests just i=mD[[i,1]]; But this would lead to a bug. *)
 ,i++];
 ];
 Return[{dWeight,index}];
@@ -1671,14 +1671,20 @@ Return[result];
 (* For both RepsUpToDimN, RepsUpToDimNNoConjugates: list is sorted according to smaller dim, smaller representation index, smallar conjugacy class numbers, larger Dynkin coefficients [in this order of importance] *)
 
 (* For a simple group, this method calculates all the representations up to a given size maxDim *)
-Options[RepsUpToDimN]={UseName->False};
-Options[RepsUpToDimNNoConjugates]={UseName->False};
+Options[RepsUpToDimN]={UseName->False,SortResult->True};
+Options[RepsUpToDimNNoConjugates]={UseName->False,SortResult->True};
 
-RepsUpToDimN[group_,maxDim_,OptionsPattern[]]:=RepsUpToDimN[group,maxDim,UseName->OptionValue[UseName]]=Module[{result},
+RepsUpToDimN[group_,maxDim_,OptionsPattern[]]:=RepsUpToDimN[group,maxDim,UseName->OptionValue[UseName],SortResult->OptionValue[SortResult]]=Module[{result},
+(* This is for speed: calculate the expression for a generic representation of the group and pass it on to RepsUpToDimNAuxilarMethod *)
+fastDimR[w_]:=Evaluate[DimR[group,Array[rdm\[UnderBracket]mrk,Length[group]]]]/.MapThread[Rule,{Evaluate[Array[rdm\[UnderBracket]mrk,Length[group]]],w}];
 
-result=Sort[RepsUpToDimNAuxilarMethod[group,ConstantArray[0,Length[group]],1,maxDim,{}],OrderedQ[{Join[{DimR[group,#1],RepresentationIndex[group,#1]},ConjugacyClass[group,#1],-#1],Join[{DimR[group,#2],RepresentationIndex[group,#2]},ConjugacyClass[group,#2],-#2]}]&];
+result=Reap[RepsUpToDimNAuxilarMethod[group,ConstantArray[0,Length[group]],1,maxDim,fastDimR]][[2,1]];
 
-Return[If[OptionValue[UseName],RepName[group,#]&/@result,result]];
+If[OptionValue[SortResult],result=Sort[result,OrderedQ[{Join[{DimR[group,#1],RepresentationIndex[group,#1]},ConjugacyClass[group,#1],-#1],Join[{DimR[group,#2],RepresentationIndex[group,#2]},ConjugacyClass[group,#2],-#2]}]&]];
+
+If[OptionValue[UseName],result=RepName[group,#]&/@result];
+
+Return[result];
 ]
 (* Same as RepsUpToDimN but returns only one representation for each pair of conjugate representations *)
 RepsUpToDimNNoConjugates[group_,maxDim_,OptionsPattern[]]:=Module[{aux,cR,cRTag,rTag,result},
@@ -1691,26 +1697,31 @@ rTag=Join[{RepresentationIndex[group,aux[[i]]]},ConjugacyClass[group,aux[[i]]],-
 If[!OrderedQ[{rTag,cRTag}],result[[i]]=False,result[[i]]==aux[[i]]];
 ,{i,Length[aux]}];
 result=DeleteCases[result,False];
-Return[If[OptionValue[UseName],RepName[group,#]&/@result,result]];
+
+If[OptionValue[SortResult],result=Sort[result,OrderedQ[{Join[{DimR[group,#1],RepresentationIndex[group,#1]},ConjugacyClass[group,#1],-#1],Join[{DimR[group,#2],RepresentationIndex[group,#2]},ConjugacyClass[group,#2],-#2]}]&]];
+
+If[OptionValue[UseName],result=RepName[group,#]&/@result];
+
+Return[result];
 ]
 
 (* This is a recursive auxiliar method used by RepsUpToDimN and is not meant to be used directly *)
-RepsUpToDimNAuxilarMethod[group_,w_,digit_,max_,results_]:=Module[{wAux,newResult},
+RepsUpToDimNAuxilarMethod[group_,w_,digit_,max_,fastDimR_]:=Module[{wAux,newResult},
 wAux=w;
 wAux[[digit]]=0;
-newResult=results;
+
 (* If it is a leaf ... *)
 If[digit==Length[w],
-While[DimR[group,wAux]<=max,
-AppendTo[newResult,wAux];
+While[fastDimR[wAux]<=max,
+Sow[wAux]; (* works like AppendTo[<some list>] with the encosing Reap (in RepsUpToDimN) *)
 wAux[[digit]]++;
 ];,
-While[DimR[group,wAux]<=max,
-newResult=RepsUpToDimNAuxilarMethod[group,wAux,digit+1,max,newResult];
+While[fastDimR[wAux]<=max,
+RepsUpToDimNAuxilarMethod[group,wAux,digit+1,max,fastDimR];
 wAux[[digit]]++;
 ];
 ];
-Return[newResult];
+
 ]
 
 

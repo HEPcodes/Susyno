@@ -163,7 +163,7 @@ Return[DecomposeRep[chainMod[[1]],rep,chainMod[[-1]],projectionMatrix]];
 (* Will it work if the new groups are all U1s? *)
 (* oG can be a list of groups *)
 Options[DecomposeRep]={UseName->False};
-DecomposeRep[oG_,oRep_,newGs_,projectionMatrix_,OptionsPattern[]]:=Module[{posU1s,posNonU1s,limits,projectionMatrixApart,aux,result},
+DecomposeRep[oG_,oRep_,newGs_,projectionMatrix_,OptionsPattern[]]:=DecomposeRep[oG,oRep,newGs,projectionMatrix,UseName->OptionValue[UseName]]=Module[{posU1s,posNonU1s,limits,projectionMatrixApart,aux,result},
 posU1s=Position[newGs,{},{1}]//Flatten;
 posNonU1s=Complement[Range[Length[newGs]],posU1s];
 
@@ -188,8 +188,9 @@ If[OptionValue[UseName],Return[RepName[newGs,#]&/@result],Return[result]];
 (* Less user frindly *)
 (* Will it work if the new groups are all U1s? *)
 (* oG can be a list of groups *)
-DecomposeRep\[UnderBracket]Aux[oGIn_,oRepIn_,newGNonU1s_,newGU1s_,projectionMatrixNonU1sIn_,projectionMatrixU1sIn_]:=Module[{aux,aux2,oRepU1s,oRepNonU1s,limits,limitsAc,weights,result,posOGU1s,posOGNonU1s,oG,oRep,projectionMatrixNonU1s,projectionMatrixU1s},
 
+(* UPDATE: assume that oGin is a list of groups. *)
+DecomposeRep\[UnderBracket]Aux[oGIn_,oRepIn_,newGNonU1s_,newGU1s_,projectionMatrixNonU1sIn_,projectionMatrixU1sIn_]:=Module[{aux,aux2,oRepU1s,oRepNonU1s,limits,limitsAc,weights,result,posOGU1s,posOGNonU1s,oG,oRep,projectionMatrixNonU1s,projectionMatrixU1s,conjugacyClassFunction,idx,res,genericRepresentation,resTemp,completeResult,weightsGroups},
 
 (* [OPERATION REV] In the original group, U1s may not come last. However, in the following it is useful that they do, therefore this is changed here *)
 posOGU1s=Flatten[Position[oGIn,{},{1},Heads->False]];
@@ -208,7 +209,7 @@ oRep=Join[oRepIn[[Flatten[Position[oGIn,x_/;!(x==={}),{1},Heads->False]]]],oRepI
 oRepU1s=Flatten[oRep[[Flatten[Position[oG,{},{1},Heads->False]]]]];
 oRepNonU1s=Flatten[oRep[[Flatten[Position[oG,x_/;!(x==={}),{1},Heads->False]]]]];
 
-(* If there are only U1's *)
+(* If there are only U1's in the subgroup *)
 If[newGNonU1s==={},
 aux=ConstantArray[{{},(projectionMatrixU1s.#[[2]])},#[[3]]]&/@If[oRepU1s==={},WeightsMod[oG,{oRepNonU1s,1}],WeightsMod[oG[[Flatten[Position[oG,x_/;x=!={},{1},Heads->False]]]],{oRepNonU1s,oRepU1s,1}]];
 aux=Flatten[aux,1];
@@ -217,25 +218,93 @@ Return[aux];
 
 limits=Prepend[1+Accumulate[Length/@newGNonU1s],1];
 
+(* [--------------------OPERATION SPEED UP 1--------------------] Start *)
+If[Length[oG]==1&&Length[newGNonU1s]==1&&Length[newGU1s]==0,
+(* Speed up happens for this case: original group=simple group; new group= simple group with same rank *)
+
+weights=SpeedUp1\[UnderBracket]DecomposeReps[oG[[1]],newGNonU1s[[1]],oRepNonU1s,Inverse[projectionMatrixNonU1s]];
+
+,
+(* No speed up *)
+
+(* TODO: seems unnecessary to consider that oG might not be a list of groups [Depth[oG]\[Equal]3] *)
 aux2=If[Depth[oG]==3,Weights[oG,oRep],If[oRepU1s==={},WeightsMod[oG,{oRepNonU1s,1}],WeightsMod[oG[[Flatten[Position[oG,x_/;!(x==={}),{1},Heads->False]]]],{oRepNonU1s,oRepU1s,1}]]];
 
 If[newGU1s==={},
-weights=SortWeights[newGNonU1s,{(projectionMatrixNonU1s.Flatten[#[[1;;-2]]]),{},#[[-1]]}&/@aux2];
+weights={(projectionMatrixNonU1s.Flatten[#[[1;;-2]]]),{},#[[-1]]}&/@aux2;
 ,
-weights=SortWeights[newGNonU1s,{(projectionMatrixNonU1s.Flatten[#[[1;;-2]]]),(projectionMatrixU1s.Flatten[#[[1;;-2]]]),#[[-1]]}&/@aux2];
+weights={(projectionMatrixNonU1s.Flatten[#[[1;;-2]]]),(projectionMatrixU1s.Flatten[#[[1;;-2]]]),#[[-1]]}&/@aux2;
 ];
 
+(* Work only with weights with no negative coefficients [only these can be Dynkin indices] *)
+weights=DeleteCases[weights,x_/;x[[1]]=!=Abs[x[[1]]]];
+
+];
+(* [--------------------OPERATION SPEED UP 1--------------------] End *)
 
 result={};
+
+ (* [START] This code computes a function [conjugacyClassFunction] which allows to separate the weights in different classes, speeding up the calculation *) 
+idx=1;
+res={};
+Do[
+If[g=!=U1,
+genericRepresentation=vr\[UnderBracket]aux[#]&/@Range[idx,idx+Length[g]-1];
+idx=idx+Length[g];
+resTemp=ConjugacyClass[g,genericRepresentation];
+,
+resTemp={vr\[UnderBracket]aux[idx]};
+idx=idx+1;
+];
+res=Join[res,resTemp];
+
+,{g,Join[newGNonU1s,newGU1s]}];
+
+conjugacyClassFunction=(res/.vr\[UnderBracket]aux[iii_]:>#[[iii]])&;
+ (* [END] This code computes a function [conjugacyClassFunction] which allows to separate the weights in different classes, speeding up the calculation *)
+
+
+(* Separate the weights according to their conjugacy class to speed up the calculation *)
+weightsGroups=Gather[weights,conjugacyClassFunction[Join[#1[[1]],#1[[2]]]]==conjugacyClassFunction[Join[#2[[1]],#2[[2]]]]&]; 
+
+(* Sort weights in a descending fashion *)
+weightsGroups=SortWeights[newGNonU1s,#]&/@weightsGroups;
+
+completeResult={};
+Do[
 
 While[Length[weights]>0,
 aux=Table[weights[[1,1,limits[[i]];;limits[[i+1]]-1]],{i,Length[newGNonU1s]}];
 result=Join[result,ConstantArray[{aux,weights[[1,2]]},weights[[1,-1]]]];
-weights=RemoveWeights[Simplify[weights],Simplify[WeightsMod[newGNonU1s,weights[[1]]]]];
+weights=RemoveWeights[Simplify[weights],Simplify[WeightsModDominants[newGNonU1s,weights[[1]]]]];
 weights=SortWeights[newGNonU1s,weights];
 ];
+,{weights,weightsGroups}];
 
-Return[Simplify[result]];
+completeResult=Join[completeResult,Simplify[result]];
+
+
+Return[completeResult];
+
+]
+
+(* This is a function that speeds up the calculation of Decompose reps when a) there are no U(1)s in the group and subgroup and b) there is no rank reduction between group and subgroup. So, to simplify, for now this speed up is triggered only when both group and subgroup are simple groups with the same rank. *)
+(*
+First, a list of all subgroup representations smaller or equal in size to the originalRepresentation are computed. With the inverse projection matrix one finds the corresponding weights of group. Then, with the DominantConjugate conjugate method one can find the multiplicity of those weight in the original representation of group.
+*)
+SpeedUp1\[UnderBracket]DecomposeReps[groupSimple_,subgroupSimple_,repOfGroup_,inverseProjectionMatrix_]:=Module[{aux,groupDominantWeights,subgroupDomWeightsOfInterest,result,weightMultiplicity},
+
+aux=RepsUpToDimN[subgroupSimple,DimR[groupSimple,repOfGroup],SortResult->False];
+subgroupDomWeightsOfInterest=DeleteCases[aux,x_/;!ArrayQ[Simplify[inverseProjectionMatrix.x],_,IntegerQ]];
+
+aux=DominantConjugate[groupSimple,#][[1]]&/@(Simplify[inverseProjectionMatrix.#]&/@subgroupDomWeightsOfInterest);
+groupDominantWeights=DominantWeights[groupSimple,repOfGroup];
+weightMultiplicity=Cases[groupDominantWeights,x_/;x[[1]]==#:>x[[2]],1,1]&/@aux;
+
+aux=DeleteCases[MapThread[List,{subgroupDomWeightsOfInterest,weightMultiplicity}],x_/;Length[x[[2]]]==0];
+result={#[[1]],{},#[[2,1]]}&/@aux;
+
+Return[result];
 ]
 
 (* Input to this method: cms={cm1,cm2,...}; repTogether={simpleRepsMerged,<U1repsmerged if any>,degeneracy} *)
@@ -253,6 +322,35 @@ aux3={};
 Do[
 
 AppendTo[aux3,Weights[cms[[i]],aux1[[i]]]];
+,{i,Length[cms]}];
+
+aux3=Tuples[aux3];
+
+(* "Repair" elements *)
+Do[
+If[Length[repTogether]==2,
+aux3[[i]]={aux3[[i,All,1]]//Flatten,repTogether[[-1]]Times@@aux3[[i,All,2]]},
+aux3[[i]]={aux3[[i,All,1]]//Flatten,repTogether[[2]],repTogether[[-1]]Times@@aux3[[i,All,2]]}
+];
+,{i,Length[aux3]}];
+
+
+Return[aux3];
+]
+
+WeightsModDominants[cms_,repTogether_]:=Module[{aux,aux1,aux2,aux3,dims},
+dims=Length/@cms;
+aux1={};
+aux2=1;
+Do[
+AppendTo[aux1,repTogether[[1,aux2;;aux2+dims[[i]]-1]]];
+aux2=aux2+dims[[i]];
+,{i,Length[cms]}];
+
+aux3={};
+Do[
+
+AppendTo[aux3,DominantWeights[cms[[i]],aux1[[i]]]];
 ,{i,Length[cms]}];
 
 aux3=Tuples[aux3];
@@ -288,7 +386,8 @@ bigCmInv=Transpose[Inverse[BlockDiagonalMatrix[cms]]];
 condensedWeights=Gather[weights,#1[[{1,2}]]===#2[[{1,2}]]&];
 condensedWeights=Table[{condensedWeights[[i,1,1]],condensedWeights[[i,1,2]],Total[condensedWeights[[i,All,-1]]]},{i,Length[condensedWeights]}];
 
-aux=Sort[condensedWeights,OrderedQ[{bigCmInv.(#2[[1]]),bigCmInv.(#1[[1]])}]&];
+condensedWeights={#,bigCmInv.(#[[1]])}&/@condensedWeights;
+aux=Sort[condensedWeights,OrderedQ[{#2[[2]],#1[[2]]}]&][[All,1]];
 Return[aux];
 ];
 
@@ -790,7 +889,7 @@ Return[{irreps,linearCombinations}];
 
 (* Uses RegularSubgroupInfo to provide the projection matrix of a regular embedding *)
 RegularSubgroupProjectionMatrix[group_,subgroup_,dotsComposition_]:=Module[{aux,singlet},
-singlet=If[IsSimpleGroupQ[group],ConstantArray[0,Length[group]],ConstantArray[0,Length[#]]&/@group];
+singlet=If[IsSimpleGroupQ[group],ConstantArray[0,Length[group]],If[#===U1,0,ConstantArray[0,Length[#]]]&/@group];
 Return[RegularSubgroupInfo[group,singlet,subgroup,dotsComposition][[3]]];
 ]
 
@@ -928,7 +1027,7 @@ rotMatrices=Total/@aux[[All,2]];
 rotMatrices=Table[If[cjs[[repI]],SimplifySA[-Conjugate[rotMatrices[[repI]]]],SimplifySA[rotMatrices[[repI]]]],{repI,Length[reps]}];
 
 
-If[!MemberQ[ReduceRepProduct[group,reps][[All,1]],reps[[1]]0,{1}],Return[{}]];
+If[!MemberQ[ReduceRepProduct[group,Table[If[!cjs[[i]],reps[[i]],ConjugateIrrep[group,reps[[i]]]],{i,Length[reps]}]][[All,1]],reps[[1]]0,{1}],Return[{}]];
 (* If[Length[aux2[[2]]]\[Equal]0,Return[{{},{subgroup,projectionMatrix,subreps,multilinearCombinations,{}}}]]; *)(* No invariants for sure --- TODO: add other output *)
 
 (* ---------------- Rotate invariants ---------------- *)
@@ -969,7 +1068,7 @@ validCombinationsOfSubInvariants=Simplify[aux validCombinationsOfSubInvariants];
 
 If[OptionValue[Verbose],ReportData[9,TimeUsed[]-tmp]];
 
-(* This block of text ensures that the implied invariants of the big/original group are as given by the Invariants function *)
+(* This block of code ensures that the implied invariants of the big/original group are as given by the Invariants function *)
 If[OptionValue[StandardizeInvariants],
 
 (* Look at the non-canonical invariants (only at a minimum of the full tensors) *)
