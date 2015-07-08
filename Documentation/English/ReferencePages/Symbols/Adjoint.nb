@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     13852,        487]
+NotebookDataLength[     13854,        487]
 NotebookOptionsPosition[      9943,        360]
-NotebookOutlinePosition[     11761,        409]
-CellTagsIndexPosition[     11676,        404]
+NotebookOutlinePosition[     11763,        409]
+CellTagsIndexPosition[     11678,        404]
 WindowTitle->Adjoint - Wolfram Mathematica
 WindowFrame->Normal*)
 
@@ -134,7 +134,7 @@ Cell[TextData[Cell[BoxData[
   Evaluator->None,
   Method->"Preemptive"]]]], "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->824601900],
+ CellID->101244157],
 
 Cell[TextData[{
  "Argument ",
@@ -183,7 +183,7 @@ Cell[TextData[ButtonBox["EXAMPLES",
      FrontEnd`SelectedNotebook[], After, 
      CellContents]}]& )]], "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->641956087],
+ CellID->624311651],
 
 Cell[CellGroupData[{
 
@@ -192,7 +192,7 @@ Cell[TextData[{
  "\[NonBreakingSpace]\[NonBreakingSpace]",
  Cell["(3)", "ExampleCount"]
 }], "ExampleSection",
- CellID->545838882],
+ CellID->437218431],
 
 Cell["\<\
 The adjoint representation of SU(2) is the triplet representation [={2} in \
@@ -366,7 +366,7 @@ WindowTitle->"Adjoint - Wolfram Mathematica",
 TaggingRules->{
  "ModificationHighlight" -> False, 
   "Metadata" -> {
-   "built" -> "{2014, 7, 24, 0, 39, 4.1319953}", "context" -> "Susyno`", 
+   "built" -> "{2014, 12, 18, 10, 47, 7.8636904}", "context" -> "Susyno`", 
     "keywords" -> {}, "index" -> True, "label" -> "Susyno Paclet Symbol", 
     "language" -> "en", "paclet" -> "Susyno", "status" -> "None", "summary" -> 
     "Adjoint[group] Returns the adjoint representation of \
@@ -398,12 +398,12 @@ CellTagsIndex->{
  "PrimaryExamplesSection"->{
   Cell[5402, 172, 461, 13, 70, "PrimaryExamplesSection",
    CellTags->"PrimaryExamplesSection",
-   CellID->641956087]}
+   CellID->624311651]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"PrimaryExamplesSection", 11533, 397}
+ {"PrimaryExamplesSection", 11535, 397}
  }
 *)
 (*NotebookFileOutline
@@ -420,7 +420,7 @@ Cell[3231, 91, 791, 24, 70, "Usage",
 Cell[CellGroupData[{
 Cell[4047, 119, 580, 17, 70, "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->824601900],
+ CellID->101244157],
 Cell[4630, 138, 240, 9, 70, "Notes",
  CellID->416274567],
 Cell[4873, 149, 180, 6, 70, "Notes",
@@ -432,10 +432,10 @@ Cell[5056, 157, 297, 9, 70, "Notes",
 Cell[CellGroupData[{
 Cell[5402, 172, 461, 13, 70, "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->641956087],
+ CellID->624311651],
 Cell[CellGroupData[{
 Cell[5888, 189, 148, 5, 70, "ExampleSection",
- CellID->545838882],
+ CellID->437218431],
 Cell[6039, 196, 149, 4, 70, "ExampleText",
  CellID->283112903],
 Cell[CellGroupData[{

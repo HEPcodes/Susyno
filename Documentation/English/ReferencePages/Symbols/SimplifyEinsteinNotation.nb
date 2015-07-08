@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     12285,        401]
+NotebookDataLength[     12287,        401]
 NotebookOptionsPosition[      9028,        300]
-NotebookOutlinePosition[     10871,        349]
-CellTagsIndexPosition[     10786,        344]
+NotebookOutlinePosition[     10873,        349]
+CellTagsIndexPosition[     10788,        344]
 WindowTitle->SimplifyEinsteinNotation - Wolfram Mathematica
 WindowFrame->Normal*)
 
@@ -127,7 +127,7 @@ Cell[TextData[Cell[BoxData[
   Evaluator->None,
   Method->"Preemptive"]]]], "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->335955090],
+ CellID->305550792],
 
 Cell[TextData[{
  "In an expression written with the Einstein convention, repeated indices are \
@@ -185,7 +185,7 @@ Cell[TextData[ButtonBox["EXAMPLES",
      FrontEnd`SelectedNotebook[], After, 
      CellContents]}]& )]], "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->269223276],
+ CellID->555893594],
 
 Cell[CellGroupData[{
 
@@ -194,7 +194,7 @@ Cell[TextData[{
  "\[NonBreakingSpace]\[NonBreakingSpace]",
  Cell["(1)", "ExampleCount"]
 }], "ExampleSection",
- CellID->354678261],
+ CellID->153222041],
 
 Cell[TextData[{
  "We know that A[i] B[i] and A[k] B[k] are the same, since both i and k are \
@@ -306,7 +306,7 @@ WindowTitle->"SimplifyEinsteinNotation - Wolfram Mathematica",
 TaggingRules->{
  "ModificationHighlight" -> False, 
   "Metadata" -> {
-   "built" -> "{2014, 7, 24, 0, 39, 37.1080163}", "context" -> "Susyno`", 
+   "built" -> "{2014, 12, 18, 10, 47, 45.9751214}", "context" -> "Susyno`", 
     "keywords" -> {}, "index" -> True, "label" -> "Susyno Paclet Symbol", 
     "language" -> "en", "paclet" -> "Susyno", "status" -> "None", "summary" -> 
     "SimplifyEinsteinNotation[expression, tensors, indices] Simplify \
@@ -338,12 +338,12 @@ CellTagsIndex->{
  "PrimaryExamplesSection"->{
   Cell[5816, 174, 461, 13, 70, "PrimaryExamplesSection",
    CellTags->"PrimaryExamplesSection",
-   CellID->269223276]}
+   CellID->555893594]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"PrimaryExamplesSection", 10643, 337}
+ {"PrimaryExamplesSection", 10645, 337}
  }
 *)
 (*NotebookFileOutline
@@ -360,7 +360,7 @@ Cell[3334, 91, 583, 17, 70, "Usage",
 Cell[CellGroupData[{
 Cell[3942, 112, 580, 17, 70, "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->335955090],
+ CellID->305550792],
 Cell[4525, 131, 313, 7, 70, "Notes",
  CellID->1067943069],
 Cell[4841, 140, 128, 4, 70, "Notes",
@@ -374,10 +374,10 @@ Cell[5226, 155, 541, 13, 70, "Notes",
 Cell[CellGroupData[{
 Cell[5816, 174, 461, 13, 70, "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->269223276],
+ CellID->555893594],
 Cell[CellGroupData[{
 Cell[6302, 191, 148, 5, 70, "ExampleSection",
- CellID->354678261],
+ CellID->153222041],
 Cell[6453, 198, 237, 7, 70, "ExampleText",
  CellID->513681956],
 Cell[CellGroupData[{

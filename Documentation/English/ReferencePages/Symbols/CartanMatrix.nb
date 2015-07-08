@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     29023,        953]
+NotebookDataLength[     29025,        953]
 NotebookOptionsPosition[     23999,        788]
-NotebookOutlinePosition[     25903,        839]
-CellTagsIndexPosition[     25818,        834]
+NotebookOutlinePosition[     25905,        839]
+CellTagsIndexPosition[     25820,        834]
 WindowTitle->CartanMatrix - Wolfram Mathematica
 WindowFrame->Normal*)
 
@@ -124,7 +124,7 @@ Cell[TextData[Cell[BoxData[
   Evaluator->None,
   Method->"Preemptive"]]]], "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->290427520],
+ CellID->16945568],
 
 Cell[TextData[{
  Cell[BoxData["\"\<group name\>\""], "InlineFormula"],
@@ -250,7 +250,7 @@ Cell[TextData[ButtonBox["EXAMPLES",
      FrontEnd`SelectedNotebook[], After, 
      CellContents]}]& )]], "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->12991178],
+ CellID->88351478],
 
 Cell[CellGroupData[{
 
@@ -259,7 +259,7 @@ Cell[TextData[{
  "\[NonBreakingSpace]\[NonBreakingSpace]",
  Cell["(2)", "ExampleCount"]
 }], "ExampleSection",
- CellID->90621043],
+ CellID->376608457],
 
 Cell["The SU(3) group is defined by its 2x2 Cartan matrix ...", "ExampleText",
  CellID->513681956],
@@ -794,7 +794,7 @@ WindowTitle->"CartanMatrix - Wolfram Mathematica",
 TaggingRules->{
  "ModificationHighlight" -> False, 
   "Metadata" -> {
-   "built" -> "{2014, 7, 24, 0, 39, 6.1323306}", "context" -> "Susyno`", 
+   "built" -> "{2014, 12, 18, 10, 47, 9.4987825}", "context" -> "Susyno`", 
     "keywords" -> {
      "SO", "SO(n)", "SON", "SU", "SU(n)", "SUN", "SP", "SP(n)", "SPN", "E", 
       "E6", "E7", "E8", "F4", "G2", "U1"}, "index" -> True, "label" -> 
@@ -826,14 +826,14 @@ StyleDefinitions->Notebook[{
 (*CellTagsOutline
 CellTagsIndex->{
  "PrimaryExamplesSection"->{
-  Cell[7484, 239, 460, 13, 70, "PrimaryExamplesSection",
+  Cell[7483, 239, 460, 13, 70, "PrimaryExamplesSection",
    CellTags->"PrimaryExamplesSection",
-   CellID->12991178]}
+   CellID->88351478]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"PrimaryExamplesSection", 25676, 827}
+ {"PrimaryExamplesSection", 25678, 827}
  }
 *)
 (*NotebookFileOutline
@@ -848,30 +848,30 @@ Cell[CellGroupData[{
 Cell[3262, 91, 482, 14, 70, "Usage",
  CellID->982511436],
 Cell[CellGroupData[{
-Cell[3769, 109, 580, 17, 70, "NotesSection",
+Cell[3769, 109, 579, 17, 70, "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->290427520],
-Cell[4352, 128, 473, 16, 70, "Notes",
+ CellID->16945568],
+Cell[4351, 128, 473, 16, 70, "Notes",
  CellID->1067943069],
-Cell[4828, 146, 327, 7, 70, "Notes",
+Cell[4827, 146, 327, 7, 70, "Notes",
  CellID->42278994],
-Cell[5158, 155, 541, 13, 70, "Notes",
+Cell[5157, 155, 541, 13, 70, "Notes",
  CellID->139516995],
-Cell[5702, 170, 957, 37, 70, "Notes",
+Cell[5701, 170, 957, 37, 70, "Notes",
  CellID->52353557],
-Cell[6662, 209, 487, 16, 70, "Notes",
+Cell[6661, 209, 487, 16, 70, "Notes",
  CellID->548704027],
-Cell[7152, 227, 283, 6, 70, "Notes",
+Cell[7151, 227, 283, 6, 70, "Notes",
  CellID->5162272]
 }, Closed]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[7484, 239, 460, 13, 70, "PrimaryExamplesSection",
+Cell[7483, 239, 460, 13, 70, "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->12991178],
+ CellID->88351478],
 Cell[CellGroupData[{
-Cell[7969, 256, 147, 5, 70, "ExampleSection",
- CellID->90621043],
+Cell[7968, 256, 148, 5, 70, "ExampleSection",
+ CellID->376608457],
 Cell[8119, 263, 98, 1, 70, "ExampleText",
  CellID->513681956],
 Cell[CellGroupData[{

@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     45573,       1533]
-NotebookOptionsPosition[     42157,       1425]
-NotebookOutlinePosition[     43756,       1466]
-CellTagsIndexPosition[     43713,       1463]
+NotebookDataLength[     45577,       1533]
+NotebookOptionsPosition[     42158,       1425]
+NotebookOutlinePosition[     43759,       1466]
+CellTagsIndexPosition[     43716,       1463]
 WindowTitle->RepName - Wolfram Mathematica
 WindowFrame->Normal*)
 
@@ -125,7 +125,7 @@ Cell[TextData[Cell[BoxData[
   Evaluator->None,
   Method->"Preemptive"]]]], "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->96885236],
+ CellID->390171825],
 
 Cell[TextData[{
  Cell[BoxData["group"], "InlineFormula"],
@@ -1431,7 +1431,7 @@ WindowTitle->"RepName - Wolfram Mathematica",
 TaggingRules->{
  "ModificationHighlight" -> False, 
   "Metadata" -> {
-   "built" -> "{2014, 7, 24, 0, 39, 32.9772555}", "context" -> "Susyno`", 
+   "built" -> "{2014, 12, 18, 10, 47, 41.0688461}", "context" -> "Susyno`", 
     "keywords" -> {}, "index" -> True, "label" -> "Susyno Paclet Symbol", 
     "language" -> "en", "paclet" -> "Susyno", "status" -> "None", "summary" -> 
     "RepName[group, representation] Returns a string with the name of a \
@@ -1475,66 +1475,66 @@ Cell[CellGroupData[{
 Cell[3231, 91, 563, 15, 70, "Usage",
  CellID->982511436],
 Cell[CellGroupData[{
-Cell[3819, 110, 579, 17, 70, "NotesSection",
+Cell[3819, 110, 580, 17, 70, "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->96885236],
-Cell[4401, 129, 762, 24, 70, "Notes",
+ CellID->390171825],
+Cell[4402, 129, 762, 24, 70, "Notes",
  CellID->286358775],
-Cell[5166, 155, 431, 8, 70, "Notes",
+Cell[5167, 155, 431, 8, 70, "Notes",
  CellID->154245237],
-Cell[5600, 165, 821, 23, 70, "Notes",
+Cell[5601, 165, 821, 23, 70, "Notes",
  CellID->32463023]
 }, Closed]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[6470, 194, 419, 12, 70, "TutorialsSection",
+Cell[6471, 194, 419, 12, 70, "TutorialsSection",
  CellID->250839057],
-Cell[6892, 208, 151, 3, 70, "Tutorials",
+Cell[6893, 208, 151, 3, 70, "Tutorials",
  CellID->341631938]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[7080, 216, 419, 12, 70, "MoreAboutSection",
+Cell[7081, 216, 419, 12, 70, "MoreAboutSection",
  CellID->38303248],
-Cell[7502, 230, 81, 1, 70, "ExampleText",
+Cell[7503, 230, 81, 1, 70, "ExampleText",
  CellID->432963277],
 Cell[CellGroupData[{
-Cell[7608, 235, 179, 6, 70, "Input",
+Cell[7609, 235, 179, 6, 70, "Input",
  CellID->493559987],
-Cell[7790, 243, 249, 9, 36, "Output",
+Cell[7791, 243, 249, 9, 36, "Output",
  CellID->362888475]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[8076, 257, 125, 3, 70, "ExampleDelimiter",
+Cell[8077, 257, 125, 3, 70, "ExampleDelimiter",
  CellID->361050789],
-Cell[8204, 262, 105, 2, 70, "ExampleText",
+Cell[8205, 262, 105, 2, 70, "ExampleText",
  CellID->198403277],
 Cell[CellGroupData[{
-Cell[8334, 268, 376, 13, 70, "Input",
+Cell[8335, 268, 376, 13, 70, "Input",
  CellID->14877576],
-Cell[8713, 283, 395, 13, 36, "Output",
+Cell[8714, 283, 395, 13, 36, "Output",
  CellID->175681504]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[9157, 302, 125, 3, 70, "ExampleDelimiter",
+Cell[9158, 302, 125, 3, 70, "ExampleDelimiter",
  CellID->243306540],
-Cell[9285, 307, 425, 12, 70, "ExampleText",
+Cell[9286, 307, 425, 12, 70, "ExampleText",
  CellID->449944381],
 Cell[CellGroupData[{
-Cell[9735, 323, 919, 28, 70, "Input",
+Cell[9736, 323, 919, 28, 70, "Input",
  CellID->414840562],
-Cell[10657, 353, 30782, 1041, 2730, "Output",
+Cell[10658, 353, 30782, 1041, 2730, "Output",
  CellID->612248810]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[41500, 1401, 427, 12, 70, "RelatedLinksSection",
+Cell[41501, 1401, 427, 12, 70, "RelatedLinksSection",
  CellID->1584193535],
-Cell[41930, 1415, 185, 5, 70, "RelatedLinks",
+Cell[41931, 1415, 185, 5, 70, "RelatedLinks",
  CellID->1038487239]
 }, Open  ]],
-Cell[42130, 1423, 23, 0, 70, "FooterCell"]
+Cell[42131, 1423, 23, 0, 70, "FooterCell"]
 }
 ]
 *)

@@ -11,9 +11,9 @@ NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
 NotebookDataLength[     27011,        856]
-NotebookOptionsPosition[     22196,        700]
-NotebookOutlinePosition[     24107,        750]
-CellTagsIndexPosition[     24022,        745]
+NotebookOptionsPosition[     22195,        700]
+NotebookOutlinePosition[     24108,        750]
+CellTagsIndexPosition[     24023,        745]
 WindowTitle->HookContentFormula - Wolfram Mathematica
 WindowFrame->Normal*)
 
@@ -124,7 +124,7 @@ Cell[TextData[Cell[BoxData[
   Evaluator->None,
   Method->"Preemptive"]]]], "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->275076451],
+ CellID->165491802],
 
 Cell[TextData[{
  "Recall that a partition {",
@@ -289,7 +289,7 @@ Cell[TextData[ButtonBox["EXAMPLES",
      FrontEnd`SelectedNotebook[], After, 
      CellContents]}]& )]], "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->650051393],
+ CellID->712554772],
 
 Cell[CellGroupData[{
 
@@ -298,7 +298,7 @@ Cell[TextData[{
  "\[NonBreakingSpace]\[NonBreakingSpace]",
  Cell["(3)", "ExampleCount"]
 }], "ExampleSection",
- CellID->268486844],
+ CellID->18098806],
 
 Cell[TextData[{
  "Consider n SU(2) doubles ",
@@ -706,7 +706,7 @@ WindowTitle->"HookContentFormula - Wolfram Mathematica",
 TaggingRules->{
  "ModificationHighlight" -> False, 
   "Metadata" -> {
-   "built" -> "{2014, 7, 24, 0, 39, 16.0039229}", "context" -> "Susyno`", 
+   "built" -> "{2014, 12, 18, 10, 47, 21.2946520}", "context" -> "Susyno`", 
     "keywords" -> {}, "index" -> True, "label" -> "Susyno Paclet Symbol", 
     "language" -> "en", "paclet" -> "Susyno", "status" -> "None", "summary" -> 
     "HookContentFormula[partition, n] Applies the Hook Content Formula to a \
@@ -739,12 +739,12 @@ CellTagsIndex->{
  "PrimaryExamplesSection"->{
   Cell[11281, 278, 461, 13, 70, "PrimaryExamplesSection",
    CellTags->"PrimaryExamplesSection",
-   CellID->650051393]}
+   CellID->712554772]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"PrimaryExamplesSection", 23878, 738}
+ {"PrimaryExamplesSection", 23879, 738}
  }
 *)
 (*NotebookFileOutline
@@ -761,7 +761,7 @@ Cell[3298, 91, 554, 14, 70, "Usage",
 Cell[CellGroupData[{
 Cell[3877, 109, 580, 17, 70, "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->275076451],
+ CellID->165491802],
 Cell[4460, 128, 494, 14, 70, "Notes",
  CellID->1067943069],
 Cell[4957, 144, 4945, 87, 70, "Input",
@@ -777,87 +777,87 @@ Cell[10499, 253, 733, 19, 70, "Notes",
 Cell[CellGroupData[{
 Cell[11281, 278, 461, 13, 70, "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->650051393],
+ CellID->712554772],
 Cell[CellGroupData[{
-Cell[11767, 295, 148, 5, 70, "ExampleSection",
- CellID->268486844],
-Cell[11918, 302, 898, 29, 70, "ExampleText",
+Cell[11767, 295, 147, 5, 70, "ExampleSection",
+ CellID->18098806],
+Cell[11917, 302, 898, 29, 70, "ExampleText",
  CellID->32979335],
 Cell[CellGroupData[{
-Cell[12841, 335, 228, 8, 70, "Input",
+Cell[12840, 335, 228, 8, 70, "Input",
  CellID->280814282],
-Cell[13072, 345, 278, 10, 53, "Output",
+Cell[13071, 345, 278, 10, 53, "Output",
  CellID->290627310]
 }, Open  ]],
-Cell[13365, 358, 564, 20, 70, "ExampleText",
+Cell[13364, 358, 564, 20, 70, "ExampleText",
  CellID->84766177],
 Cell[CellGroupData[{
-Cell[13954, 382, 202, 7, 70, "Input",
+Cell[13953, 382, 202, 7, 70, "Input",
  CellID->100421489],
-Cell[14159, 391, 258, 9, 53, "Output",
+Cell[14158, 391, 258, 9, 53, "Output",
  CellID->756805595]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[14454, 405, 124, 3, 70, "ExampleDelimiter",
+Cell[14453, 405, 124, 3, 70, "ExampleDelimiter",
  CellID->90754780],
-Cell[14581, 410, 826, 27, 70, "ExampleText",
+Cell[14580, 410, 826, 27, 70, "ExampleText",
  CellID->13657069],
 Cell[CellGroupData[{
-Cell[15432, 441, 196, 6, 70, "Input",
+Cell[15431, 441, 196, 6, 70, "Input",
  CellID->466967494],
-Cell[15631, 449, 356, 13, 53, "Output",
+Cell[15630, 449, 356, 13, 53, "Output",
  CellID->491325787]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[16036, 468, 124, 3, 70, "ExampleDelimiter",
+Cell[16035, 468, 124, 3, 70, "ExampleDelimiter",
  CellID->78663977],
-Cell[16163, 473, 901, 29, 70, "ExampleText",
+Cell[16162, 473, 901, 29, 70, "ExampleText",
  CellID->91711931],
 Cell[CellGroupData[{
-Cell[17089, 506, 186, 6, 70, "Input",
+Cell[17088, 506, 186, 6, 70, "Input",
  CellID->533790247],
-Cell[17278, 514, 392, 14, 53, "Output",
+Cell[17277, 514, 392, 14, 53, "Output",
  CellID->79326881]
 }, Open  ]],
-Cell[17685, 531, 121, 3, 70, "ExampleText",
+Cell[17684, 531, 121, 3, 70, "ExampleText",
  CellID->355368670],
 Cell[CellGroupData[{
-Cell[17831, 538, 186, 6, 70, "Input",
+Cell[17830, 538, 186, 6, 70, "Input",
  CellID->363910599],
-Cell[18020, 546, 158, 5, 36, "Output",
+Cell[18019, 546, 158, 5, 36, "Output",
  CellID->167835888]
 }, Open  ]],
-Cell[18193, 554, 344, 12, 70, "ExampleText",
+Cell[18192, 554, 344, 12, 70, "ExampleText",
  CellID->425108623],
 Cell[CellGroupData[{
-Cell[18562, 570, 186, 6, 70, "Input",
+Cell[18561, 570, 186, 6, 70, "Input",
  CellID->122307077],
-Cell[18751, 578, 158, 5, 36, "Output",
+Cell[18750, 578, 158, 5, 36, "Output",
  CellID->546268760]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[18982, 591, 417, 12, 70, "SeeAlsoSection",
+Cell[18981, 591, 417, 12, 70, "SeeAlsoSection",
  CellID->1255426704],
-Cell[19402, 605, 448, 11, 70, "SeeAlso",
+Cell[19401, 605, 448, 11, 70, "SeeAlso",
  CellID->929782353]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[19887, 621, 419, 12, 70, "TutorialsSection",
+Cell[19886, 621, 419, 12, 70, "TutorialsSection",
  CellID->250839057],
-Cell[20309, 635, 151, 3, 70, "Tutorials",
+Cell[20308, 635, 151, 3, 70, "Tutorials",
  CellID->341631938]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[20497, 643, 427, 12, 70, "RelatedLinksSection",
+Cell[20496, 643, 427, 12, 70, "RelatedLinksSection",
  CellID->1584193535],
-Cell[20927, 657, 1227, 38, 70, "RelatedLinks",
+Cell[20926, 657, 1227, 38, 70, "RelatedLinks",
  CellID->1038487239]
 }, Open  ]],
-Cell[22169, 698, 23, 0, 70, "FooterCell"]
+Cell[22168, 698, 23, 0, 70, "FooterCell"]
 }
 ]
 *)

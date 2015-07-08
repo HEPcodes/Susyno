@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     13111,        432]
-NotebookOptionsPosition[      9927,        332]
-NotebookOutlinePosition[     11690,        380]
-CellTagsIndexPosition[     11605,        375]
+NotebookDataLength[     13118,        432]
+NotebookOptionsPosition[      9929,        332]
+NotebookOutlinePosition[     11695,        380]
+CellTagsIndexPosition[     11610,        375]
 WindowTitle->SnClassOrder - Wolfram Mathematica
 WindowFrame->Normal*)
 
@@ -124,7 +124,7 @@ Cell[TextData[Cell[BoxData[
   Evaluator->None,
   Method->"Preemptive"]]]], "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->3540146],
+ CellID->4521214],
 
 Cell[TextData[{
  Cell[BoxData[
@@ -189,7 +189,7 @@ Cell[TextData[ButtonBox["EXAMPLES",
      FrontEnd`SelectedNotebook[], After, 
      CellContents]}]& )]], "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->25847334],
+ CellID->566045229],
 
 Cell[CellGroupData[{
 
@@ -198,7 +198,7 @@ Cell[TextData[{
  "\[NonBreakingSpace]\[NonBreakingSpace]",
  Cell["(1)", "ExampleCount"]
 }], "ExampleSection",
- CellID->27331048],
+ CellID->230412486],
 
 Cell[TextData[{
  Cell[BoxData[
@@ -338,7 +338,7 @@ WindowTitle->"SnClassOrder - Wolfram Mathematica",
 TaggingRules->{
  "ModificationHighlight" -> False, 
   "Metadata" -> {
-   "built" -> "{2014, 7, 24, 0, 39, 39.3705272}", "context" -> "Susyno`", 
+   "built" -> "{2014, 12, 18, 10, 47, 48.5828597}", "context" -> "Susyno`", 
     "keywords" -> {}, "index" -> True, "label" -> "Susyno Paclet Symbol", 
     "language" -> "en", "paclet" -> "Susyno", "status" -> "None", "summary" -> 
     "SnClassOrder[conjugacy class] Calculates the order/size of a conjugacy \
@@ -367,14 +367,14 @@ StyleDefinitions->Notebook[{
 (*CellTagsOutline
 CellTagsIndex->{
  "PrimaryExamplesSection"->{
-  Cell[5694, 178, 460, 13, 70, "PrimaryExamplesSection",
+  Cell[5694, 178, 461, 13, 70, "PrimaryExamplesSection",
    CellTags->"PrimaryExamplesSection",
-   CellID->25847334]}
+   CellID->566045229]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"PrimaryExamplesSection", 11463, 368}
+ {"PrimaryExamplesSection", 11467, 368}
  }
 *)
 (*NotebookFileOutline
@@ -391,7 +391,7 @@ Cell[3262, 91, 496, 14, 70, "Usage",
 Cell[CellGroupData[{
 Cell[3783, 109, 578, 17, 70, "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->3540146],
+ CellID->4521214],
 Cell[4364, 128, 164, 5, 70, "Notes",
  CellID->613073599],
 Cell[4531, 135, 266, 7, 70, "Notes",
@@ -401,39 +401,39 @@ Cell[4800, 144, 845, 28, 70, "Notes",
 }, Closed]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[5694, 178, 460, 13, 70, "PrimaryExamplesSection",
+Cell[5694, 178, 461, 13, 70, "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->25847334],
+ CellID->566045229],
 Cell[CellGroupData[{
-Cell[6179, 195, 147, 5, 70, "ExampleSection",
- CellID->27331048],
-Cell[6329, 202, 312, 7, 70, "ExampleText",
+Cell[6180, 195, 148, 5, 70, "ExampleSection",
+ CellID->230412486],
+Cell[6331, 202, 312, 7, 70, "ExampleText",
  CellID->32979335],
 Cell[CellGroupData[{
-Cell[6666, 213, 369, 10, 70, "Input",
+Cell[6668, 213, 369, 10, 70, "Input",
  CellID->298933796],
-Cell[7038, 225, 157, 5, 36, "Output",
+Cell[7040, 225, 157, 5, 36, "Output",
  CellID->21711148],
-Cell[7198, 232, 158, 5, 36, "Output",
+Cell[7200, 232, 158, 5, 36, "Output",
  CellID->922383539],
-Cell[7359, 239, 158, 5, 36, "Output",
+Cell[7361, 239, 158, 5, 36, "Output",
  CellID->110478182]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[7578, 251, 417, 12, 70, "SeeAlsoSection",
+Cell[7580, 251, 417, 12, 70, "SeeAlsoSection",
  CellID->1255426704],
-Cell[7998, 265, 184, 4, 70, "Tutorials",
+Cell[8000, 265, 184, 4, 70, "Tutorials",
  CellID->26828648]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[8219, 274, 419, 12, 70, "MoreAboutSection",
+Cell[8221, 274, 419, 12, 70, "MoreAboutSection",
  CellID->38303248],
-Cell[8641, 288, 1244, 39, 70, "RelatedLinks",
+Cell[8643, 288, 1244, 39, 70, "RelatedLinks",
  CellID->461483061]
 }, Open  ]],
-Cell[9900, 330, 23, 0, 70, "FooterCell"]
+Cell[9902, 330, 23, 0, 70, "FooterCell"]
 }
 ]
 *)

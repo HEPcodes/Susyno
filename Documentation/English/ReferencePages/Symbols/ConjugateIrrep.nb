@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     10396,        348]
-NotebookOptionsPosition[      7280,        249]
-NotebookOutlinePosition[      9061,        298]
-CellTagsIndexPosition[      8977,        293]
+NotebookDataLength[     10403,        348]
+NotebookOptionsPosition[      7281,        249]
+NotebookOutlinePosition[      9067,        298]
+CellTagsIndexPosition[      8983,        293]
 WindowTitle->ConjugateIrrep - Wolfram Mathematica
 WindowFrame->Normal*)
 
@@ -124,7 +124,7 @@ Cell[TextData[Cell[BoxData[
   Evaluator->None,
   Method->"Preemptive"]]]], "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->279396115],
+ CellID->132701133],
 
 Cell[TextData[{
  Cell[BoxData["group"], "InlineFormula"],
@@ -153,7 +153,7 @@ Cell[TextData[ButtonBox["EXAMPLES",
      FrontEnd`SelectedNotebook[], After, 
      CellContents]}]& )]], "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->3340707],
+ CellID->220553099],
 
 Cell[CellGroupData[{
 
@@ -162,7 +162,7 @@ Cell[TextData[{
  "\[NonBreakingSpace]\[NonBreakingSpace]",
  Cell["(2)", "ExampleCount"]
 }], "ExampleSection",
- CellID->434011656],
+ CellID->68136963],
 
 Cell["\<\
 Compute the conjugate representation to {1, 0, 2, 0} of the SU(5) group:\
@@ -255,7 +255,7 @@ WindowTitle->"ConjugateIrrep - Wolfram Mathematica",
 TaggingRules->{
  "ModificationHighlight" -> False, 
   "Metadata" -> {
-   "built" -> "{2014, 7, 24, 0, 39, 9.3875021}", "context" -> "Susyno`", 
+   "built" -> "{2014, 12, 18, 10, 47, 13.3483500}", "context" -> "Susyno`", 
     "keywords" -> {}, "index" -> True, "label" -> "Susyno Paclet Symbol", 
     "language" -> "en", "paclet" -> "Susyno", "status" -> "None", "summary" -> 
     "ConjugateIrrep[group, rep] Computes the Dynkin indices of the \
@@ -285,14 +285,14 @@ StyleDefinitions->Notebook[{
 (*CellTagsOutline
 CellTagsIndex->{
  "PrimaryExamplesSection"->{
-  Cell[4644, 142, 459, 13, 70, "PrimaryExamplesSection",
+  Cell[4644, 142, 461, 13, 70, "PrimaryExamplesSection",
    CellTags->"PrimaryExamplesSection",
-   CellID->3340707]}
+   CellID->220553099]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"PrimaryExamplesSection", 8836, 286}
+ {"PrimaryExamplesSection", 8840, 286}
  }
 *)
 (*NotebookFileOutline
@@ -309,47 +309,47 @@ Cell[3274, 91, 483, 14, 70, "Usage",
 Cell[CellGroupData[{
 Cell[3782, 109, 580, 17, 70, "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->279396115],
+ CellID->132701133],
 Cell[4365, 128, 230, 8, 70, "Notes",
  CellID->1067943069]
 }, Closed]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[4644, 142, 459, 13, 70, "PrimaryExamplesSection",
+Cell[4644, 142, 461, 13, 70, "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->3340707],
+ CellID->220553099],
 Cell[CellGroupData[{
-Cell[5128, 159, 148, 5, 70, "ExampleSection",
- CellID->434011656],
-Cell[5279, 166, 122, 3, 70, "ExampleText",
+Cell[5130, 159, 147, 5, 70, "ExampleSection",
+ CellID->68136963],
+Cell[5280, 166, 122, 3, 70, "ExampleText",
  CellID->32979335],
 Cell[CellGroupData[{
-Cell[5426, 173, 204, 6, 70, "Input",
+Cell[5427, 173, 204, 6, 70, "Input",
  CellID->280814282],
-Cell[5633, 181, 223, 7, 36, "Output",
+Cell[5634, 181, 223, 7, 36, "Output",
  CellID->201611465]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[5893, 193, 124, 3, 70, "ExampleDelimiter",
+Cell[5894, 193, 124, 3, 70, "ExampleDelimiter",
  CellID->29196542],
-Cell[6020, 198, 83, 1, 70, "ExampleText",
+Cell[6021, 198, 83, 1, 70, "ExampleText",
  CellID->312700170],
 Cell[CellGroupData[{
-Cell[6128, 203, 223, 7, 70, "Input",
+Cell[6129, 203, 223, 7, 70, "Input",
  CellID->192311210],
-Cell[6354, 212, 238, 7, 36, "Output",
+Cell[6355, 212, 238, 7, 36, "Output",
  CellID->10171402]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[6665, 227, 419, 12, 70, "TutorialsSection",
+Cell[6666, 227, 419, 12, 70, "TutorialsSection",
  CellID->250839057],
-Cell[7087, 241, 151, 3, 70, "Tutorials",
+Cell[7088, 241, 151, 3, 70, "Tutorials",
  CellID->341631938]
 }, Open  ]],
-Cell[7253, 247, 23, 0, 70, "FooterCell"]
+Cell[7254, 247, 23, 0, 70, "FooterCell"]
 }
 ]
 *)

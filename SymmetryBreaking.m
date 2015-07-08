@@ -219,7 +219,7 @@ Return[aux];
 limits=Prepend[1+Accumulate[Length/@newGNonU1s],1];
 
 (* [--------------------OPERATION SPEED UP 1--------------------] Start *)
-If[Length[oG]==1&&Length[newGNonU1s]==1&&Length[newGU1s]==0,
+If[Length[oG]==1&&Length[newGNonU1s]==1&&Length[newGU1s]==0&&Length[oG[[1]]]==Length[newGNonU1s[[1]]],
 (* Speed up happens for this case: original group=simple group; new group= simple group with same rank *)
 
 weights=SpeedUp1\[UnderBracket]DecomposeReps[oG[[1]],newGNonU1s[[1]],oRepNonU1s,Inverse[projectionMatrixNonU1s]];

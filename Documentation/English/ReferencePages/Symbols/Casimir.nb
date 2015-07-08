@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     15760,        532]
+NotebookDataLength[     15763,        532]
 NotebookOptionsPosition[     12029,        411]
-NotebookOutlinePosition[     13772,        458]
-CellTagsIndexPosition[     13687,        453]
+NotebookOutlinePosition[     13775,        458]
+CellTagsIndexPosition[     13690,        453]
 WindowTitle->Casimir - Wolfram Mathematica
 WindowFrame->Normal*)
 
@@ -125,7 +125,7 @@ Cell[TextData[Cell[BoxData[
   Evaluator->None,
   Method->"Preemptive"]]]], "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->487805290],
+ CellID->80678709],
 
 Cell[TextData[{
  Cell[BoxData["group"], "InlineFormula"],
@@ -161,7 +161,7 @@ Cell[TextData[ButtonBox["EXAMPLES",
      FrontEnd`SelectedNotebook[], After, 
      CellContents]}]& )]], "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->310815443],
+ CellID->366704385],
 
 Cell[CellGroupData[{
 
@@ -170,7 +170,7 @@ Cell[TextData[{
  "\[NonBreakingSpace]\[NonBreakingSpace]",
  Cell["(2)", "ExampleCount"]
 }], "ExampleSection",
- CellID->81366227],
+ CellID->650712886],
 
 Cell[TextData[{
  "The usual convention of having the fundamental of SU(n) with a Casimir ",
@@ -417,7 +417,7 @@ WindowTitle->"Casimir - Wolfram Mathematica",
 TaggingRules->{
  "ModificationHighlight" -> False, 
   "Metadata" -> {
-   "built" -> "{2014, 7, 24, 0, 39, 7.3901694}", "context" -> "Susyno`", 
+   "built" -> "{2014, 12, 18, 10, 47, 10.9167275}", "context" -> "Susyno`", 
     "keywords" -> {}, "index" -> True, "label" -> "Susyno Paclet Symbol", 
     "language" -> "en", "paclet" -> "Susyno", "status" -> "None", "summary" -> 
     "Casimir[group, rep] Computes the quadratic Casimir of representation rep \
@@ -445,14 +445,14 @@ StyleDefinitions->Notebook[{
 (*CellTagsOutline
 CellTagsIndex->{
  "PrimaryExamplesSection"->{
-  Cell[4809, 150, 461, 13, 70, "PrimaryExamplesSection",
+  Cell[4808, 150, 461, 13, 70, "PrimaryExamplesSection",
    CellTags->"PrimaryExamplesSection",
-   CellID->310815443]}
+   CellID->366704385]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"PrimaryExamplesSection", 13544, 446}
+ {"PrimaryExamplesSection", 13547, 446}
  }
 *)
 (*NotebookFileOutline
@@ -467,22 +467,22 @@ Cell[CellGroupData[{
 Cell[3231, 91, 524, 15, 70, "Usage",
  CellID->982511436],
 Cell[CellGroupData[{
-Cell[3780, 110, 580, 17, 70, "NotesSection",
+Cell[3780, 110, 579, 17, 70, "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->487805290],
-Cell[4363, 129, 212, 8, 70, "Notes",
+ CellID->80678709],
+Cell[4362, 129, 212, 8, 70, "Notes",
  CellID->1067943069],
-Cell[4578, 139, 182, 5, 70, "Notes",
+Cell[4577, 139, 182, 5, 70, "Notes",
  CellID->125196071]
 }, Closed]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[4809, 150, 461, 13, 70, "PrimaryExamplesSection",
+Cell[4808, 150, 461, 13, 70, "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->310815443],
+ CellID->366704385],
 Cell[CellGroupData[{
-Cell[5295, 167, 147, 5, 70, "ExampleSection",
- CellID->81366227],
+Cell[5294, 167, 148, 5, 70, "ExampleSection",
+ CellID->650712886],
 Cell[5445, 174, 290, 9, 70, "ExampleText",
  CellID->32979335],
 Cell[CellGroupData[{

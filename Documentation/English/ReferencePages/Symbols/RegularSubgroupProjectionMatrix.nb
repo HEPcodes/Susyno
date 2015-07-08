@@ -11,9 +11,9 @@ NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
 NotebookDataLength[    151216,       3459]
-NotebookOptionsPosition[    143210,       3193]
-NotebookOutlinePosition[    145167,       3243]
-CellTagsIndexPosition[    145080,       3238]
+NotebookOptionsPosition[    143209,       3193]
+NotebookOutlinePosition[    145168,       3243]
+CellTagsIndexPosition[    145081,       3238]
 WindowTitle->RegularSubgroupProjectionMatrix - Wolfram Mathematica
 WindowFrame->Normal*)
 
@@ -133,7 +133,7 @@ Cell[TextData[Cell[BoxData[
   Evaluator->None,
   Method->"Preemptive"]]]], "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->760460899],
+ CellID->175508652],
 
 Cell[TextData[{
  Cell[BoxData["group"], "InlineFormula"],
@@ -200,7 +200,7 @@ Cell[TextData[ButtonBox["EXAMPLES",
      FrontEnd`SelectedNotebook[], After, 
      CellContents]}]& )]], "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->727484361],
+ CellID->103369693],
 
 Cell[CellGroupData[{
 
@@ -209,7 +209,7 @@ Cell[TextData[{
  "\[NonBreakingSpace]\[NonBreakingSpace]",
  Cell["(6)", "ExampleCount"]
 }], "ExampleSection",
- CellID->673222602],
+ CellID->246139460],
 
 Cell["\<\
 Consider the regular embedding of SU(3)xSU(2)xU(1) in SU(5). In terms of \
@@ -3127,7 +3127,7 @@ gBBMjA8AAOPw/9++n6o=
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[3]=",
- CellID->313395503]
+ CellID->79234380]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
@@ -3199,7 +3199,7 @@ WindowTitle->"RegularSubgroupProjectionMatrix - Wolfram Mathematica",
 TaggingRules->{
  "ModificationHighlight" -> False, 
   "Metadata" -> {
-   "built" -> "{2014, 7, 24, 0, 39, 28.7034042}", "context" -> "Susyno`", 
+   "built" -> "{2014, 12, 18, 10, 47, 36.0755138}", "context" -> "Susyno`", 
     "keywords" -> {}, "index" -> True, "label" -> "Susyno Paclet Symbol", 
     "language" -> "en", "paclet" -> "Susyno", "status" -> "None", "summary" -> 
     "RegularSubgroupProjectionMatrix[group, subgroup, breakingInformation] \
@@ -3232,12 +3232,12 @@ CellTagsIndex->{
  "PrimaryExamplesSection"->{
   Cell[6381, 189, 461, 13, 70, "PrimaryExamplesSection",
    CellTags->"PrimaryExamplesSection",
-   CellID->727484361]}
+   CellID->103369693]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"PrimaryExamplesSection", 144937, 3231}
+ {"PrimaryExamplesSection", 144938, 3231}
  }
 *)
 (*NotebookFileOutline
@@ -3254,7 +3254,7 @@ Cell[3412, 94, 723, 20, 70, "Usage",
 Cell[CellGroupData[{
 Cell[4160, 118, 580, 17, 70, "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->760460899],
+ CellID->175508652],
 Cell[4743, 137, 469, 16, 70, "Notes",
  CellID->810218094],
 Cell[5215, 155, 372, 7, 70, "Notes",
@@ -3268,10 +3268,10 @@ Cell[6076, 178, 256, 5, 70, "Notes",
 Cell[CellGroupData[{
 Cell[6381, 189, 461, 13, 70, "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->727484361],
+ CellID->103369693],
 Cell[CellGroupData[{
 Cell[6867, 206, 148, 5, 70, "ExampleSection",
- CellID->673222602],
+ CellID->246139460],
 Cell[7018, 213, 176, 4, 70, "ExampleText",
  CellID->15232876],
 Cell[7197, 219, 9249, 157, 70, "Input",
@@ -3442,25 +3442,25 @@ Cell[128346, 2891, 132, 4, 70, "ExampleText",
 Cell[CellGroupData[{
 Cell[128503, 2899, 602, 16, 47, "Input",
  CellID->43686052],
-Cell[129108, 2917, 12468, 212, 300, "Output",
- CellID->313395503]
+Cell[129108, 2917, 12467, 212, 300, "Output",
+ CellID->79234380]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[141649, 3137, 419, 12, 70, "TutorialsSection",
+Cell[141648, 3137, 419, 12, 70, "TutorialsSection",
  CellID->250839057],
-Cell[142071, 3151, 151, 3, 70, "Tutorials",
+Cell[142070, 3151, 151, 3, 70, "Tutorials",
  CellID->341631938]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[142259, 3159, 427, 12, 70, "RelatedLinksSection",
+Cell[142258, 3159, 427, 12, 70, "RelatedLinksSection",
  CellID->1584193535],
-Cell[142689, 3173, 479, 15, 70, "RelatedLinks",
+Cell[142688, 3173, 479, 15, 70, "RelatedLinks",
  CellID->1038487239]
 }, Open  ]],
-Cell[143183, 3191, 23, 0, 70, "FooterCell"]
+Cell[143182, 3191, 23, 0, 70, "FooterCell"]
 }
 ]
 *)
