@@ -104,7 +104,7 @@ totalSU=totalS-totalSNU;
 oS[i_] := oS[i] = SparseArray[(oSMat // ArrayRules) /. {flavVariables[[1]] -> i}, {totalF}];
   
   DMatrixCR[ll_] := DMatrixCR[ll] = SparseArray[DiagonalMatrix[Table[cR[k, ll], {k,totalF}]]];
-  DMatrixSR[ll_] := MatrixSR[ll] = SparseArray[DiagonalMatrix[Table[sR[k, ll], {k, totalF}]]];
+  DMatrixSR[ll_] := DMatrixSR[ll] = SparseArray[DiagonalMatrix[Table[sR[k, ll], {k, totalF}]]];
   
   )
 
@@ -351,10 +351,12 @@ fuct2M2Q20[j_, i_] := KroneckerDelta[i, j] KroneckerDelta[\[Alpha][1], \[Alpha][
      +  Sum[g[l1]^2 g[l2]^2  cR[j, l1] cR[j, l2] (32 M[l1] Cj[M[l1]] + 8 M[l1] Cj[M[l2]] + 8 M[l2] Cj[M[l1]]), {l1, totalS}, {l2, totalS}] - 72 Sum[ M[l] Cj[M[l]] g[l]^4 cG[l] cR[j, l], {l, totalS}]);
 
 
-fuct2M2Q21[j_, i_] := If[totalSU > 1, fuct2M2Q21NonU1[j, i] + fuct2M2Q21U1[j, i], 8 KroneckerDelta[i, j] KroneckerDelta[\[Alpha][1], \[Alpha][2]] Tr[Sum[g[l]^4 cR[j, l] DMatrixSR[l]/dR[i, l], {l, totalS}].oM2[\[Alpha][3], \[Alpha][3]]]];
+(* Corrected the next line *)
+fuct2M2Q21[j_, i_] := If[totalSU > 1, fuct2M2Q21NonU1[j, i] + fuct2M2Q21U1[j, i], 8 KroneckerDelta[i, j] KroneckerDelta[\[Alpha][1], \[Alpha][2]] Tr[Sum[g[l]^4 cR[j, l] DMatrixSR[l].DiagonalMatrix[1/dRMat[[All,l]]], {l, totalS}].oM2[\[Alpha][3], \[Alpha][3]]]];
 fuct2M2Q22[j_, i_] := -8 KroneckerDelta[i, j] KroneckerDelta[\[Alpha][1], \[Alpha][2]] Sum[cG[l] g[l]^4 cR[j, l] M[l] Cj[M[l]], {l, totalS}];
 
-fuct2M2Q21NonU1[j_, i_] := 8 KroneckerDelta[i, j] KroneckerDelta[\[Alpha][1], \[Alpha][2]] Tr[Sum[g[l]^4 cR[j, l] DMatrixSR[l]/dR[i, l], {l,totalSU+1,totalS}].oM2[\[Alpha][3], \[Alpha][3]]];
+(* Corrected the next line *)
+fuct2M2Q21NonU1[j_, i_] := 8 KroneckerDelta[i, j] KroneckerDelta[\[Alpha][1], \[Alpha][2]] Tr[Sum[g[l]^4 cR[j, l] DMatrixSR[l].DiagonalMatrix[1/dRMat[[All,l]]], {l,totalSU+1,totalS}].oM2[\[Alpha][3], \[Alpha][3]]];
 
 (* Important if there is more than one U (1) group *)
 fuct2M2Q21U1[j_, i_] := Module[{n, aux1, aux2, aux3, aux4},
@@ -384,7 +386,8 @@ fuctS1Q5[i_]:=Tr[oH[\[Alpha][1],\[Alpha][2],\[Alpha][3]][[i]].Cj[oB[\[Alpha][3],
 
 
 fuctS2Q1[i_] :=2Tr[oY[\[Alpha][1],\[Alpha][2],\[Alpha][3]][[i]].Sum[ g[l]^2 DMatrixCR[l], {l, totalS}].Cj[oY[\[Alpha][3],\[Alpha][2],\[Alpha][4]]].oS[\[Alpha][4]]]
-fuctS2Q2[i_] :=-1/2 ListContract[oY[\[Alpha][1],\[Alpha][2],\[Alpha][3]][[i]].Cj[oY[\[Alpha][3],\[Alpha][4],\[Alpha][5]]].oY[\[Alpha][5],\[Alpha][4],\[Alpha][6]].Cj[oY[\[Alpha][6],\[Alpha][2],\[Alpha][7]].oS[\[Alpha][7]]],{{1,4},{2,3}}] 
+(* Changed the line below *)
+fuctS2Q2[i_] :=-1/2 ListContract[oY[\[Alpha][1],\[Alpha][2],\[Alpha][3]][[i]].Cj[oY[\[Alpha][3],\[Alpha][4],\[Alpha][5]]].oY[\[Alpha][5],\[Alpha][4],\[Alpha][6]].Cj[oY[\[Alpha][6],\[Alpha][2],\[Alpha][7]]].oS[\[Alpha][7]],{{1,4},{2,3}}] 
 fuctS2Q3[i_] :=- 4 Tr[oL[\[Alpha][2]].Cj[oY[\[Alpha][2],\[Alpha][3],\[Alpha][4]]].Sum[(oY[\[Alpha][1], \[Alpha][4],\[Alpha][3]][[i]] M[l]-oH[\[Alpha][1], \[Alpha][4],\[Alpha][3]][[i]]).DMatrixCR[l] g[l]^2, {l, totalS}]];
 
 fuctS2Q4[i_] :=-ListContract[oY[\[Alpha][1],\[Alpha][2],\[Alpha][3]][[i]].Cj[oY[\[Alpha][3],\[Alpha][4],\[Alpha][5]]].oH[\[Alpha][5],\[Alpha][4],\[Alpha][6]].Cj[oY[\[Alpha][6],\[Alpha][2],\[Alpha][7]]].oL[\[Alpha][7]],{{1,4},{2,3}}];

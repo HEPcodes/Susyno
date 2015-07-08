@@ -1,10 +1,10 @@
 (* Paclet Info File *)
 
-(* created 2011/09/06*)
+(* created 20/Abril/2013 *)
 
 Paclet[
     Name -> "Susyno",
-    Version -> "1.1.0",
+    Version -> "1.2.0",
     MathematicaVersion -> "7+",
     Extensions -> 
         {

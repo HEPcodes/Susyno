@@ -290,6 +290,7 @@ Return[result];
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
 (* DESCRIPTION: Returns the weights of a representation (with dimentionalities) *)
+Weights;
 Unprotect[Weights];
 Weights[cm_,w_]:=Weights[cm,w]=Module[{dW,wOrbit,result,invCM},
 invCM=Inverse[cm];
@@ -1081,7 +1082,7 @@ Return[aux];
 ]
 
 SymmetrizeInvariants[invariants_,var1_,var2_,var3_]:=Module[{i,j,aux,coefs},
-aux=Flatten[SymmetrizeAux[#,var1,var2,var3]& /@invariants];
+aux=DeleteCases[Flatten[SymmetrizeAux[#,var1,var2,var3]& /@invariants],0];
 coefs=Table[aux[[i,1]] /.{a[__]->1,b[__]->1,c[__]->1},{i,Length[aux]}];
  aux=Expand[ aux/coefs];
 i=1;

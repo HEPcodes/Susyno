@@ -1,6 +1,6 @@
 (* Mathematica Init File *)
 
-Print["Version: 1.1 ; Author: Renato Fonseca\nFor help, use the ", 
+Print["Version: 1.2 ; Author: Renato Fonseca\nFor help, use the ", 
  Hyperlink["Susyno Tutorial", 
   "paclet:Susyno/tutorial/SusynoTutorial"], " and the built-in \
 documentation."]
