@@ -388,6 +388,7 @@ Return[result];
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
 (* DESCRIPTION: Returns the weights of a representation (with dimentionalities) *)
+Weights;
 Unprotect[Weights];
 Weights[cm_,w_]:=Weights[cm,w]=Module[{dW,result,invCM},
 
@@ -667,7 +668,7 @@ Return[aux1]; (*  result is a list with entries {e[i],f[i],h[i]} *)
 (* Calculates the Casimir invariant of an irrep *)
 Casimir[input__]:=Casimir[input]=Switch[Depth[{input}],x_/;(x==3||x==4),CasimirBaseMethod[input],5,CasimirBaseMethod@@@Transpose[{input}]];
 
-(* Uses formula XI .23 of "Semi-Simple Lie Algebras and Their Representations", page 89 *)
+(* Uses formula XI.23 of "Semi-Simple Lie Algebras and Their Representations", page 89 *)
 
 CasimirBaseMethod[cm_,w_]:=Module[{n,cmInv,matD,cmID,proots,deltaTimes2,result},
 If[cm==={}||cm===ConstantArray[{},Length[cm]],Return[w^2]]; (* U1 group or multiple U1 groups *)

@@ -21,7 +21,7 @@
 
 (* Do not forget: we have Susyno`Models`NFlavours, Susyno`Models`DiscreteSym *)
 BeginPackage["Susyno`Models`",{"Susyno`LieGroups`"},{"Susyno`ModelBuilding`"}]
-(* {MSSM,NMSSM,RPVMSSM}; *)
+{MSSM,NMSSM,RPVMSSM};
 
 (* Field names *)
 (*
@@ -36,28 +36,37 @@ BeginPackage["Susyno`Models`",{"Susyno`LieGroups`"},{"Susyno`ModelBuilding`"}]
 
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXX   MSSM   XXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+author[MSSM]^="Renato Fonseca";
+date[MSSM]^="18:30, 09/September/2013";
+
 group[MSSM]^={U1,SU2,SU3};
 reps[MSSM]^={{-(2/Sqrt[15]),{0},{0,1}},{1/Sqrt[15],{0},{0,1}},{1/(2 Sqrt[15]),{1},{1,0}},{Sqrt[3/5],{0},{0,0}},{-(Sqrt[(3/5)]/2),{1},{0,0}},{Sqrt[3/5]/2,{1},{0,0}},{-(Sqrt[(3/5)]/2),{1},{0,0}}};
 nFlavs[MSSM]^={3,3,3,3,3,1,1};
 discreteSym[MSSM]^={-1,-1,-1,-1,-1,1,1};
-fieldNames[MSSM]^={u,d,Q,e,L,Hu,Hd};
+fieldNames[MSSM]^={"u","d","Q","e","L","Hu","Hd"};
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXX   NMSSM   XXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+author[NMSSM]^="Renato Fonseca";
+date[NMSSM]^="18:30, 09/September/2013";
+
 group[NMSSM]^={U1,SU2,SU3};
 reps[NMSSM]^={{-(2/Sqrt[15]),{0},{0,1}},{1/Sqrt[15],{0},{0,1}},{1/(2 Sqrt[15]),{1},{1,0}},{Sqrt[3/5],{0},{0,0}},{-(Sqrt[(3/5)]/2),{1},{0,0}},{Sqrt[3/5]/2,{1},{0,0}},{-(Sqrt[(3/5)]/2),{1},{0,0}},{0,{0},{0,0}}};
 nFlavs[NMSSM]^={3,3,3,3,3,1,1,1};
 discreteSym[NMSSM]^={-1,-1,-1,-1,-1,1,1,1};
-fieldNames[NMSSM]^={u,d,Q,e,L,Hu,Hd,S};
+fieldNames[NMSSM]^={"u","d","Q","e","L","Hu","Hd","S"};
 
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXX  RPV MSSM   XXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 (* It is the same as the MSSM but with no R-parity *)
 
+author[RPVMSSM]^="Renato Fonseca";
+date[RPVMSSM]^="18:30, 09/September/2013";
+
 group[RPVMSSM]^={U1,SU2,SU3};
 reps[RPVMSSM]^={{-(2/Sqrt[15]),{0},{0,1}},{1/Sqrt[15],{0},{0,1}},{1/(2 Sqrt[15]),{1},{1,0}},{Sqrt[3/5],{0},{0,0}},{-(Sqrt[(3/5)]/2),{1},{0,0}},{Sqrt[3/5]/2,{1},{0,0}},{-(Sqrt[(3/5)]/2),{1},{0,0}}};
 nFlavs[RPVMSSM]^={3,3,3,3,3,1,1};
 discreteSym[RPVMSSM]^=ConstantArray[1,7];
-fieldNames[RPVMSSM]^={u,d,Q,e,L,Hu,Hd};
+fieldNames[RPVMSSM]^={"u","d","Q","e","L","Hu","Hd"};
 
 (* End[] *)
 EndPackage[]

@@ -265,7 +265,8 @@ betas=betaFunctions[model];
 rules={};
 Do[
 parameter=originalParameters[model][[part,parameterPos]];
-combinatorialFactor=Times@@(Factorial/@Tally[parameter[[1]]][[All,2]]);
+(* combinatorialFactor=Times@@(Factorial/@Tally[parameter[[1]]][[All,2]]);*)
+ combinatorialFactor=1;
 dimReps=(Times@@DimR[group[model],#])&/@reps[model][[parameter[[1]]]];
 finalFactor=(Times@@dimReps)^(1/4) combinatorialFactor;
 
@@ -645,7 +646,7 @@ auxY=CF[auxY,{2},{1}];
 dims=DimR[group[model],#]&/@reps[model];
 auxSRCR=8arrayM arrayG^2Plus@@(dynkinRep g2Ci/dims  dimRs nFlavs[model])+8 arrayG^2Plus@@(dynkinRep g2MCi/dims  dimRs nFlavs[model]);
 
-beta2=(arrayG^4arrayM (-24cG^2+8cG sR)+auxSRCR+auxY)[[nonU1sPositions]];
+beta2=(arrayG^4arrayM(-24cG^2+8cG sR)+auxSRCR+auxY)[[nonU1sPositions]];
 
 Return[{beta1,beta2}];
 ]

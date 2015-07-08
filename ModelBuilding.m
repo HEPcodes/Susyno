@@ -24,7 +24,7 @@ BeginPackage["Susyno`ModelBuilding`",{"Susyno`LieGroups`","Susyno`SusyRGEs`","Su
 {SearchForInvariants,GenerateModelParameters,GenerateModel};
 
 (* properties of a model - see TagSet and Upset (e.g.:area[square]^=1)*)
-{group,reps,nFlavs,discreteSym,conjugateReps,nReps,parameters,lagrangian,betaFunctions,parameterRenamingRules};
+{group,reps,nFlavs,discreteSym,conjugateReps,nReps,parameters,lagrangian,betaFunctions,parameterRenamingRules,author,date};
 
 (* properties of a model due to SSB *)
 {fundamentalModel,definingVevs,gaugeRotation,matterRotation,boundaryConditions};
@@ -110,61 +110,10 @@ If[ValueQ[group[input]]&&ValueQ[reps[input]]&&ValueQ[fieldNames[input]]&&ValueQ[
 ];
 $Post=myPost;
 
-
-PrintAllModelInformation[model_]:=Module[{},
-
-(* First make user that user defined substitutions, defined after the last GenerateModel was executed, are indeed implemented *)
-If[ValueQ[parameterRenamingRules[model]],
-parameters[model]^=parameters[model]//.parameterRenamingRules[model];
-betaFunctions[model]^=betaFunctions[model]//.parameterRenamingRules[model];
-If[ValueQ[lagrangian[model]],
-lagrangian[model]^=lagrangian[model]//.parameterRenamingRules[model];
-]
-];
-
-
-PrintModelName[model];
-PrintModelGaugeGoup[model];
-PrintModelRepresentations[model];
-PrintModelParameters[model];
-PrintParametersSymmetries[model];
-PrintLagrangian[model];
-PrintModelBetaFunctions[model];
-];
-
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
 IsModelAnomalyFree[model_]:=Module[{anomalyValues},
 anomalyValues=Total[nFlavs[model] (TriangularAnomalyValue[group[model],#]&/@reps[model])];Which[anomalyValues===0anomalyValues,Return[True],anomalyValues=!=0anomalyValues,Return[False],True,Print["The model is anomaly if and only if ",anomalyValues, " are all zero."]];
-]
-
-(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
-
-PrintModelInformation[model_,twoLoops_:True]:=Module[{auxP,aux\[Beta]1,aux\[Beta]2},
-auxP=Flatten[parameters[model]];
-aux\[Beta]1=Expand[Flatten[betaFunctions[model][[All,1]]]];
-
-If[twoLoops,aux\[Beta]2=Expand[Flatten[betaFunctions[model][[All,2]]]]];
-
-Print[Style["XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",{Bold,GrayLevel[0.5]}]];
-
-Do[
-Print[Style[">>> ",{Bold}],Style["Parameter name:",{Bold,Darker[Red]}]];
-Print[auxP[[i]]];
-Print[""];
-Print[Style[">>> ",{Bold}],Style["1-Loop \[Beta] function:",{Bold,Darker[Red]}]];
-Print[aux\[Beta]1[[i]]];
-Print[""];
-If[twoLoops,
-Print[Style[">>> ",{Bold}],Style["2-Loop \[Beta] function:",{Bold,Darker[Red]}]];
-Print[aux\[Beta]2[[i]]];
-Print[""];
-];
-Print[Style["XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",{Bold,GrayLevel[0.5]}]];
-Print[""];
-
-,{i,Length[auxP]}];
-
 ]
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
@@ -390,7 +339,7 @@ AppendTo[rules,parameter[[0]][parameter[[1]],more___]->parameter[[0]][fieldNames
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
 Options[CalculateLagrangian]={Verbose->True};
-CalculateLagrangian[model_,OptionsPattern[]]:=Module[{sum,inv,fNames,result,parts},
+CalculateLagrangian[model_,OptionsPattern[]]:=Module[{sum,inv,combinatorialFactor,fNames,result,parts,noU1sPositions,aux,ruleA,ruleB},
 result={};
 fNames=If[ValueQ[fieldNames[model]],fieldNames[model],Table[ToExpression["\[CapitalPhi]"<>ToString[i]],{i,Length[reps[model]]}]];
 
@@ -399,7 +348,18 @@ parts={{1,2,3},{1,2},{1},{1,2,3},{1,2},{1}};
 Do[
 sum=0;
 Do[
-inv=Fold[#1//.#2&,parameter,parameterTransformationRule[model]] Invariants[group[model],reps[model][[parameter[[1]]]]]/. ({a:>If[nFlavs[model][[parameter[[1,1]]]]===1,fNames[[parameter[[1,1]]]],fNames[[parameter[[1,1]]]][f[1]]],b:>If[nFlavs[model][[parameter[[1,2]]]]===1,fNames[[parameter[[1,2]]]],fNames[[parameter[[1,2]]]][f[2]]],c:>If[nFlavs[model][[parameter[[1,3]]]]===1,fNames[[parameter[[1,3]]]],fNames[[parameter[[1,3]]]][f[3]]]}[[parts[[i]]]]);
+
+(* Get rid of gauge indices which are always one *)
+noU1sPositions=Flatten[Position[group[model],x_/;x=!={},{1},Heads->False]];
+aux=DimR[group[model][[noU1sPositions]],#[[noU1sPositions]]]&/@reps[model][[parameter[[1]]]];
+aux=Flatten[Position[#,Except[1],{1},Heads->False]]&/@aux;
+ruleA={a,b,c}[[#]][x__]:>If[aux[[#]]==={},{a,b,c}[[#]],{a,b,c}[[#]][{x}[[aux[[#]]]]]]&/@{1,2,3};
+ruleB={a[{x___}]:>a[x],b[{x___}]:>b[x],c[{x___}]:>c[x]};
+(* [END] Get rid of gauge indices which are always one *)
+
+combinatorialFactor=Times@@(Factorial/@Tally[parameter[[1]]][[All,2]]);
+
+inv=Fold[#1//.#2&,parameter,parameterTransformationRule[model]] (1/combinatorialFactor Invariants[group[model],reps[model][[parameter[[1]]]]]/. ruleA/.ruleB/.{a:>If[nFlavs[model][[parameter[[1,1]]]]===1,fNames[[parameter[[1,1]]]],fNames[[parameter[[1,1]]]][f[1]]],b:>If[nFlavs[model][[parameter[[1,2]]]]===1,fNames[[parameter[[1,2]]]],fNames[[parameter[[1,2]]]][f[2]]],c:>If[nFlavs[model][[parameter[[1,3]]]]===1,fNames[[parameter[[1,3]]]],fNames[[parameter[[1,3]]]][f[3]]]}[[parts[[i]]]]);
 inv=DeleteCases[inv,0];
 If[Length[inv]==0,inv={0}];
 inv=If[Length[parameter]>2,inv[[parameter[[2]]]],inv[[1]]];
@@ -411,7 +371,16 @@ AppendTo[result,sum];
 
 sum=0;
 Do[
-inv=Fold[#1//.#2&,parameter,parameterTransformationRule[model]] Invariants[group[model],reps[model][[parameter[[1]]]],Conjugations->{False,True}]/. {a:>If[nFlavs[model][[parameter[[1,1]]]]===1,fNames[[parameter[[1,1]]]],fNames[[parameter[[1,1]]]][f[1]]],b:>If[nFlavs[model][[parameter[[1,2]]]]===1,Conjugate[fNames[[parameter[[1,2]]]]],Conjugate[fNames[[parameter[[1,2]]]]][f[2]]]};
+
+(* Get rid of gauge indices which are always one *)
+noU1sPositions=Flatten[Position[group[model],x_/;x=!={},{1},Heads->False]];
+aux=DimR[group[model][[noU1sPositions]],#[[noU1sPositions]]]&/@reps[model][[parameter[[1]]]];
+aux=Flatten[Position[#,Except[1],{1},Heads->False]]&/@aux;
+ruleA={a,b,c}[[#]][x__]:>If[aux[[#]]==={},{a,b,c}[[#]],{a,b,c}[[#]][{x}[[aux[[#]]]]]]&/@{1,2,3};
+ruleB={a[{x___}]:>a[x],b[{x___}]:>b[x],c[{x___}]:>c[x]};
+(* [END] Get rid of gauge indices which are always one *)
+
+inv=Fold[#1//.#2&,parameter,parameterTransformationRule[model]] (Invariants[group[model],reps[model][[parameter[[1]]]],Conjugations->{False,True}]/.ruleA/.ruleB/. {a:>If[nFlavs[model][[parameter[[1,1]]]]===1,fNames[[parameter[[1,1]]]],fNames[[parameter[[1,1]]]][f[1]]],b:>If[nFlavs[model][[parameter[[1,2]]]]===1,Conjugate[fNames[[parameter[[1,2]]]]],Conjugate[fNames[[parameter[[1,2]]]]][f[2]]]});
 inv=DeleteCases[inv,0][[1]];
 
 sum+=inv;
@@ -430,29 +399,65 @@ If[OptionValue[Verbose],PrintLagrangian[model]];
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
 
-PrintModelName[model_]:=Module[{},
-PrintHeaderText2["Model name","X",120];
-Print[""];
-Print[model];
-Print[""];
+(* Appears to be buggy *)
+ Off[ColumnForm::"colmh"]; 
+
+PrintAllModelInformation[model_]:=Module[{spacing,tab},
+
+(* First make user that user defined substitutions, defined after the last GenerateModel was executed, are indeed implemented *)
+If[ValueQ[parameterRenamingRules[model]],
+parameters[model]^=parameters[model]//.parameterRenamingRules[model];
+betaFunctions[model]^=betaFunctions[model]//.parameterRenamingRules[model];
+If[ValueQ[lagrangian[model]],
+lagrangian[model]^=lagrangian[model]//.parameterRenamingRules[model];
+]
+];
+
+spacing=StringJoin@@ConstantArray[" ",6];
+tab=TabView[{spacing<>"Model Information"<>spacing->PrintModelInformation[model],spacing<>"Gauge group"<>spacing->PrintModelGaugeGoup[model],spacing<>"Representations"<>spacing->PrintModelRepresentations[model],spacing<>"Parameters in model"<>spacing->PrintModelParameters[model],spacing<>"Lagrangian"<>spacing->PrintLagrangian[model],spacing<>"BetaFunctions"<>spacing->PrintModelBetaFunctions[model]},1,LabelStyle->{Darker[Red],FontFamily->"Consolas",FontSize->13,Bold},ControlPlacement->Top,Appearance->None,FrameMargins->20,Alignment->{Left,Automatic},ImageSize->{6 170,Automatic}];
+Print[tab];
+];
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+PrintModelInformation[model_]:=Module[{result},
+result={OpenerView[{Style["Model name",Bold],Row[{"",model}]},True]};
+
+If[ValueQ[author[model]],AppendTo[result,OpenerView[{Style["Author",Bold],Row[{"",author[model]}]},True]]];
+If[ValueQ[date[model]],AppendTo[result,OpenerView[{Style["Date",Bold],Row[{"",date[model]}]},True]]];
+
+
+Return[Row[result,"\n",BaseStyle->(FontFamily->"Consolas")]];
 ]
 
-PrintModelGaugeGoup[model_]:=Module[{},
-PrintHeaderText2["Gauge group","X",120];
-Print[""];
-Print[StringJoin[Riffle[CMtoName/@group[model]," x "]]];
-Print[""];
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+PrintModelGaugeGoup[model_]:=Module[{result},
+result={};
+(*
+AppendTo[result,PrintHeaderText2["Gauge group","X",120]];
+AppendTo[result,""];
+*)
+AppendTo[result,StringJoin[Riffle[CMtoName/@group[model]," x "]]];
+AppendTo[result,""];
 If[IsModelAnomalyFree[model],
-Print[Style["GOOD NEWS:",{Bold,Darker[Green]}],Style[" The model is gauge anomaly free.",Darker[Green]]];,
-Print[Style["BAD NEWS:",{Bold,Darker[Red]}],Style[" The model contains gauge anomalies!",Darker[Red]]];
+AppendTo[result,Row[{Style["GOOD NEWS:",{Bold,Darker[Green]}],Style[" The model is gauge anomaly free.",Darker[Green]]}]];,
+AppendTo[result,Row[{Style["BAD NEWS:",{Bold,Darker[Red]}],Style[" The model contains gauge anomalies!",Darker[Red]]}]];
 ];
-Print[""];
+
+AppendTo[result,""];
+AppendTo[result,Style[">>> Extra information",{GrayLevel[0.5],Bold}]];
+AppendTo[result,Row[{"    This data is contained in the ",Button[Style["group["<>ToString[model]<>"]",{Underlined,GrayLevel[0.5],FontFamily->"Consolas"}],CellPrint[Cell["group["<>ToString[model]<>"]","Input"]],Appearance->None,Background->GrayLevel[1],FrameMargins->2]," variable."},BaseStyle->GrayLevel[0.5]]];
+
+Return[Row[result,"\n",BaseStyle->(FontFamily->"Consolas")]];
 ]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
 PrintModelRepresentations[model_]:=
 Module[{aux,grayType,result},
 grayType=GrayLevel[.9];
-result=Table[Tooltip[#[[i]],Grid[{{"Dim(R)","=",DimR[group[model][[i]],#[[i]]]},{"C(R)","=",Casimir[group[model][[i]],#[[i]]]},{"S(R)","=",DynkinIndex[group[model][[i]],#[[i]]]}},Spacings->{0.5,1}],LabelStyle->{Background->Automatic,CellFrameColor->RGBColor[174/256,0,41/256],CellFrame->5}],{i,Length[#]}]&/@reps[model];
+result=Table[Tooltip[#[[i]],Grid[{{"Dim(R)","=",DimR[group[model][[i]],#[[i]]]},{"C(R)","=",Casimir[group[model][[i]],#[[i]]]},{"S(R)","=",DynkinIndex[group[model][[i]],#[[i]]]}},Spacings->{0.5,1}],Evaluate[If[$VersionNumber>=8,LabelStyle(*TooltipStyle*),LabelStyle ]->{Background->Automatic,CellFrameColor->RGBColor[174/256,0,41/256],CellFrame->5}]],{i,Length[#]}]&/@reps[model];
 
 result=Prepend[result,Style[CMtoName[#],Bold]&/@group[model]];
 result=Transpose[result];
@@ -469,36 +474,22 @@ TextAngle[texts_String,slotSize_]:=If[1.5^2+Max[StringLength/@texts]^2<=slotSize
 aux=If[ValueQ[fieldNames[model]],Prepend[Table[Rotate[Style[fieldNames[model][[i]],Bold],TextAngle[fieldNames[model],3]],{i,Length[reps[model]]}],Null],Prepend[Table[Rotate[Style["Field "<>ToString[i],Bold],TextAngle[{"Field "<>ToString[Length[reps[model]]]},3]],{i,Length[reps[model]]}],Null]];
 PrependTo[result,aux];
 
-result=Grid[result,Alignment->{Center,Center},Dividers->{{2->{grayType,Thick}},{2->{grayType,Thick},-3->{grayType,Thick},-2->{grayType,Thick}}},Spacings->{1,1},ItemSize->{{6}}];
+result={Grid[result,Alignment->{Center,Center},Dividers->{{2->{grayType,Thick}},{2->{grayType,Thick},-3->{grayType,Thick},-2->{grayType,Thick}}},Spacings->{1,1},ItemSize->{{6}}]};
 
+AppendTo[result,""];
+AppendTo[result,Style[">>> Extra information",{GrayLevel[0.5],Bold}]];
+AppendTo[result,Row[{"    This data is contained in the ",Button[Style["reps["<>ToString[model]<>"]",{Underlined,GrayLevel[0.5],FontFamily->"Consolas"}],CellPrint[Cell["reps["<>ToString[model]<>"]","Input"]],Appearance->None,Background->GrayLevel[1],FrameMargins->2]," variable."},BaseStyle->GrayLevel[0.5]]];
 
-PrintHeaderText2["Representations","X",120];Print[""];
-Print[result];Print[""];
+Return[Row[result,"\n",BaseStyle->{FontFamily->"Consolas",FontSize->13}]];
 
 ]
 
-PrintModelParameters[model_]:=Module[{},
-PrintHeaderText2["Parameters in the model","X",120];Print[""];
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
-If[ValueQ[parameters[model]],
-PrintHeaderText3["Gauge coupling constants","x",120];Print@@Riffle[parameters[model][[1]],", "];Print[""];
-PrintHeaderText3["Gaugino masses","x",120];Print@@Riffle[parameters[model][[2]],", "];Print[""];
-PrintHeaderText3["Superpotential trilinear parameters","x",120];Print@@Riffle[parameters[model][[3]],", "];Print[""];
-PrintHeaderText3["Superpotential bilinear parameters","x",120];Print@@Riffle[parameters[model][[4]],", "];Print[""];
-PrintHeaderText3["Superpotential linear parameters","x",120];Print@@Riffle[parameters[model][[5]],", "];Print[""];
-PrintHeaderText3["Soft trilinear parameters","x",120];Print@@Riffle[parameters[model][[6]],", "];Print[""];
-PrintHeaderText3["Soft bilinear parameters","x",120];Print@@Riffle[parameters[model][[7]],", "];Print[""];
-PrintHeaderText3["Soft linear parameters","x",120];Print@@Riffle[parameters[model][[8]],", "];Print[""];
-PrintHeaderText3["Soft masses","x",120];Print@@Riffle[parameters[model][[9]],", "];Print[""];
-,
-Print["Run ",Style["GenerateModel["<>ToString[model]<>"]",Bold]," to compute the list of model parameters. They will be stored in ",Style["parameters["<>ToString[model]<>"]",Bold],"."];Print[""];
-];
-]
+(* Auxilar method used to write down the symmetries of parameters under a permutation of flavors *)
+PrintParametersSymmetries[model_,i_,j_]:=Module[{aux1,aux2,out,syms,anyNonTrivialSymmetry=False},
+If[i<3||i>8,Return[Row[{},BaseStyle->GrayLevel[0.5]]]];
 
-
-
-PrintParametersSymmetries[model_]:=Module[{aux1,aux2,out,syms,anyNonTrivialSymmetry=False},
-Do[
 aux1=Position[parametersSymmetries[model][[i,j,1]],x_/;Length[x]>1,{1},Heads->False]//Flatten;
 
 (* Condition 1: there must be repeated indices! *)
@@ -512,93 +503,110 @@ If[nFlavs[model][[aux2]]=!=1,AppendTo[syms,k]];
 ];
 
 (* At this point, syms contains for each parameter (given by i,j) the position in parametersSymmetries[model][[i,j,1]] and parametersSymmetries[model][[i,j,2]] of the symmetries that need to be reported (the non-trivial ones) *)
-If[syms=!={},
-
-If[!anyNonTrivialSymmetry,anyNonTrivialSymmetry=True;
-PrintHeaderText2["Parameter symmetries under permutations of flavor indices","X",120];Print[""];
-];
-
-
-out={parameters[model][[i,j]]};
+out={};
 Do[
-aux1=Which[Length[parametersSymmetries[model][[i,j,2,k]]]==1,{" is symmetric"},Length[parametersSymmetries[model][[i,j,2,k]]]==Total[parametersSymmetries[model][[i,j,2,k]]],{" is antisymmetric"},True,{"transforms as the ",parametersSymmetries[model][[i,j,2,k]]," representation of ",Subscript["S", Total[parametersSymmetries[model][[i,j,2,k]]]]}];
+aux1=Which[Length[parametersSymmetries[model][[i,j,2,k]]]==1,{"symmetric"},Length[parametersSymmetries[model][[i,j,2,k]]]==Total[parametersSymmetries[model][[i,j,2,k]]],{"antisymmetric"},True,{"transforms as the ",parametersSymmetries[model][[i,j,2,k]]," representation of ",Subscript["S", Total[parametersSymmetries[model][[i,j,2,k]]]]}];
 out=Join[out,aux1,{" under a permutation of the flavor indices ",Fold[#1/.#2&,(f/@parametersSymmetries[model][[i,j,1,k]]),parameterRenamingRules[model]],", "}];
 ,{k,syms}];
-out[[-1]]="";
-Print[out[[1]],Sequence@@(Style[#,GrayLevel[0.5]]&/@out[[2;;-1]])];
+If[Length[syms]>0,
+PrependTo[out,"  ("];
+out[[-1]]=")"
 ];
 
-,{i,3,8},{j,Length[originalParameters[model][[i]]]}];
-
-If[anyNonTrivialSymmetry,Print[""]];
-
+Return[Row[out,BaseStyle->{GrayLevel[0.5],FontFamily->"Consolas",FontSize->13}]];
 ]
 
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+PrintModelParameters[model_]:=Module[{result,parametersAndSymmetries},
+result={};
+
+If[ValueQ[parameters[model]],
+parametersAndSymmetries=Table[Row[{parameters[model][[i,j]],PrintParametersSymmetries[model,i,j]}],{i,9},{j,Length[originalParameters[model][[i]]]}];
+parametersAndSymmetries=Table[If[el==={},{Style["---",{Black,Plain}]},el],{el,parametersAndSymmetries}];
+
+result={Column[MapThread[OpenerView[{Style[#1,Bold],Column[#2,BaseStyle->{Darker[Orange],Bold}]},True]&,{{"Gauge coupling constants","Gaugino masses","Superpotential trilinear parameters","Superpotential bilinear parameters","Superpotential linear parameters","Soft trilinear parameters","Soft bilinear parameters","Soft linear parameters","Soft masses"},parametersAndSymmetries}]]};
 
 
-PrintLagrangian[model_]:=Module[{pos,aux0,aux1,aux2,aux3},
-PrintHeaderText2["Lagrangian","X",120];
-Print[""];
+If[!ValueQ[parameterRenamingRules[model]]||parameterRenamingRules[model]==={},
+AppendTo[result,""];
+AppendTo[result,Style[">>> Parameter notation",{GrayLevel[0.5],Bold}]];
+AppendTo[result,Row[{"    The program's default notation can be changed by setting ", Button[Style["parameterRenamingRules["<>ToString[model]<>"]",{Underlined,GrayLevel[0.5],FontFamily->"Consolas"}],CellPrint[Cell["parameterRenamingRules["<>ToString[model]<>"]","Input"]],Appearance->None,FrameMargins->2]," (see the ",Hyperlink["Susyno Tutorial", 
+  "paclet:Susyno/tutorial/SusynoTutorial"],")."},BaseStyle->{GrayLevel[0.5]}]];
+];
+
+AppendTo[result,""];
+AppendTo[result,Style[">>> Extra information",{GrayLevel[0.5],Bold}]];
+AppendTo[result,Row[{"    This data is contained in the ",Button[Style["parameters["<>ToString[model]<>"]",{Underlined,GrayLevel[0.5],FontFamily->"Consolas"}],CellPrint[Cell["parameters["<>ToString[model]<>"]","Input"]],Appearance->None,Background->GrayLevel[1],FrameMargins->2]," variable."},BaseStyle->GrayLevel[0.5]]];
+AppendTo[result,Row[{"    Symmetries of parameters under a change of flavor indices are in ",Button[Style["parametersSymmetries["<>ToString[model]<>"]",{Underlined,GrayLevel[0.5],FontFamily->"Consolas"}],CellPrint[Cell["parametersSymmetries["<>ToString[model]<>"]","Input"]],Appearance->None,Background->GrayLevel[1],FrameMargins->2],"."},BaseStyle->GrayLevel[0.5]]];
+
+,
+
+AppendTo[result,Row[{"Run ",Button[Style["GenerateModel["<>ToString[model]<>"]",{Underlined,GrayLevel[0.5],FontFamily->"Consolas"}],CellPrint[Cell["GenerateModel["<>ToString[model]<>"]","Input"]],Appearance->None,Background->GrayLevel[1],FrameMargins->2]," to compute the list of model parameters."},BaseStyle->GrayLevel[0.5]]];
+
+
+];
+Return[Row[result,"\n",BaseStyle->{FontFamily->"Consolas",FontSize->13}]];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+PrintLagrangian[model_]:=Module[{pos,aux0,aux1,aux2,aux3,result},
+result={};
 If[ValueQ[lagrangian[model]],
 
 (* Explain the notation *)
-pos=Position[group[model],x_/;x!={},{1}]//Flatten;
-aux0=(CMtoName[#]<>"_index")&/@DeleteCases[group[model],U1];
-aux1="["<>StringJoin[Riffle[(CMtoName[#]<>"_index")&/@DeleteCases[group[model],U1],", "]]<>"]";
-Print[Style["Field notation:",GrayLevel[0.5]]];
+AppendTo[result,Row[{">>> ",Style["Parameters",{Darker[Orange],Bold}]," are shown in dark orange; ", Style["field heads",{RGBColor[0,51/255,153/255],Bold}] ," are shown in blue."},BaseStyle->{GrayLevel[0.5],Bold}]];
+AppendTo[result,""];
+AppendTo[result,Style[">>> Field notation",{GrayLevel[0.5],Bold}]];
+
+pos=Table[Flatten[Position[DimR[group[model],el],Except[1],{1},Heads->False]],{el,reps[model]}];
+aux0=Table[(CMtoName[#]<>"_index")&/@(group[model][[Flatten[Position[DimR[group[model],el],Except[1],{1},Heads->False]]]]),{el,reps[model]}];
+aux1=Table[If[Length[pos[[i]]]==0,"","["<>StringJoin[Riffle[(CMtoName[#]<>"_index")&/@group[model][[pos[[i]]]],", "]]<>"]"],{i,Length[reps[model]]}];
+
 Do[
 aux2=If[Head[fieldNames[model][[i]]]===String,fieldNames[model][[i]],ToString[fieldNames[model][[i]]]]<>If[nFlavs[model][[i]]===1,"","[flavor_index]"];
-aux3=StringJoin[Riffle[Table[If[DimR[group[model],reps[model][[i]]][[pos[[j]]]]!=1,aux0[[j]]<>" = 1 to "<>ToString[DimR[group[model],reps[model][[i]]][[pos[[j]]]]],aux0[[j]]<>" = 1"],{j,Length[pos]}],", "]];
-aux2=Style["   "<>aux2<>aux1<>"   with   "<>aux3<>".",GrayLevel[0.5]];
-Print[aux2];
+aux3=StringJoin[Riffle[Table[aux0[[i,j]]<>" = 1 to "<>ToString[DimR[group[model],reps[model][[i]]][[pos[[i,j]]]]],{j,Length[pos[[i]]]}],", "]];
+aux2=Style["    "<>aux2<>aux1[[i]]<>If[Length[pos[[i]]]==0,"","   with   "<>aux3<>""],GrayLevel[0.5]];
+AppendTo[result,aux2];
 ,{i,Length[reps[model]]}];
-Print[""];
+AppendTo[result,""];
+AppendTo[result,Style[">>> Extra information",{GrayLevel[0.5],Bold}]];
+AppendTo[result,Row[{"    This data is contained in the ",Button[Style["lagrangian["<>ToString[model]<>"]",{Underlined,GrayLevel[0.5],FontFamily->"Consolas"}],CellPrint[Cell["lagrangian["<>ToString[model]<>"]","Input"]],Appearance->None,Background->GrayLevel[1],FrameMargins->2]," variable."},BaseStyle->{GrayLevel[0.5],FontSize->13}]];
 
-PrintHeaderText3["Superpotential (trilinear terms)","x",120];
-Print[lagrangian[model][[1]]];
-Print[""];
-PrintHeaderText3["Superpotential (bilinear terms)","x",120];
-Print[lagrangian[model][[2]]];
-Print[""];
-PrintHeaderText3["Superpotential (linear terms)","x",120];
-Print[lagrangian[model][[3]]];
-Print[""];
-PrintHeaderText3["Soft SUSY breaking Lagrangian (trilinear terms)","x",120];
-Print[lagrangian[model][[4]]];
-Print[""];
-PrintHeaderText3["Soft SUSY breaking Lagrangian (bilinear terms)","x",120];
-Print[lagrangian[model][[5]]];
-Print[""];
-PrintHeaderText3["Soft SUSY breaking Lagrangian (linear terms)","x",120];
-Print[lagrangian[model][[6]]];
-Print[""];
-PrintHeaderText3["Soft SUSY breaking Lagrangian (mass terms)","x",120];
-Print[lagrangian[model][[7]]];
-Print[""];
+PrependTo[result,""];
+
+PrependTo[result,Column[MapThread[OpenerView[{Style[#1,Bold],#2},True]&,{{"Superpotential (trilinear terms)","Superpotential (bilinear terms)","Superpotential (linear terms)","Soft SUSY breaking Lagrangian (trilinear terms)","Soft SUSY breaking Lagrangian (bilinear terms)","Soft SUSY breaking Lagrangian (linear terms)","Soft SUSY breaking Lagrangian (mass terms)"},lagrangian[model]/.Join[(#:>Style[#,{Darker[Orange],Bold}]&/@Flatten[parameters[model],1]),(#:>Style[#,{RGBColor[0,51/255,153/255],Bold}]&/@fieldNames[model])]}]]];
 ,
-Print["Run ",Style["GenerateModel["<>ToString[model]<>",CalculateEverything\[Rule]True]",Bold]," to compute the model Lagrangian. It will be stored in ",Style["lagrangian["<>ToString[model]<>"]",Bold],"."];
-Print[""];
+AppendTo[result,Row[{"Run ",Button[Style["GenerateModel["<>ToString[model]<>",CalculateEverything->True]",{Underlined,GrayLevel[0.5],FontFamily->"Consolas"}],CellPrint[Cell["GenerateModel["<>ToString[model]<>",CalculateEverything->True]","Input"]],Appearance->None,Background->GrayLevel[1],FrameMargins->2]," to compute the model Lagrangian."},BaseStyle->{GrayLevel[0.5],FontSize->13}]];
 ];
-
+SAVE0=Row[result,"\n",BaseStyle->{FontFamily->"Consolas",FontSize->13}];
+Return[Row[result,"\n",BaseStyle->{FontFamily->"Consolas",FontSize->13}]];
 ]
 
-PrintModelBetaFunctions[model_]:=Module[{},
-PrintHeaderText2["Beta functions","X",120];Print[""];
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+PrintModelBetaFunctions[model_]:=Module[{result},
+result={};
 If[ValueQ[betaFunctions[model]],
 Do[
-PrintHeaderText3[Row[{"\!\(\*SuperscriptBox[\(\[Beta]\), \((1)\)]\) of ",parameters[model][[i,j]]}],"x",120];Print[Expand[betaFunctions[model][[i,1,j]]]];
-Print[""];
-PrintHeaderText3[Row[{"\!\(\*SuperscriptBox[\(\[Beta]\), \((2)\)]\) of ",parameters[model][[i,j]]}],"x",120];Print[Expand[betaFunctions[model][[i,2,j]]]];
-If[!(i==Length[parameters[model]]&&j==Length[parameters[model][[i]]]),
-Print[""];
-Print[""];
-Print[""];
-];
+AppendTo[result,{Style[parameters[model][[i,j]],{Darker[Orange],Bold}],Column[{OpenerView[{Style["~~~~~ \!\(\*SuperscriptBox[\(\[Beta]\), \((1)\)]\) ~~~~~",{Bold,RGBColor[0,51/255,153/255]}],Expand[betaFunctions[model][[i,1,j]]]}],OpenerView[{Style["~~~~~ \!\(\*SuperscriptBox[\(\[Beta]\), \((2)\)]\) ~~~~~",{Bold,RGBColor[0,51/255,153/255]}],Expand[betaFunctions[model][[i,2,j]]]}]}]}];
+
 ,{i,Length[parameters[model]]},{j,Length[parameters[model][[i]]]}];
+result={Column[OpenerView/@result,Dividers->{Center,GrayLevel[0.9]},ItemSize->{79,Automatic}]};
+AppendTo[result,""];
+AppendTo[result,Style[">>> Extra information",{GrayLevel[0.5],Bold}]];
+AppendTo[result,Row[{"    This data is contained in the ",Button[Style["betaFunctions["<>ToString[model]<>"]",{Underlined,GrayLevel[0.5],FontFamily->"Consolas"}],CellPrint[Cell["betaFunctions["<>ToString[model]<>"]","Input"]],Appearance->None,Background->GrayLevel[1],FrameMargins->2]," variable."},BaseStyle->GrayLevel[0.5]]];
+
+Return[Row[result,"\n",BaseStyle->{FontFamily->"Consolas",FontSize->13}]];
 ,
-Print["Run ",Style["GenerateModel["<>ToString[model]<>"]",Bold]," to compute the model \[Beta] functions. They will be stored in ",Style["betaFunctions["<>ToString[model]<>"]",Bold],"."];
-];
+result=Row[{"Run ",Button[Style["GenerateModel["<>ToString[model]<>"]",{Underlined,GrayLevel[0.5],FontFamily->"Consolas"}],CellPrint[Cell["GenerateModel["<>ToString[model]<>"]","Input"]],Appearance->None,Background->GrayLevel[1],FrameMargins->2]," to compute the model \[Beta] functions."},BaseStyle->{GrayLevel[0.5],FontFamily->"Consolas",FontSize->13}];
+
+Return[result];];
+
 ]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
 PrintHeaderText[text_,paddingChar_,lineLength_,textColor_:Black]:=Module[{n, leftXs, rightXs,m},
 n=StringLength[text];
@@ -606,22 +614,13 @@ m=Max[lineLength-4-n,6];
 leftXs=StringJoin@@ConstantArray[paddingChar,Quotient[m,2]]<>"  ";
 rightXs="  "<>StringJoin@@ConstantArray[paddingChar,m-Quotient[m,2]];
 
-Print[Style[leftXs,GrayLevel[0.5]], Style[text,{Bold,textColor}], Style[rightXs,GrayLevel[0.5]]];
+Return[Row[{Style[leftXs,GrayLevel[0.5]], Style[text,{Bold,textColor}], Style[rightXs,GrayLevel[0.5]]}]];
 ]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
 PrintHeaderText2[text_,paddingChar_,lineLength_]:=Module[{n, leftXs, rightXs,m},
-Print[Style[StringJoin@@ConstantArray[paddingChar,lineLength],GrayLevel[0.5]]];
-PrintHeaderText[text,paddingChar,lineLength,Darker[Red]];
-Print[Style[StringJoin@@ConstantArray[paddingChar,lineLength],GrayLevel[0.5]]];
-]
-
-PrintHeaderText3[text_,paddingChar_,lineLength_,textColor_:Black]:=Module[{n, leftXs, rightXs,m},
-n=StringLength[If[Head[text]===String,text,StringReplace[ToString[text],{" "->"","\n"->""}]]];
-m=Max[lineLength-4-n-30,6];
-leftXs=StringJoin@@ConstantArray[paddingChar,Quotient[m,2]]<>"  ";
-rightXs="  "<>StringJoin@@ConstantArray[paddingChar,m-Quotient[m,2]];
-
-Print["               ",Style[leftXs,GrayLevel[0.5]], Style[text,{Bold,textColor}], Style[rightXs,GrayLevel[0.5]],"               "];
+Return[Row[{Style[StringJoin@@ConstantArray[paddingChar,lineLength],GrayLevel[0.5]],PrintHeaderText[text,paddingChar,lineLength,Darker[Red]],Style[StringJoin@@ConstantArray[paddingChar,lineLength],GrayLevel[0.5]]},"\n"]];
 ]
 
 End[];
