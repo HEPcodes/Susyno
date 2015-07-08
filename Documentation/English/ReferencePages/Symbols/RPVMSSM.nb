@@ -10,11 +10,11 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       145,          7]
-NotebookDataLength[     13110,        459]
-NotebookOptionsPosition[      9608,        344]
-NotebookOutlinePosition[     11210,        389]
-CellTagsIndexPosition[     11125,        384]
-WindowTitle->Adjoint - Wolfram Mathematica
+NotebookDataLength[     13338,        441]
+NotebookOptionsPosition[     10591,        353]
+NotebookOutlinePosition[     12107,        397]
+CellTagsIndexPosition[     12022,        392]
+WindowTitle->RPVMSSM - Wolfram Mathematica
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -44,12 +44,12 @@ Cell[BoxData[GridBox[{
      Cell[BoxData[
       ActionMenuBox[
        FrameBox["\<\"URL \[RightGuillemet]\"\>",
-        StripOnInput->False], {"\<\"Susyno/ref/Adjoint\"\>":>
+        StripOnInput->False], {"\<\"Susyno/ref/Weights\"\>":>
        None, "\<\"Copy Mathematica url\"\>":>
        Module[{DocumentationSearch`Private`nb$}, 
         DocumentationSearch`Private`nb$ = NotebookPut[
            Notebook[{
-             Cell["Susyno/ref/Adjoint"]}, Visible -> False]]; 
+             Cell["Susyno/ref/Weights"]}, Visible -> False]]; 
         SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
         FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
         NotebookClose[DocumentationSearch`Private`nb$]; Null], 
@@ -61,7 +61,7 @@ Cell[BoxData[GridBox[{
               BoxData[
                MakeBoxes[
                 Hyperlink[
-                "http://reference.wolfram.com/mathematica/Susyno/ref/Adjoint.\
+                "http://reference.wolfram.com/mathematica/Susyno/ref/Weights.\
 html"], StandardForm]], "Input", TextClipboardType -> "PlainText"]}, Visible -> 
             False]]; SelectionMove[
          DocumentationSearch`Private`nb$, All, Notebook]; 
@@ -71,7 +71,7 @@ html"], StandardForm]], "Input", TextClipboardType -> "PlainText"]}, Visible ->
          NotebookLocate[{
            URL[
             StringJoin[
-            "http://reference.wolfram.com/mathematica/", "Susyno/ref/Adjoint",
+            "http://reference.wolfram.com/mathematica/", "Susyno/ref/Weights",
               ".html"]], None}]}]},
        Appearance->None,
        MenuAppearance->Automatic]],
@@ -86,32 +86,19 @@ html"], StandardForm]], "Input", TextClipboardType -> "PlainText"]}, Visible ->
 
 Cell[CellGroupData[{
 
-Cell["Adjoint", "ObjectName",
+Cell["RPVMSSM", "ObjectName",
  CellID->1224892054],
 
 Cell[BoxData[GridBox[{
    {"", Cell[TextData[{
-     Cell[BoxData[
-      RowBox[{"Adjoint", "[", "group", "]"}]], "InlineFormula"],
-     " \n\tReturns the adjoint representation of  ",
-     Cell[BoxData["group"], "InlineFormula"]
-    }]]},
-   {"", Cell[TextData[{
-     Cell[BoxData[
-      RowBox[{"Adjoint", "[", 
-       RowBox[{"{", 
-        RowBox[{"group1", ",", "group2", ",", "..."}], "}"}], "]"}]], 
-      "InlineFormula"],
-     " \n\tReturns the adjoint representations of the ",
-     Cell[BoxData["group1"], "InlineFormula"],
-     ", ",
-     Cell[BoxData["group2"], "InlineFormula"],
-     ", ..."
+     Cell[BoxData["RPVMSSM"], "InlineFormula"],
+     " \[LineSeparator]Variable with all the data of the R-parity violating \
+MSSM"
     }]]}
   }]], "Usage",
  GridBoxOptions->{
  GridBoxBackground->{
-  "Columns" -> {{None}}, "ColumnsIndexed" -> {}, "Rows" -> {None, {None}}, 
+  "Columns" -> {{None}}, "ColumnsIndexed" -> {}, "Rows" -> {{None}}, 
    "RowsIndexed" -> {}}},
  CellID->982511436]
 }, Open  ]],
@@ -135,37 +122,17 @@ Cell[TextData[Cell[BoxData[
   Evaluator->None,
   Method->"Preemptive"]]]], "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->232621583],
+ CellID->76632881],
 
 Cell[TextData[{
- "Argument ",
- Cell[BoxData["group"], "InlineFormula"],
- " should be the ",
- ButtonBox["Cartan matrix",
+ Cell[BoxData["RPVMSSM"], "InlineFormula"],
+ "  is ready to be used with ",
+ ButtonBox["GenerateModel",
   BaseStyle->"Link",
-  ButtonData->"paclet:Susyno/ref/CartanMatrix"],
- " of the group."
-}], "Notes",
- CellID->416274567],
-
-Cell[TextData[{
- "This method outputs the Dynkin coefficients of the adjoint representation \
-of ",
- Cell[BoxData["group"], "InlineFormula"],
+  ButtonData->"paclet:Susyno/ref/GenerateModel"],
  "."
 }], "Notes",
- CellID->1067943069],
-
-Cell[TextData[{
- "A list of Cartan matrices ",
- Cell[BoxData[
-  RowBox[{"{", 
-   RowBox[{"group1", ",", " ", "group2", ",", "..."}], "}"}]], 
-  "InlineFormula"],
- " can also be used as input. The output is the list of adjoint \
-representations of the given groups."
-}], "Notes",
- CellID->68145961]
+ CellID->1067943069]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -183,7 +150,7 @@ Cell[TextData[ButtonBox["EXAMPLES",
      FrontEnd`SelectedNotebook[], After, 
      CellContents]}]& )]], "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->239347696],
+ CellID->129474629],
 
 Cell[CellGroupData[{
 
@@ -192,96 +159,130 @@ Cell[TextData[{
  "\[NonBreakingSpace]\[NonBreakingSpace]",
  Cell["(1)", "ExampleCount"]
 }], "ExampleSection",
- CellID->792891074],
+ CellID->721779115],
 
-Cell["\<\
-The adjoint representation of SU(2) is the triplet representation [={2} in \
-Dynkin coefficients]:\
-\>", "ExampleText",
- CellID->283112903],
+Cell[TextData[{
+ Cell[BoxData["RPVMSSM"], "InlineFormula"],
+ " is defined as having the following gauge group, representations, field \
+names, number of flavors, and discrete symmetry:"
+}], "Notes",
+ CellID->315923061],
 
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"Adjoint", "[", "SU2", "]"}]], "Input",
- CellLabel->"In[1]:=",
- CellID->473091279],
-
-Cell[BoxData[
- RowBox[{"{", "2", "}"}]], "Output",
- ImageSize->{25, 15},
- ImageMargins->{{0, 0}, {0, 0}},
- ImageRegion->{{0, 1}, {0, 1}},
- CellLabel->"Out[1]=",
- CellID->191772224]
-}, Open  ]],
-
-Cell["Two more examples:", "ExampleText",
- CellID->753055023],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"Adjoint", "[", "SU5", "]"}]], "Input",
- CellLabel->"In[2]:=",
- CellID->297272364],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"1", ",", "0", ",", "0", ",", "1"}], "}"}]], "Output",
- ImageSize->{79, 15},
- ImageMargins->{{0, 0}, {0, 0}},
- ImageRegion->{{0, 1}, {0, 1}},
- CellLabel->"Out[2]=",
- CellID->155344506]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"Adjoint", "[", "SO10", "]"}]], "Input",
- CellLabel->"In[3]:=",
- CellID->130136287],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"0", ",", "1", ",", "0", ",", "0", ",", "0"}], "}"}]], "Output",
- ImageSize->{97, 15},
- ImageMargins->{{0, 0}, {0, 0}},
- ImageRegion->{{0, 1}, {0, 1}},
- CellLabel->"Out[3]=",
- CellID->134837845]
-}, Open  ]],
-
-Cell["\<\
-If a list of simple groups is given, a list of representations is returned.\
-\>", "ExampleText",
- CellID->167344756],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"Adjoint", "[", 
-  RowBox[{"{", 
-   RowBox[{"SU2", ",", "SU5", ",", "SO10"}], "}"}], "]"}]], "Input",
- CellLabel->"In[4]:=",
- CellID->72297960],
-
-Cell[BoxData[
- RowBox[{"{", 
+Cell[BoxData[{
+ RowBox[{
   RowBox[{
-   RowBox[{"{", "2", "}"}], ",", 
+   RowBox[{
+    RowBox[{"group", "[", "RPVMSSM", "]"}], "^=", 
+    RowBox[{"{", 
+     RowBox[{"U1", ",", "SU2", ",", "SU3"}], "}"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"normalization", "=", 
+   RowBox[{"Sqrt", "[", 
+    RowBox[{"3", "/", "5"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"u", "=", 
    RowBox[{"{", 
-    RowBox[{"1", ",", "0", ",", "0", ",", "1"}], "}"}], ",", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "2"}], "/", "3"}], " ", "normalization"}], ",", 
+     RowBox[{"{", "0", "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"d", "=", 
    RowBox[{"{", 
-    RowBox[{"0", ",", "1", ",", "0", ",", "0", ",", "0"}], "}"}]}], 
-  "}"}]], "Output",
- ImageSize->{229, 15},
- ImageMargins->{{0, 0}, {0, 0}},
- ImageRegion->{{0, 1}, {0, 1}},
- CellLabel->"Out[4]=",
- CellID->21508305]
-}, Open  ]]
+    RowBox[{
+     RowBox[{
+      RowBox[{"1", "/", "3"}], " ", "normalization"}], ",", 
+     RowBox[{"{", "0", "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Q", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"1", "/", "6"}], " ", "normalization"}], ",", 
+     RowBox[{"{", "1", "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"e", "=", 
+   RowBox[{"{", 
+    RowBox[{"normalization", ",", 
+     RowBox[{"{", "0", "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"L", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "1"}], "/", "2"}], " ", "normalization"}], ",", 
+     RowBox[{"{", "1", "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Hu", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"1", "/", "2"}], " ", "normalization"}], ",", 
+     RowBox[{"{", "1", "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Hd", "=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "1"}], "/", "2"}], " ", "normalization"}], ",", 
+      RowBox[{"{", "1", "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"reps", "[", "RPVMSSM", "]"}], "^=", 
+   RowBox[{"{", 
+    RowBox[{
+    "u", ",", "d", ",", "Q", ",", "e", ",", "L", ",", "Hu", ",", "Hd"}], 
+    "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"fieldNames", "[", "RPVMSSM", "]"}], "^=", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<u\>\"", ",", "\"\<d\>\"", ",", "\"\<Q\>\"", ",", "\"\<e\>\"", ",", 
+      "\"\<L\>\"", ",", "\"\<Hu\>\"", ",", "\"\<Hd\>\""}], "}"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"nFlavs", "[", "RPVMSSM", "]"}], "^=", 
+   RowBox[{"{", 
+    RowBox[{"3", ",", "3", ",", "3", ",", "3", ",", "3", ",", "1", ",", "1"}],
+     "}"}]}], ";", 
+  RowBox[{
+   RowBox[{"discreteSym", "[", "RPVMSSM", "]"}], "^=", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1"}],
+     "}"}]}], ";"}]}], "Input",
+ CellLabel->"In[1]:=",
+ CellID->295978785],
+
+Cell["Compute the RGEs of this model:", "Notes",
+ CellID->215478229],
+
+Cell[BoxData[
+ RowBox[{"GenerateModel", "[", "RPVMSSM", "]"}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->762564837]
 }, Open  ]]
 }, Open  ]],
 
@@ -325,19 +326,27 @@ Cell[TextData[ButtonBox["RELATED LINKS",
 
 Cell[TextData[{
  Cell[BoxData[
-  ButtonBox["CartanMatrix",
+  ButtonBox["GenerateModel",
    BaseStyle->"Link",
-   ButtonData->"paclet:Susyno/ref/CartanMatrix"]], "InlineFormula"],
+   ButtonData->"paclet:Susyno/ref/GenerateModel"]], "InlineFormula"],
  "\[NonBreakingSpace]",
  StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
   "InlineSeparator"],
  " ",
  Cell[BoxData[
-  ButtonBox["PositiveRoots",
+  ButtonBox["MSSM",
    BaseStyle->"Link",
-   ButtonData->"paclet:Susyno/ref/PositiveRoots"]], "InlineFormula"]
+   ButtonData->"paclet:Susyno/ref/MSSM"]], "InlineFormula"],
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
+  ButtonBox["NMSSM",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/NMSSM"]], "InlineFormula"]
 }], "RelatedLinks",
- CellID->56765791]
+ CellID->1038487239]
 }, Open  ]],
 
 Cell[" ", "FooterCell"]
@@ -346,17 +355,16 @@ Saveable->False,
 ScreenStyleEnvironment->"Working",
 WindowSize->{725, 566},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
-WindowTitle->"Adjoint - Wolfram Mathematica",
+WindowTitle->"RPVMSSM - Wolfram Mathematica",
 TaggingRules->{
  "ModificationHighlight" -> False, 
   "Metadata" -> {
-   "built" -> "{2013, 8, 7, 2, 26, 18.7656250}", "context" -> "Susyno`", 
+   "built" -> "{2013, 8, 7, 2, 29, 0.0781250}", "context" -> "Susyno`", 
     "keywords" -> {}, "index" -> True, "label" -> "Susyno Paclet Symbol", 
     "language" -> "en", "paclet" -> "Susyno", "status" -> "None", "summary" -> 
-    "Adjoint[group] Returns the adjoint representation of \
-groupAdjoint[{group1, group2, ...}] Returns the adjoint representations of \
-the group1, group2, ...", "synonyms" -> {}, "title" -> "Adjoint", "type" -> 
-    "Symbol", "uri" -> "Susyno/ref/Adjoint"}, "SearchTextTranslated" -> ""},
+    "RPVMSSM Variable with all the data of the R-parity violating MSSM", 
+    "synonyms" -> {}, "title" -> "RPVMSSM", "type" -> "Symbol", "uri" -> 
+    "Susyno/ref/Weights"}, "SearchTextTranslated" -> ""},
 CellContext->"Global`",
 FrontEndVersion->"7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
 StyleDefinitions->Notebook[{
@@ -376,14 +384,14 @@ StyleDefinitions->Notebook[{
 (*CellTagsOutline
 CellTagsIndex->{
  "PrimaryExamplesSection"->{
-  Cell[5390, 172, 461, 13, 70, "PrimaryExamplesSection",
+  Cell[4464, 139, 461, 13, 70, "PrimaryExamplesSection",
    CellTags->"PrimaryExamplesSection",
-   CellID->239347696]}
+   CellID->129474629]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"PrimaryExamplesSection", 10982, 377}
+ {"PrimaryExamplesSection", 11879, 385}
  }
 *)
 (*NotebookFileOutline
@@ -395,72 +403,46 @@ Cell[848, 31, 2293, 53, 70, "AnchorBarGrid",
 Cell[CellGroupData[{
 Cell[3166, 88, 50, 1, 70, "ObjectName",
  CellID->1224892054],
-Cell[3219, 91, 791, 24, 70, "Usage",
+Cell[3219, 91, 360, 11, 70, "Usage",
  CellID->982511436]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[4047, 120, 580, 17, 70, "NotesSection",
+Cell[3616, 107, 579, 17, 70, "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->232621583],
-Cell[4630, 139, 240, 9, 70, "Notes",
- CellID->416274567],
-Cell[4873, 150, 180, 6, 70, "Notes",
- CellID->1067943069],
-Cell[5056, 158, 297, 9, 70, "Notes",
- CellID->68145961]
+ CellID->76632881],
+Cell[4198, 126, 229, 8, 70, "Notes",
+ CellID->1067943069]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[5390, 172, 461, 13, 70, "PrimaryExamplesSection",
+Cell[4464, 139, 461, 13, 70, "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->239347696],
+ CellID->129474629],
 Cell[CellGroupData[{
-Cell[5876, 189, 148, 5, 70, "ExampleSection",
- CellID->792891074],
-Cell[6027, 196, 149, 4, 70, "ExampleText",
- CellID->283112903],
-Cell[CellGroupData[{
-Cell[6201, 204, 105, 3, 70, "Input",
- CellID->473091279],
-Cell[6309, 209, 180, 6, 36, "Output",
- CellID->191772224]
-}, Open  ]],
-Cell[6504, 218, 61, 1, 70, "ExampleText",
- CellID->753055023],
-Cell[CellGroupData[{
-Cell[6590, 223, 105, 3, 70, "Input",
- CellID->297272364],
-Cell[6698, 228, 223, 7, 36, "Output",
- CellID->155344506]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[6958, 240, 106, 3, 70, "Input",
- CellID->130136287],
-Cell[7067, 245, 233, 7, 36, "Output",
- CellID->134837845]
-}, Open  ]],
-Cell[7315, 255, 126, 3, 70, "ExampleText",
- CellID->167344756],
-Cell[CellGroupData[{
-Cell[7466, 262, 166, 5, 70, "Input",
- CellID->72297960],
-Cell[7635, 269, 388, 13, 36, "Output",
- CellID->21508305]
-}, Open  ]]
+Cell[4950, 156, 148, 5, 70, "ExampleSection",
+ CellID->721779115],
+Cell[5101, 163, 218, 5, 70, "Notes",
+ CellID->315923061],
+Cell[5322, 170, 3282, 106, 70, "Input",
+ CellID->295978785],
+Cell[8607, 278, 68, 1, 70, "Notes",
+ CellID->215478229],
+Cell[8678, 281, 115, 3, 70, "Input",
+ CellID->762564837]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[8084, 289, 419, 12, 70, "TutorialsSection",
+Cell[8842, 290, 419, 12, 70, "TutorialsSection",
  CellID->250839057],
-Cell[8506, 303, 151, 3, 70, "Tutorials",
+Cell[9264, 304, 151, 3, 70, "Tutorials",
  CellID->341631938]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[8694, 311, 427, 12, 70, "RelatedLinksSection",
+Cell[9452, 312, 427, 12, 70, "RelatedLinksSection",
  CellID->1584193535],
-Cell[9124, 325, 442, 14, 70, "RelatedLinks",
- CellID->56765791]
+Cell[9882, 326, 667, 22, 70, "RelatedLinks",
+ CellID->1038487239]
 }, Open  ]],
-Cell[9581, 342, 23, 0, 70, "FooterCell"]
+Cell[10564, 351, 23, 0, 70, "FooterCell"]
 }
 ]
 *)

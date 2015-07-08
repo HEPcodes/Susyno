@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       145,          7]
-NotebookDataLength[     15316,        525]
-NotebookOptionsPosition[     11807,        409]
-NotebookOutlinePosition[     13332,        453]
-CellTagsIndexPosition[     13247,        448]
+NotebookDataLength[     15673,        536]
+NotebookOptionsPosition[     12168,        420]
+NotebookOutlinePosition[     13692,        464]
+CellTagsIndexPosition[     13607,        459]
 WindowTitle->Weights - Wolfram Mathematica
 WindowFrame->Normal*)
 
@@ -126,7 +126,7 @@ Cell[TextData[Cell[BoxData[
   Evaluator->None,
   Method->"Preemptive"]]]], "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->48419875],
+ CellID->49659046],
 
 Cell[TextData[{
  Cell[BoxData["group"], "InlineFormula"],
@@ -134,34 +134,38 @@ Cell[TextData[{
  ButtonBox["Cartan matrix",
   BaseStyle->"Link",
   ButtonData->"paclet:Susyno/ref/CartanMatrix"],
- ";"
+ "."
 }], "Notes",
  CellID->1067943069],
 
 Cell[TextData[{
- "Just as in SU(2) where a representation with spin ",
+ "Just as in SU(2), where a representation with spin ",
  Cell[BoxData["s"], "InlineFormula"],
- " breaks down into subspaces each with a quantum number ",
+ " breaks down into subspaces, each with a quantum number ",
  Cell[BoxData["m"], "InlineFormula"],
  ", in general a representation ",
  Cell[BoxData["rep"], "InlineFormula"],
  " of ",
  Cell[BoxData["group"], "InlineFormula"],
- " breaks down into subspaces with numbers ",
+ " breaks down into subspaces labelled by some integers {2",
  Cell[BoxData[
-  RowBox[{"{", 
-   RowBox[{"m1", ",", "m2", ",", "..."}], "}"}]], "InlineFormula"],
- ". These are called weights;"
+  SubscriptBox["m", "1"]], "InlineFormula"],
+ ", 2",
+ Cell[BoxData[
+  SubscriptBox["m", "2"]], "InlineFormula"],
+ ", \[CenterEllipsis]}. Each such list of numbers is a weight."
 }], "Notes",
  CellID->527568177],
 
 Cell[TextData[{
- "In contrast to SU(2), each subspace with weight ",
+ "In contrast to SU(2), each subspace with weight {2",
  Cell[BoxData[
-  RowBox[{"{", 
-   RowBox[{"m1", ",", "m2", ",", "..."}], "}"}]], "InlineFormula"],
- " may have more than one dimension (it can be degenerate). See a Lie Algebra \
-book for more information;"
+  SubscriptBox["m", "1"]], "InlineFormula"],
+ ", 2",
+ Cell[BoxData[
+  SubscriptBox["m", "2"]], "InlineFormula"],
+ ", \[CenterEllipsis]} may have more than one dimension (it can be \
+degenerate). See a Lie Algebra book for more information."
 }], "Notes",
  CellID->403473388],
 
@@ -171,14 +175,19 @@ Cell[TextData[{
   RowBox[{"{", 
    RowBox[{
     RowBox[{"{", 
-     RowBox[{"w1", ",", "d1"}], "}"}], ",", 
+     RowBox[{
+      SubscriptBox["w", "1"], ",", 
+      SubscriptBox["d", "1"]}], "}"}], ",", 
     RowBox[{"{", 
-     RowBox[{"w2", ",", "d2"}], "}"}], ",", "..."}], "}"}]], "InlineFormula"],
+     RowBox[{
+      SubscriptBox["w", "2"], ",", 
+      SubscriptBox["d", "2"]}], "}"}], ",", "..."}], "}"}]], "InlineFormula"],
  " where the ",
- Cell[BoxData["w"], "InlineFormula"],
+ Cell[BoxData[
+  RowBox[{"w", "'"}]], "InlineFormula"],
  "s are the weights and the ",
  Cell[BoxData["d"], "InlineFormula"],
- "s their degeneracy. "
+ "'s are their degeneracy. "
 }], "Notes",
  CellID->217674061]
 }, Closed]],
@@ -198,7 +207,7 @@ Cell[TextData[ButtonBox["EXAMPLES",
      FrontEnd`SelectedNotebook[], After, 
      CellContents]}]& )]], "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->230642799],
+ CellID->165199223],
 
 Cell[CellGroupData[{
 
@@ -207,9 +216,9 @@ Cell[TextData[{
  "\[NonBreakingSpace]\[NonBreakingSpace]",
  Cell["(1)", "ExampleCount"]
 }], "ExampleSection",
- CellID->448133782],
+ CellID->83003562],
 
-Cell["SU(2) example. Consider a doublet [={1}],", "ExampleText",
+Cell["Consider an SU(2) doublet [={1}],", "ExampleText",
  CellID->513681956],
 
 Cell[CellGroupData[{
@@ -235,13 +244,13 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[1]=",
- CellID->423767745]
+ CellID->433613712]
 }, Open  ]],
 
 Cell["\<\
 This tells us that the representation {1} of SU(2) has weights {1} and {-1} \
 with no degeneracy (each space is one dimensional). The pattern (for SU(2) \
-only!) starts to show up. First a representation traditionally labeled by a \
+only!) starts to show up. First, a representation traditionally labeled by a \
 spin s is in this canonical formalism called {2s}. So there are \
 representations {0}, {1}, {2}, ... Second, the traditional quantum number m \
 is in this canonical formalism called weight {2m}. So instead of \
@@ -273,7 +282,7 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[2]=",
- CellID->15901275]
+ CellID->227368614]
 }, Open  ]],
 
 Cell["A more interesting example is the adjoint [={1,1}] of SU(3):", \
@@ -331,21 +340,23 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[3]=",
- CellID->430275113]
+ CellID->1430384]
 }, Open  ]],
 
 Cell["\<\
 There are only 7 distinct weights and one of them, {0,0}, is a two \
-dimensional space. So things check out: the dimension of the SU(3) adjoint is \
-1+1+1+2+1+1+1=8\
+dimensional space. So the dimensions add up: the dimension of the SU(3) \
+adjoint representation is 1+1+1+2+1+1+1=8.\
 \>", "ExampleText",
  CellID->303695508],
 
-Cell["\<\
-Note that the Dynkin coefficients of a representation are equal to the first \
-weight that appears (this is a definition - the Dynkin coefficients are the \
-highest weight of the representation):\
-\>", "ExampleText",
+Cell[TextData[{
+ "Note that the Dynkin coefficients of a representation are equal to the \
+highest weight of the representation\[LongDash]this might be the first one \
+returned by the ",
+ Cell[BoxData["Weights"], "InlineFormula"],
+ " function, or the last one. In the following example, it is the first one:"
+}], "ExampleText",
  CellID->26424378],
 
 Cell[CellGroupData[{
@@ -368,8 +379,8 @@ Cell[BoxData[{
 
 Cell[BoxData["\<\"Highest weight of representation {3,5} of the group G(2):\"\
 \>"], "Print",
- CellLabel->"During evaluation of In[286]:=",
- CellID->361629167],
+ CellLabel->"During evaluation of In[4]:=",
+ CellID->45127434],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -378,7 +389,7 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[4]=",
- CellID->12665427]
+ CellID->740701]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
@@ -415,7 +426,7 @@ WindowTitle->"Weights - Wolfram Mathematica",
 TaggingRules->{
  "ModificationHighlight" -> False, 
   "Metadata" -> {
-   "built" -> "{2012, 3, 2, 12, 16, 49.8125000}", "context" -> "Susyno`", 
+   "built" -> "{2013, 8, 7, 2, 29, 33.9375000}", "context" -> "Susyno`", 
     "keywords" -> {}, "index" -> True, "label" -> "Susyno Paclet Symbol", 
     "language" -> "en", "paclet" -> "Susyno", "status" -> "None", "summary" -> 
     "Weights[group, rep] Computes the weights of the representation rep of \
@@ -440,14 +451,14 @@ StyleDefinitions->Notebook[{
 (*CellTagsOutline
 CellTagsIndex->{
  "PrimaryExamplesSection"->{
-  Cell[5923, 187, 461, 13, 70, "PrimaryExamplesSection",
+  Cell[6176, 196, 461, 13, 70, "PrimaryExamplesSection",
    CellTags->"PrimaryExamplesSection",
-   CellID->230642799]}
+   CellID->165199223]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"PrimaryExamplesSection", 13104, 441}
+ {"PrimaryExamplesSection", 13464, 452}
  }
 *)
 (*NotebookFileOutline
@@ -465,68 +476,68 @@ Cell[3219, 91, 518, 15, 70, "Usage",
 Cell[CellGroupData[{
 Cell[3774, 111, 579, 17, 70, "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->48419875],
+ CellID->49659046],
 Cell[4356, 130, 212, 8, 70, "Notes",
  CellID->1067943069],
-Cell[4571, 140, 541, 15, 70, "Notes",
+Cell[4571, 140, 620, 17, 70, "Notes",
  CellID->527568177],
-Cell[5115, 157, 308, 8, 70, "Notes",
+Cell[5194, 159, 359, 10, 70, "Notes",
  CellID->403473388],
-Cell[5426, 167, 460, 15, 70, "Notes",
+Cell[5556, 171, 583, 20, 70, "Notes",
  CellID->217674061]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[5923, 187, 461, 13, 70, "PrimaryExamplesSection",
+Cell[6176, 196, 461, 13, 70, "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->230642799],
+ CellID->165199223],
 Cell[CellGroupData[{
-Cell[6409, 204, 148, 5, 70, "ExampleSection",
- CellID->448133782],
-Cell[6560, 211, 84, 1, 70, "ExampleText",
+Cell[6662, 213, 147, 5, 70, "ExampleSection",
+ CellID->83003562],
+Cell[6812, 220, 76, 1, 70, "ExampleText",
  CellID->513681956],
 Cell[CellGroupData[{
-Cell[6669, 216, 152, 5, 70, "Input",
+Cell[6913, 225, 152, 5, 70, "Input",
  CellID->196926373],
-Cell[6824, 223, 376, 14, 36, "Output",
- CellID->423767745]
+Cell[7068, 232, 376, 14, 36, "Output",
+ CellID->433613712]
 }, Open  ]],
-Cell[7215, 240, 643, 10, 70, "ExampleText",
+Cell[7459, 249, 644, 10, 70, "ExampleText",
  CellID->320563739],
 Cell[CellGroupData[{
-Cell[7883, 254, 77, 2, 70, "Input",
+Cell[8128, 263, 77, 2, 70, "Input",
  CellID->184065572],
-Cell[7963, 258, 460, 17, 36, "Output",
- CellID->15901275]
+Cell[8208, 267, 461, 17, 36, "Output",
+ CellID->227368614]
 }, Open  ]],
-Cell[8438, 278, 105, 2, 70, "ExampleText",
+Cell[8684, 287, 105, 2, 70, "ExampleText",
  CellID->288896476],
 Cell[CellGroupData[{
-Cell[8568, 284, 177, 6, 70, "Input",
+Cell[8814, 293, 177, 6, 70, "Input",
  CellID->381111280],
-Cell[8748, 292, 1106, 41, 54, "Output",
- CellID->430275113]
+Cell[8994, 301, 1104, 41, 54, "Output",
+ CellID->1430384]
 }, Open  ]],
-Cell[9869, 336, 215, 5, 70, "ExampleText",
+Cell[10113, 345, 236, 5, 70, "ExampleText",
  CellID->303695508],
-Cell[10087, 343, 245, 5, 70, "ExampleText",
+Cell[10352, 352, 346, 7, 70, "ExampleText",
  CellID->26424378],
 Cell[CellGroupData[{
-Cell[10357, 352, 407, 14, 70, "Input",
+Cell[10723, 363, 407, 14, 70, "Input",
  CellID->503951977],
-Cell[10767, 368, 159, 3, 70, "Print",
- CellID->361629167],
-Cell[10929, 373, 202, 7, 36, "Output",
- CellID->12665427]
+Cell[11133, 379, 156, 3, 70, "Print",
+ CellID->45127434],
+Cell[11292, 384, 200, 7, 36, "Output",
+ CellID->740701]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[11192, 387, 419, 12, 70, "TutorialsSection",
+Cell[11553, 398, 419, 12, 70, "TutorialsSection",
  CellID->250839057],
-Cell[11614, 401, 151, 3, 70, "Tutorials",
+Cell[11975, 412, 151, 3, 70, "Tutorials",
  CellID->341631938]
 }, Open  ]],
-Cell[11780, 407, 23, 0, 70, "FooterCell"]
+Cell[12141, 418, 23, 0, 70, "FooterCell"]
 }
 ]
 *)

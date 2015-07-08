@@ -10,11 +10,11 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       145,          7]
-NotebookDataLength[     13054,        458]
-NotebookOptionsPosition[      9694,        347]
-NotebookOutlinePosition[     11261,        392]
-CellTagsIndexPosition[     11176,        387]
-WindowTitle->CanonicalForm - Wolfram Mathematica
+NotebookDataLength[     12069,        397]
+NotebookOptionsPosition[      9017,        300]
+NotebookOutlinePosition[     10642,        345]
+CellTagsIndexPosition[     10557,        340]
+WindowTitle->SimplifyEinsteinNotation - Wolfram Mathematica
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -44,12 +44,12 @@ Cell[BoxData[GridBox[{
      Cell[BoxData[
       ActionMenuBox[
        FrameBox["\<\"URL \[RightGuillemet]\"\>",
-        StripOnInput->False], {"\<\"Susyno/ref/CanonicalForm\"\>":>
+        StripOnInput->False], {"\<\"Susyno/ref/SimplifyEinsteinNotation\"\>":>
        None, "\<\"Copy Mathematica url\"\>":>
        Module[{DocumentationSearch`Private`nb$}, 
         DocumentationSearch`Private`nb$ = NotebookPut[
            Notebook[{
-             Cell["Susyno/ref/CanonicalForm"]}, Visible -> False]]; 
+             Cell["Susyno/ref/SimplifyEinsteinNotation"]}, Visible -> False]]; 
         SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
         FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
         NotebookClose[DocumentationSearch`Private`nb$]; Null], 
@@ -62,7 +62,7 @@ Cell[BoxData[GridBox[{
                MakeBoxes[
                 Hyperlink[
                 "http://reference.wolfram.com/mathematica/Susyno/ref/\
-CanonicalForm.html"], StandardForm]], "Input", TextClipboardType -> 
+SimplifyEinsteinNotation.html"], StandardForm]], "Input", TextClipboardType -> 
               "PlainText"]}, Visible -> False]]; 
         SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
         FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
@@ -72,7 +72,7 @@ CanonicalForm.html"], StandardForm]], "Input", TextClipboardType ->
            URL[
             StringJoin[
             "http://reference.wolfram.com/mathematica/", 
-             "Susyno/ref/CanonicalForm", ".html"]], None}]}]},
+             "Susyno/ref/SimplifyEinsteinNotation", ".html"]], None}]}]},
        Appearance->None,
        MenuAppearance->Automatic]],
       LineSpacing->{1.4, 0}]
@@ -86,17 +86,20 @@ CanonicalForm.html"], StandardForm]], "Input", TextClipboardType ->
 
 Cell[CellGroupData[{
 
-Cell["CanonicalForm", "ObjectName",
+Cell["SimplifyEinsteinNotation", "ObjectName",
  CellID->1224892054],
 
 Cell[BoxData[GridBox[{
    {"", Cell[TextData[{
      Cell[BoxData[
-      RowBox[{"CanonicalForm", "[", 
-       RowBox[{"expression", ",", 
-        RowBox[{"<", "indices", ">"}]}], "]"}]], "InlineFormula"],
-     " \[LineSeparator]",
-     "Simplifies an expression written in the Einstein convention"
+      RowBox[{"SimplifyEinsteinNotation", "[", 
+       RowBox[{"expression", ",", "tensors", ",", "indices"}], "]"}]], 
+      "InlineFormula"],
+     " \[LineSeparator]Simplify ",
+     Cell[BoxData["expression"], "InlineFormula"],
+     " with some  ",
+     Cell[BoxData["tensors"], "InlineFormula"],
+     " written in Einstein notation"
     }]]}
   }]], "Usage",
  GridBoxOptions->{
@@ -125,38 +128,46 @@ Cell[TextData[Cell[BoxData[
   Evaluator->None,
   Method->"Preemptive"]]]], "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->425158211],
+ CellID->153689522],
 
 Cell[TextData[{
- Cell[BoxData["expression"], "InlineFormula"],
- " is the formula written in the Einstein convention that we wish to simplify;"
+ "In an expression written with the Einstein convention, repeated indices are \
+assumed to be summed over. These are dummy indices, but ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " will not recognize it, leading to complicated/unsimplified expressions."
 }], "Notes",
  CellID->1067943069],
 
-Cell[TextData[{
- Cell[BoxData[
-  RowBox[{"<", "indices", ">"}]], "InlineFormula"],
- " are the relevant indices in ",
- Cell[BoxData["expression"], "InlineFormula"],
- ". This argument is optional and the default value is ",
- Cell[BoxData[
-  RowBox[{"{", 
-   RowBox[{
-    RowBox[{"\[Alpha]", "[", "1", "]"}], ",", 
-    RowBox[{"\[Alpha]", "[", "2", "]"}], ",", "...", ",", 
-    RowBox[{"\[Alpha]", "[", "20", "]"}]}], "}"}]], "InlineFormula"],
- ". Maximum size of this list is 20;"
-}], "Notes",
- CellID->30964082],
+Cell["\<\
+In addition, some tensors usually have symmetries under a permutation of \
+indices.\
+\>", "Notes",
+ CellID->354796113],
 
 Cell[TextData[{
- "It is possible that in some cases ",
- Cell[BoxData["CanonicalForm"], "InlineFormula"],
- " will fail to completely simplify ",
+ Cell[BoxData["SimplifyEinsteinNotation"], "InlineFormula"],
+ " is a function (",
+ StyleBox["still under construction",
+  FontVariations->{"Underline"->True}],
+ ") which aims at resolving this problem."
+}], "Notes",
+ CellID->647412678],
+
+Cell[TextData[{
+ Cell[BoxData["expression"], "InlineFormula"],
+ " is the sum of a product of tensors which is to be simplified. ",
+ Cell[BoxData["tensors"], "InlineFormula"],
+ " must be a list of patterns which match the tensors that might be contained \
+in ",
+ Cell[BoxData["expression"], "InlineFormula"],
+ " (see example below), and ",
+ Cell[BoxData["indices"], "InlineFormula"],
+ " should be a list with the free and dummy indices that may appear in ",
  Cell[BoxData["expression"], "InlineFormula"],
  "."
 }], "Notes",
- CellID->527236478]
+ CellID->302472905]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -174,7 +185,7 @@ Cell[TextData[ButtonBox["EXAMPLES",
      FrontEnd`SelectedNotebook[], After, 
      CellContents]}]& )]], "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->14016754],
+ CellID->274373450],
 
 Cell[CellGroupData[{
 
@@ -183,140 +194,82 @@ Cell[TextData[{
  "\[NonBreakingSpace]\[NonBreakingSpace]",
  Cell["(1)", "ExampleCount"]
 }], "ExampleSection",
- CellID->22656569],
+ CellID->742223918],
 
 Cell[TextData[{
- "To ",
+ "We know that A[i] B[i] and A[k] B[k] are the same, since both i and k are \
+dummy indices. However, ",
  StyleBox["Mathematica",
   FontSlant->"Italic"],
- " h[i] h[i] is different form ",
- "h[j] h[j]:"
+ " does not recognize this:"
 }], "ExampleText",
- CellID->340423719],
+ CellID->513681956],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{
   RowBox[{
-   RowBox[{"h", "[", "i", "]"}], 
-   RowBox[{"h", "[", "i", "]"}]}], "+", 
+   RowBox[{"A", "[", "i", "]"}], 
+   RowBox[{"B", "[", "i", "]"}]}], "+", 
   RowBox[{
-   RowBox[{"h", "[", "j", "]"}], 
-   RowBox[{"h", "[", "j", "]"}]}]}]], "Input",
+   RowBox[{"A", "[", "k", "]"}], 
+   RowBox[{"B", "[", "k", "]"}]}]}]], "Input",
  CellLabel->"In[1]:=",
- CellID->335129954],
+ CellID->196926373],
 
 Cell[BoxData[
  RowBox[{
-  SuperscriptBox[
-   RowBox[{"h", "[", "i", "]"}], "2"], "+", 
-  SuperscriptBox[
-   RowBox[{"h", "[", "j", "]"}], "2"]}]], "Output",
- ImageSize->{85, 15},
+  RowBox[{
+   RowBox[{"A", "[", "i", "]"}], " ", 
+   RowBox[{"B", "[", "i", "]"}]}], "+", 
+  RowBox[{
+   RowBox[{"A", "[", "k", "]"}], " ", 
+   RowBox[{"B", "[", "k", "]"}]}]}]], "Output",
+ ImageSize->{135, 15},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[1]=",
- CellID->13713522]
+ CellID->76253757]
 }, Open  ]],
 
-Cell["CanonicalForm solves this problem:", "ExampleText",
- CellID->349902954],
+Cell["\<\
+The tensors here are A and B, and the indices are i,k (we may conservative \
+say that the list of potential indices is i,j,k). As such, the following code \
+will produce the desired simplification: \
+\>", "ExampleText",
+ CellID->349782582],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"CanonicalForm", "[", 
+ RowBox[{"SimplifyEinsteinNotation", "[", 
   RowBox[{
    RowBox[{
     RowBox[{
-     RowBox[{"h", "[", "i", "]"}], 
-     RowBox[{"h", "[", "i", "]"}]}], "+", 
+     RowBox[{"A", "[", "i", "]"}], 
+     RowBox[{"B", "[", "i", "]"}]}], "+", 
     RowBox[{
-     RowBox[{"h", "[", "j", "]"}], 
-     RowBox[{"h", "[", "j", "]"}]}]}], ",", 
+     RowBox[{"A", "[", "k", "]"}], 
+     RowBox[{"B", "[", "k", "]"}]}]}], ",", 
    RowBox[{"{", 
-    RowBox[{"i", ",", "j"}], "}"}]}], "]"}]], "Input",
+    RowBox[{
+     RowBox[{"A", "[", "_", "]"}], ",", 
+     RowBox[{"B", "[", "_", "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "j", ",", "k"}], "}"}]}], "]"}]], "Input",
  CellLabel->"In[2]:=",
- CellID->110289986],
+ CellID->541856203],
 
 Cell[BoxData[
  RowBox[{"2", " ", 
-  SuperscriptBox[
-   RowBox[{"h", "[", "i", "]"}], "2"]}]], "Output",
- ImageSize->{48, 15},
+  RowBox[{"A", "[", "i", "]"}], " ", 
+  RowBox[{"B", "[", "i", "]"}]}]], "Output",
+ ImageSize->{73, 15},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[2]=",
- CellID->104984988]
-}, Open  ]],
-
-Cell["\<\
-If we forget to specify the indices {i,j}, the program will assume they are {\
-\[Alpha][1],\[Alpha][2],...} and nothing happens:\
-\>", "ExampleText",
- CellID->88602366],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"CanonicalForm", "[", 
-  RowBox[{
-   RowBox[{
-    RowBox[{"h", "[", "i", "]"}], 
-    RowBox[{"h", "[", "i", "]"}]}], "+", 
-   RowBox[{
-    RowBox[{"h", "[", "j", "]"}], 
-    RowBox[{"h", "[", "j", "]"}]}]}], "]"}]], "Input",
- CellLabel->"In[3]:=",
- CellID->34272094],
-
-Cell[BoxData[
- RowBox[{
-  SuperscriptBox[
-   RowBox[{"h", "[", "i", "]"}], "2"], "+", 
-  SuperscriptBox[
-   RowBox[{"h", "[", "j", "]"}], "2"]}]], "Output",
- ImageSize->{85, 15},
- ImageMargins->{{0, 0}, {0, 0}},
- ImageRegion->{{0, 1}, {0, 1}},
- CellLabel->"Out[3]=",
- CellID->738083568]
-}, Open  ]],
-
-Cell["\<\
-There is no problem in putting more indices than necessary in the list:\
-\>", "ExampleText",
- CellID->253472969],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"CanonicalForm", "[", 
-  RowBox[{
-   RowBox[{
-    RowBox[{
-     RowBox[{"h", "[", "i", "]"}], 
-     RowBox[{"h", "[", "i", "]"}]}], "+", 
-    RowBox[{
-     RowBox[{"h", "[", "j", "]"}], 
-     RowBox[{"h", "[", "j", "]"}]}]}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-    "i", ",", "j", ",", "k", ",", "l", ",", "m", ",", "n", ",", "o", ",", 
-     "p"}], "}"}]}], "]"}]], "Input",
- CellLabel->"In[4]:=",
- CellID->531476255],
-
-Cell[BoxData[
- RowBox[{"2", " ", 
-  SuperscriptBox[
-   RowBox[{"h", "[", "i", "]"}], "2"]}]], "Output",
- ImageSize->{48, 15},
- ImageMargins->{{0, 0}, {0, 0}},
- ImageRegion->{{0, 1}, {0, 1}},
- CellLabel->"Out[4]=",
- CellID->72504541]
+ CellID->187371056]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
@@ -349,17 +302,17 @@ Saveable->False,
 ScreenStyleEnvironment->"Working",
 WindowSize->{725, 566},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
-WindowTitle->"CanonicalForm - Wolfram Mathematica",
+WindowTitle->"SimplifyEinsteinNotation - Wolfram Mathematica",
 TaggingRules->{
  "ModificationHighlight" -> False, 
   "Metadata" -> {
-   "built" -> "{2012, 3, 2, 12, 14, 2.7812500}", "context" -> "Susyno`", 
+   "built" -> "{2013, 8, 7, 2, 29, 6.4687500}", "context" -> "Susyno`", 
     "keywords" -> {}, "index" -> True, "label" -> "Susyno Paclet Symbol", 
     "language" -> "en", "paclet" -> "Susyno", "status" -> "None", "summary" -> 
-    "CanonicalForm[expression, < indices >] Simplifies an expression written \
-in the Einstein convention", "synonyms" -> {}, "title" -> "CanonicalForm", 
-    "type" -> "Symbol", "uri" -> "Susyno/ref/CanonicalForm"}, 
-  "SearchTextTranslated" -> ""},
+    "SimplifyEinsteinNotation[expression, tensors, indices] Simplify \
+expression with some tensors written in Einstein notation", "synonyms" -> {}, 
+    "title" -> "SimplifyEinsteinNotation", "type" -> "Symbol", "uri" -> 
+    "Susyno/ref/SimplifyEinsteinNotation"}, "SearchTextTranslated" -> ""},
 CellContext->"Global`",
 FrontEndVersion->"7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
 StyleDefinitions->Notebook[{
@@ -379,87 +332,73 @@ StyleDefinitions->Notebook[{
 (*CellTagsOutline
 CellTagsIndex->{
  "PrimaryExamplesSection"->{
-  Cell[5312, 163, 460, 13, 70, "PrimaryExamplesSection",
+  Cell[5804, 174, 461, 13, 70, "PrimaryExamplesSection",
    CellTags->"PrimaryExamplesSection",
-   CellID->14016754]}
+   CellID->274373450]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"PrimaryExamplesSection", 11034, 380}
+ {"PrimaryExamplesSection", 10414, 333}
  }
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[594, 21, 76, 1, 70, "SymbolColorBar"],
-Cell[673, 24, 178, 5, 70, "LinkTrail"],
-Cell[854, 31, 2318, 53, 70, "AnchorBarGrid",
+Cell[605, 21, 76, 1, 70, "SymbolColorBar"],
+Cell[684, 24, 178, 5, 70, "LinkTrail"],
+Cell[865, 31, 2362, 53, 70, "AnchorBarGrid",
  CellID->1],
 Cell[CellGroupData[{
-Cell[3197, 88, 56, 1, 70, "ObjectName",
+Cell[3252, 88, 67, 1, 70, "ObjectName",
  CellID->1224892054],
-Cell[3256, 91, 479, 14, 70, "Usage",
+Cell[3322, 91, 583, 17, 70, "Usage",
  CellID->982511436]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[3772, 110, 580, 17, 70, "NotesSection",
+Cell[3942, 113, 580, 17, 70, "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->425158211],
-Cell[4355, 129, 176, 4, 70, "Notes",
+ CellID->153689522],
+Cell[4525, 132, 313, 7, 70, "Notes",
  CellID->1067943069],
-Cell[4534, 135, 510, 14, 70, "Notes",
- CellID->30964082],
-Cell[5047, 151, 228, 7, 70, "Notes",
- CellID->527236478]
+Cell[4841, 141, 128, 4, 70, "Notes",
+ CellID->354796113],
+Cell[4972, 147, 251, 7, 70, "Notes",
+ CellID->647412678],
+Cell[5226, 156, 541, 13, 70, "Notes",
+ CellID->302472905]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[5312, 163, 460, 13, 70, "PrimaryExamplesSection",
+Cell[5804, 174, 461, 13, 70, "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->14016754],
+ CellID->274373450],
 Cell[CellGroupData[{
-Cell[5797, 180, 147, 5, 70, "ExampleSection",
- CellID->22656569],
-Cell[5947, 187, 159, 7, 70, "ExampleText",
- CellID->340423719],
+Cell[6290, 191, 148, 5, 70, "ExampleSection",
+ CellID->742223918],
+Cell[6441, 198, 237, 7, 70, "ExampleText",
+ CellID->513681956],
 Cell[CellGroupData[{
-Cell[6131, 198, 244, 9, 70, "Input",
- CellID->335129954],
-Cell[6378, 209, 285, 10, 36, "Output",
- CellID->13713522]
+Cell[6703, 209, 244, 9, 70, "Input",
+ CellID->196926373],
+Cell[6950, 220, 342, 12, 36, "Output",
+ CellID->76253757]
 }, Open  ]],
-Cell[6678, 222, 77, 1, 70, "ExampleText",
- CellID->349902954],
+Cell[7307, 235, 249, 5, 70, "ExampleText",
+ CellID->349782582],
 Cell[CellGroupData[{
-Cell[6780, 227, 369, 13, 70, "Input",
- CellID->110289986],
-Cell[7152, 242, 233, 8, 36, "Output",
- CellID->104984988]
-}, Open  ]],
-Cell[7400, 253, 178, 4, 70, "ExampleText",
- CellID->88602366],
-Cell[CellGroupData[{
-Cell[7603, 261, 289, 10, 70, "Input",
- CellID->34272094],
-Cell[7895, 273, 286, 10, 36, "Output",
- CellID->738083568]
-}, Open  ]],
-Cell[8196, 286, 122, 3, 70, "ExampleText",
- CellID->253472969],
-Cell[CellGroupData[{
-Cell[8343, 293, 440, 15, 70, "Input",
- CellID->531476255],
-Cell[8786, 310, 232, 8, 36, "Output",
- CellID->72504541]
+Cell[7581, 244, 511, 17, 70, "Input",
+ CellID->541856203],
+Cell[8095, 263, 246, 8, 36, "Output",
+ CellID->187371056]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[9079, 325, 419, 12, 70, "TutorialsSection",
+Cell[8402, 278, 419, 12, 70, "TutorialsSection",
  CellID->250839057],
-Cell[9501, 339, 151, 3, 70, "Tutorials",
+Cell[8824, 292, 151, 3, 70, "Tutorials",
  CellID->341631938]
 }, Open  ]],
-Cell[9667, 345, 23, 0, 70, "FooterCell"]
+Cell[8990, 298, 23, 0, 70, "FooterCell"]
 }
 ]
 *)

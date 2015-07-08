@@ -1,0 +1,831 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     26023,        821]
+NotebookOptionsPosition[     21619,        677]
+NotebookOutlinePosition[     23312,        723]
+CellTagsIndexPosition[     23227,        718]
+WindowTitle->HookContentFormula - Wolfram Mathematica
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[" ", "SymbolColorBar",
+ CellMargins->{{Inherited, Inherited}, {-5, 0}}],
+
+Cell[TextData[{
+ ButtonBox["Mathematica",
+  BaseStyle->{"Link", "LinkTrail"},
+  ButtonData->"paclet:Susyno/guide/Susyno"],
+ StyleBox[" > ", "LinkTrailSeparator"]
+}], "LinkTrail"],
+
+Cell[BoxData[GridBox[{
+   {Cell["SUSYNO PACLET SYMBOL", "PacletNameCell"], Cell[TextData[{
+     Cell[BoxData[
+      ActionMenuBox[
+       FrameBox["\<\"Tutorials \[RightGuillemet]\"\>",
+        StripOnInput->False], {"\<\"Susyno Tutorial\"\>":>
+       Documentation`HelpLookup["paclet:Susyno/tutorial/SusynoTutorial"]},
+       Appearance->None,
+       MenuAppearance->Automatic]],
+      LineSpacing->{1.4, 0}],
+     "\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+     Cell[BoxData[
+      ActionMenuBox[
+       FrameBox["\<\"URL \[RightGuillemet]\"\>",
+        StripOnInput->False], {"\<\"Susyno/ref/HookContentFormula\"\>":>
+       None, "\<\"Copy Mathematica url\"\>":>
+       Module[{DocumentationSearch`Private`nb$}, 
+        DocumentationSearch`Private`nb$ = NotebookPut[
+           Notebook[{
+             Cell["Susyno/ref/HookContentFormula"]}, Visible -> False]]; 
+        SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+        FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+        NotebookClose[DocumentationSearch`Private`nb$]; Null], 
+       Delimiter, "\<\"Copy web url\"\>":>
+       Module[{DocumentationSearch`Private`nb$}, 
+        DocumentationSearch`Private`nb$ = NotebookPut[
+           Notebook[{
+             Cell[
+              BoxData[
+               MakeBoxes[
+                Hyperlink[
+                "http://reference.wolfram.com/mathematica/Susyno/ref/\
+HookContentFormula.html"], StandardForm]], "Input", TextClipboardType -> 
+              "PlainText"]}, Visible -> False]]; 
+        SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+        FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+        NotebookClose[DocumentationSearch`Private`nb$]; 
+        Null], "\<\"Go to web url\"\>":>FrontEndExecute[{
+         NotebookLocate[{
+           URL[
+            StringJoin[
+            "http://reference.wolfram.com/mathematica/", 
+             "Susyno/ref/HookContentFormula", ".html"]], None}]}]},
+       Appearance->None,
+       MenuAppearance->Automatic]],
+      LineSpacing->{1.4, 0}]
+    }], "AnchorBar"]}
+  }]], "AnchorBarGrid",
+ GridBoxOptions->{GridBoxItemSize->{"Columns" -> {
+     Scaled[0.65], {
+      Scaled[0.34]}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+   "RowsIndexed" -> {}}},
+ CellID->1],
+
+Cell[CellGroupData[{
+
+Cell["HookContentFormula", "ObjectName",
+ CellID->1224892054],
+
+Cell[BoxData[GridBox[{
+   {"", Cell[TextData[{
+     Cell[BoxData[
+      RowBox[{"HookContentFormula", "[", 
+       RowBox[{"partition", ",", "n"}], "]"}]], "InlineFormula"],
+     " \[LineSeparator]Applies the Hook Content Formula to a semi-standard \
+Young tableau with cells filled with the numbers 0,\[CenterEllipsis],n \
+(repetitions are allowed) - see reference below"
+    }]]}
+  }]], "Usage",
+ GridBoxOptions->{
+ GridBoxBackground->{
+  "Columns" -> {{None}}, "ColumnsIndexed" -> {}, "Rows" -> {{None}}, 
+   "RowsIndexed" -> {}}},
+ CellID->982511436]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[Cell[BoxData[
+ ButtonBox[
+  FrameBox[
+   StyleBox[
+    RowBox[{"MORE", " ", "INFORMATION"}], "NotesFrameText"],
+   StripOnInput->False],
+  Appearance->{Automatic, None},
+  BaseStyle->None,
+  ButtonFunction:>(FrontEndExecute[{
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], All, ButtonCell], 
+     FrontEndToken["OpenCloseGroup"], 
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], After, CellContents]}]& ),
+  Evaluator->None,
+  Method->"Preemptive"]]]], "NotesSection",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->445366566],
+
+Cell[TextData[{
+ "Recall that a partition {",
+ Cell[BoxData[
+  SubscriptBox["\[Lambda]", "1"]], "InlineFormula"],
+ ", ",
+ Cell[BoxData[
+  SubscriptBox["\[Lambda]", "2"]], "InlineFormula"],
+ ", \[CenterEllipsis]} is associated with a Young tableau where row ",
+ Cell[BoxData["i"], "InlineFormula"],
+ " contains ",
+ Cell[BoxData[
+  SubscriptBox["\[Lambda]", "i"]], "InlineFormula"],
+ " cells\[LongDash]for example the partition {4,3,1,1} of 9 yields the tableau"
+}], "Notes",
+ CellID->1067943069],
+
+Cell[BoxData[
+ RowBox[{"                                                              ", 
+  GraphicsBox[
+   TagBox[RasterBox[CompressedData["
+1:eJztnQvUFVUVxzfIS+QpkC/kJWIaCYgiUQqRIiJQIBGFAWGCSoGPEiRfFBIZ
+KQ+zbK0QrUx7ki3TzDTF1LKWlWJlWlq5JC0zszRDP/ffve9if+eeud/c75tv
+7v2GPWv915pz5tw5d85vzpkzZ/Y+Z/DCZTMX7kFE56g60Btbg6sQeo71e9bW
+nPQM67Ec8/s36/kc83uW9XKO+T1tWN7Q0NBAeUjL9NYc8/sd61c55vcT1o4c
+89vqHJ2jc3SOztE5OkfnuDtz5G00aylrnImbwFrM2j9Ljrx1Zk1lnc46QOO6
+sU5lzWS1z5ojb4ez5rGGmLh3st6DvLPmaMpzjIbbsU7Ua3xT1hz1/KtYc1n9
+WLexZrA+xTpQy/p+pMuCI2/7sTawxrIOIXmnPZJ1Pqs766ess7PiSDIMcilr
+FmsQ60EtY1zf/qz1rK9lxRH3IGs1672svqy7WJNZa8CPdSF+2woccT+eYcJn
+s3ayjtfwPZXu82ZwvA4sTfjXJOMFuP63sl5jnZshR9SJKSZ8Net/rIM0/E/W
+9zLkuID1fhNepeV5hIZxrdtageNqW9d4u4Zk7KedhruyOkV+hzK/nrVnWo68
+HcpaaMKdSMZE1pu4XsFvMMQ4SevPJawRaTnqbz8bxKG+/9KE0QbtYcLtND+0
+T8tJ6vFeVXC8NAh/l/WECXez+UV+v5FM25+WY0J5JN6fyu9cvc8awnKvxDGS
+ZqyeY0aFNGiD99P9t7MeZ12RhmOJS+S+WVchvw+RtkUavgn3dlqOkXQ7WNc2
+lU7Tvo+k7o5tCUfe+mi6c1Lk+eYMOGIYH+1on4TjR5A8m3uYuOX6m95pOCbc
+N9MqpLmZdaYJn8X6PwXtThqOqFea38JK6TTtYJJn2vMZcJyq6caYOLRN/VqJ
+47dYjwRx+5j9oWgbWF1N3MmsVynoQ6fkWLpvepm4LpYRBW0eroF1e+RcaTie
+omU0zMR1ityD6ItdpmVdNUeS/v9s0vaft8+xXkG8SbMCzLLgqPfcZPPf0eZc
+Z453ZH2+ibLZwrojEh97PuJZhH5c6VmPNvKxIA36kT2COPwPtOEXsK6iyHtJ
+jKPmN6dUfrx9mfUvaty24zm/b+T+GmDKrVqOH9N4vEf1ZD3EeiaoD5sTyrM5
+HB9mPan781l/xn1ojn+CNakCQ7SL6O8dnJLjl/Q/4v1pGOuvrLvM8bexVkXO
+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
+1EBeHzPW6+/oefM=
+     "], {{0, 114}, {114, 0}}, {0, 255},
+     ColorFunction->RGBColor],
+    BoxForm`ImageTag[
+    "Byte", ColorSpace -> "RGB", ImageSize -> Automatic, Interleaving -> True,
+      Magnification -> Automatic],
+    Selectable->False],
+   BaseStyle->"ImageGraphics",
+   ImageSize->{73., Automatic},
+   ImageSizeRaw->{114, 114},
+   PlotRange->{{0, 114}, {0, 114}}]}]], "Input",
+ CellID->124506618],
+
+Cell[TextData[{
+ "In a semi-standard Young tableau, the ",
+ Cell[BoxData[
+  SubscriptBox["x", "i"]], "InlineFormula"],
+ " which fill it must increase from top to bottom and must not decrease from \
+left to right."
+}], "Notes",
+ CellID->37512995],
+
+Cell[TextData[{
+ "The number of semi-standard Young tableau given by the partition \[Lambda], \
+where the cell can have any positive integer value smaller or equal to n is \
+given by ",
+ Cell[BoxData[
+  RowBox[{"HookContentFormula", "[", 
+   RowBox[{"\[Lambda]", ",", " ", "n"}], "]"}]], "InlineFormula"],
+ "."
+}], "Notes",
+ CellID->174386973],
+
+Cell[TextData[{
+ "The application in model building of this is the following: consider a \
+parameter ",
+ Cell[BoxData[
+  SubscriptBox["\[Mu]", 
+   RowBox[{
+    SubscriptBox["f", "1"], 
+    SubscriptBox["f", "2"], "\[CenterEllipsis]"}]]], "InlineFormula"],
+ " where the ",
+ Cell[BoxData[
+  SubscriptBox["f", "i"]], "InlineFormula"],
+ "=1,\[CenterEllipsis],n are flavor indices. If \[Mu] is known to have some \
+symmetry (given by a partition \[Lambda]) under a permutation of these \
+indices, then the number of degrees of freedom in \[Mu] is given by  ",
+ Cell[BoxData[
+  RowBox[{"HookContentFormula", "[", 
+   RowBox[{"\[Lambda]", ",", " ", "n"}], "]"}]], "InlineFormula"],
+ " (see examples below)."
+}], "Notes",
+ CellID->957558026]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["EXAMPLES",
+ BaseStyle->None,
+ Appearance->{Automatic, None},
+ Evaluator->None,
+ Method->"Preemptive",
+ ButtonFunction:>(FrontEndExecute[{
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], All, ButtonCell], 
+    FrontEndToken["OpenCloseGroup"], 
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], After, 
+     CellContents]}]& )]], "PrimaryExamplesSection",
+ CellTags->"PrimaryExamplesSection",
+ CellID->580072328],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Basic Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(1)", "ExampleCount"]
+}], "ExampleSection",
+ CellID->118462422],
+
+Cell[TextData[{
+ "Consider n SU(2) doubles ",
+ Cell[BoxData[
+  SubscriptBox["H", "i"]], "InlineFormula"],
+ ", with which one can form bilinear terms ",
+ Cell[BoxData[
+  SubscriptBox["\[Mu]", "ij"]], "InlineFormula"],
+ " ",
+ Cell[BoxData[
+  SubscriptBox["H", "i"]], "InlineFormula"],
+ " ",
+ Cell[BoxData[
+  SubscriptBox["H", "j"]], "InlineFormula"],
+ " in the Lagrangian. Because of the contraction of SU(2) indices, \[Mu] must \
+be antisymmetric in the flavor indices ",
+ Cell[BoxData["i"], "InlineFormula"],
+ " and ",
+ Cell[BoxData["j"], "InlineFormula"],
+ ". In this case, it is well known that there are ",
+ Cell[BoxData[
+  FractionBox[
+   RowBox[{"n", 
+    RowBox[{"(", 
+     RowBox[{"n", "-", "1"}], ")"}]}], "2"]], "InlineFormula"],
+ " independent parameters/degrees of freedom in  ",
+ Cell[BoxData[
+  SubscriptBox["\[Mu]", "ij"]], "InlineFormula"],
+ ":"
+}], "ExampleText",
+ CellID->32979335],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"HookContentFormula", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"1", ",", "1"}], "}"}], ",", "n"}], "]"}], 
+  "\[IndentingNewLine]"}]], "Input",
+ CellLabel->"In[1]:=",
+ CellID->280814282],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["1", "2"], " ", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"-", "1"}], "+", "n"}], ")"}], " ", "n"}]], "Output",
+ ImageSize->{78, 32},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[1]=",
+ CellID->290627310]
+}, Open  ]],
+
+Cell[TextData[{
+ "Above, we have used the fact that {1,1} is the antisymmetric representation \
+of ",
+ Cell[BoxData[
+  SubscriptBox["S", "2"]], "InlineFormula"],
+ ". If ",
+ Cell[BoxData[
+  SubscriptBox["\[Mu]", "ij"]], "InlineFormula"],
+ " was symmetric in  ",
+ Cell[BoxData["i"], "InlineFormula"],
+ " and ",
+ Cell[BoxData["j"], "InlineFormula"],
+ ", there would be  ",
+ Cell[BoxData[
+  FractionBox[
+   RowBox[{"n", 
+    RowBox[{"(", 
+     RowBox[{"n", "+", "1"}], ")"}]}], "2"]], "InlineFormula"],
+ " independent parameters:"
+}], "ExampleText",
+ CellID->84766177],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"HookContentFormula", "[", 
+   RowBox[{
+    RowBox[{"{", "2", "}"}], ",", "n"}], "]"}], 
+  "\[IndentingNewLine]"}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->100421489],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["1", "2"], " ", "n", " ", 
+  RowBox[{"(", 
+   RowBox[{"1", "+", "n"}], ")"}]}]], "Output",
+ ImageSize->{70, 32},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[2]=",
+ CellID->756805595]
+}, Open  ]],
+
+Cell[TextData[{
+ "Likewise, SU(3) triplets ",
+ Cell[BoxData[
+  SubscriptBox["q", "i"]], "InlineFormula"],
+ " form trilinear terms ",
+ Cell[BoxData[
+  SubscriptBox["a", "ijk"]], "InlineFormula"],
+ " ",
+ Cell[BoxData[
+  SubscriptBox["q", "i"]], "InlineFormula"],
+ " ",
+ Cell[BoxData[
+  SubscriptBox["q", "j"]], "InlineFormula"],
+ " ",
+ Cell[BoxData[
+  SubscriptBox["q", "k"]], "InlineFormula"],
+ ". Because of the contraction of SU(3) indices, ",
+ Cell[BoxData[
+  SubscriptBox["a", "ijk"]], "InlineFormula"],
+ " must be antisymmetric in the flavor indices (representation {1,1,1} of ",
+ Cell[BoxData[
+  SubscriptBox["S", "3"]], "InlineFormula"],
+ "). If there are ",
+ Cell[BoxData["x"], "InlineFormula"],
+ " generations of these triplets, the number of independent \
+parameters/degrees of freedom is"
+}], "ExampleText",
+ CellID->13657069],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"HookContentFormula", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "1", ",", "1"}], "}"}], ",", "x"}], "]"}]], "Input",
+ CellLabel->"In[3]:=",
+ CellID->466967494],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["1", "6"], " ", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"-", "2"}], "+", "x"}], ")"}], " ", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"-", "1"}], "+", "x"}], ")"}], " ", "x"}]], "Output",
+ ImageSize->{130, 32},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[3]=",
+ CellID->491325787]
+}, Open  ]],
+
+Cell[TextData[{
+ "Consider now some copies of a representation R such that quartic terms ",
+ Cell[BoxData[
+  SubscriptBox["c", "ijkl"]], "InlineFormula"],
+ " ",
+ Cell[BoxData[
+  SubscriptBox["R", "i"]], "InlineFormula"],
+ " ",
+ Cell[BoxData[
+  SubscriptBox["R", "j"]], "InlineFormula"],
+ " ",
+ Cell[BoxData[
+  SubscriptBox["R", "k"]], "InlineFormula"],
+ " ",
+ Cell[BoxData[
+  SubscriptBox["R", "l"]], "InlineFormula"],
+ " are possible, and ",
+ Cell[BoxData[
+  SubscriptBox["c", "ijkl"]], "InlineFormula"],
+ " is symmetric under a permutation of i,j,k but antisymmetric for a \
+permutation of i and l. This corresponds to the representation {3,1} of ",
+ Cell[BoxData[
+  SubscriptBox["S", "4"]], "InlineFormula"],
+ " and as such, if there are n copies of R, the number of degrees of freedom \
+in  ",
+ Cell[BoxData[
+  SubscriptBox["c", "ijkl"]], "InlineFormula"],
+ " is"
+}], "ExampleText",
+ CellID->91711931],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"HookContentFormula", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"3", ",", "1"}], "}"}], ",", "n"}], "]"}]], "Input",
+ CellLabel->"In[4]:=",
+ CellID->533790247],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["1", "8"], " ", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"-", "1"}], "+", "n"}], ")"}], " ", "n", " ", 
+  RowBox[{"(", 
+   RowBox[{"1", "+", "n"}], ")"}], " ", 
+  RowBox[{"(", 
+   RowBox[{"2", "+", "n"}], ")"}]}]], "Output",
+ ImageSize->{166, 32},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[4]=",
+ CellID->79326881]
+}, Open  ]],
+
+Cell["\<\
+As such, we can see that for n=1 this quartic term cannot be built ...\
+\>", "ExampleText",
+ CellID->355368670],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"HookContentFormula", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"3", ",", "1"}], "}"}], ",", "1"}], "]"}]], "Input",
+ CellLabel->"In[5]:=",
+ CellID->363910599],
+
+Cell[BoxData["0"], "Output",
+ ImageSize->{11, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[5]=",
+ CellID->167835888]
+}, Open  ]],
+
+Cell[TextData[{
+ "... and for example n=2 yields three independent parameters (",
+ Cell[BoxData[
+  SubscriptBox["c", "1112"]], "InlineFormula"],
+ ", ",
+ Cell[BoxData[
+  SubscriptBox["c", "1122"]], "InlineFormula"],
+ " and ",
+ Cell[BoxData[
+  SubscriptBox["c", "1222"]], "InlineFormula"],
+ " for example):"
+}], "ExampleText",
+ CellID->425108623],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"HookContentFormula", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"3", ",", "1"}], "}"}], ",", "2"}], "]"}]], "Input",
+ CellLabel->"In[6]:=",
+ CellID->122307077],
+
+Cell[BoxData["3"], "Output",
+ ImageSize->{11, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[6]=",
+ CellID->546268760]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["SEE ALSO",
+ BaseStyle->None,
+ Appearance->{Automatic, None},
+ Evaluator->None,
+ Method->"Preemptive",
+ ButtonFunction:>(FrontEndExecute[{
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], All, ButtonCell], 
+    FrontEndToken["OpenCloseGroup"], 
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], After, 
+     CellContents]}]& )]], "SeeAlsoSection",
+ CellID->1255426704],
+
+Cell[BoxData[Cell[BoxData[
+  ButtonBox[
+   RowBox[{
+    RowBox[{
+     RowBox[{"R", ".", " ", "P", ".", " ", "Stanley"}], ",", " ", 
+     RowBox[{"Enumerative", " ", 
+      RowBox[{"combinatorics", ".", " ", "Vol"}], " ", "2.", " ", 
+      RowBox[{"Cambridge", ":", " ", "Cambridge"}]}]}], "\n", 
+    RowBox[{
+     RowBox[{"University", " ", "Press"}], ",", " ", "1999."}]}],
+   BaseStyle->"Link"]], "InlineFormula"]], "SeeAlso",
+ CellID->929782353]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["TUTORIALS",
+ BaseStyle->None,
+ Appearance->{Automatic, None},
+ Evaluator->None,
+ Method->"Preemptive",
+ ButtonFunction:>(FrontEndExecute[{
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], All, ButtonCell], 
+    FrontEndToken["OpenCloseGroup"], 
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], After, 
+     CellContents]}]& )]], "TutorialsSection",
+ CellID->250839057],
+
+Cell[TextData[ButtonBox["Susyno Tutorial",
+ BaseStyle->"Link",
+ ButtonData->"paclet:Susyno/tutorial/SusynoTutorial"]], "Tutorials",
+ CellID->341631938]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["RELATED LINKS",
+ BaseStyle->None,
+ Appearance->{Automatic, None},
+ Evaluator->None,
+ Method->"Preemptive",
+ ButtonFunction:>(FrontEndExecute[{
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], All, ButtonCell], 
+    FrontEndToken["OpenCloseGroup"], 
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], After, 
+     CellContents]}]& )]], "RelatedLinksSection",
+ CellID->1584193535],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["DecomposeSnProduct",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/DecomposeSnProduct"]], "InlineFormula"],
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
+  ButtonBox["SnClassCharacter",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/SnClassCharacter"]], "InlineFormula"],
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
+  ButtonBox["SnClassOrder",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/SnClassOrder"]], "InlineFormula"],
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
+  ButtonBox["SnIrrepDim",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/SnIrrepDim"]], "InlineFormula"],
+ " "
+}], "RelatedLinks",
+ CellID->1038487239]
+}, Open  ]],
+
+Cell[" ", "FooterCell"]
+},
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+WindowSize->{725, 566},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowTitle->"HookContentFormula - Wolfram Mathematica",
+TaggingRules->{
+ "ModificationHighlight" -> False, 
+  "Metadata" -> {
+   "built" -> "{2013, 8, 7, 2, 27, 9.5937500}", "context" -> "Susyno`", 
+    "keywords" -> {}, "index" -> True, "label" -> "Susyno Paclet Symbol", 
+    "language" -> "en", "paclet" -> "Susyno", "status" -> "None", "summary" -> 
+    "HookContentFormula[partition, n] Applies the Hook Content Formula to a \
+semi-standard Young tableau with cells filled with the numbers \
+0,\\[CenterEllipsis],n (repetitions are allowed) - see reference below", 
+    "synonyms" -> {}, "title" -> "HookContentFormula", "type" -> "Symbol", 
+    "uri" -> "Susyno/ref/HookContentFormula"}, "SearchTextTranslated" -> ""},
+CellContext->"Global`",
+FrontEndVersion->"7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[
+    StyleDefinitions -> FrontEnd`FileName[{"Wolfram"}, "Reference.nb"]]], 
+   Cell[
+    StyleData["Input"], CellContext -> "Global`"], 
+   Cell[
+    StyleData["Output"], CellContext -> "Global`"]}, Visible -> False, 
+  FrontEndVersion -> "7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
+   StyleDefinitions -> "Default.nb"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "PrimaryExamplesSection"->{
+  Cell[11269, 278, 461, 13, 70, "PrimaryExamplesSection",
+   CellTags->"PrimaryExamplesSection",
+   CellID->580072328]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"PrimaryExamplesSection", 23083, 711}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[599, 21, 76, 1, 70, "SymbolColorBar"],
+Cell[678, 24, 178, 5, 70, "LinkTrail"],
+Cell[859, 31, 2338, 53, 70, "AnchorBarGrid",
+ CellID->1],
+Cell[CellGroupData[{
+Cell[3222, 88, 61, 1, 70, "ObjectName",
+ CellID->1224892054],
+Cell[3286, 91, 554, 14, 70, "Usage",
+ CellID->982511436]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3877, 110, 580, 17, 70, "NotesSection",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->445366566],
+Cell[4460, 129, 494, 14, 70, "Notes",
+ CellID->1067943069],
+Cell[4957, 145, 4945, 87, 70, "Input",
+ CellID->124506618],
+Cell[9905, 234, 245, 7, 70, "Notes",
+ CellID->37512995],
+Cell[10153, 243, 343, 9, 70, "Notes",
+ CellID->174386973],
+Cell[10499, 254, 733, 19, 70, "Notes",
+ CellID->957558026]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[11269, 278, 461, 13, 70, "PrimaryExamplesSection",
+ CellTags->"PrimaryExamplesSection",
+ CellID->580072328],
+Cell[CellGroupData[{
+Cell[11755, 295, 148, 5, 70, "ExampleSection",
+ CellID->118462422],
+Cell[11906, 302, 898, 29, 70, "ExampleText",
+ CellID->32979335],
+Cell[CellGroupData[{
+Cell[12829, 335, 228, 8, 70, "Input",
+ CellID->280814282],
+Cell[13060, 345, 278, 10, 53, "Output",
+ CellID->290627310]
+}, Open  ]],
+Cell[13353, 358, 564, 20, 70, "ExampleText",
+ CellID->84766177],
+Cell[CellGroupData[{
+Cell[13942, 382, 202, 7, 70, "Input",
+ CellID->100421489],
+Cell[14147, 391, 258, 9, 53, "Output",
+ CellID->756805595]
+}, Open  ]],
+Cell[14420, 403, 836, 27, 70, "ExampleText",
+ CellID->13657069],
+Cell[CellGroupData[{
+Cell[15281, 434, 196, 6, 70, "Input",
+ CellID->466967494],
+Cell[15480, 442, 356, 13, 53, "Output",
+ CellID->491325787]
+}, Open  ]],
+Cell[15851, 458, 905, 29, 70, "ExampleText",
+ CellID->91711931],
+Cell[CellGroupData[{
+Cell[16781, 491, 186, 6, 70, "Input",
+ CellID->533790247],
+Cell[16970, 499, 392, 14, 53, "Output",
+ CellID->79326881]
+}, Open  ]],
+Cell[17377, 516, 121, 3, 70, "ExampleText",
+ CellID->355368670],
+Cell[CellGroupData[{
+Cell[17523, 523, 186, 6, 70, "Input",
+ CellID->363910599],
+Cell[17712, 531, 158, 5, 36, "Output",
+ CellID->167835888]
+}, Open  ]],
+Cell[17885, 539, 344, 12, 70, "ExampleText",
+ CellID->425108623],
+Cell[CellGroupData[{
+Cell[18254, 555, 186, 6, 70, "Input",
+ CellID->122307077],
+Cell[18443, 563, 158, 5, 36, "Output",
+ CellID->546268760]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18662, 575, 417, 12, 70, "SeeAlsoSection",
+ CellID->1255426704],
+Cell[19082, 589, 448, 11, 70, "SeeAlso",
+ CellID->929782353]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19567, 605, 419, 12, 70, "TutorialsSection",
+ CellID->250839057],
+Cell[19989, 619, 151, 3, 70, "Tutorials",
+ CellID->341631938]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20177, 627, 427, 12, 70, "RelatedLinksSection",
+ CellID->1584193535],
+Cell[20607, 641, 970, 31, 70, "RelatedLinks",
+ CellID->1038487239]
+}, Open  ]],
+Cell[21592, 675, 23, 0, 70, "FooterCell"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

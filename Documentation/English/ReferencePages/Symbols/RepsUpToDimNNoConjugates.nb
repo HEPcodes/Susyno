@@ -10,11 +10,11 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       145,          7]
-NotebookDataLength[     13110,        459]
-NotebookOptionsPosition[      9608,        344]
-NotebookOutlinePosition[     11210,        389]
-CellTagsIndexPosition[     11125,        384]
-WindowTitle->Adjoint - Wolfram Mathematica
+NotebookDataLength[     14368,        484]
+NotebookOptionsPosition[     11176,        384]
+NotebookOutlinePosition[     12878,        430]
+CellTagsIndexPosition[     12793,        425]
+WindowTitle->RepsUpToDimNNoConjugates - Wolfram Mathematica
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -44,12 +44,12 @@ Cell[BoxData[GridBox[{
      Cell[BoxData[
       ActionMenuBox[
        FrameBox["\<\"URL \[RightGuillemet]\"\>",
-        StripOnInput->False], {"\<\"Susyno/ref/Adjoint\"\>":>
+        StripOnInput->False], {"\<\"Susyno/ref/RepsUpToDimNNoConjugates\"\>":>
        None, "\<\"Copy Mathematica url\"\>":>
        Module[{DocumentationSearch`Private`nb$}, 
         DocumentationSearch`Private`nb$ = NotebookPut[
            Notebook[{
-             Cell["Susyno/ref/Adjoint"]}, Visible -> False]]; 
+             Cell["Susyno/ref/RepsUpToDimNNoConjugates"]}, Visible -> False]]; 
         SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
         FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
         NotebookClose[DocumentationSearch`Private`nb$]; Null], 
@@ -61,18 +61,18 @@ Cell[BoxData[GridBox[{
               BoxData[
                MakeBoxes[
                 Hyperlink[
-                "http://reference.wolfram.com/mathematica/Susyno/ref/Adjoint.\
-html"], StandardForm]], "Input", TextClipboardType -> "PlainText"]}, Visible -> 
-            False]]; SelectionMove[
-         DocumentationSearch`Private`nb$, All, Notebook]; 
+                "http://reference.wolfram.com/mathematica/Susyno/ref/\
+RepsUpToDimNNoConjugates.html"], StandardForm]], "Input", TextClipboardType -> 
+              "PlainText"]}, Visible -> False]]; 
+        SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
         FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
         NotebookClose[DocumentationSearch`Private`nb$]; 
         Null], "\<\"Go to web url\"\>":>FrontEndExecute[{
          NotebookLocate[{
            URL[
             StringJoin[
-            "http://reference.wolfram.com/mathematica/", "Susyno/ref/Adjoint",
-              ".html"]], None}]}]},
+            "http://reference.wolfram.com/mathematica/", 
+             "Susyno/ref/RepsUpToDimNNoConjugates", ".html"]], None}]}]},
        Appearance->None,
        MenuAppearance->Automatic]],
       LineSpacing->{1.4, 0}]
@@ -86,32 +86,25 @@ html"], StandardForm]], "Input", TextClipboardType -> "PlainText"]}, Visible ->
 
 Cell[CellGroupData[{
 
-Cell["Adjoint", "ObjectName",
+Cell["RepsUpToDimNNoConjugates", "ObjectName",
  CellID->1224892054],
 
 Cell[BoxData[GridBox[{
    {"", Cell[TextData[{
      Cell[BoxData[
-      RowBox[{"Adjoint", "[", "group", "]"}]], "InlineFormula"],
-     " \n\tReturns the adjoint representation of  ",
-     Cell[BoxData["group"], "InlineFormula"]
-    }]]},
-   {"", Cell[TextData[{
-     Cell[BoxData[
-      RowBox[{"Adjoint", "[", 
-       RowBox[{"{", 
-        RowBox[{"group1", ",", "group2", ",", "..."}], "}"}], "]"}]], 
-      "InlineFormula"],
-     " \n\tReturns the adjoint representations of the ",
-     Cell[BoxData["group1"], "InlineFormula"],
-     ", ",
-     Cell[BoxData["group2"], "InlineFormula"],
-     ", ..."
+      RowBox[{"RepsUpToDimNNoConjugates", "[", 
+       RowBox[{"group", ",", " ", "maxDim"}], "]"}]], "InlineFormula"],
+     " \[LineSeparator]Lists the representations of ",
+     Cell[BoxData["group"], "InlineFormula"],
+     " with dimension smaller or equal to ",
+     Cell[BoxData["maxDim"], "InlineFormula"],
+     ", returning only one representation for each pair of conjugate \
+representations "
     }]]}
   }]], "Usage",
  GridBoxOptions->{
  GridBoxBackground->{
-  "Columns" -> {{None}}, "ColumnsIndexed" -> {}, "Rows" -> {None, {None}}, 
+  "Columns" -> {{None}}, "ColumnsIndexed" -> {}, "Rows" -> {{None}}, 
    "RowsIndexed" -> {}}},
  CellID->982511436]
 }, Open  ]],
@@ -135,7 +128,7 @@ Cell[TextData[Cell[BoxData[
   Evaluator->None,
   Method->"Preemptive"]]]], "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->232621583],
+ CellID->908937392],
 
 Cell[TextData[{
  "Argument ",
@@ -148,24 +141,11 @@ Cell[TextData[{
 }], "Notes",
  CellID->416274567],
 
-Cell[TextData[{
- "This method outputs the Dynkin coefficients of the adjoint representation \
-of ",
- Cell[BoxData["group"], "InlineFormula"],
- "."
-}], "Notes",
- CellID->1067943069],
-
-Cell[TextData[{
- "A list of Cartan matrices ",
- Cell[BoxData[
-  RowBox[{"{", 
-   RowBox[{"group1", ",", " ", "group2", ",", "..."}], "}"}]], 
-  "InlineFormula"],
- " can also be used as input. The output is the list of adjoint \
-representations of the given groups."
-}], "Notes",
- CellID->68145961]
+Cell["\<\
+This method outputs a list o representations, each given by its Dynkin \
+coefficients.\
+\>", "Notes",
+ CellID->1067943069]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -183,7 +163,7 @@ Cell[TextData[ButtonBox["EXAMPLES",
      FrontEnd`SelectedNotebook[], After, 
      CellContents]}]& )]], "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->239347696],
+ CellID->480888287],
 
 Cell[CellGroupData[{
 
@@ -192,95 +172,155 @@ Cell[TextData[{
  "\[NonBreakingSpace]\[NonBreakingSpace]",
  Cell["(1)", "ExampleCount"]
 }], "ExampleSection",
- CellID->792891074],
+ CellID->261297320],
 
 Cell["\<\
-The adjoint representation of SU(2) is the triplet representation [={2} in \
-Dynkin coefficients]:\
+List all representations of SU(3) with dimensions smaller than or equal to 50:\
 \>", "ExampleText",
  CellID->283112903],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"Adjoint", "[", "SU2", "]"}]], "Input",
+ RowBox[{"RepsUpToDimN", "[", 
+  RowBox[{"SU3", ",", "50"}], "]"}]], "Input",
  CellLabel->"In[1]:=",
  CellID->473091279],
 
 Cell[BoxData[
- RowBox[{"{", "2", "}"}]], "Output",
- ImageSize->{25, 15},
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"0", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "6"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "7"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "8"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"3", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"3", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"3", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"4", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"4", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"5", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"5", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"6", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"7", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"8", ",", "0"}], "}"}]}], "}"}]], "Output",
+ ImageSize->{508, 50},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[1]=",
- CellID->191772224]
+ CellID->623747077]
 }, Open  ]],
 
-Cell["Two more examples:", "ExampleText",
- CellID->753055023],
+Cell[TextData[{
+ "However, the representation {",
+ Cell[BoxData[
+  SubscriptBox["x", "1"]], "InlineFormula"],
+ ", ",
+ Cell[BoxData[
+  SubscriptBox["x", "2"]], "InlineFormula"],
+ "} and {",
+ Cell[BoxData[
+  SubscriptBox["x", "2"]], "InlineFormula"],
+ ", ",
+ Cell[BoxData[
+  SubscriptBox["x", "1"]], "InlineFormula"],
+ "} are conjugates of one another. The following command only returns one \
+representation for each such pair:"
+}], "ExampleText",
+ CellID->79403664],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"Adjoint", "[", "SU5", "]"}]], "Input",
+ RowBox[{"RepsUpToDimNNoConjugates", "[", 
+  RowBox[{"SU3", ",", "50"}], "]"}]], "Input",
  CellLabel->"In[2]:=",
- CellID->297272364],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"1", ",", "0", ",", "0", ",", "1"}], "}"}]], "Output",
- ImageSize->{79, 15},
- ImageMargins->{{0, 0}, {0, 0}},
- ImageRegion->{{0, 1}, {0, 1}},
- CellLabel->"Out[2]=",
- CellID->155344506]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"Adjoint", "[", "SO10", "]"}]], "Input",
- CellLabel->"In[3]:=",
- CellID->130136287],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"0", ",", "1", ",", "0", ",", "0", ",", "0"}], "}"}]], "Output",
- ImageSize->{97, 15},
- ImageMargins->{{0, 0}, {0, 0}},
- ImageRegion->{{0, 1}, {0, 1}},
- CellLabel->"Out[3]=",
- CellID->134837845]
-}, Open  ]],
-
-Cell["\<\
-If a list of simple groups is given, a list of representations is returned.\
-\>", "ExampleText",
- CellID->167344756],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"Adjoint", "[", 
-  RowBox[{"{", 
-   RowBox[{"SU2", ",", "SU5", ",", "SO10"}], "}"}], "]"}]], "Input",
- CellLabel->"In[4]:=",
- CellID->72297960],
+ CellID->582335280],
 
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{
-   RowBox[{"{", "2", "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"1", ",", "0", ",", "0", ",", "1"}], "}"}], ",", 
+    RowBox[{"0", ",", "0"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"0", ",", "1", ",", "0", ",", "0", ",", "0"}], "}"}]}], 
-  "}"}]], "Output",
- ImageSize->{229, 15},
+    RowBox[{"0", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "6"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "7"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "8"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "3"}], "}"}]}], "}"}]], "Output",
+ ImageSize->{458, 33},
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
- CellLabel->"Out[4]=",
- CellID->21508305]
+ CellLabel->"Out[2]=",
+ CellID->522346478]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
@@ -325,19 +365,19 @@ Cell[TextData[ButtonBox["RELATED LINKS",
 
 Cell[TextData[{
  Cell[BoxData[
-  ButtonBox["CartanMatrix",
+  ButtonBox["DimR",
    BaseStyle->"Link",
-   ButtonData->"paclet:Susyno/ref/CartanMatrix"]], "InlineFormula"],
+   ButtonData->"paclet:Susyno/ref/DimR"]], "InlineFormula"],
  "\[NonBreakingSpace]",
  StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
   "InlineSeparator"],
  " ",
  Cell[BoxData[
-  ButtonBox["PositiveRoots",
+  ButtonBox["RepsUpToDimN",
    BaseStyle->"Link",
-   ButtonData->"paclet:Susyno/ref/PositiveRoots"]], "InlineFormula"]
+   ButtonData->"paclet:Susyno/ref/RepsUpToDimN"]], "InlineFormula"]
 }], "RelatedLinks",
- CellID->56765791]
+ CellID->173192632]
 }, Open  ]],
 
 Cell[" ", "FooterCell"]
@@ -346,17 +386,18 @@ Saveable->False,
 ScreenStyleEnvironment->"Working",
 WindowSize->{725, 566},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
-WindowTitle->"Adjoint - Wolfram Mathematica",
+WindowTitle->"RepsUpToDimNNoConjugates - Wolfram Mathematica",
 TaggingRules->{
  "ModificationHighlight" -> False, 
   "Metadata" -> {
-   "built" -> "{2013, 8, 7, 2, 26, 18.7656250}", "context" -> "Susyno`", 
+   "built" -> "{2013, 8, 7, 2, 28, 54.7656250}", "context" -> "Susyno`", 
     "keywords" -> {}, "index" -> True, "label" -> "Susyno Paclet Symbol", 
     "language" -> "en", "paclet" -> "Susyno", "status" -> "None", "summary" -> 
-    "Adjoint[group] Returns the adjoint representation of \
-groupAdjoint[{group1, group2, ...}] Returns the adjoint representations of \
-the group1, group2, ...", "synonyms" -> {}, "title" -> "Adjoint", "type" -> 
-    "Symbol", "uri" -> "Susyno/ref/Adjoint"}, "SearchTextTranslated" -> ""},
+    "RepsUpToDimNNoConjugates[group, maxDim] Lists the representations of \
+group with dimension smaller or equal to maxDim, returning only one \
+representation for each pair of conjugate representations ", "synonyms" -> {},
+     "title" -> "RepsUpToDimNNoConjugates", "type" -> "Symbol", "uri" -> 
+    "Susyno/ref/RepsUpToDimNNoConjugates"}, "SearchTextTranslated" -> ""},
 CellContext->"Global`",
 FrontEndVersion->"7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
 StyleDefinitions->Notebook[{
@@ -376,91 +417,75 @@ StyleDefinitions->Notebook[{
 (*CellTagsOutline
 CellTagsIndex->{
  "PrimaryExamplesSection"->{
-  Cell[5390, 172, 461, 13, 70, "PrimaryExamplesSection",
+  Cell[5003, 152, 461, 13, 70, "PrimaryExamplesSection",
    CellTags->"PrimaryExamplesSection",
-   CellID->239347696]}
+   CellID->480888287]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"PrimaryExamplesSection", 10982, 377}
+ {"PrimaryExamplesSection", 12650, 418}
  }
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[588, 21, 76, 1, 70, "SymbolColorBar"],
-Cell[667, 24, 178, 5, 70, "LinkTrail"],
-Cell[848, 31, 2293, 53, 70, "AnchorBarGrid",
+Cell[605, 21, 76, 1, 70, "SymbolColorBar"],
+Cell[684, 24, 178, 5, 70, "LinkTrail"],
+Cell[865, 31, 2362, 53, 70, "AnchorBarGrid",
  CellID->1],
 Cell[CellGroupData[{
-Cell[3166, 88, 50, 1, 70, "ObjectName",
+Cell[3252, 88, 67, 1, 70, "ObjectName",
  CellID->1224892054],
-Cell[3219, 91, 791, 24, 70, "Usage",
+Cell[3322, 91, 649, 17, 70, "Usage",
  CellID->982511436]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[4047, 120, 580, 17, 70, "NotesSection",
+Cell[4008, 113, 580, 17, 70, "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->232621583],
-Cell[4630, 139, 240, 9, 70, "Notes",
+ CellID->908937392],
+Cell[4591, 132, 240, 9, 70, "Notes",
  CellID->416274567],
-Cell[4873, 150, 180, 6, 70, "Notes",
- CellID->1067943069],
-Cell[5056, 158, 297, 9, 70, "Notes",
- CellID->68145961]
+Cell[4834, 143, 132, 4, 70, "Notes",
+ CellID->1067943069]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[5390, 172, 461, 13, 70, "PrimaryExamplesSection",
+Cell[5003, 152, 461, 13, 70, "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->239347696],
+ CellID->480888287],
 Cell[CellGroupData[{
-Cell[5876, 189, 148, 5, 70, "ExampleSection",
- CellID->792891074],
-Cell[6027, 196, 149, 4, 70, "ExampleText",
+Cell[5489, 169, 148, 5, 70, "ExampleSection",
+ CellID->261297320],
+Cell[5640, 176, 129, 3, 70, "ExampleText",
  CellID->283112903],
 Cell[CellGroupData[{
-Cell[6201, 204, 105, 3, 70, "Input",
+Cell[5794, 183, 134, 4, 70, "Input",
  CellID->473091279],
-Cell[6309, 209, 180, 6, 36, "Output",
- CellID->191772224]
+Cell[5931, 189, 1895, 65, 71, "Output",
+ CellID->623747077]
 }, Open  ]],
-Cell[6504, 218, 61, 1, 70, "ExampleText",
- CellID->753055023],
+Cell[7841, 257, 465, 16, 70, "ExampleText",
+ CellID->79403664],
 Cell[CellGroupData[{
-Cell[6590, 223, 105, 3, 70, "Input",
- CellID->297272364],
-Cell[6698, 228, 223, 7, 36, "Output",
- CellID->155344506]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[6958, 240, 106, 3, 70, "Input",
- CellID->130136287],
-Cell[7067, 245, 233, 7, 36, "Output",
- CellID->134837845]
-}, Open  ]],
-Cell[7315, 255, 126, 3, 70, "ExampleText",
- CellID->167344756],
-Cell[CellGroupData[{
-Cell[7466, 262, 166, 5, 70, "Input",
- CellID->72297960],
-Cell[7635, 269, 388, 13, 36, "Output",
- CellID->21508305]
+Cell[8331, 277, 146, 4, 70, "Input",
+ CellID->582335280],
+Cell[8480, 283, 1128, 39, 54, "Output",
+ CellID->522346478]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[8084, 289, 419, 12, 70, "TutorialsSection",
+Cell[9669, 329, 419, 12, 70, "TutorialsSection",
  CellID->250839057],
-Cell[8506, 303, 151, 3, 70, "Tutorials",
+Cell[10091, 343, 151, 3, 70, "Tutorials",
  CellID->341631938]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[8694, 311, 427, 12, 70, "RelatedLinksSection",
+Cell[10279, 351, 427, 12, 70, "RelatedLinksSection",
  CellID->1584193535],
-Cell[9124, 325, 442, 14, 70, "RelatedLinks",
- CellID->56765791]
+Cell[10709, 365, 425, 14, 70, "RelatedLinks",
+ CellID->173192632]
 }, Open  ]],
-Cell[9581, 342, 23, 0, 70, "FooterCell"]
+Cell[11149, 382, 23, 0, 70, "FooterCell"]
 }
 ]
 *)

@@ -19,403 +19,925 @@
 
 
 
-BeginPackage["Susyno`SusyRGEs`"];
+BeginPackage["Susyno`SusyRGEs`",{"Susyno`LieGroups`","Susyno`ModelBuilding`","Susyno`SimplifyEinsteinNotation`"}];
 
-ImportData::usage = 
-"Syntax: ImportData[y,\[Mu],L,h,b,s,m2,numberFlavs,dR,cR,sR,cG,numberNonU1groups,repMatrices]
-Description: This is an internal initialization method."
-CanonicalForm::usage ="Syntax: CanonicalForm[<expr>, <indices>(optional)]
-Example: CanonicalForm[T[i,j]T[i,j]+T[k,i]T[k,i],{i,j,k,l,m,n,o,p}]
-Description: Simplifies expressions in the Einstein convention. A list containing the indices used must be given (extra indices are ok ... see example above). Otherwise, they are assumed to be \[Alpha][1],\[Alpha][2],..."
-ListContract::usage ="Sintax: ListContract[<list>,<positions>]
-Example: A and B are two 3D tensors with apropriate dimentions. Suppose we want Aijk Bkij.  A.B contracts the k index so that ListContract[A.B,{{1,3},{2,4}}] will do the rest of the math (contracts the remaining 4 indices: the 1st with the 3rd and the 2nd with the 4th);
-Description: This method efficiently contracts indices of tensors. list=tensor to contract; positions=list with pairs {index1,index2} to contract."
+{GenerateModelBetaFunctions,InitObjects,MasterFY,MergeSameReps,ReverseMergeReps,SearchForInvariants,YBConnection,YDDY,YDnoFDY,YDY,YDYnoF,YGcYc,YGYc,YMccYc,YMcYc,YMMcYc,YMYc,YToB,YYc};
+{GaugeSectorU1;GaugeSectorNonU1;GaugeSector;GauginoSectorU1;GauginoSectorNonU1;GauginoSector;Y\[Mu]LSector;HSector;BSector;SSector;M2Sector,FindInvariantRep};
 
-\[Beta]g1::usage ="Internal method"
-\[Beta]g2::usage ="Internal method"
-\[Beta]M1::usage ="Internal method"
-\[Beta]M2::usage = "Internal method"
-\[Beta]Y1::usage = "Internal method"
-\[Beta]Y2::usage =  "Internal method"
-\[Beta]\[Mu]1::usage = "Internal method"
-\[Beta]\[Mu]2::usage =   "Internal method"
-\[Beta]L1::usage =  "Internal method"
-\[Beta]L2::usage = "Internal method"
-\[Beta]H1::usage =  "Internal method"
-\[Beta]H2::usage =  "Internal method"
-\[Beta]B1::usage =  "Internal method"
-\[Beta]B2::usage = "Internal method"
-\[Beta]2M1::usage =  "Internal method"
-\[Beta]2M2::usage  "Internal method"
-\[Beta]S1::usage  "Internal method"
-\[Beta]S2::usage  "Internal method"
+{NormalizeParameters,KillKroneckerDeltas};
 
-
-
-g::usage::"The program uses this variable"
-M::usage::"The program uses this variable"
-\[Alpha]::usage::"The program uses this variable"
-f1::usage::"The program uses this variable"
-f2::usage::"The program uses this variable"
-f3::usage::"The program uses this variable"
-
-Begin["`Private`"]
-
-
-
-(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
-flavVariables={f1,f2,f3}
-
-(* Initialization method. After using this method, one can use the methods \[Beta]g1, \[Beta]g2, etc *)
-ImportData[{y_, \[Mu]_, l_, h_, b_,s_, m2_, numberFlavours_, dRv_, cRv_, sRv_, cGv_, numberNonU1groups_, fullRepMatrices_}] := (
-  
-  oYMat = y;
-  o\[Mu]Mat = \[Mu];
-  oLMat = l;
-  oHMat = h;
-  oBMat = b;
-  oM2Mat = m2;
-oSMat=s;
-  flavMat = numberFlavours;
-  dRMat = dRv;
-  cRMat = cRv;
-  sRMat = sRv;
-  cGMat = cGv;
-  fullRepMat = fullRepMatrices;
-  
-  
-  totalF = Length[oLMat];
-  totalS = Length[fullRepMat];
-totalSNU = numberNonU1groups;
-totalSU=totalS-totalSNU;
- (* flavVariables = flavVar; *)
-  
-  
-  Clear[oY, o\[Mu], oL, oH, oB, oM2, oS,oM2T, DMatrixCR, DMatrixSR];
-  
-(*Methods that give flavour to the tensors*)   
-  oY[i_, j_, k_] := oY[i, j, k] = SparseArray[(oYMat // ArrayRules) /. {flavVariables[[1]] -> i, flavVariables[[2]] -> j, flavVariables[[3]] -> k}, {totalF, totalF, totalF}];
-  o\[Mu][i_, j_] := o\[Mu][i, j] = SparseArray[(o\[Mu]Mat // ArrayRules) /. {flavVariables[[1]] -> i, flavVariables[[2]] -> j}, {totalF, totalF}];
-  oL[i_] := oL[i] = SparseArray[(oLMat // ArrayRules) /. {flavVariables[[1]] -> i}, {totalF}];
-  oH[i_, j_, k_] := oH[i, j, k] = SparseArray[(oHMat // ArrayRules) /. {flavVariables[[1]] -> i, flavVariables[[2]] -> j, flavVariables[[3]] -> k}, {totalF, totalF, totalF}];
-  oB[i_, j_] := oB[i, j] = SparseArray[(oBMat // ArrayRules) /. {flavVariables[[1]] -> i, flavVariables[[2]] -> j}, {totalF, totalF}];
-  oM2[i_, j_] := oM2[i, j] = SparseArray[(oM2Mat // ArrayRules) /. {flavVariables[[1]] -> i, flavVariables[[2]] -> j}, {totalF, totalF}];
-  oM2T[i_, j_] := oM2T[i, j] = Transpose[oM2[j, i]];
-oS[i_] := oS[i] = SparseArray[(oSMat // ArrayRules) /. {flavVariables[[1]] -> i}, {totalF}];
-  
-  DMatrixCR[ll_] := DMatrixCR[ll] = SparseArray[DiagonalMatrix[Table[cR[k, ll], {k,totalF}]]];
-  DMatrixSR[ll_] := DMatrixSR[ll] = SparseArray[DiagonalMatrix[Table[sR[k, ll], {k, totalF}]]];
-  
-  )
+Begin["`Private`"];
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
+ MasterFY[i_]:=Module[{aux,yPositions,indexPosition,otherIndices,otherIndicesPositions,result,pYAux,fI,fO,fT},
 
-(* This method efficiently contracts indices of tensors. list=tensor to contract; positions=list with pairs {index1,index2} to contract;
-E.g. : Aijk Bkij . A.B contracts the k index. So ListContract[A.B,{{1,3},{2,4}}] contracts the remaining 4 indices: the 1st with the 3rd and the 2nd with the 4th. *)
+aux=DeleteDuplicates[Position[pY[[1;;-1,1]],i,{2}],#1[[1]]==#2[[1]]&];
+yPositions=aux[[1;;-1,1]];
+indexPosition=aux[[1;;-1,2]];
+otherIndicesPositions=DeleteCases[Range[3],#]&/@indexPosition;
+otherIndices=MapThread[Part,{pY[[yPositions,1]],otherIndicesPositions}];
 
-ListContract[list_, positions_] := Module[{n, n2, aux1, aux2, aux3, aux1Inv, i},
-  n = Length[Dimensions[list]];
-  n2 = Length[positions];
-  aux1 = Flatten[positions];
-  aux2 = Table[i, {i, n}];
-  aux1 = Join[aux1, Complement[aux2, aux1]];
-  
-  (* Inverting the permutation aux1: if n is in posicao i, the inverse permutation has i in position n *)
-  aux1Inv = 0 aux1;
-  Do[
-   aux1Inv[[aux1[[i]]]] = i;
-   , {i, Length[aux1]}];
-  (* /Inverting the permutation aux1: if n is in posicao i, the inverse permutation has i in position n *)
-  
-  aux3 = Transpose[list, aux1Inv];
-  
-  Do[
-   aux3 = Tr[aux3, Plus, 2];
-   , {i, n2}];
-  
-  Return[aux3];
-  ]
+fI=Table[pY[[yPositions[[j]]]][[3,indexPosition[[j]]]],{j,Length[yPositions]}];
+fO=Table[pY[[yPositions[[j]]]][[3,otherIndicesPositions[[j]]]],{j,Length[yPositions]}];
+fT=Table[{0,0,0},{j,Length[yPositions]}];
 
-
-(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
-(* FreeIndices and CanonicalForm are required in order to simply expressions in the Einstein convention *)
-
-FreeIndices[x__] := Module[{res},
-  res = {};
-  Do[
-   If[Count[x, \[Alpha][i], Infinity] == 1, res = Append[res, \[Alpha][i]];, Null];
-   , {i, 20}];
-  Return[res];]
-
-(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
-(* FreeIndices and CanonicalForm are required in order to simply expressions in the Einstein convention *)
-
-CanonicalForm[x_,indicesInX_List:{}] := Module[{substitution,result, indicesL, indicesNL, indicesT, indicesStandard, rules},
- 
- substitution=Table[indicesInX[[counterI]]->\[Alpha][counterI],{counterI,Length[indicesInX]}];
-result = MonomialList[x ]/.substitution/.{Power[y_,n_]:>If[NumericQ[y],Power[y,n],SpP@@Table[y,{ii,n}]]}  ; 
-
-indicesL = FreeIndices[result[[1]]] ;
-  Do[   
-   indicesT = DeleteDuplicates[Cases[result[[counterJ]], \[Alpha][_] ,\[Infinity]]];
-indicesNL=indicesT;
+(* the refence field i is assumed to have flavour f[1] and the other fields get flavours f[2], f[3] *)
 Do[
-   indicesNL = DeleteCases[indicesNL, indicesL[[counterI]]];
-,{counterI,Length[indicesL]}];
-   indicesStandard = Take[Complement[Table[\[Alpha][counterI], {counterI, Length[indicesT]}], indicesL], Length[indicesNL]];
+fT[[j,fI[[j,1]]]]=f[1];
+fT[[j,fO[[j,1,1]]]]=f[2];
+fT[[j,fO[[j,2,1]]]]=f[3];
+,{j,Length[yPositions]}];
 
-    rules = MapThread[Rule, {indicesNL, indicesStandard}];     
-   
-   result[[counterJ]] =result[[counterJ]] /. rules;
 
-(*Second pass*)
-   indicesT = DeleteDuplicates[Cases[result[[counterJ]], \[Alpha][_] ,\[Infinity]]];
-indicesNL=indicesT;
+pYAux=Table[pY[[yPositions[[j]]]],{j,Length[yPositions]}];
 Do[
-   indicesNL = DeleteCases[indicesNL, indicesL[[counterI]]];
-,{counterI,Length[indicesL]}];
-  (*indicesStandard = Take[Complement[Table[\[Alpha][counterI], {counterI, Length[indicesT]}], indicesL], Length[indicesNL]]; *) (*Always the same?*)
+pYAux[[j,3]]=fT[[j]];
+,{j,Length[yPositions]}];
 
-    rules = MapThread[Rule, {indicesNL, indicesStandard}];     
-   
-   result[[counterJ]] =result[[counterJ]] /. rules;
+result=Table[{pYAux[[j]],yPositions[[j]],otherIndices[[j]]},{j,Length[yPositions]}];
+Return[result];
+]
 
-   , {counterJ, Length[result]}];
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+FindInvariantRep[model_]:=Module[{aux,result},
+aux=Position[MapThread[List,{reps[model],discreteSym[model]-1}],x_/;x==0x,{1}];
+If[Length[aux]>0,result=aux[[1,1]],result=0];
+
+Return[result];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+(* If there are no siglet fields, this method is unnecessary. If there are, it returns the correct y parameters that match the b parameters *)
+YBConnection[model_]:=YBConnection[model]=Module[{aux,aux1,aux2,result},
+result={};
+If[FindInvariantRep[model]!=0,
+(* from the b parameters make a list of the corresponding y parameters, with the correct flavours: f[1],f[2],f[3] (this last one for the singlet field) *)
+aux=Append[#,FindInvariantRep[model]]&/@pB[[1;;-1,1]];
+aux=Table[MapThread[List,{aux[[i]],{f[1],f[2],f[3]}}],{i,Length[aux]}];
+aux=Sort[#,#1[[1]]<#2[[1]]&]&/@aux;
+
+aux1=aux[[1;;-1,1;;-1,1]]; (* reps indices *)
+aux2=aux[[1;;-1,1;;-1,2]]; (* flavours *)
+
+result=Table[y[aux1[[i]],1,aux2[[i]]],{i,Length[aux]}];
+
+];
+Return[result];
+];
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+(* Given expr, it assumes that 'b' is to be converted from a trilinear tensor to a bilinear tensor by deleting the field with flavour f[2] *)
+YToB[model_,expr_,b_]:=Module[{aux1,aux2,aux3,result},
+aux1=expr[[FindInvariantRep[model]]]/.b[x1_,x2_,x3_]:>b[x1,x3]; (* No need for the invariant index *)
+
+(* Find the f[2] flavour and delete it together with the representation index (which is suppose to correspond to a singlet)*)
+aux2=Position[aux1,f[2]];
+aux3=aux2;
+aux3[[1;;-1,-2]]=1+0aux3[[1;;-1,-2]];
+aux3=Join[aux2,aux3];
+
+result=Delete[aux1,aux3];
+Return[result];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+(* We need a standard: by default the free indices of a tensor are f[1], f[2], f[3] *)
+YDDY[yHead_,dList_,dpList_,hHead_]:=Module[{n,aux,referenceList,yList,hList,yList1,hList1,yList2,hList2,dListAux,dpListAux,aux3},
+n=Length[masterListY]; (*number of fields*)
+referenceList=masterListY[[All,All,1]]; (* list of y's involving field i *)
+
+(* get only the list of positions of the unique other fields entering the Yukawa interaction *)
+aux=Map[DeleteDuplicates,masterListY[[All,All,3]],{2}];
+
+yList2=referenceList/.{y->yHead,f[1]->f[1],f[2]->f[3],f[3]->f[4]};
+hList2=referenceList/.{y->hHead,f[1]->f[2],f[2]->f[5],f[3]->f[6]};
+yList1=yList2/.{f[3]->f[4],f[4]->f[3]};
+hList1=hList2/.{f[5]->f[6],f[6]->f[5]};
+
+yList=Table[If[Length[aux[[i1,i2]]]==2,{yList2[[i1,i2]],yList1[[i1,i2]]},yList2[[i1,i2]]],{i1,Length[yList1]},{i2,Length[yList1[[i1]]]}];
+hList=Table[If[Length[aux[[i1,i2]]]==2,{hList2[[i1,i2]],hList1[[i1,i2]]},hList2[[i1,i2]]],{i1,Length[hList1]},{i2,Length[hList1[[i1]]]}];
+
+dListAux=Map[dList[[#]]&,aux,{3}]/.{f[1]->f[3],f[2]->f[5]};
+dpListAux=Map[dpList[[#]]&,aux,{3}]/.{f[1]->f[4],f[2]->f[6]};
+dpListAux=Reverse[dpListAux,3];
+
+Return[(Plus@@Flatten[#,1]&/@(yList Conjugate[hList] dListAux dpListAux))/dimRs];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+(* We need a standard: by default the free indices of a tensor are f[1], f[2], f[3] *)
+YDY[yHead_,dList_,hHead_]:=Module[{n,aux,referenceList,yList,hList,yList1,hList1,yList2,hList2,dListAux,aux3},
+n=Length[masterListY]; (*number of fields*)
+referenceList=masterListY[[All,All,1]]; (* list of y's involving field i *)
+
+(* get only the list of positions of the unique other fields entering the Yukawa interaction *)
+aux=Map[DeleteDuplicates,masterListY[[All,All,3]],{2}];
+
+yList2=referenceList/.{y->yHead,f[1]->f[1],f[2]->f[3],f[3]->f[4]};
+hList2=referenceList/.{y->hHead,f[1]->f[2],f[2]->f[3],f[3]->f[5]};
+yList1=yList2/.{f[3]->f[4],f[4]->f[3]};
+hList1=hList2/.{f[3]->f[5],f[5]->f[3]};
+
+yList=Table[If[Length[aux[[i1,i2]]]==2,{yList1[[i1,i2]],yList2[[i1,i2]]},yList1[[i1,i2]]],{i1,Length[yList1]},{i2,Length[yList1[[i1]]]}];
+hList=Table[If[Length[aux[[i1,i2]]]==2,{hList1[[i1,i2]],hList2[[i1,i2]]},hList1[[i1,i2]]],{i1,Length[hList1]},{i2,Length[hList1[[i1]]]}];
+dListAux=Map[dList[[#]]&,aux,{3}]/.{f[1]->f[4],f[2]->f[5]};
+
+Return[(Plus@@Flatten[#,1]&/@(yList Conjugate[hList] dListAux))/dimRs];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+YDnoFDY[yHead_,dList_,dpList_,hHead_]:=Module[{n,aux,referenceList,yList,hList,yList1,hList1,yList2,hList2,dListAux,dpListAux,aux3},
+n=Length[masterListY]; (*number of fields*)
+referenceList=masterListY[[All,All,1]]; (* list of y's involving field i *)
+
+(* get only the list of positions of the unique other fields entering the Yukawa interaction *)
+aux=Map[DeleteDuplicates,masterListY[[All,All,3]],{2}];
+
+yList2=referenceList/.{y->yHead,f[1]->f[1],f[2]->f[3],f[3]->f[4]};
+hList2=referenceList/.{y->hHead,f[1]->f[2],f[2]->f[3],f[3]->f[5]};
+yList1=yList2/.{f[3]->f[4],f[4]->f[3]};
+hList1=hList2/.{f[3]->f[5],f[5]->f[3]};
+
+yList=Table[If[Length[aux[[i1,i2]]]==2,{yList2[[i1,i2]],yList1[[i1,i2]]},yList2[[i1,i2]]],{i1,Length[yList1]},{i2,Length[yList1[[i1]]]}];
+hList=Table[If[Length[aux[[i1,i2]]]==2,{hList2[[i1,i2]],hList1[[i1,i2]]},hList2[[i1,i2]]],{i1,Length[hList1]},{i2,Length[hList1[[i1]]]}];
+
+dListAux=Map[dList[[#]]&,aux,{3}];
+dpListAux=Map[dpList[[#]]&,aux,{3}]/.{f[1]->f[4],f[2]->f[5]};
+dpListAux=Reverse[dpListAux,3];
+
+Return[(Plus@@Flatten[#,1]&/@(yList Conjugate[hList] dListAux dpListAux))/dimRs];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+(* Same as YDY but with a flavourless D tensor *)
+YDYnoF[yHead_,dList_,hHead_]:=Module[{n,aux,referenceList,yList,hList,yList1,hList1,yList2,hList2,dListAux,aux3},
+n=Length[masterListY]; (*number of fields*)
+referenceList=masterListY[[All,All,1]]; (* list of y's involving field i *)
+
+(* get only the list of positions of the unique other fields entering the Yukawa interaction *)
+aux=Map[DeleteDuplicates,masterListY[[All,All,3]],{2}];
+
+yList2=referenceList/.{y->yHead,f[1]->f[1],f[2]->f[3],f[3]->f[4]};
+hList2=referenceList/.{y->hHead,f[1]->f[2],f[2]->f[3],f[3]->f[4]};
+yList1=yList2;
+hList1=hList2;
+
+yList=Table[If[Length[aux[[i1,i2]]]==2,{yList1[[i1,i2]],yList2[[i1,i2]]},yList1[[i1,i2]]],{i1,Length[yList1]},{i2,Length[yList1[[i1]]]}];
+hList=Table[If[Length[aux[[i1,i2]]]==2,{hList1[[i1,i2]],hList2[[i1,i2]]},hList1[[i1,i2]]],{i1,Length[hList1]},{i2,Length[hList1[[i1]]]}];
+dListAux=Map[dList[[#]]&,aux,{3}];
+
+Return[(Plus@@Flatten[#,1]&/@(yList Conjugate[hList] dListAux))/dimRs];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+CF[expr_,oldFlavIndices_,newFlavIndices_]:=Module[{aux},
+aux=MapThread[Rule,Map[f,{oldFlavIndices,newFlavIndices},{2}]];
+Return[expr/.aux];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+GenerateModelBetaFunctions[model_]:=Module[{modelMod},
+
+(* Clear all the global variables used *)
+Clear[pY,pH,p\[Mu],pB,pL,pS,pM2,nReps,conjugateReps,masterListY,nonU1sPositions,u1sPositions,nU1s,multipleU1s,gMatrix,mMatrix,vis,matrixVis2,dimRs,sR,cG,dG,arrayG,arrayM,casimirsRep,dynkinRep,g2Ci,g2MCi,g2McCi,g2MMcCi,g4CiCi,g4MCiCi,g4MMcCiCi,g4CiSR,g4MCiSR,g4CGCi,g4MCGCi,g4MMcCGCi,g4MMcCiSR,g2tTrtm2,g2ttm2YYc,g4tTrtCim2,g4CiTrSrm2,vYYc,vYGYc,vYGcYc,vYMYc,vYMcYc,vYMMcYc,vYcYYcY,vYMccYc];
+
+(* Create parameters[model] and originalParameters[model] if they don't exist already *)
+If[!ValueQ[parameters[model]],GenerateModelParameters[model]];
+
+(* Deals with repeated input representations: defines a new model (modelMod) which is similar to the original one but with no repeated fields *)
+modelMod=MergeSameReps[model];
+
+InitObjects[modelMod];
+
+betaFunctions[modelMod]^=Join[{GaugeSector[modelMod],GauginoSector[modelMod]},Y\[Mu]LSector[],{HSector[],BSector[modelMod],SSector[modelMod],M2Sector[]}];
+
+(* Deals with repeated input representations - ReverseMergeReps will set betaFunctions[model] *)
+ReverseMergeReps[model,modelMod];
+
+(* Kill unwanted KroneckerDelta functions in the results *)
+KillKroneckerDeltas[model];
+
+(* The old Susyno normalization is being used for now*)
+NormalizeParameters[model];
+
+(* The beta functions are calculated in the original Susyno parameter notation so a convertion must be made here to the user notation *)
+If[!(originalParameters[model]===parameters[model]),
+betaFunctions[model]^=Fold[#1//.#2&,betaFunctions[model],parameterTransformationRule[model]]];
+
+betaFunctions[model]^=SimplifyModelExpression[betaFunctions[model],model];
+
+Return[];
+]
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+KillKroneckerDeltas[model_]:=Module[{betas},
+betas=betaFunctions[model];
+Do[
+If[Length[DeleteDuplicates[originalParameters[model][[9,i,1]]]]==2,
+betas[[9,1,i]]=betas[[9,1,i]]/.KroneckerDelta[__]:>0;
+betas[[9,2,i]]=betas[[9,2,i]]/.KroneckerDelta[__]:>0;
+,
+If[nFlavs[model][[originalParameters[model][[9,i,1,1]]]]===1,
+betas[[9,1,i]]=betas[[9,1,i]]/.KroneckerDelta[__]:>1;
+betas[[9,2,i]]=betas[[9,2,i]]/.KroneckerDelta[__]:>1;
+];
+]
+,{i,Length[originalParameters[model][[9]]]}];
+betaFunctions[model]^=betas;
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+(* Correct the normalization of parameters *)
+(* At the momment, the old (v1.x) Susyno convention is used *)
+NormalizeParameters[model_]:=Module[{betas,parameter,combinatorialFactor,dimReps,finalFactor,rules},
+betas=betaFunctions[model];
+rules={};
+Do[
+parameter=originalParameters[model][[part,parameterPos]];
+combinatorialFactor=Times@@(Factorial/@Tally[parameter[[1]]][[All,2]]);
+dimReps=(Times@@DimR[group[model],#])&/@reps[model][[parameter[[1]]]];
+finalFactor=(Times@@dimReps)^(1/4) combinatorialFactor;
+
+betas[[part,All,parameterPos]]=1/finalFactor betas[[part,All,parameterPos]];
+AppendTo[rules,parameter[[0]][parameter[[1]],more__]->finalFactor parameter[[0]][parameter[[1]],more]];
+,{part,{3,6}},{parameterPos,Length[originalParameters[model][[part]]]}];
+
+(* If there is an invariant field, all bilinear invariants must also be normalized in a way that matches the trilinear terms where the invariant field appears. Linear terms are already Ok with this. *)
+If[!(FindInvariantRep[model]===0),
+
+Do[
+parameter=originalParameters[model][[part,parameterPos]];
+combinatorialFactor=Times@@(Factorial/@Tally[parameter[[1]]][[All,2]]);
+dimReps=(Times@@DimR[group[model],#])&/@reps[model][[parameter[[1]]]];
+finalFactor=(Times@@dimReps)^(1/4) combinatorialFactor;
+
+betas[[part,All,parameterPos]]=1/finalFactor betas[[part,All,parameterPos]];
+AppendTo[rules,parameter[[0]][parameter[[1]],more__]->finalFactor parameter[[0]][parameter[[1]],more]];
+,{part,{4,7}},{parameterPos,Length[originalParameters[model][[part]]]}]
+
+];
+
+betaFunctions[model]^=betas/.rules;
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+InitObjects[model_]:=Module[{aux,aux1,aux2,aux3,aux4,result},
+
+GenerateModelParameters[model];
+{pY,p\[Mu],pL,pH,pB,pS,pM2}=originalParameters[model][[3;;-1]];
+
+masterListY=Array[MasterFY,nReps[model]];
+
+nonU1sPositions=Position[group[model],x_/;!(x==U1),{1}]//Flatten;
+u1sPositions=Position[group[model],U1]//Flatten;
+nU1s=Length[u1sPositions];
+
+If[nU1s>0,
+multipleU1s=True;
+gMatrix=Array[g[u1sPositions[[#1]],u1sPositions[[#2]]]&,{nU1s,nU1s}];
+mMatrix=Array[M[u1sPositions[[#1]],u1sPositions[[#2]]]&,{nU1s,nU1s}];
+vis=(Transpose[gMatrix].#&/@reps[model][[1;;-1,u1sPositions]]) ;
+,
+multipleU1s=False;
+(* trick the code by assuming that there is an U1 with everything set to 0 *)
+gMatrix={{0}};
+mMatrix={{0}};
+vis=ConstantArray[{0},nReps[model]] ;
+
+];
+If[nU1s==1,
+gMatrix=gMatrix/.g[1,1]:>g[1];
+mMatrix=mMatrix/.M[1,1]:>M[1];
+vis=vis/.g[1,1]:>g[1];
+];
+
+matrixVis2=Table[KroneckerProduct[vis[[i]],vis[[i]]],{i,nReps[model]}];
+
+
+dimRs=Table[Times@@DimR[group[model],reps[model][[i]]],{i,nReps[model]}];
+sR=Plus@@((DynkinIndex[group[model],#]&/@reps[model])/(DimR[group[model],#]&/@reps[model]) dimRs nFlavs[model]);
+cG=Casimir[group[model],Adjoint[group[model]]];
+dG=DimR[group[model],Adjoint[group[model]]];
+
+arrayG=Array[g,Length[group[model]]];
+arrayM=Array[M,Length[group[model]]];
+casimirsRep=Casimir[group[model],#]&/@reps[model];
+dynkinRep=DynkinIndex[group[model],#]&/@reps[model];
+
+aux1=Table[vis[[i]].vis[[i]],{i,nReps[model]}];       (* U1 part *)
+aux2=Plus@@(arrayG^2  #)[[nonU1sPositions]]&/@casimirsRep;    (* non-U1 part *)
+g2Ci=aux1+aux2;
+
+aux1=Table[vis[[i]].mMatrix.vis[[i]],{i,nReps[model]}];       (* U1 part *)
+aux2=Plus@@(arrayM arrayG^2 #)[[nonU1sPositions]]&/@casimirsRep;    (* non-U1 part *)
+g2MCi=aux1+aux2;
+
+aux1=Table[vis[[i]].ConjugateTranspose[mMatrix].vis[[i]],{i,nReps[model]}];       (* U1 part *)
+aux2=Plus@@(Conjugate[arrayM] arrayG^2 #)[[nonU1sPositions]]&/@casimirsRep;    (* non-U1 part *)
+g2McCi=aux1+aux2;
+
+aux1=Table[vis[[i]].mMatrix.ConjugateTranspose[mMatrix].vis[[i]],{i,nReps[model]}];       (* U1 part *)
+aux2=Plus@@(arrayM Conjugate[arrayM] arrayG^2 #)[[nonU1sPositions]]&/@casimirsRep;    (* non-U1 part *)
+g2MMcCi=aux1+aux2;
+
+g4CiCi=g2Ci^2;
+g4MCiCi=g2Ci g2MCi;
+g4MMcCiCi=2/3 g2Ci g2MMcCi+1/3 g2MCi g2McCi;
+
+
+aux1=(arrayG^4 sR)[[nonU1sPositions]].#[[nonU1sPositions]]&/@casimirsRep;
+aux2=Table[Sum[(vis[[i]].vis[[j]])^2nFlavs[model][[j]]dimRs[[j]]//Expand,{j,nReps[model]}],{i,nReps[model]}];
+
+g4CiSR=aux1+aux2;
+
+aux1=(arrayG^4 arrayM sR)[[nonU1sPositions]].#[[nonU1sPositions]]&/@casimirsRep;
+aux2=Table[Sum[(vis[[i]].mMatrix.vis[[j]])(vis[[i]].vis[[j]])nFlavs[model][[j]]dimRs[[j]]//Expand,{j,nReps[model]}],{i,nReps[model]}];
+
+g4MCiSR=aux1+aux2;
+
+g4CGCi=(arrayG^4cG)[[nonU1sPositions]].#[[nonU1sPositions]]&/@casimirsRep;
+g4MCGCi=(arrayG^4arrayM cG)[[nonU1sPositions]].#[[nonU1sPositions]]&/@casimirsRep;
+g4MMcCGCi=(arrayG^4arrayM Conjugate[arrayM] cG)[[nonU1sPositions]].#[[nonU1sPositions]]&/@casimirsRep;
+
+aux1=(arrayG^4arrayM Conjugate[arrayM] sR)[[nonU1sPositions]].#[[nonU1sPositions]]&/@casimirsRep;
+aux2=Table[Sum[(vis[[i]].mMatrix.vis[[j]])(vis[[i]].ConjugateTranspose[mMatrix].vis[[j]] nFlavs[model][[j]]dimRs[[j]]) //Expand,{j,nReps[model]}],{i,nReps[model]}];
+aux3=Table[Sum[(vis[[i]].mMatrix.ConjugateTranspose[mMatrix].vis[[j]])(vis[[i]].vis[[j]] nFlavs[model][[j]]dimRs[[j]])//Expand,{j,nReps[model]}],{i,nReps[model]}];
+aux4=Table[Sum[(vis[[i]].ConjugateTranspose[mMatrix].mMatrix.vis[[j]])(vis[[i]].vis[[j]] nFlavs[model][[j]]dimRs[[j]])//Expand,{j,nReps[model]}],{i,nReps[model]}];
+g4MMcCiSR=aux1+1/3(aux2+aux3+aux4);
+
+g2tTrtm2=Table[vis[[i]].(Plus@@(vis pM2 dimRs)) ,{i,nReps[model]}]/.f[2]->f[1];
+
+aux1=Table[vis[[i]].vis[[j]] Conjugate[pM2[[i]]] ,{i,nReps[model]},{j,nReps[model]}];
+g2ttm2YYc=Plus@@(YDY[y,aux1,y]dimRs) /.f[2]->f[1];
+
+aux1=Table[Sum[vis[[i]].vis[[p]] g2Ci[[p]]pM2[[p]]dimRs[[p]],{p,nReps[model]}],{i,nReps[model]}]/.f[2]->f[1] //Expand;
+g4tTrtCim2=aux1;
+
+aux1=((arrayG^4  Plus@@(dynkinRep pM2 dimRs/(DimR[group[model],#]&/@reps[model])))[[nonU1sPositions]].#[[nonU1sPositions]]&/@casimirsRep)/.f[2]->f[1];
+aux2=Table[Sum[(vis[[i]].vis[[j]])^2pM2[[j]] dimRs[[j]],{j,nReps[model]}],{i,nReps[model]}] /.f[2]->f[1];
+
+g4CiTrSrm2=aux1+aux2 //Expand;
+
+vYYc=YDYnoF[ya,ConstantArray[1,nReps[model]],yb];
+vYGYc=YDYnoF[ya,g2Ci,yb];
+vYGcYc=vYGYc/.g[i__]:>Conjugate[g[i]] ;
+vYMYc=YDYnoF[ya,g2MCi,yb];
+vYMcYc=vYMYc/.M[i__]:>Conjugate[M[i]];
+vYMccYc=vYMYc/.{M[i__]:>Conjugate[M[i]],g[i__]:>Conjugate[g[i]]};
+vYMMcYc=vYMYc/.M[i__]:>M[i]Conjugate[M[i]];
+
+aux=CF[vYYc/.{ya->yb,yb->yc},{3,4},{6,7}];
+vYcYYcY=Conjugate[YDY[ya,Conjugate[aux],yd]];
+
+];
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+(* Dealts with multiple equal reps *)
+
+MergeSameReps[model_]:=Module[{fullRepInfo,originalReps,originalNFlavs,originalDiscreteSym,reverseMergeReps,aux,aux2,modelMod},
+fullRepInfo=Thread[{reps[model],discreteSym[model]}];
+aux=DeleteDuplicates[fullRepInfo];
+reverseMergeReps=Flatten[Position[fullRepInfo,#]]&/@aux;
+
+
+(* Define a new model - modelMod - where there are no repreated fields. The RGEs will be calculated for modelMod and then modified slightly in ReverseMergeReps *)
+modelMod=Unique[model];
+group[modelMod]^=group[model];
+reps[modelMod]^=reps[model][[reverseMergeReps[[All,1]]]];
+nFlavs[modelMod]^=Apply[Plus,nFlavs[model][[#]]&/@reverseMergeReps,{1}];
+discreteSym[modelMod]^=discreteSym[model][[reverseMergeReps[[All,1]]]];
+
+Return[modelMod];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+(* Dealts with multiple equal reps *)
+ReverseMergeReps[model_,modelMod_]:=Module[{fullRepInfo,reverseMergeReps,changeNotation,revertNotation,deleteNullParametersRule,basicRule,reverseSignRule,orderingRule,finalRule,newParameters,uselessRules,aux,aux2,aux3,betaFunctionsModel},
+
+(* If model did not contain repeated representations, there is no need for extra computations since model=modelMod *)
+If[reps[model]===reps[modelMod],
+betaFunctions[model]^=betaFunctions[modelMod];
+Return[];
+];
 
 
 
- substitution=Table[\[Alpha][counterI]->indicesInX[[counterI]],{counterI,Length[indicesInX]}];
-  result = Apply[Plus, result] /.substitution/.SpP->Times ;
+fullRepInfo=Thread[{reps[model],discreteSym[model]}];
+aux=DeleteDuplicates[fullRepInfo];
+reverseMergeReps=Flatten[Position[fullRepInfo,#]]&/@aux;
 
-  Return[result];]
+(* basicRule, reverseSignRule, orderingRule are auxiliar rules; *)
+(* basicRule expands the compressed representation indices and gives all the new indices a minus sign to avoid an infinite loop *)
+(* reverseSignRule corrects the minus sign trick used in basicRule *)
+(* After using  basicRule and reverseSignRule some of the parameter's representation indices are out of order. This is corrected by orderingRule (permutations of the indices are done, and in m2's case, a conjugate is added) *)
 
+basicRule=Flatten[Table[head[{x1___,i,x2___},x3___]->Sum[head[{x1,-reverseMergeReps[[i,j]],x2},x3],{j,Length[reverseMergeReps[[i]]]}],{head,{y,\[Mu],l,h,b,s,m2}},{i,Length[reverseMergeReps]}]];
+
+reverseSignRule=Table[head[x1_,x3___]->head[-x1,x3],{head,{y,\[Mu],l,h,b,s,m2}}];
+
+orderingRule={y[{x1__},x2___,{x3__}]:>y[Sort[{x1}],x2,{x3}[[Ordering[{x1}]]]],\[Mu][{x1__},x2___,{x3__}]:>\[Mu][Sort[{x1}],x2,{x3}[[Ordering[{x1}]]]],l[{x1__},x2___,{x3__}]:>l[Sort[{x1}],x2,{x3}[[Ordering[{x1}]]]],h[{x1__},x2___,{x3__}]:>h[Sort[{x1}],x2,{x3}[[Ordering[{x1}]]]],b[{x1__},x2___,{x3__}]:>b[Sort[{x1}],x2,{x3}[[Ordering[{x1}]]]],s[{x1__},x2___,{x3__}]:>s[Sort[{x1}],x2,{x3}[[Ordering[{x1}]]]],m2[{x1__},x2___,{x3__}]:>If[!(OrderedQ[{x1}]),Conjugate[m2[Sort[{x1}],x2,{x3}[[Ordering[{x1}]]]]],m2[Sort[{x1}],x2,{x3}[[Ordering[{x1}]]]]]};
+
+(* finalRule is the true rule to be applied to the results *)
+newParameters=((originalParameters[modelMod]//.basicRule)/.reverseSignRule)/.orderingRule;
+
+(* ... but as a last step we need to delete parameters that are known to be null  *)
+aux3=DeleteCases[Flatten[newParameters[[3;;9]]/.Plus->List/.f[x_]:>f[_]],Conjugate[_]];
+aux3=DeleteCases[aux3,x_/;MemberQ[Flatten[originalParameters[model]],x]];
+deleteNullParametersRule=MapThread[Rule,{aux3,ConstantArray[0,Length[aux3]]}];
+newParameters=newParameters/.deleteNullParametersRule;
+
+
+finalRule=Table[(originalParameters[modelMod][[i,j]]/.{f[1]->i1_,f[2]->i2_,f[3]:>i3_})->(newParameters[[i,j]]/.{f[1]->i1,f[2]->i2,f[3]:>i3}),{i,9},{j,Length[originalParameters[modelMod][[i]]]}];
+
+(* no need to have trivial transormations rules *)
+uselessRules={};
+Do[
+If[newParameters[[i,j]]===originalParameters[modelMod][[i,j]],AppendTo[uselessRules,{i,j}]];
+,{i,Length[finalRule]},{j,Length[finalRule[[i]]]}];
+
+finalRule=Flatten[Delete[finalRule,uselessRules]];
+finalRule=finalRule/.orderingRule;
+
+(* 'decompose' the parameters inside the betaFunctions[modelMod] and originalParameters[modelMod] 'variables' *)
+aux=betaFunctions[modelMod]/.finalRule;
+
+(* ------------------------------------------------------------------------------------------------------------------- *)
+(* PART2: Things are not over yet because the representation indices coresponding to free fields have been expanded as a sum and they should have been expanded as a list (note:there are more parameters so there should be more betaFunctions). This list expansion must match the information on originalParameters[model] *)
+
+(* First, change notation for now *)
+changeNotation={y[x1_,x2___,x3_]:>y[MapThread[List,{x1,x3}],x2],\[Mu][x1_,x2___,x3_]:>\[Mu][MapThread[List,{x1,x3}],x2],l[x1_,x2___,x3_]:>l[MapThread[List,{x1,x3}],x2],h[x1_,x2___,x3_]:>h[MapThread[List,{x1,x3}],x2],b[x1_,x2___,x3_]:>b[MapThread[List,{x1,x3}],x2],s[x1_,x2___,x3_]:>s[MapThread[List,{x1,x3}],x2],m2[x1_,x2___,x3_]:>m2[MapThread[List,{x1,x3}],x2]};
+
+aux=aux/.changeNotation;
+
+
+(* Second, initialize the results variable *)
+betaFunctionsModel=Table[0 ,{i,9},{j,Length[ originalParameters[model][[i]]]}];
+
+(* Third, find where to place the aux=betaFunctions[modelMod]/.finalRule results in betaFunctions[model] *)
+aux2=Table[Position[newParameters[[i]]/.f[x_]:>f[],(originalParameters[model][[i,j]]/.f[x_]:>f[])][[1,1]],{i,1,9},{j,Length[originalParameters[model][[i]]]}];
+
+aux3=Table[Cases[newParameters[[i]],(originalParameters[model][[i,j]]/.f[x_]:>f[_]),-1][[1,-1]],{i,1,9},{j,Length[originalParameters[model][[i]]]}];
+    aux3=Table[MapThread[Rule,{el2,Array[f,Length[el2]]}],{el1,aux3[[3;;9]]},{el2,el1}];
+
+(* TODO: free indices might need to be permuted! *)
+Do[
+betaFunctionsModel[[i]]=aux[[i,1;;2,aux2[[i]]]];
+
+If[i>2,
+Do[
+betaFunctionsModel[[i,All,j]]=betaFunctionsModel[[i,All,j]]/.aux3[[i-2,j]];
+,{j,Length[aux3[[i-2]]]}];
+];
+
+,{i,9}];
+
+(* Forth, look at the parameter and corresponding betaFunctions: only allow in the RGEs parameters where the free flavours (f[1],f[2],f[3] or subset) match the correct representation indices. All other cases should be zeroed out. *)
+aux2=originalParameters[model]/.{y[x1_,x2___,x3_]:>MapThread[List,{x1,x3}],\[Mu][x1_,x2___,x3_]:>MapThread[List,{x1,x3}],l[x1_,x2___,x3_]:>MapThread[List,{x1,x3}],h[x1_,x2___,x3_]:>MapThread[List,{x1,x3}],b[x1_,x2___,x3_]:>MapThread[List,{x1,x3}],s[x1_,x2___,x3_]:>MapThread[List,{x1,x3}],m2[x1_,x2___,x3_]:>MapThread[List,{x1,x3}]};
+
+Do[
+aux3=Table[{x_,aux2[[i,j,k,2]]}->If[x==aux2[[i,j,k,1]],Evaluate[aux2[[i,j,k]]],ForRemoval],{k,Length[aux2[[i,j]]]}];
+betaFunctionsModel[[i,1;;2,j]]=(betaFunctionsModel[[i,1;;2,j]]/.aux3)/.head_[{x1___,ForRemoval,x2___},x3___]:>0;
+,{i,3,9},{j,Length[originalParameters[model][[i]]]}];
+
+(* Fifth, revert to the usual notation *)
+revertNotation={y[x1_,x2___]:>y[x1[[All,1]],x2,x1[[All,2]]],\[Mu][x1_,x2___]:>\[Mu][x1[[All,1]],x2,x1[[All,2]]],l[x1_,x2___]:>l[x1[[All,1]],x2,x1[[All,2]]],h[x1_,x2___]:>h[x1[[All,1]],x2,x1[[All,2]]],b[x1_,x2___]:>b[x1[[All,1]],x2,x1[[All,2]]],s[x1_,x2___]:>s[x1[[All,1]],x2,x1[[All,2]]],m2[x1_,x2___]:>m2[x1[[All,1]],x2,x1[[All,2]]]};
+
+betaFunctionsModel=betaFunctionsModel/.revertNotation;
+
+betaFunctions[model]^=betaFunctionsModel;
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+YYc[aHead_,bHead_,flavList_:{}]:=Module[{subsFlavs,result},
+subsFlavs=Table[f[i]->f[flavList[[i]]],{i,Length[flavList]}];
+result=(vYYc/.{ya->aHead,yb->bHead}) /.subsFlavs;
+Return[result];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+YGYc[aHead_,bHead_,flavList_:{}]:=Module[{subsFlavs,result},
+subsFlavs=Table[f[i]->f[flavList[[i]]],{i,Length[flavList]}];
+result=(vYGYc/.{ya->aHead,yb->bHead}) /.subsFlavs;
+Return[result];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+YGcYc[aHead_,bHead_,flavList_:{}]:=Module[{subsFlavs,result},
+subsFlavs=Table[f[i]->f[flavList[[i]]],{i,Length[flavList]}];
+result=(vYGcYc/.{ya->aHead,yb->bHead}) /.subsFlavs;
+Return[result];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+YMYc[aHead_,bHead_,flavList_:{}]:=Module[{subsFlavs,result},
+subsFlavs=Table[f[i]->f[flavList[[i]]],{i,Length[flavList]}];
+result=(vYMYc/.{ya->aHead,yb->bHead}) /.subsFlavs;
+Return[result];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+YMcYc[aHead_,bHead_,flavList_:{}]:=Module[{subsFlavs,result},
+subsFlavs=Table[f[i]->f[flavList[[i]]],{i,Length[flavList]}];
+result=(vYMcYc/.{ya->aHead,yb->bHead}) /.subsFlavs;
+Return[result];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+YMccYc[aHead_,bHead_,flavList_:{}]:=Module[{subsFlavs,result},
+subsFlavs=Table[f[i]->f[flavList[[i]]],{i,Length[flavList]}];
+result=(vYMccYc/.{ya->aHead,yb->bHead}) /.subsFlavs;
+Return[result];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+YMMcYc[aHead_,bHead_,flavList_:{}]:=Module[{subsFlavs,result},
+subsFlavs=Table[f[i]->f[flavList[[i]]],{i,Length[flavList]}];
+result=(vYMMcYc/.{ya->aHead,yb->bHead}) /.subsFlavs;
+Return[result];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+YcYYcY[aHead_,bHead_,cHead_,dHead_,flavList_:{}]:=Module[{subsFlavs,result},
+subsFlavs=Table[f[i]->f[flavList[[i]]],{i,Length[flavList]}];
+result=(vYcYYcY/.{ya->aHead,yb->bHead,yc->cHead,yd->dHead}) /.subsFlavs;
+Return[result];
+]
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
 
-Cj[x_] := Conjugate[x];
+GaugeSectorU1[model_]:=Module[{beta1,beta2},
+If[nU1s==0,Return[{0,0}]];
 
+beta1=gMatrix.Plus@@(matrixVis2 nFlavs[model] dimRs);
+beta2=gMatrix.(4Plus@@(matrixVis2 g2Ci nFlavs[model] dimRs)-CF[Plus@@(YDYnoF[y,matrixVis2,y] dimRs),{2},{1}]);
+Return[{beta1,beta2}];
+]
 
-cG[l_] := cGMat[[l]];
-dG[l_] := Length[fullRepMat[[l]]];
+GaugeSectorNonU1[model_]:=Module[{dims,auxY,auxSRCR,beta1,beta2},
+beta1=(arrayG^3(sR-3cG))[[nonU1sPositions]];
 
-flav[i_] := flavMat[[i]];
-dR[i_, l_] := dRMat[[i, l]]
+auxY=CF[arrayG^3/dG Plus@@(YDYnoF[y,casimirsRep,y] dimRs),{2},{1}];
 
-cR[i_, l_] := cRMat[[i, l]];
-sR[i_, l_] := sRMat[[i, l]];
+dims=DimR[group[model],#]&/@reps[model];
+auxSRCR=arrayG^3Plus@@(dynkinRep g2Ci/dims  dimRs nFlavs[model]);
 
+beta2=(arrayG^5(-6cG^2+2cG sR)+4auxSRCR-auxY)[[nonU1sPositions]];
+Return[{beta1,beta2}];
+]
 
-Sym[f_, x1_, x2_] := f[x1, x2] + (f[x2, x1] /. {\[Alpha][1] -> \[Alpha][2], \[Alpha][2] -> \[Alpha][1]})
-Sym[f_, x1_, x2_, x3_] := f[x1, x2, x3] + (f[x3, x2, x1] /. {\[Alpha][1] -> \[Alpha][3], \[Alpha][3] -> \[Alpha][1]}) + (f[x1, x3, x2] /. {\[Alpha][2] -> \[Alpha][3], \[Alpha][3] -> \[Alpha][2]})
+GaugeSector[model_]:=Module[{auxU1,auxNonU1,beta1,beta2},
+auxU1=GaugeSectorU1[model];
+auxNonU1=GaugeSectorNonU1[model];
 
+If[nU1s!=0,
+beta1=Join[auxU1[[1]]//Flatten,auxNonU1[[1]]];
+beta2=Join[auxU1[[2]]//Flatten,auxNonU1[[2]]];
+,
+{beta1,beta2}=auxNonU1;
+];
 
+Return[{beta1,beta2}];
+]
 
-(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX \[Beta]g XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
-\[Beta]g1[l2_] := Module[{l}, l = l2; Return[CanonicalForm[g[l]^3  (Sum[sR[i, l] flav[i]/dR[i, l], {i, totalF}] - 3 cG[l])]];]
-\[Beta]g2[l2_] := Module[{l}, l = l2; Return[CanonicalForm[-6 cG[l]^2 g[l]^5 + 2 cG[l] Sum[sR[i, l] flav[i]/dR[i, l], {i, totalF}] g[l]^5 + 4  g[l]^3 Sum[g[j]^2 sR[i, l] flav[i] cR[i, j]/ dR[i, l], {i, totalF}, {j, totalS}] - g[l]^3  ListContract[oY[\[Alpha][1], \[Alpha][2], \[Alpha][3]].(Cj[oY[\[Alpha][3], \[Alpha][2], \[Alpha][1]]].DMatrixCR[l]), {{1, 4}, {2, 3}}]/dG[l]]];]
+GauginoSectorU1[model_]:=Module[{aux,auxY,auxSRCR,beta1,beta2},
+If[nU1s==0,Return[{0,0}]];
 
-(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX \[Beta]M XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+aux=Plus@@(matrixVis2 nFlavs[model] dimRs);
+beta1=mMatrix.aux+aux.mMatrix;
 
-\[Beta]M1[l2_] := Module[{l}, l = l2; Return[CanonicalForm[g[l]^2  (2 Sum[sR[i, l] flav[i]/dR[i, l], {i, totalF}] - 6 cG[l]) M[l]]];]
-\[Beta]M2[l2_] := Module[{l}, l = l2; Return[CanonicalForm[M[l] (-24 cG[l]^2 g[l]^4 + 8 cG[l] Sum[sR[i, l] flav[i]/dR[i, l], {i, totalF}] g[l]^4) + 8 g[l]^2 Sum[g[j]^2 (M[l] + M[j]) sR[i, l] flav[i] cR[i, j]/ dR[i, l], {i, totalF}, {j, totalS}] + 2 g[l]^2  ListContract[(oH[\[Alpha][1], \[Alpha][2], \[Alpha][3]] - M[l] oY[\[Alpha][1], \[Alpha][2], \[Alpha][3]]).(Cj[oY[\[Alpha][3], \[Alpha][2], \[Alpha][1]]].DMatrixCR[l]), {{1, 4}, {2, 3}}]/dG[l]]];]
+auxSRCR=4 mMatrix.(Plus@@(matrixVis2 g2Ci  dimRs nFlavs[model]))+4 (Plus@@(matrixVis2 g2Ci  dimRs nFlavs[model])).mMatrix+8(Plus@@(matrixVis2 g2MCi  dimRs nFlavs[model]));
+auxY=CF[Plus@@((2YDYnoF[h,matrixVis2,y] -YDYnoF[y,(mMatrix.#+#.mMatrix)&/@matrixVis2,y])dimRs),{2},{1}];
 
+beta2=auxSRCR+auxY;
+Return[{beta1,beta2}];
+]
 
-(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX \[Beta]y XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+GauginoSectorNonU1[model_]:=Module[{dims,auxY,auxSRCR,beta1,beta2},
+beta1=(arrayM arrayG^2(2sR-6cG))[[nonU1sPositions]];
 
-fuctY1Q1[i1_, j1_, k1_] := Tr[(oY[\[Alpha][1], \[Alpha][2], \[Alpha][4]][[i1, j1]].Cj[oY[\[Alpha][4], \[Alpha][5], \[Alpha][6]]]).oY[\[Alpha][3], \[Alpha][6], \[Alpha][5]][[k1]]];
-fuctY1Q2[i_, j_, k_] := oY[\[Alpha][1], \[Alpha][2], \[Alpha][3]][[i, j, k]] Sum[g[l]^2 cR[k, l], {l, totalS}];
+auxY=Plus@@(YDYnoF[h,casimirsRep,y] dimRs);
+auxY=2arrayG^2(auxY-arrayM (auxY/.h->y))/dG ;
+auxY=CF[auxY,{2},{1}];
 
+dims=DimR[group[model],#]&/@reps[model];
+auxSRCR=8arrayM arrayG^2Plus@@(dynkinRep g2Ci/dims  dimRs nFlavs[model])+8 arrayG^2Plus@@(dynkinRep g2MCi/dims  dimRs nFlavs[model]);
 
-fuctY2Q1[i_, j_, k_] := -1/2 ListContract[(oY[\[Alpha][1], \[Alpha][2], \[Alpha][4]][[i, j]].Cj[oY[\[Alpha][4], \[Alpha][5], \[Alpha][6]]].oY[\[Alpha][6], \[Alpha][7], \[Alpha][8]]).(Cj[oY[\[Alpha][8], \[Alpha][7], \[Alpha][10]]].oY[\[Alpha][3], \[Alpha][10], \[Alpha][5]][[k]]), {{1, 4}, {2, 3}}] + 2 Tr[oY[\[Alpha][1], \[Alpha][2], \[Alpha][4]][[i, j]].Cj[oY[\[Alpha][4], \[Alpha][5], \[Alpha][6]]].((Sum[g[l]^2 DMatrixCR[l], {l, 1, totalS}]).oY[\[Alpha][3], \[Alpha][6], \[Alpha][5]][[k]])] - Tr[(oY[\[Alpha][1], \[Alpha][2], \[Alpha][4]][[i, j]].(Sum[g[l]^2 DMatrixCR[l], {l, totalS}])).(Cj[oY[\[Alpha][4], \[Alpha][5], \[Alpha][6]]].oY[\[Alpha][3], \[Alpha][6], \[Alpha][5]][[k]])];
-fuctY2Q2[i_, j_, k_] := 2 oY[\[Alpha][1], \[Alpha][2], \[Alpha][3]][[i, j, k]] (Sum[g[l]^4 cR[k, l] flav[i2] sR[i2, l]/dR[i2, l], {l, totalS}, {i2, totalF}]+ 2 Sum[g[l1]^2 g[l2]^2  cR[k, l1] cR[k, l2], {l1, totalS}, {l2, totalS}]- 3 Sum[g[l]^4 cG[l] cR[k, l], {l, totalS}]);
+beta2=(arrayG^4arrayM (-24cG^2+8cG sR)+auxSRCR+auxY)[[nonU1sPositions]];
 
-\[Beta]Y1[i_, j_, k_] := CanonicalForm[1/2 Sym[fuctY1Q1, i, j, k] - 2 Sym[fuctY1Q2, i, j, k]]  /.{\[Alpha][1]->flavVariables[[1]],\[Alpha][2]->flavVariables[[2]],\[Alpha][3]->flavVariables[[3]]} 
-\[Beta]Y2[i_, j_, k_] := CanonicalForm[ Sym[fuctY2Q1, i, j, k] + Sym[fuctY2Q2, i, j, k]]/.{\[Alpha][1]->flavVariables[[1]],\[Alpha][2]->flavVariables[[2]],\[Alpha][3]->flavVariables[[3]]}
+Return[{beta1,beta2}];
+]
 
+GauginoSector[model_]:=Module[{auxU1,auxNonU1,beta1,beta2},
+auxU1=GauginoSectorU1[model];
+auxNonU1=GauginoSectorNonU1[model];
 
+If[nU1s!=0,
+beta1=Join[auxU1[[1]]//Flatten,auxNonU1[[1]]];
+beta2=Join[auxU1[[2]]//Flatten,auxNonU1[[2]]];
+,
+{beta1,beta2}=auxNonU1;
+];
 
-(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX \[Beta]\[Mu] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+Return[{beta1,beta2}];
+]
 
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
+Y\[Mu]LSector[]:=Module[{gamma1Part1,gamma1Part2,gamma2Part1,gamma2Part2,aux1,aux2,aux3,y1loop,y2loop,\[Mu]1loop,\[Mu]2loop,l1loop,l2loop,result},
 
-fuct\[Mu]1Q1[i_, j_] := Tr[(o\[Mu][\[Alpha][1], \[Alpha][3]][[i]].Cj[oY[\[Alpha][3], \[Alpha][4], \[Alpha][5]]]).oY[\[Alpha][2], \[Alpha][5], \[Alpha][4]][[j]]];
-fuct\[Mu]1Q2[i_, j_] := o\[Mu][\[Alpha][1], \[Alpha][2]][[i, j]] Sum[g[l]^2 cR[j, l], {l, totalS}];
+gamma1Part1=1/2Conjugate[YYc[y,y]];
+gamma1Part2=-2g2Ci;
 
+gamma2Part1=-1/2 YcYYcY[y,y,y,y]+2 Conjugate[YGcYc[y,y]]- g2Ci Conjugate[YYc[y,y]];
+gamma2Part2=2(g4CiSR+2g4CiCi-3g4CGCi);
 
-fuct\[Mu]2Q1[i_, j_] := -1/2 ListContract[(o\[Mu][\[Alpha][1], \[Alpha][4]][[i]].Cj[oY[\[Alpha][4], \[Alpha][5], \[Alpha][6]]].oY[\[Alpha][6], \[Alpha][7], \[Alpha][8]]).(Cj[oY[\[Alpha][8], \[Alpha][7], \[Alpha][10]]].oY[\[Alpha][2], \[Alpha][10], \[Alpha][5]][[j]]), {{1, 4}, {2, 3}}] + 2 Tr[o\[Mu][\[Alpha][1], \[Alpha][3]][[i]].Cj[oY[\[Alpha][3], \[Alpha][4], \[Alpha][5]]].((Sum[g[l]^2 DMatrixCR[l], {l, totalS}]).oY[\[Alpha][2], \[Alpha][5], \[Alpha][4]][[j]])] -  Tr[(o\[Mu][\[Alpha][1], \[Alpha][3]][[i]].(Sum[g[l]^2 DMatrixCR[l], {l, totalS}])).(Cj[oY[\[Alpha][3], \[Alpha][4], \[Alpha][5]]].oY[\[Alpha][2], \[Alpha][5], \[Alpha][4]][[j]])];
-fuct\[Mu]2Q2[i_, j_] := 2 o\[Mu][\[Alpha][1], \[Alpha][2]][[i, j]] (Sum[g[l]^4 cR[j, l] flav[i2] sR[i2, l]/dR[i2, l], {l, totalS}, {i2, totalF}]+ 2 Sum[g[l1]^2 g[l2]^2  cR[j, l1] cR[j, l2], {l1, totalS}, {l2, totalS}]- 3 Sum[g[l]^4 cG[l] cR[j, l], {l, totalS}]);
+(* Gammas have been computed ... now use them *)
 
-\[Beta]\[Mu]1[i_, j_] := CanonicalForm[1/2 Sym[fuct\[Mu]1Q1, i, j] - 2 Sym[fuct\[Mu]1Q2, i, j]]/.{\[Alpha][1]->flavVariables[[1]],\[Alpha][2]->flavVariables[[2]]}
-\[Beta]\[Mu]2[i_, j_] := CanonicalForm[Sym[fuct\[Mu]2Q1, i, j] + Sym[fuct\[Mu]2Q2, i, j]]/.{\[Alpha][1]->flavVariables[[1]],\[Alpha][2]->flavVariables[[2]]}
+(* Y 1-loop *)
+aux1=Table[{CF[pY[[i]],{1},{4}],CF[pY[[i]],{2},{4}],CF[pY[[i]],{3},{4}]},{i,Length[pY]}];
 
+aux2=Table[{CF[gamma1Part1[[pY[[i,1,1]]]],{1,2,3,4},{4,1,5,6}],CF[gamma1Part1[[pY[[i,1,2]]]],{1,2,3,4},{4,2,5,6}],CF[gamma1Part1[[pY[[i,1,3]]]],{1,2,3,4},{4,3,5,6}]},{i,Length[pY]}];
+aux2=MapThread[Dot,{aux1,aux2}];
 
-(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX \[Beta]L XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+aux3=pY Table[Plus@@gamma1Part2[[pY[[i,1]]]],{i,Length[pY]}];
 
-fuctL1Q1[i_] := Tr[(oL[\[Alpha][2]].Cj[oY[\[Alpha][2], \[Alpha][3], \[Alpha][4]]]).oY[\[Alpha][1], \[Alpha][4], \[Alpha][3]][[i]]];
-fuctL1Q2[i_] := oL[\[Alpha][1]][[i]] Sum[g[l]^2 cR[i, l], {l, 1, totalS}];
+y1loop=aux2+aux3;
 
+(* Y 2-loop *)
+aux2=Table[{CF[gamma2Part1[[pY[[i,1,1]]]],{1,2,3,4,5,6,7},{4,1,5,6,7,8,9}],CF[gamma2Part1[[pY[[i,1,2]]]],{1,2,3,4,5,6,7},{4,2,5,6,7,8,9}],CF[gamma2Part1[[pY[[i,1,3]]]],{1,2,3,4,5,6,7},{4,3,5,6,7,8,9}]},{i,Length[pY]}];
+aux2=MapThread[Dot,{aux1,aux2}];
 
-fuctL2Q1[i_] := -1/2 ListContract[(oL[\[Alpha][2]].Cj[oY[\[Alpha][2], \[Alpha][3], \[Alpha][4]]].oY[\[Alpha][4], \[Alpha][5], \[Alpha][6]]).(Cj[oY[\[Alpha][6], \[Alpha][5], \[Alpha][8]]].oY[\[Alpha][1], \[Alpha][8], \[Alpha][3]][[i]]), {{1, 4}, {2, 3}}] + 2 Tr[oL[\[Alpha][2]].Cj[oY[\[Alpha][2], \[Alpha][3], \[Alpha][4]]].((Sum[g[l]^2 DMatrixCR[l], {l, totalS}]).oY[\[Alpha][1], \[Alpha][4], \[Alpha][3]][[i]])] -  Tr[(oL[\[Alpha][2]].(Sum[g[l]^2 DMatrixCR[l], {l, totalS}])).(Cj[oY[\[Alpha][2], \[Alpha][3], \[Alpha][4]]].oY[\[Alpha][1], \[Alpha][4], \[Alpha][3]][[i]])];
-fuctL2Q2[i_] := 2 oL[\[Alpha][1]][[i]] (Sum[g[l]^4 cR[i, l] flav[i2] sR[i2, l]/dR[i2, l], {l, totalS}, {i2, totalF}]+ 2 Sum[g[l1]^2 g[l2]^2  cR[i, l1] cR[i, l2], {l1, totalS}, {l2, totalS}]- 3 Sum[g[l]^4 cG[l] cR[i, l], {l, totalS}]);
+aux3=pY Table[Plus@@gamma2Part2[[pY[[i,1]]]],{i,Length[pY]}];
 
-\[Beta]L1[i_] := CanonicalForm[1/2 fuctL1Q1[i] - 2 fuctL1Q2[i]]/.{\[Alpha][1]->flavVariables[[1]]}
-\[Beta]L2[i_] := CanonicalForm[fuctL2Q1[i] + fuctL2Q2[i]]/.{\[Alpha][1]->flavVariables[[1]]}
+y2loop=aux2+aux3;
 
 
-(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX \[Beta]H XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+(* \[Mu] 1-loop *)
+aux1=Table[{CF[p\[Mu][[i]],{1},{3}],CF[p\[Mu][[i]],{2},{3}]},{i,Length[p\[Mu]]}];
+aux2=Table[{CF[gamma1Part1[[p\[Mu][[i,1,1]]]],{1,2,3,4},{3,1,4,5}],CF[gamma1Part1[[p\[Mu][[i,1,2]]]],{1,2,3,4},{3,2,4,5}]},{i,Length[p\[Mu]]}];
 
-fuctH1Q1[i_, j_, k_] := 1/2 Tr[(oH[\[Alpha][1], \[Alpha][2], \[Alpha][4]][[i, j]].Cj[oY[\[Alpha][4], \[Alpha][5], \[Alpha][6]]]).oY[\[Alpha][3], \[Alpha][6], \[Alpha][5]][[k]]];
-fuctH1Q2[i_, j_, k_] := Tr[(oY[\[Alpha][1], \[Alpha][2], \[Alpha][4]][[i, j]].Cj[oY[\[Alpha][4], \[Alpha][5], \[Alpha][6]]]).oH[\[Alpha][3], \[Alpha][6], \[Alpha][5]][[k]]];
-fuctH1Q3[i_, j_, k_] := -2 Sum[g[l]^2 (oH[\[Alpha][1], \[Alpha][2], \[Alpha][3]][[i, j, k]] - 2 M[l] oY[\[Alpha][1], \[Alpha][2], \[Alpha][3]][[i, j, k]]) cR[k, l], {l, totalS}];
+aux2=MapThread[Dot,{aux1,aux2}];
 
-fuctH2Q1[i_, j_, k_] := -1/2 ListContract[(oH[\[Alpha][1], \[Alpha][2], \[Alpha][4]] [[i, j]].Cj[oY[\[Alpha][4], \[Alpha][5], \[Alpha][6]]].oY[\[Alpha][6], \[Alpha][7], \[Alpha][8]]).(Cj[oY[\[Alpha][8], \[Alpha][7], \[Alpha][10]]].oY[\[Alpha][3], \[Alpha][10], \[Alpha][5]][[k]]), {{1, 4}, {2, 3}}]
-fuctH2Q2[i_, j_, k_] := -ListContract[(oY[\[Alpha][1], \[Alpha][2], \[Alpha][4]] [[i, j]].Cj[oY[\[Alpha][4], \[Alpha][5], \[Alpha][6]]].oY[\[Alpha][6], \[Alpha][7], \[Alpha][8]]).(Cj[oY[\[Alpha][8], \[Alpha][7], \[Alpha][10]]].oH[\[Alpha][3], \[Alpha][10], \[Alpha][5]][[k]]), {{1, 4}, {2, 3}}]
-fuctH2Q3[i_, j_, k_] := -ListContract[(oY[\[Alpha][1], \[Alpha][2], \[Alpha][4]] [[i, j]].Cj[oY[\[Alpha][4], \[Alpha][5], \[Alpha][6]]].oH[\[Alpha][6], \[Alpha][7], \[Alpha][8]]).(Cj[oY[\[Alpha][8], \[Alpha][7], \[Alpha][10]]].oY[\[Alpha][3], \[Alpha][10], \[Alpha][5]][[k]]), {{1, 4}, {2, 3}}]
-fuctH2Q4[i_, j_, k_] := Tr[(oH[\[Alpha][1], \[Alpha][2], \[Alpha][4]][[i, j]].Cj[oY[\[Alpha][4], \[Alpha][5], \[Alpha][6]]]).(Sum[2 g[l]^2 DMatrixCR[l], {l, totalS}].oY[\[Alpha][3], \[Alpha][6], \[Alpha][5]][[k]])] - Sum[g[l]^2 cR[k, l], {l, totalS}] Tr[(oH[\[Alpha][1], \[Alpha][2], \[Alpha][4]][[i, j]].Cj[oY[\[Alpha][4], \[Alpha][5], \[Alpha][6]]]).oY[\[Alpha][3], \[Alpha][6], \[Alpha][5]][[k]]]
-fuctH2Q5[i_, j_, k_] := 2 (Tr[(oY[\[Alpha][1], \[Alpha][2], \[Alpha][4]][[i, j]].Cj[oY[\[Alpha][4], \[Alpha][5], \[Alpha][6]]]).(Sum[2 g[l]^2 DMatrixCR[l], {l, totalS}].oH[\[Alpha][3], \[Alpha][6], \[Alpha][5]][[k]])] - Sum[ g[l]^2 cR[k, l], {l, totalS}] Tr[(oY[\[Alpha][1], \[Alpha][2], \[Alpha][4]][[i, j]].Cj[oY[\[Alpha][4], \[Alpha][5], \[Alpha][6]]]).oH[\[Alpha][3], \[Alpha][6], \[Alpha][5]][[k]]])
-fuctH2Q6[i_, j_, k_] := -2 (Tr[(oY[\[Alpha][1], \[Alpha][2], \[Alpha][4]][[i, j]].Cj[oY[\[Alpha][4], \[Alpha][5], \[Alpha][6]]]).(Sum[2 g[l]^2 M[l] DMatrixCR[l], {l, totalS}].oY[\[Alpha][3], \[Alpha][6], \[Alpha][5]][[k]])] - Sum[ g[l]^2  M[l] cR[k, l], {l, totalS}] Tr[(oY[\[Alpha][1], \[Alpha][2], \[Alpha][4]][[i, j]].Cj[oY[\[Alpha][4], \[Alpha][5], \[Alpha][6]]]).oY[\[Alpha][3], \[Alpha][6], \[Alpha][5]][[k]]])
-fuctH2Q7[i_, j_, k_] := (aux1 = oH[\[Alpha][1], \[Alpha][2], \[Alpha][3]][[i, j, k]]; aux2 = oY[\[Alpha][1], \[Alpha][2], \[Alpha][3]][[i, j, k]]; Return[Sum[(2 aux1 - 8 M[l] aux2) g[l]^4 cR[k, l] flav[i2] sR[i2, l]/dR[i2, l], {l, totalS}, {i2, totalF}] +  2 Sum[(2 aux1 - 8 M[l1] aux2) g[l1]^2 g[l2]^2  cR[k, l1] cR[k, l2], {l1, totalS}, {l2, totalS}] - 3 Sum[(2 aux1 - 8 M[l] aux2) g[l]^4 cG[l] cR[k, l], {l, totalS}]];)
+aux3=p\[Mu] Table[Plus@@gamma1Part2[[p\[Mu][[i,1]]]],{i,Length[p\[Mu]]}];
 
+\[Mu]1loop=aux2+aux3;
 
-\[Beta]H1[i_, j_, k_] := CanonicalForm[ Sym[fuctH1Q1, i, j, k] + Sym[fuctH1Q2, i, j, k] + Sym[fuctH1Q3, i, j, k]]/.{\[Alpha][1]->flavVariables[[1]],\[Alpha][2]->flavVariables[[2]],\[Alpha][3]->flavVariables[[3]]}
-\[Beta]H2[i_, j_, k_] := CanonicalForm[ Sym[fuctH2Q1, i, j, k] + Sym[fuctH2Q2, i, j, k] + Sym[fuctH2Q3, i, j, k] + Sym[fuctH2Q4, i, j, k] + Sym[fuctH2Q5, i, j, k] +  Sym[fuctH2Q6, i, j, k] + Sym[fuctH2Q7, i, j, k]]/.{\[Alpha][1]->flavVariables[[1]],\[Alpha][2]->flavVariables[[2]],\[Alpha][3]->flavVariables[[3]]}
+(* \[Mu] 2-loop *)
+aux2=Table[{CF[gamma2Part1[[p\[Mu][[i,1,1]]]],{1,2,3,4,5,6,7},{3,1,4,5,6,7,8}],CF[gamma2Part1[[p\[Mu][[i,1,2]]]],{1,2,3,4,5,6,7},{3,2,4,5,6,7,8}]},{i,Length[p\[Mu]]}];
+aux2=MapThread[Dot,{aux1,aux2}];
 
+aux3=p\[Mu] Table[Plus@@gamma2Part2[[p\[Mu][[i,1]]]],{i,Length[p\[Mu]]}];
 
+\[Mu]2loop=aux2+aux3;
 
-(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX \[Beta]B XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
-fuctB1Q1[i_, j_] := 1/2 Tr[(oB[\[Alpha][1], \[Alpha][3]][[i]].Cj[oY[\[Alpha][3], \[Alpha][4], \[Alpha][5]]]).oY[\[Alpha][2], \[Alpha][5], \[Alpha][4]][[j]]];
-fuctB1Q2[i_, j_] := 1/2 Tr[(oY[\[Alpha][1], \[Alpha][2], \[Alpha][3]][[i, j]].Cj[oY[\[Alpha][3], \[Alpha][4], \[Alpha][5]]]).oB[\[Alpha][5], \[Alpha][4]]];
-fuctB1Q3[i_, j_] := Tr[(o\[Mu][\[Alpha][1], \[Alpha][3]][[i]].Cj[oY[\[Alpha][3], \[Alpha][4], \[Alpha][5]]]).oH[\[Alpha][2], \[Alpha][5], \[Alpha][4]][[j]]];
-fuctB1Q4[i_, j_] := -2 Sum[(oB[\[Alpha][1], \[Alpha][2]][[i, j]] - 2 M[l] o\[Mu][\[Alpha][1], \[Alpha][2]][[i, j]]) g[l]^2 cR[i, l], {l, totalS}];
+(* L 1-loop *)
+aux1=Table[{CF[pL[[i]],{1},{2}]},{i,Length[pL]}];
 
+aux2=Table[{CF[gamma1Part1[[pL[[i,1,1]]]],{1,2,3,4},{2,1,3,4}]},{i,Length[pL]}];
+aux2=MapThread[Dot,{aux1,aux2}];
 
-fuctB2Q1[i_, j_] := -1/2 ListContract[(oB[\[Alpha][1], \[Alpha][3]][[i]].Cj[oY[\[Alpha][3], \[Alpha][4], \[Alpha][5]]].oY[\[Alpha][5], \[Alpha][6], \[Alpha][7]]).(Cj[oY[\[Alpha][7], \[Alpha][6], \[Alpha][9]]].oY[\[Alpha][2], \[Alpha][9], \[Alpha][4]][[j]]), {{1, 4}, {2, 3}}]
-fuctB2Q2[i_, j_] := -1/2 ListContract[(oY[\[Alpha][1], \[Alpha][2], \[Alpha][3]][[i, j]].Cj[oY[\[Alpha][3], \[Alpha][4], \[Alpha][5]]]).(oB[\[Alpha][5], \[Alpha][6]].Cj[oY[\[Alpha][6], \[Alpha][7], \[Alpha][8]]].oY[\[Alpha][8], \[Alpha][7], \[Alpha][4]]), {{1, 4}, {2, 3}}]
-fuctB2Q3[i_, j_] := -1/2 ListContract[(oY[\[Alpha][1], \[Alpha][2], \[Alpha][3]][[i, j]].Cj[oY[\[Alpha][3], \[Alpha][4], \[Alpha][5]]]).(o\[Mu][\[Alpha][5], \[Alpha][6]].Cj[oY[\[Alpha][6], \[Alpha][7], \[Alpha][8]]].oH[\[Alpha][8], \[Alpha][7], \[Alpha][4]]), {{1, 4}, {2, 3}}]
-fuctB2Q4[i_, j_] := -ListContract[(o\[Mu][\[Alpha][1], \[Alpha][3]][[i]].Cj[oY[\[Alpha][3], \[Alpha][4], \[Alpha][5]]].oH[\[Alpha][5], \[Alpha][6], \[Alpha][7]]).(Cj[oY[\[Alpha][7], \[Alpha][6], \[Alpha][9]]].oY[\[Alpha][2], \[Alpha][9], \[Alpha][4]][[j]]), {{1, 4}, {2, 3}}]
-fuctB2Q5[i_, j_] := -ListContract[(o\[Mu][\[Alpha][1], \[Alpha][3]][[i]].Cj[oY[\[Alpha][3], \[Alpha][4], \[Alpha][5]]].oY[\[Alpha][5], \[Alpha][6], \[Alpha][7]]).(Cj[oY[\[Alpha][7], \[Alpha][6], \[Alpha][9]]].oH[\[Alpha][2], \[Alpha][9], \[Alpha][4]][[j]]), {{1, 4}, {2, 3}}]
-fuctB2Q6[i_, j_] := 2 Tr[(oY[\[Alpha][1], \[Alpha][2], \[Alpha][3]][[i, j]].Cj[oY[\[Alpha][3], \[Alpha][4], \[Alpha][5]]]).Sum[(oB[\[Alpha][5], \[Alpha][4]] - o\[Mu][\[Alpha][5], \[Alpha][4]] M[l]).DMatrixCR[l] g[l]^2, {l, totalS}]];
+aux3=pL Table[Plus@@gamma1Part2[[pL[[i,1]]]],{i,Length[pL]}];
 
-fuctB2Q7[i_, j_] := Tr[(oB[\[Alpha][1], \[Alpha][3]][[i]].Cj[oY[\[Alpha][3], \[Alpha][4], \[Alpha][5]]]).(Sum[2 g[l]^2 DMatrixCR[l], {l, totalS}].oY[\[Alpha][2], \[Alpha][5], \[Alpha][4]][[j]])] - Sum[ g[l]^2 cR[i, l] Tr[(oB[\[Alpha][1], \[Alpha][3]][[i]].Cj[oY[\[Alpha][3], \[Alpha][4], \[Alpha][5]]]).oY[\[Alpha][2], \[Alpha][5], \[Alpha][4]][[j]]] , {l, totalS}]
-fuctB2Q8[i_, j_] := 2 (Tr[(o\[Mu][\[Alpha][1], \[Alpha][3]][[i]].Cj[oY[\[Alpha][3], \[Alpha][4], \[Alpha][5]]]).(Sum[2 g[l]^2 DMatrixCR[l], {l, totalS}].oH[\[Alpha][2], \[Alpha][5], \[Alpha][4]][[j]])] - Sum[ g[l]^2 cR[i, l] Tr[(o\[Mu][\[Alpha][1], \[Alpha][3]][[i]].Cj[oY[\[Alpha][3], \[Alpha][4], \[Alpha][5]]]).oH[\[Alpha][2], \[Alpha][5], \[Alpha][4]][[j]]] , {l, totalS}])
-fuctB2Q9[i_, j_] := -2 (Tr[(o\[Mu][\[Alpha][1], \[Alpha][3]][[i]].Cj[oY[\[Alpha][3], \[Alpha][4], \[Alpha][5]]]).(Sum[2 g[l] ^2 M[l] DMatrixCR[l], {l, totalS}].oY[\[Alpha][2], \[Alpha][5], \[Alpha][4]][[j]])] - Sum[ g[l]^2 M[l] cR[i, l] Tr[(o\[Mu][\[Alpha][1], \[Alpha][3]][[i]].Cj[oY[\[Alpha][3], \[Alpha][4], \[Alpha][5]]]).oY[\[Alpha][2], \[Alpha][5], \[Alpha][4]][[j]]] , {l, totalS}])
+l1loop=aux2+aux3;
 
-fuctB2Q10[i_, j_] := Sum[(2 oB[\[Alpha][1], \[Alpha][2]][[i, j]] - 8 M[l] o\[Mu][\[Alpha][1], \[Alpha][2]][[i, j]]) g[l]^4 cR[i, l] flav[i2] sR[i2, l]/dR[i2, l], {l, totalS}, {i2, totalF}] +  2 Sum[(2 oB[\[Alpha][1], \[Alpha][2]][[i, j]] - 8 M[l1] o\[Mu][\[Alpha][1], \[Alpha][2]][[i, j]]) g[l1]^2 g[l2]^2  cR[i, l1] cR[i, l2], {l1, totalS}, {l2, totalS}] - 3 Sum[(2 oB[\[Alpha][1], \[Alpha][2]][[i, j]] - 8 M[l] o\[Mu][\[Alpha][1], \[Alpha][2]][[i, j]]) g[l]^4 cG[l] cR[i, l], {l, totalS}];
+(* L 2-loop *)
+aux2=Table[{CF[gamma2Part1[[pL[[i,1,1]]]],{1,2,3,4,5,6,7},{2,1,3,4,5,6,7}]},{i,Length[pL]}];
+aux2=MapThread[Dot,{aux1,aux2}];
 
+aux3=pL Table[Plus@@gamma2Part2[[pL[[i,1]]]],{i,Length[pL]}];
 
+l2loop=aux2+aux3;
 
-\[Beta]B1[i_, j_] := CanonicalForm[Sym[fuctB1Q1, i, j] + Sym[fuctB1Q2, i, j] + Sym[fuctB1Q3, i, j] + Sym[fuctB1Q4, i, j]]/.{\[Alpha][1]->flavVariables[[1]],\[Alpha][2]->flavVariables[[2]]}
-\[Beta]B2[i_, j_] := CanonicalForm[Sym[fuctB2Q1, i, j] + Sym[fuctB2Q2, i, j] + Sym[fuctB2Q3, i, j] + Sym[fuctB2Q4, i, j] + Sym[fuctB2Q5, i, j] + Sym[fuctB2Q6, i, j] + Sym[fuctB2Q7, i, j] + Sym[fuctB2Q8, i, j] + Sym[fuctB2Q9, i, j] + Sym[fuctB2Q10, i, j]]/.{\[Alpha][1]->flavVariables[[1]],\[Alpha][2]->flavVariables[[2]]}
+result={{y1loop,y2loop},{\[Mu]1loop,\[Mu]2loop},{l1loop,l2loop}};
+Return[result];
+]
 
-(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX \[Beta]2M XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
-fuct2M1Q1[j_, i_] := 1/2 Tr[Cj[oY[\[Alpha][2], \[Alpha][3], \[Alpha][4]][[i]]].(oY[\[Alpha][4], \[Alpha][3], \[Alpha][6]].oM2[\[Alpha][1], \[Alpha][6]][[j]])];
-fuct2M1Q2[j_, i_] := 1/2 Tr[oY[\[Alpha][1], \[Alpha][3], \[Alpha][4]][[j]].(Cj[oY[\[Alpha][4], \[Alpha][3], \[Alpha][6]]].oM2T[\[Alpha][2], \[Alpha][6]][[i]])];
-fuct2M1Q3[j_, i_] := 2 Tr[Cj[oY[\[Alpha][2], \[Alpha][3], \[Alpha][4]][[i]]].(oY[\[Alpha][1], \[Alpha][4], \[Alpha][5]][[j]].oM2T[\[Alpha][5], \[Alpha][3]])];
+HSector[]:=Module[{listH,listHplain,listY,listYplain,aux1,h1loop,h2loop,result},
 
-fuct2M1Q4[j_, i_] := Tr[Cj[oH[\[Alpha][2], \[Alpha][3], \[Alpha][4]][[i]]].oH[\[Alpha][1], \[Alpha][4], \[Alpha][3]][[j]]];
-fuct2M1Q5[j_, i_] := -8 KroneckerDelta[i, j]KroneckerDelta[\[Alpha][1], \[Alpha][2]] Sum[g[l]^2 Cj[M[l]] M[l] cR[i, l], {l, totalS}];
-fuct2M1Q6[j_, i_] := 2 Sum[g[l]^2 fullRepMat[[l, a, j, i]] KroneckerDelta[\[Alpha][1], \[Alpha][2]] Tr[fullRepMat[[l, a]].oM2[\[Alpha][3], \[Alpha][3]]], {l, totalS}, {a,dG[l]}];
+aux1=1/2Conjugate[YYc[y,y]];
+listH=CF[pH,{1},{4}]CF[aux1[[#]]&/@pY[[1;;-1,1,1]],{1,2,3,4},{4,1,5,6}]+CF[pH,{2},{4}]CF[aux1[[#]]&/@pY[[1;;-1,1,2]],{1,2,3,4},{4,2,5,6}]+CF[pH,{3},{4}]CF[aux1[[#]]&/@pY[[1;;-1,1,3]],{1,2,3,4},{4,3,5,6}];
 
 
-fuct2M2Q1[j_, i_] := -1/2 ListContract[(oM2T[\[Alpha][2], \[Alpha][3]][[i]].Cj[oY[\[Alpha][3], \[Alpha][4], \[Alpha][5]]].oY[\[Alpha][5], \[Alpha][6], \[Alpha][7]]).(Cj[oY[\[Alpha][7], \[Alpha][6], \[Alpha][9]]].oY[\[Alpha][1], \[Alpha][9], \[Alpha][4]][[j]]), {{1, 4}, {2, 3}}]
-fuct2M2Q2[j_, i_] := -1/2 ListContract[(oM2[\[Alpha][1], \[Alpha][3]] [[j]].oY[\[Alpha][3], \[Alpha][4], \[Alpha][5]].Cj[oY[\[Alpha][5], \[Alpha][6], \[Alpha][7]]]).(oY[\[Alpha][7], \[Alpha][6], \[Alpha][9]].Cj[oY[\[Alpha][2], \[Alpha][9], \[Alpha][4]][[i]]]), {{1, 4}, {2, 3}}]
-fuct2M2Q3[j_, i_] := -ListContract[(Cj[oY[\[Alpha][2], \[Alpha][3], \[Alpha][4]][[i]]].oY[\[Alpha][1], \[Alpha][4], \[Alpha][5]][[j]].Cj[oY[\[Alpha][5], \[Alpha][6], \[Alpha][7]]]).(oY[\[Alpha][7], \[Alpha][6], \[Alpha][9]].oM2T[\[Alpha][9], \[Alpha][3]]), {{1, 4}, {2, 3}}]
-fuct2M2Q4[j_, i_] := -ListContract[(oY[\[Alpha][1], \[Alpha][3], \[Alpha][4]][[j]].Cj[oY[\[Alpha][2], \[Alpha][4], \[Alpha][5]][[i]]].oY[\[Alpha][5], \[Alpha][6], \[Alpha][7]]).(Cj[oY[\[Alpha][7], \[Alpha][6], \[Alpha][9]]].oM2[\[Alpha][9], \[Alpha][3]]), {{1, 4}, {2, 3}}]
-fuct2M2Q5[j_, i_] := -ListContract[(Cj[oY[\[Alpha][2], \[Alpha][3], \[Alpha][4]][[i]]].oY[\[Alpha][4], \[Alpha][5], \[Alpha][6]]).(Cj[oY[\[Alpha][6], \[Alpha][5], \[Alpha][8]]].oY[\[Alpha][1], \[Alpha][8], \[Alpha][9]][[j]].oM2T[\[Alpha][9], \[Alpha][3]]), {{1, 4}, {2, 3}}]
-fuct2M2Q6[j_, i_] := -2 ListContract[(Cj[oY[\[Alpha][2], \[Alpha][3], \[Alpha][4]][[i]]].oY[\[Alpha][1], \[Alpha][4], \[Alpha][5]][[j]].Cj[oY[\[Alpha][5], \[Alpha][6], \[Alpha][7]]]).(oY[\[Alpha][7], \[Alpha][3], \[Alpha][9]].oM2T[\[Alpha][9], \[Alpha][6]]), {{1, 3}, {2, 4}}]
-fuct2M2Q7[j_, i_] := -ListContract[(oY[\[Alpha][1], \[Alpha][3], \[Alpha][4]][[j]].Cj[oH[\[Alpha][4], \[Alpha][5], \[Alpha][6]]]).(oH[\[Alpha][6], \[Alpha][5], \[Alpha][8]].Cj[oY[\[Alpha][2], \[Alpha][8], \[Alpha][3]][[i]]]), {{1, 4}, {2, 3}}]
-fuct2M2Q8[j_, i_] := -ListContract[(oH[\[Alpha][1], \[Alpha][3], \[Alpha][4]][[j]].Cj[oY[\[Alpha][4], \[Alpha][5], \[Alpha][6]]]).(oY[\[Alpha][6], \[Alpha][5], \[Alpha][8]].Cj[oH[\[Alpha][2], \[Alpha][8], \[Alpha][3]][[i]]]), {{1, 4}, {2, 3}}]
-fuct2M2Q9[j_, i_] := -ListContract[(oY[\[Alpha][1], \[Alpha][3], \[Alpha][4]][[j]].Cj[oY[\[Alpha][4], \[Alpha][5], \[Alpha][6]]]).(oH[\[Alpha][6], \[Alpha][5], \[Alpha][8]].Cj[oH[\[Alpha][2], \[Alpha][8], \[Alpha][3]][[i]]]), {{1, 4}, {2, 3}}]
-fuct2M2Q10[j_, i_] := -ListContract[(oH[\[Alpha][1], \[Alpha][3], \[Alpha][4]][[j]].Cj[oH[\[Alpha][4], \[Alpha][5], \[Alpha][6]]]).(oY[\[Alpha][6], \[Alpha][5], \[Alpha][8]].Cj[oY[\[Alpha][2], \[Alpha][8], \[Alpha][3]][[i]]]), {{1, 4}, {2, 3}}]
+listHplain=-2pH Table[Plus@@g2Ci[[pY[[i,1]]]],{i,Length[pY]}];
 
+listY=Conjugate[YYc[y,h]];
+listY=CF[pY,{1},{4}]CF[listY[[#]]&/@pY[[1;;-1,1,1]],{1,2,3,4},{4,1,5,6}]+CF[pY,{2},{4}]CF[listY[[#]]&/@pY[[1;;-1,1,2]],{1,2,3,4},{4,2,5,6}]+CF[pY,{3},{4}]CF[listY[[#]]&/@pY[[1;;-1,1,3]],{1,2,3,4},{4,3,5,6}];
 
+listYplain=4pY Table[Plus@@g2MCi[[pY[[i,1]]]],{i,Length[pY]}];
 
-(* Some unexpected factors 2 show up because having c (p) or c (q) gives the same result*)
+h1loop=listH+listY+listHplain+listYplain;
 
-fuct2M2Q11[j_, i_] := Tr[(oM2T[\[Alpha][2], \[Alpha][3]][[i]].Cj[oY[\[Alpha][3], \[Alpha][4], \[Alpha][5]]]).(Sum[2 g[l]^2 DMatrixCR[l], {l, totalS}].oY[\[Alpha][1], \[Alpha][5], \[Alpha][4]][[j]])] - Sum[g[l]^2 cR[i, l], {l, totalS}] Tr[(oM2T[\[Alpha][2], \[Alpha][3]][[i]].Cj[oY[\[Alpha][3], \[Alpha][4], \[Alpha][5]]]).oY[\[Alpha][1], \[Alpha][5], \[Alpha][4]][[j]]];
-fuct2M2Q12[j_, i_] := Tr[(Cj[oY[\[Alpha][2], \[Alpha][3], \[Alpha][4]][[i]]].Sum[2 g[l]^2 DMatrixCR[l], {l, totalS}]).(oY[\[Alpha][4], \[Alpha][3], \[Alpha][6]].oM2[\[Alpha][1], \[Alpha][6]][[j]])] - Sum[g[l]^2 cR[i, l], {l, totalS}] Tr[Cj[oY[\[Alpha][2], \[Alpha][3], \[Alpha][4]][[i]]].(oY[\[Alpha][4], \[Alpha][3], \[Alpha][6]].oM2[\[Alpha][1], \[Alpha][6]][[j]])];
-fuct2M2Q13[j_, i_] := 4 (Tr[(Cj[oY[\[Alpha][2], \[Alpha][3], \[Alpha][4]][[i]]].Sum[ g[l]^2 DMatrixCR[l], {l, totalS}]).(oY[\[Alpha][1], \[Alpha][4], \[Alpha][5]][[j]].oM2T[\[Alpha][5], \[Alpha][3]])] + Tr[(Sum[ g[l]^2 DMatrixCR[l], {l, totalS}].Cj[oY[\[Alpha][2], \[Alpha][3], \[Alpha][4]][[i]]]).(oY[\[Alpha][1], \[Alpha][4], \[Alpha][5]][[j]].oM2T[\[Alpha][5], \[Alpha][3]])] - Sum[g[l]^2 cR[i, l], {l, totalS}] Tr[Cj[oY[\[Alpha][2], \[Alpha][3], \[Alpha][4]][[i]]].(oY[\[Alpha][1], \[Alpha][4], \[Alpha][5]][[j]].oM2T[\[Alpha][5], \[Alpha][3]])]);
-fuct2M2Q14[j_, i_] := 2 (Tr[Cj[oH[\[Alpha][2], \[Alpha][3], \[Alpha][4]][[i]]].Sum[2 g[l]^2 DMatrixCR[l], {l, totalS}].oH[\[Alpha][1], \[Alpha][4], \[Alpha][3]][[j]]] - Sum[g[l]^2 cR[i, l], {l, totalS}] Tr[Cj[oH[\[Alpha][2], \[Alpha][3], \[Alpha][4]][[i]]].oH[\[Alpha][1], \[Alpha][4], \[Alpha][3]][[j]]]);
-fuct2M2Q15[j_, i_] := -2 (Tr[Cj[oH[\[Alpha][2], \[Alpha][3], \[Alpha][4]][[i]]].Sum[2 M[l] g[l]^2 DMatrixCR[l], {l, totalS}].oY[\[Alpha][1], \[Alpha][4], \[Alpha][3]][[j]]] - Sum[M[l] g[l]^2 cR[i, l], {l, totalS}] Tr[Cj[oH[\[Alpha][2], \[Alpha][3], \[Alpha][4]][[i]]].oY[\[Alpha][1], \[Alpha][4], \[Alpha][3]][[j]]]);
-fuct2M2Q16[j_, i_] := -2 (Tr[Cj[oY[\[Alpha][2], \[Alpha][3], \[Alpha][4]][[i]]].Sum[2 Cj[M[l]] g[l]^2 DMatrixCR[l], {l, totalS}].oH[\[Alpha][1], \[Alpha][4], \[Alpha][3]][[j]]] - Sum[Cj[M[l]] g[l]^2 cR[i, l], {l, totalS}] Tr[Cj[oY[\[Alpha][2], \[Alpha][3], \[Alpha][4]][[i]]].oH[\[Alpha][1], \[Alpha][4], \[Alpha][3]][[j]]]);
-fuct2M2Q17[j_, i_] := 4 (Tr[Cj[oY[\[Alpha][2], \[Alpha][3], \[Alpha][4]][[i]]].Sum[2 Cj[M[l]] M[l] g[l]^2 DMatrixCR[l], {l, totalS}].oY[\[Alpha][1], \[Alpha][4], \[Alpha][3]][[j]]] - Sum[Cj[M[l]] M[l] g[l]^2 cR[i, l], {l, totalS}] Tr[Cj[oY[\[Alpha][2], \[Alpha][3], \[Alpha][4]][[i]]].oY[\[Alpha][1], \[Alpha][4], \[Alpha][3]][[j]]]);
+(* 2 loop *)
+aux1=-1/2 YcYYcY[y,y,y,y] +2Conjugate[YGcYc[y,y]]- g2Ci Conjugate[YYc[y,y]];
+listH=CF[pH,{1},{4}]CF[aux1[[#]]&/@pY[[1;;-1,1,1]],{1,2,3,4,5,6,7},{4,1,5,6,7,8,9}]+CF[pH,{2},{4}]CF[aux1[[#]]&/@pY[[1;;-1,1,2]],{1,2,3,4,5,6,7},{4,2,5,6,7,8,9}]+CF[pH,{3},{4}]CF[aux1[[#]]&/@pY[[1;;-1,1,3]],{1,2,3,4,5,6,7},{4,3,5,6,7,8,9}];
 
+aux1=g4CiSR+2g4CiCi-3g4CGCi;
+listHplain=2pH Table[Plus@@aux1[[pY[[i,1]]]],{i,Length[pY]}];
 
-fuct2M2Q18[j_, i_] := -2 KroneckerDelta[\[Alpha][1], \[Alpha][2]] ListContract[(Sum[g[l]^2 fullRepMat[[l, a, j, i]] fullRepMat[[l, a]], {l,  totalS}, {a, dG[l]}].oM2[\[Alpha][3], \[Alpha][4]]).(oY[\[Alpha][4], \[Alpha][5], \[Alpha][6]].Cj[oY[\[Alpha][6], \[Alpha][5], \[Alpha][3]]]), {{1, 4}, {2, 3}}];
-fuct2M2Q19[j_, i_] := 8 KroneckerDelta[\[Alpha][1], \[Alpha][2]] Tr[Sum[g[l1]^2 g[l2]^2 fullRepMat[[l1, a, j, i]] fullRepMat[[l1, a]].DMatrixCR[l2], {l1, totalS}, {l2, totalS}, {a, dG[l1]}].oM2[\[Alpha][3], \[Alpha][3]]];
-fuct2M2Q20[j_, i_] := KroneckerDelta[i, j] KroneckerDelta[\[Alpha][1], \[Alpha][2]] (24 Sum[ M[l] Cj[M[l]] g[l]^4 cR[j, l] flav[i2] sR[i2, l]/dR[i2, l], {l, totalS}, {i2, totalF}]
-     +  Sum[g[l1]^2 g[l2]^2  cR[j, l1] cR[j, l2] (32 M[l1] Cj[M[l1]] + 8 M[l1] Cj[M[l2]] + 8 M[l2] Cj[M[l1]]), {l1, totalS}, {l2, totalS}] - 72 Sum[ M[l] Cj[M[l]] g[l]^4 cG[l] cR[j, l], {l, totalS}]);
+aux1=-YcYYcY[y,y,y,h]-YcYYcY[y,h,y,y] +2(2Conjugate[YGcYc[y,h]]- g2Ci Conjugate[YYc[y,h]])-2(2Conjugate[YMccYc[y,y]]- g2MCi Conjugate[YYc[y,y]]);
+listY=CF[pY,{1},{4}]CF[aux1[[#]]&/@pY[[1;;-1,1,1]],{1,2,3,4,5,6,7},{4,1,5,6,7,8,9}]+CF[pY,{2},{4}]CF[aux1[[#]]&/@pY[[1;;-1,1,2]],{1,2,3,4,5,6,7},{4,2,5,6,7,8,9}]+CF[pY,{3},{4}]CF[aux1[[#]]&/@pY[[1;;-1,1,3]],{1,2,3,4,5,6,7},{4,3,5,6,7,8,9}];
 
+aux1=g4MCiSR+2g4MCiCi-3g4MCGCi;
+listYplain=-8pY Table[Plus@@aux1[[pY[[i,1]]]],{i,Length[pY]}];
 
-(* Corrected the next line *)
-fuct2M2Q21[j_, i_] := If[totalSU > 1, fuct2M2Q21NonU1[j, i] + fuct2M2Q21U1[j, i], 8 KroneckerDelta[i, j] KroneckerDelta[\[Alpha][1], \[Alpha][2]] Tr[Sum[g[l]^4 cR[j, l] DMatrixSR[l].DiagonalMatrix[1/dRMat[[All,l]]], {l, totalS}].oM2[\[Alpha][3], \[Alpha][3]]]];
-fuct2M2Q22[j_, i_] := -8 KroneckerDelta[i, j] KroneckerDelta[\[Alpha][1], \[Alpha][2]] Sum[cG[l] g[l]^4 cR[j, l] M[l] Cj[M[l]], {l, totalS}];
+h2loop=listH+listY+listHplain+listYplain;
+Return[{h1loop,h2loop}];
+]
 
-(* Corrected the next line *)
-fuct2M2Q21NonU1[j_, i_] := 8 KroneckerDelta[i, j] KroneckerDelta[\[Alpha][1], \[Alpha][2]] Tr[Sum[g[l]^4 cR[j, l] DMatrixSR[l].DiagonalMatrix[1/dRMat[[All,l]]], {l,totalSU+1,totalS}].oM2[\[Alpha][3], \[Alpha][3]]];
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
-(* Important if there is more than one U (1) group *)
-fuct2M2Q21U1[j_, i_] := Module[{n, aux1, aux2, aux3, aux4},
-   n = totalSU;
-   If[n == 0, Return[0],
-    aux1 = Table[fullRepMat[[ l, 1]], {l, n}];
-    aux2 = Table[Tr[aux1[[l1]].aux1[[l2]]], {l1, n}, {l2, n}];
-    aux3 = Eigensystem[aux2][[2]];
-    aux4 = Table[aux3[[l]]/Norm[aux3[[l]]], {l, n}];
-    aux1 = aux4.aux1;
-    Return[8 KroneckerDelta[\[Alpha][1], \[Alpha][2]] Sum[g[ l1]^2 g[ l2]^2 aux1[[l1, i, i]] Tr[aux1[[l1]].aux1[[l2]].oM2[\[Alpha][3], \[Alpha][3]]], {l1, n}, {l2, n}]];
-    ];
-   ];
+BSector[model_]:=Module[{listB,listBplain,list\[Mu],list\[Mu]plain,singletTerm1,singletTerm2,singletTerm3,singletTerm4,listSinglet,aux1,aux2,aux3,b1loop,b2loop,result},
 
-\[Beta]2M1[i_, j_] := CanonicalForm[fuct2M1Q1[i, j] + fuct2M1Q2[i, j] + fuct2M1Q3[i, j] + fuct2M1Q4[i, j] + fuct2M1Q5[i, j] + fuct2M1Q6[i, j]]/.{\[Alpha][1]->flavVariables[[1]],\[Alpha][2]->flavVariables[[2]]};
-\[Beta]2M2[i_, j_] := CanonicalForm[fuct2M2Q1[i, j] + fuct2M2Q2[i, j] + fuct2M2Q3[i, j] + fuct2M2Q4[i, j] + fuct2M2Q5[i, j] + fuct2M2Q6[i, j] + fuct2M2Q7[i, j] + fuct2M2Q8[i, j] + fuct2M2Q9[i, j] + fuct2M2Q10[i, j] + fuct2M2Q11[i, j] + fuct2M2Q12[i, j] + fuct2M2Q13[i, j] + fuct2M2Q14[i, j] + fuct2M2Q15[i, j] + fuct2M2Q16[i, j] + fuct2M2Q17[i, j] + fuct2M2Q18[i, j] + fuct2M2Q19[i, j] + fuct2M2Q20[i, j] + fuct2M2Q21[i, j] + fuct2M2Q22[i, j]]/.{\[Alpha][1]->flavVariables[[1]],\[Alpha][2]->flavVariables[[2]]};
+(* 1 loop *)
+aux1=1/2Conjugate[YYc[y,y]];
+listB=CF[pB,{1},{3}]CF[aux1[[#]]&/@p\[Mu][[1;;-1,1,1]],{1,2,3,4},{3,1,4,5}]+CF[pB,{2},{3}]CF[aux1[[#]]&/@p\[Mu][[1;;-1,1,2]],{1,2,3,4},{3,2,4,5}];
 
+listBplain=-2pB Table[Plus@@g2Ci[[p\[Mu][[i,1]]]],{i,Length[p\[Mu]]}];
 
+aux1=Conjugate[YYc[y,h]];
+list\[Mu]=CF[p\[Mu],{1},{3}]CF[aux1[[#]]&/@p\[Mu][[1;;-1,1,1]],{1,2,3,4},{3,1,4,5}]+CF[p\[Mu],{2},{3}]CF[aux1[[#]]&/@p\[Mu][[1;;-1,1,2]],{1,2,3,4},{3,2,4,5}];
 
-(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX \[Beta]S XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
-fuctS1Q1[i_]:=1/2 Tr[oY[\[Alpha][1],\[Alpha][2],\[Alpha][3]][[i]].Cj[oY[\[Alpha][3],\[Alpha][2],\[Alpha][4]]].oS[\[Alpha][4]]]
-fuctS1Q2[i_]:=Tr[oL[\[Alpha][2]].Cj[oY[\[Alpha][2],\[Alpha][3],\[Alpha][4]]].oH[\[Alpha][1],\[Alpha][4],\[Alpha][3]][[i]]]
-fuctS1Q3[i_]:=Tr[o\[Mu][\[Alpha][1],\[Alpha][2]][[i]].Cj[oY[\[Alpha][2],\[Alpha][3],\[Alpha][4]]].oB[\[Alpha][4],\[Alpha][3]]]
-fuctS1Q4[i_]:= 2Tr[oY[\[Alpha][1],\[Alpha][2],\[Alpha][3]][[i]].oM2T[\[Alpha][3],\[Alpha][4]].Cj[o\[Mu][\[Alpha][4],\[Alpha][2]]]]
-fuctS1Q5[i_]:=Tr[oH[\[Alpha][1],\[Alpha][2],\[Alpha][3]][[i]].Cj[oB[\[Alpha][3],\[Alpha][2]]]];
+list\[Mu]plain=4p\[Mu] Table[Plus@@g2MCi[[p\[Mu][[i,1]]]],{i,Length[p\[Mu]]}];
 
+b1loop=listB+list\[Mu]+listBplain+list\[Mu]plain;
 
+(* 2 loop *)
+aux1=-1/2 YcYYcY[y,y,y,y] +2Conjugate[YGcYc[y,y]]- g2Ci Conjugate[YYc[y,y]];
+listB=CF[pB,{1},{3}]CF[aux1[[#]]&/@p\[Mu][[1;;-1,1,1]],{1,2,3,4,5,6,7},{3,1,4,5,6,7,8}]+CF[pB,{2},{3}]CF[aux1[[#]]&/@p\[Mu][[1;;-1,1,2]],{1,2,3,4,5,6,7},{3,2,4,5,6,7,8}];
 
-fuctS2Q1[i_] :=2Tr[oY[\[Alpha][1],\[Alpha][2],\[Alpha][3]][[i]].Sum[ g[l]^2 DMatrixCR[l], {l, totalS}].Cj[oY[\[Alpha][3],\[Alpha][2],\[Alpha][4]]].oS[\[Alpha][4]]]
-(* Changed the line below *)
-fuctS2Q2[i_] :=-1/2 ListContract[oY[\[Alpha][1],\[Alpha][2],\[Alpha][3]][[i]].Cj[oY[\[Alpha][3],\[Alpha][4],\[Alpha][5]]].oY[\[Alpha][5],\[Alpha][4],\[Alpha][6]].Cj[oY[\[Alpha][6],\[Alpha][2],\[Alpha][7]]].oS[\[Alpha][7]],{{1,4},{2,3}}] 
-fuctS2Q3[i_] :=- 4 Tr[oL[\[Alpha][2]].Cj[oY[\[Alpha][2],\[Alpha][3],\[Alpha][4]]].Sum[(oY[\[Alpha][1], \[Alpha][4],\[Alpha][3]][[i]] M[l]-oH[\[Alpha][1], \[Alpha][4],\[Alpha][3]][[i]]).DMatrixCR[l] g[l]^2, {l, totalS}]];
+aux1=g4CiSR+2 g4CiCi-3g4CGCi;
+listBplain=2pB Table[Plus@@aux1[[p\[Mu][[i,1]]]],{i,Length[p\[Mu]]}];
 
-fuctS2Q4[i_] :=-ListContract[oY[\[Alpha][1],\[Alpha][2],\[Alpha][3]][[i]].Cj[oY[\[Alpha][3],\[Alpha][4],\[Alpha][5]]].oH[\[Alpha][5],\[Alpha][4],\[Alpha][6]].Cj[oY[\[Alpha][6],\[Alpha][2],\[Alpha][7]]].oL[\[Alpha][7]],{{1,4},{2,3}}];
-fuctS2Q5[i_] :=-ListContract[oH[\[Alpha][1],\[Alpha][2],\[Alpha][3]][[i]].Cj[oY[\[Alpha][3],\[Alpha][4],\[Alpha][5]]].oY[\[Alpha][5],\[Alpha][4],\[Alpha][6]].Cj[oY[\[Alpha][6],\[Alpha][2],\[Alpha][7]]].oL[\[Alpha][7]],{{1,4},{2,3}}];
-fuctS2Q6[i_] :=- 4Tr[ o\[Mu][\[Alpha][1],\[Alpha][2]][[i]].Cj[oY[\[Alpha][2],\[Alpha][3],\[Alpha][4]]] .Sum[DMatrixCR[l].(o\[Mu][\[Alpha][4], \[Alpha][3]] M[l]-oB[\[Alpha][4], \[Alpha][3]]) g[l]^2, {l, totalS}]]
+aux1=-YcYYcY[y,h,y,y]-YcYYcY[y,y,y,h] +2(2Conjugate[YGcYc[y,h]]- g2Ci Conjugate[YYc[y,h]])-2(2Conjugate[YMccYc[y,y]]- g2MCi Conjugate[YYc[y,y]]);
+list\[Mu]=CF[p\[Mu],{1},{3}]CF[aux1[[#]]&/@p\[Mu][[1;;-1,1,1]],{1,2,3,4,5,6,7},{3,1,4,5,6,7,8}]+CF[p\[Mu],{2},{3}]CF[aux1[[#]]&/@p\[Mu][[1;;-1,1,2]],{1,2,3,4,5,6,7},{3,2,4,5,6,7,8}];
 
-fuctS2Q7[i_]:=-ListContract[o\[Mu][\[Alpha][1],\[Alpha][2]][[i]].Cj[oY[\[Alpha][2],\[Alpha][3],\[Alpha][4]]].oH[\[Alpha][4],\[Alpha][5],\[Alpha][6]].Cj[oY[\[Alpha][6],\[Alpha][5],\[Alpha][7]]].o\[Mu][\[Alpha][7],\[Alpha][3]],{{1,4},{2,3}}]
-fuctS2Q8[i_]:=-ListContract[o\[Mu][\[Alpha][1],\[Alpha][2]][[i]].Cj[oY[\[Alpha][2],\[Alpha][3],\[Alpha][4]]].oY[\[Alpha][4],\[Alpha][5],\[Alpha][6]].Cj[oY[\[Alpha][6],\[Alpha][5],\[Alpha][7]]].oB[\[Alpha][7],\[Alpha][3]],{{1,4},{2,3}}]
-fuctS2Q9[i_]:=Tr[Sum[4g[l]^2DMatrixCR[l].(2oY[\[Alpha][1],\[Alpha][2],\[Alpha][3]][[i]].Cj[o\[Mu][\[Alpha][3],\[Alpha][2]]]M[l] Cj[M[l]]-oY[\[Alpha][1],\[Alpha][2],\[Alpha][3]][[i]].Cj[oB[\[Alpha][3],\[Alpha][2]]]M[l]-oH[\[Alpha][1],\[Alpha][2],\[Alpha][3]][[i]].Cj[o\[Mu][\[Alpha][3],\[Alpha][2]]]Cj[M[l]] +oH[\[Alpha][1],\[Alpha][2],\[Alpha][3]][[i]].Cj[oB[\[Alpha][3],\[Alpha][2]]]+oY[\[Alpha][1],\[Alpha][2],\[Alpha][3]][[i]].oM2T[\[Alpha][3],\[Alpha][4]].Cj[o\[Mu][\[Alpha][4],\[Alpha][2]]]+Cj[o\[Mu][\[Alpha][2],\[Alpha][3]]].oY[\[Alpha][1],\[Alpha][3],\[Alpha][4]][[i]].oM2T[\[Alpha][4],\[Alpha][2]]), {l, totalS}]];
+aux1=g4MCiSR+2g4MCiCi-3g4MCGCi;
+list\[Mu]plain=-8p\[Mu] Table[Plus@@aux1[[p\[Mu][[i,1]]]],{i,Length[p\[Mu]]}];
 
-fuctS2Q10[i_]:=-ListContract[oY[\[Alpha][1],\[Alpha][2],\[Alpha][3]][[i]].Cj[oY[\[Alpha][3],\[Alpha][4],\[Alpha][5]]].oH[\[Alpha][5],\[Alpha][4],\[Alpha][6]].Cj[oB[\[Alpha][6],\[Alpha][2]]],{{1,4},{2,3}}]
-fuctS2Q11[i_]:=-ListContract[oH[\[Alpha][1],\[Alpha][2],\[Alpha][3]][[i]].Cj[oY[\[Alpha][3],\[Alpha][4],\[Alpha][5]]].oY[\[Alpha][5],\[Alpha][4],\[Alpha][6]].Cj[oB[\[Alpha][6],\[Alpha][2]]],{{1,4},{2,3}}]
-fuctS2Q12[i_]:=-ListContract[oY[\[Alpha][1],\[Alpha][2],\[Alpha][3]][[i]].Cj[oH[\[Alpha][3],\[Alpha][4],\[Alpha][5]]].oH[\[Alpha][5],\[Alpha][4],\[Alpha][6]].Cj[o\[Mu][\[Alpha][6],\[Alpha][2]]],{{1,4},{2,3}}]
-fuctS2Q13[i_]:=-ListContract[oH[\[Alpha][1],\[Alpha][2],\[Alpha][3]][[i]].Cj[oH[\[Alpha][3],\[Alpha][4],\[Alpha][5]]].oY[\[Alpha][5],\[Alpha][4],\[Alpha][6]].Cj[o\[Mu][\[Alpha][6],\[Alpha][2]]],{{1,4},{2,3}}]
+b2loop=listB+list\[Mu]+listBplain+list\[Mu]plain;
 
-fuctS2Q14[i_]:=-ListContract[oY[\[Alpha][1],\[Alpha][2],\[Alpha][3]][[i]].oM2T[\[Alpha][3],\[Alpha][4]].Cj[o\[Mu][\[Alpha][4],\[Alpha][5]]].oY[\[Alpha][5],\[Alpha][6],\[Alpha][7]].Cj[oY[\[Alpha][7],\[Alpha][6],\[Alpha][2]]],{{1,4},{2,3}}]
-fuctS2Q15[i_]:=-ListContract[oY[\[Alpha][1],\[Alpha][2],\[Alpha][3]][[i]].Cj[oY[\[Alpha][3],\[Alpha][4],\[Alpha][5]]].oY[\[Alpha][5],\[Alpha][4],\[Alpha][6]].oM2T[\[Alpha][6],\[Alpha][7]].Cj[o\[Mu][\[Alpha][7],\[Alpha][2]]],{{1,4},{2,3}}]
-fuctS2Q16[i_]:=-ListContract[oY[\[Alpha][1],\[Alpha][2],\[Alpha][3]][[i]].oM2T[\[Alpha][3],\[Alpha][4]].Cj[oY[\[Alpha][4],\[Alpha][5],\[Alpha][6]]].oY[\[Alpha][6],\[Alpha][5],\[Alpha][7]].Cj[o\[Mu][\[Alpha][7],\[Alpha][2]]],{{1,4},{2,3}}]
+(*If the model contains an invariant representation under the symmetries ... there are 4 terms that must be added to the RGEs*)
 
-fuctS2Q17[i_]:=-2ListContract[oY[\[Alpha][1],\[Alpha][2],\[Alpha][3]][[i]].Cj[oY[\[Alpha][3],\[Alpha][4],\[Alpha][5]]].oM2[\[Alpha][5],\[Alpha][6]].oY[\[Alpha][6],\[Alpha][4],\[Alpha][7]].Cj[o\[Mu][\[Alpha][7],\[Alpha][2]]],{{1,4},{2,3}}]
+If[!(FindInvariantRep[model]==0), 
 
+(* ---------- singletTerm1 ---------- *)
+singletTerm1=YToB[model,Conjugate[YYc[y,b]],b];
+singletTerm1=YBConnection[model]CF[singletTerm1,{1,3,4},{3,4,5}]; (* flavour 2 does not exist in singletTerm1 *)
 
+(* ---------- singletTerm2 and singletTerm3 ---------- *)
+singletTerm3=YToB[model,-YcYYcY[y,h,y,\[Mu]],\[Mu]];
+singletTerm2 =singletTerm3 /.{\[Mu]->b,h->y};
 
+ (* flavour 2 does not exist in singletTerm2 and singletTerm3 *)
+singletTerm2=YBConnection[model]CF[singletTerm2,{1,3,4,5,6,7},{3,4,5,6,7,8}];
+singletTerm3=YBConnection[model]CF[singletTerm3,{1,3,4,5,6,7},{3,4,5,6,7,8}];
 
+(* ---------- singletTerm4 ---------- *)
+singletTerm4=4(YToB[model,Conjugate[YGcYc[y,b]],b]-YToB[model,Conjugate[YMccYc[y,\[Mu]]],\[Mu]]);
 
-\[Beta]S1[i_]:=CanonicalForm[fuctS1Q1[i]+fuctS1Q2[i]+fuctS1Q3[i]+fuctS1Q4[i]+fuctS1Q5[i]]/.{\[Alpha][1]->flavVariables[[1]]}
-\[Beta]S2[i_]:=CanonicalForm[fuctS2Q1[i] + fuctS2Q2[i] +fuctS2Q3[i] +fuctS2Q4[i] + fuctS2Q5[i] +fuctS2Q6[i] + fuctS2Q7[i] +fuctS2Q8[i] +fuctS2Q9[i] +fuctS2Q10[i] +fuctS2Q11[i] +fuctS2Q12[i] +fuctS2Q13[i] +fuctS2Q14[i] +fuctS2Q15[i]+fuctS2Q16[i] +fuctS2Q17[i]  ]/.{\[Alpha][1]->flavVariables[[1]]} 
+ (* flavour 2 does not exist in singletTerm4 *)
+singletTerm4=YBConnection[model]CF[singletTerm4,{1,3,4,5,6,7},{3,4,5,6,7,8}];
 
+(* ---------- add the terms to the beta functions ---------- *)
+b1loop+=singletTerm1;
+b2loop+=singletTerm2+singletTerm3+singletTerm4;
+
+,Null];
+
+Return[{b1loop,b2loop}];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+SSector[model_]:=Module[{singletIndex,listSplain,s1loop,s2loop,aux1,aux2,aux3,term1L1,term1L2,term1L3,term1L4,term1L5,term1L6,term2L1,term2L2,term2L3,term2L4,term2L5,term2L6,term2L7,term2L8,term2L9,term2L10,term2L11,term2L12,term2L13,term2L14,term2L15,term2L16,term2L17,term2L18,term2L19,term2L20,result},
+
+singletIndex=FindInvariantRep[model];
+
+If[!(singletIndex==0), 
+term1L1=1/2 YYc[y,y][[singletIndex]]CF[pS,{1},{2}];
+term1L2=YYc[h,y][[singletIndex]]CF[pL,{1},{2}];
+term1L3={\[Mu][{singletIndex,singletIndex},{f[1],f[2]}]}CF[YToB[model,Conjugate[YYc[y,b]],b],{1},{2}];
+term1L4={2YToB[model,YDY[y,Conjugate[pM2],\[Mu]],\[Mu]]};
+term1L5={YToB[model,YYc[h,b],b]};
+
+s1loop=term1L1+term1L2+term1L3+term1L4+term1L5;
+
+term2L1=2YGYc[y,y][[singletIndex]]CF[pS,{1},{2}];
+term2L2=-1/2Conjugate[YcYYcY[y,y,y,y]][[singletIndex]]CF[pS,{1},{2}];
+term2L3=(-4YMYc[y,y]+4YGYc[h,y])[[singletIndex]]CF[pL,{1},{2}];
+term2L4=-Conjugate[(YcYYcY[y,y,h,y]+YcYYcY[h,y,y,y])][[singletIndex]]CF[pL,{1},{2}];
+term2L5=-{4\[Mu][{singletIndex,singletIndex},{f[1],f[2]}]}CF[Conjugate[(YToB[model,YMccYc[y,\[Mu]],\[Mu]]-YToB[model,YGcYc[y,b],b])],{1},{2}];
+
+term2L6=-{\[Mu][{singletIndex,singletIndex},{f[1],f[2]}]}(CF[YToB[model,YcYYcY[y,h,y,\[Mu]],\[Mu]],{1},{2}]+CF[YToB[model,YcYYcY[y,y,y,b],b],{1},{2}]);
+
+(* Missing "{}" but it is irrelevant *)
+term2L7=8YToB[model,YMMcYc[y,\[Mu]],\[Mu]];
+term2L8=-4YToB[model,YMYc[y,b],b];
+term2L9=-4YToB[model,YMcYc[h,\[Mu]],\[Mu]];
+term2L10=4YToB[model,YGYc[h,b],b];
+term2L11=4YToB[model,YDnoFDY[y,g2Ci,Conjugate[pM2],\[Mu]],\[Mu]];
+term2L12=4YToB[model,YDY[y,g2Ci Conjugate[pM2],\[Mu]],\[Mu]];
+
+term2L13=-YToB[model,Conjugate[YcYYcY[y,y,h,b]],b];
+term2L14=-YToB[model,Conjugate[YcYYcY[h,y,y,b]],b];
+term2L15=-Conjugate[YToB[model,YcYYcY[h,h,y,\[Mu]],\[Mu]]];
+
+term2L16=-YToB[model,YDDY[y,Conjugate[pM2],CF[Conjugate[YYc[y,y]],{3,4,5,6},{7,8,9,10}],\[Mu]],\[Mu]];
+
+aux1=CF[pM2,{1,2},{1,6}]CF[Conjugate[YYc[y,y]],{1,2,3,4},{6,2,7,8}];
+term2L17=-YToB[model,YDY[y,Conjugate[aux1],\[Mu]],\[Mu]];
+
+aux1=CF[YYc[y,y],{1,2,3,4},{1,6,7,8}]CF[pM2,{1,2},{6,2}];
+term2L18=-YToB[model,YDY[y,aux1,\[Mu]],\[Mu]];
+
+aux1=CF[YDY[y,Conjugate[pM2],y],{3,4,5},{6,7,8}];
+term2L19=-2YToB[model,YDY[y,Conjugate[aux1],\[Mu]],\[Mu]];
+
+term2L20=-YToB[model,Conjugate[YcYYcY[y,h,h,\[Mu]]],\[Mu]];
+
+s2loop=term2L1+term2L2+term2L3+term2L4+term2L5+term2L6+{term2L7+term2L8+term2L9+term2L10+term2L11+term2L12+term2L13+term2L14+term2L15+term2L16+term2L17+term2L18+term2L19+term2L20};
+
+Return[{s1loop,s2loop}];
+,
+Return[{{},{}}];
+];
+
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+M2Sector[]:=Module[{aux,listM2plain,m21loop,m22loop,aux1,aux2,aux3,term1L1,term1L2,term1L3,term1L4,term1L5,term1L6,term2L1,term2L2,term2L3,term2L4,term2L5,term2L6,term2L7,term2L8,term2L9,term2L10,term2L11,term2L12,term2L13,term2L14,term2L15,term2L16,term2L17,term2L18,term2L19,term2L20,term2L21,result},
+
+term1L1=1/2 CF[pM2,{1,2},{1,3}]CF[YYc[y,y],{1,2,3,4},{3,2,4,5}] ;
+term1L2=1/2CF[YYc[y,y],{1,2,3,4},{1,3,4,5}]CF[pM2,{1,2},{3,2}] ;
+term1L3=2YDY[y,Conjugate[pM2],y];
+term1L4=YYc[h,h];
+term1L5=-8 g2MMcCi KroneckerDelta[f[1],f[2]];
+term1L6=2 CF[g2tTrtm2,{1},{3}] KroneckerDelta[f[1],f[2]];
+
+m21loop=term1L1+term1L2+term1L3+term1L4+term1L5+term1L6;
+
+
+term2L1=-1/2 CF[Conjugate[YcYYcY[y,y,y,y]],{1,2,3,4,5,6,7},{1,3,4,5,6,7,8}] CF[pM2,{1,2},{3,2}];
+term2L2=-1/2 CF[pM2,{1,2},{1,3}]CF[Conjugate[YcYYcY[y,y,y,y]],{1,2,3,4,5,6,7},{3,2,4,5,6,7,8}] ;
+
+aux=CF[pM2,{1,2},{1,6}]CF[YYc[y,y],{1,2,3,4},{6,2,7,8}];
+term2L3=-YDY[y,Conjugate[aux],y];
+
+aux=CF[YYc[y,y],{1,2,3,4},{1,6,7,8}]CF[pM2,{1,2},{6,2}];
+term2L4=-YDY[y,Conjugate[aux],y];
+
+term2L5=-YDDY[y,Conjugate[pM2],CF[Conjugate[YYc[y,y]],{3,4,5,6},{7,8,9,10}],y];
+
+aux=CF[YDY[y,Conjugate[pM2],y],{3,4,5},{6,7,8}];
+term2L6=-2YDY[y,Conjugate[aux],y];
+
+term2L7=-Conjugate[YcYYcY[y,h,h,y]];
+term2L8=-Conjugate[YcYYcY[h,y,y,h]];
+term2L9=-Conjugate[YcYYcY[y,y,h,h]];
+term2L10=-Conjugate[YcYYcY[h,h,y,y]];
+term2L11=CF[YYc[y,y],{1,2,3,4},{1,3,4,5}] CF[pM2,{1,2},{3,2}](-g2Ci)+2CF[YGYc[y,y],{1,2,3,4},{1,3,4,5}] CF[pM2,{1,2},{3,2}];
+term2L12=CF[pM2,{1,2},{1,3}]CF[YYc[y,y],{1,2,3,4},{3,2,4,5}](-g2Ci)+2CF[pM2,{1,2},{1,3}]CF[YGYc[y,y],{1,2,3,4},{3,2,4,5}];
+term2L13=4YDY[y,Conjugate[pM2],y](-g2Ci)+4YDnoFDY[y,g2Ci,Conjugate[pM2],y]+4YDY[y,g2Ci Conjugate[pM2],y];
+term2L14=2YYc[h,h](-g2Ci)+4YGYc[h,h];
+term2L15=2YYc[y,h]g2MCi-4YMYc[y,h];
+term2L16=2YYc[h,y]g2McCi-4YMcYc[h,y];
+term2L17=-4YYc[y,y]g2MMcCi+8 YMMcYc[y,y];
+term2L18=-2CF[g2ttm2YYc,{1,2},{6,7}] KroneckerDelta[f[1],f[2]];
+term2L19=8CF[g4tTrtCim2,{1},{3}] KroneckerDelta[f[1],f[2]];
+
+term2L20=KroneckerDelta[f[1],f[2]](24 g4MMcCiSR+48g4MMcCiCi-72g4MMcCGCi);
+term2L21=8KroneckerDelta[f[1],f[2]]CF[(g4CiTrSrm2-g4MMcCGCi),{1},{3}];
+
+m22loop=term2L1+term2L2+term2L3+term2L4+term2L5+term2L6+term2L7+term2L8+term2L9+term2L10+term2L11+term2L12+term2L13+term2L14+term2L15+term2L16+term2L17+term2L18+term2L19+term2L20+term2L21;
+
+Return[{m21loop,m22loop}];
+]
 
 End[];
 EndPackage[];

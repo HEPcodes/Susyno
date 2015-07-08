@@ -1,0 +1,1649 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     52055,       1639]
+NotebookOptionsPosition[     45807,       1434]
+NotebookOutlinePosition[     47544,       1481]
+CellTagsIndexPosition[     47458,       1476]
+WindowTitle->RepMinimalMatrices - Wolfram Mathematica
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[" ", "SymbolColorBar",
+ CellMargins->{{Inherited, Inherited}, {-5, 0}}],
+
+Cell[TextData[{
+ ButtonBox["Mathematica",
+  BaseStyle->{"Link", "LinkTrail"},
+  ButtonData->"paclet:Susyno/guide/Susyno"],
+ StyleBox[" > ", "LinkTrailSeparator"]
+}], "LinkTrail"],
+
+Cell[BoxData[GridBox[{
+   {Cell["SUSYNO PACLET SYMBOL", "PacletNameCell"], Cell[TextData[{
+     Cell[BoxData[
+      ActionMenuBox[
+       FrameBox["\<\"Tutorials \[RightGuillemet]\"\>",
+        StripOnInput->False], {"\<\"Susyno Tutorial\"\>":>
+       Documentation`HelpLookup["paclet:Susyno/tutorial/SusynoTutorial"]},
+       Appearance->None,
+       MenuAppearance->Automatic]],
+      LineSpacing->{1.4, 0}],
+     "\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+     Cell[BoxData[
+      ActionMenuBox[
+       FrameBox["\<\"URL \[RightGuillemet]\"\>",
+        StripOnInput->False], {"\<\"Susyno/ref/RepMinimalMatrices\"\>":>
+       None, "\<\"Copy Mathematica url\"\>":>
+       Module[{DocumentationSearch`Private`nb$}, 
+        DocumentationSearch`Private`nb$ = NotebookPut[
+           Notebook[{
+             Cell["Susyno/ref/RepMinimalMatrices"]}, Visible -> False]]; 
+        SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+        FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+        NotebookClose[DocumentationSearch`Private`nb$]; Null], 
+       Delimiter, "\<\"Copy web url\"\>":>
+       Module[{DocumentationSearch`Private`nb$}, 
+        DocumentationSearch`Private`nb$ = NotebookPut[
+           Notebook[{
+             Cell[
+              BoxData[
+               MakeBoxes[
+                Hyperlink[
+                "http://reference.wolfram.com/mathematica/Susyno/ref/\
+RepMinimalMatrices.html"], StandardForm]], "Input", TextClipboardType -> 
+              "PlainText"]}, Visible -> False]]; 
+        SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+        FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+        NotebookClose[DocumentationSearch`Private`nb$]; 
+        Null], "\<\"Go to web url\"\>":>FrontEndExecute[{
+         NotebookLocate[{
+           URL[
+            StringJoin[
+            "http://reference.wolfram.com/mathematica/", 
+             "Susyno/ref/RepMinimalMatrices", ".html"]], None}]}]},
+       Appearance->None,
+       MenuAppearance->Automatic]],
+      LineSpacing->{1.4, 0}]
+    }], "AnchorBar"]}
+  }]], "AnchorBarGrid",
+ GridBoxOptions->{GridBoxItemSize->{"Columns" -> {
+     Scaled[0.65], {
+      Scaled[0.34]}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+   "RowsIndexed" -> {}}},
+ CellID->1],
+
+Cell[CellGroupData[{
+
+Cell["RepMinimalMatrices", "ObjectName",
+ CellID->1224892054],
+
+Cell[BoxData[GridBox[{
+   {"", Cell[TextData[{
+     Cell[BoxData[
+      RowBox[{"RepMinimalMatrices", "[", 
+       RowBox[{"group", ",", "rep"}], "]"}]], "InlineFormula"],
+     " \[LineSeparator]Returns the matrices of a representation ",
+     Cell[BoxData["rep"], "InlineFormula"],
+     " of ",
+     Cell[BoxData["group"], "InlineFormula"],
+     " "
+    }]]},
+   {"", Cell[TextData[{
+     Cell[BoxData[
+      RowBox[{"RepMinimalMatrices", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"group1", ",", "group2", ",", "..."}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"rep_group1", ",", "rep_group2", ",", "..."}], "}"}]}], 
+       "]"}]], "InlineFormula"],
+     "\[LineSeparator]Returns the matrices of representation ",
+     Cell[BoxData["rep_group1"], "InlineFormula"],
+     " of ",
+     Cell[BoxData["group1"], "InlineFormula"],
+     ",  ",
+     Cell[BoxData["rep_group2"], "InlineFormula"],
+     " of ",
+     Cell[BoxData["group2"], "InlineFormula"],
+     ", ..."
+    }]]}
+  }]], "Usage",
+ GridBoxOptions->{
+ GridBoxBackground->{
+  "Columns" -> {{None}}, "ColumnsIndexed" -> {}, "Rows" -> {None, {None}}, 
+   "RowsIndexed" -> {}}},
+ CellID->982511436]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[Cell[BoxData[
+ ButtonBox[
+  FrameBox[
+   StyleBox[
+    RowBox[{"MORE", " ", "INFORMATION"}], "NotesFrameText"],
+   StripOnInput->False],
+  Appearance->{Automatic, None},
+  BaseStyle->None,
+  ButtonFunction:>(FrontEndExecute[{
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], All, ButtonCell], 
+     FrontEndToken["OpenCloseGroup"], 
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], After, CellContents]}]& ),
+  Evaluator->None,
+  Method->"Preemptive"]]]], "NotesSection",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->370334604],
+
+Cell[TextData[{
+ "The ",
+ Cell[BoxData["group"], "InlineFormula"],
+ "s should be the ",
+ ButtonBox["Cartan matrices",
+  BaseStyle->"Link",
+  ButtonData->"paclet:Susyno/ref/CartanMatrix"],
+ " of the intended groups."
+}], "Notes",
+ CellID->1067943069],
+
+Cell[TextData[{
+ "Each representation ",
+ Cell[BoxData["rep"], "InlineFormula"],
+ " should be a list of non-negative integers (Dynkin coefficients)."
+}], "Notes",
+ CellID->41030773],
+
+Cell[TextData[{
+ "In the output the results are in ",
+ Cell[BoxData[
+  ButtonBox["SparseArray",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/SparseArray"]], "InlineFormula"],
+ " form. Use the ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " built-in commands ",
+ Cell[BoxData[
+  ButtonBox["Normal",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/Normal"]], "InlineFormula"],
+ " or ",
+ Cell[BoxData[
+  ButtonBox["MatrixForm",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/MatrixForm"]], "InlineFormula"],
+ " to convert the results if needed."
+}], "Notes",
+ CellID->812326107],
+
+Cell[TextData[{
+ "The output of this function is a list of sets of 3 matrices: {{",
+ Cell[BoxData[
+  SubscriptBox["E", "1"]], "InlineFormula"],
+ ", ",
+ Cell[BoxData[
+  SubscriptBox["F", "1"]], "InlineFormula"],
+ ", ",
+ Cell[BoxData[
+  SubscriptBox["H", "1"]], "InlineFormula"],
+ "},{",
+ Cell[BoxData[
+  SubscriptBox["E", "2"]], "InlineFormula"],
+ ", ",
+ Cell[BoxData[
+  SubscriptBox["F", "2"]], "InlineFormula"],
+ ", ",
+ Cell[BoxData[
+  SubscriptBox["H", "2"]], "InlineFormula"],
+ "},\[CenterEllipsis],{",
+ Cell[BoxData[
+  SubscriptBox["E", "n"]], "InlineFormula"],
+ ", ",
+ Cell[BoxData[
+  SubscriptBox["F", "n"]], "InlineFormula"],
+ ", ",
+ Cell[BoxData[
+  SubscriptBox["H", "n"]], "InlineFormula"],
+ "}}, where n is the group's rank. ",
+ Cell[BoxData[
+  SubscriptBox["H", "i"]], "InlineFormula"],
+ " are diagonal matrices, while ",
+ Cell[BoxData[
+  SubscriptBox["E", "i"]], "InlineFormula"],
+ " and ",
+ Cell[BoxData[
+  SubscriptBox["F", "i"]], "InlineFormula"],
+ " are raising and lowering operators. These matrices obey the \
+Chevalley-Serre relations: [",
+ Cell[BoxData[
+  SubscriptBox["E", "i"]], "InlineFormula"],
+ ", ",
+ Cell[BoxData[
+  SubscriptBox["E", "j"]], "InlineFormula"],
+ "]=",
+ Cell[BoxData[
+  SubscriptBox["\[Delta]", "ij"]], "InlineFormula"],
+ " ",
+ Cell[BoxData[
+  SubscriptBox["H", "i"]], "InlineFormula"],
+ ", [",
+ Cell[BoxData[
+  SubscriptBox["H", "i"]], "InlineFormula"],
+ ",",
+ Cell[BoxData[
+  SubscriptBox["E", "j"]], "InlineFormula"],
+ "]= ",
+ Cell[BoxData[
+  SubscriptBox["A", "ji"]], "InlineFormula"],
+ Cell[BoxData[
+  SubscriptBox["E", "j"]], "InlineFormula"],
+ ", [",
+ Cell[BoxData[
+  SubscriptBox["H", "i"]], "InlineFormula"],
+ ",",
+ Cell[BoxData[
+  SubscriptBox["F", "j"]], "InlineFormula"],
+ "]= -",
+ Cell[BoxData[
+  SubscriptBox["A", "ji"]], "InlineFormula"],
+ Cell[BoxData[
+  SubscriptBox["F", "j"]], "InlineFormula"],
+ " and [",
+ Cell[BoxData[
+  SubscriptBox["H", "i"]], "InlineFormula"],
+ ",",
+ Cell[BoxData[
+  SubscriptBox["H", "j"]], "InlineFormula"],
+ "]=0, where A is the Cartan matrix of the group/algebra."
+}], "Notes",
+ CellID->29855657],
+
+Cell[TextData[{
+ "With the exception of SU(2) [n=1], these 3n matrices ",
+ Cell[BoxData[
+  SubscriptBox["E", "i"]], "InlineFormula"],
+ ", ",
+ Cell[BoxData[
+  SubscriptBox["F", "i"]], "InlineFormula"],
+ ", ",
+ Cell[BoxData[
+  SubscriptBox["H", "i"]], "InlineFormula"],
+ " do not generate the Lie algebra, which is bigger, as some raising and \
+lowering operators are missing. However, these remaining operators can be \
+obtained through simple commutations: [",
+ Cell[BoxData[
+  SubscriptBox["E", "i"]], "InlineFormula"],
+ ",",
+ Cell[BoxData[
+  SubscriptBox["E", "j"]], "InlineFormula"],
+ "], [",
+ Cell[BoxData[
+  SubscriptBox["E", "i"]], "InlineFormula"],
+ ",[",
+ Cell[BoxData[
+  SubscriptBox["E", "j"]], "InlineFormula"],
+ ",",
+ Cell[BoxData[
+  SubscriptBox["E", "k"]], "InlineFormula"],
+ "]],\[CenterEllipsis], [",
+ Cell[BoxData[
+  SubscriptBox["F", "i"]], "InlineFormula"],
+ ",",
+ Cell[BoxData[
+  SubscriptBox["F", "j"]], "InlineFormula"],
+ "], [",
+ Cell[BoxData[
+  SubscriptBox["F", "i"]], "InlineFormula"],
+ ",[",
+ Cell[BoxData[
+  SubscriptBox["F", "j"]], "InlineFormula"],
+ ",",
+ Cell[BoxData[
+  SubscriptBox["F", "k"]], "InlineFormula"],
+ "]]."
+}], "Notes",
+ CellID->220613822],
+
+Cell["\<\
+This method clearly must assume a particular basis for each representation so \
+the results are basis dependent.\
+\>", "Notes",
+ CellID->18412127],
+
+Cell[TextData[{
+ "Also, unlike ",
+ Cell[BoxData[
+  ButtonBox["RepMatrices",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/RepMatrices"]], "InlineFormula"],
+ ", the matrices given by this function are not Hermitian and therefore they \
+do not conform with the usual requirements of model building in particle \
+physics. However, for some applications, they might be all that is needed."
+}], "Notes",
+ CellID->28371261]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["EXAMPLES",
+ BaseStyle->None,
+ Appearance->{Automatic, None},
+ Evaluator->None,
+ Method->"Preemptive",
+ ButtonFunction:>(FrontEndExecute[{
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], All, ButtonCell], 
+    FrontEndToken["OpenCloseGroup"], 
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], After, 
+     CellContents]}]& )]], "PrimaryExamplesSection",
+ CellTags->"PrimaryExamplesSection",
+ CellID->634604968],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Basic Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(1)", "ExampleCount"]
+}], "ExampleSection",
+ CellID->415154],
+
+Cell["SU(2)'s doublet representation [={1}] matrices:", "ExampleText",
+ CellID->513681956],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"matrices", "=", 
+  RowBox[{"RepMinimalMatrices", "[", 
+   RowBox[{"SU2", ",", 
+    RowBox[{"{", "1", "}"}]}], "]"}]}]], "Input",
+ CellLabel->"In[1]:=",
+ CellID->196926373],
+
+Cell[BoxData[
+ GraphicsBox[
+  TagBox[RasterBox[CompressedData["
+1:eJztmVtOwzAQRS1YAL/8siWW0A2w/6/wkIhM7HnaKW57roTUjGfuTOzTpBJv
+l4/3y3Mp5eXr7/WplO/PG0IIIYQQQgghhBBCCCGE0AOr+++SQ7D8SEo+W3v3
+dXpNH6m74dEW3SrpfBPzg0EuLdS39QeDbvd1euWOSTcc9x/EwPNeCCXvl9c8
+wYOuSc70zKhVfZmbxwlPYEQwGM6MWoGBOcMKjXLH5G/6jxjMDXZfVfsPEvPV
+KSWXSkr5PoDpaTZqL7sDtBvS1XkPkPEupz5A6ggYgAEYpPOjJlfGYHpQ4aHO
+l45AgsFf3k7Veo43ai+VJX+hKal2CjaST8IcDMxMMHhMDHSfkNbB4IzgYUmH
+pMWsa9WlUSr3HLHeyKRIdzB7ddM8mvUFD1lNQR0MwGADgzvFwBlMDKyTo+AU
+9axXQzQqEZPGNqLAoMRDh342NtLSeQ8QMNBL/D5g0K4uiIG+4TeNQWJjpWC9
+FbPIMctNn0FyNvfvCn+mgpnzu5Ob2VNlNvX4gwEYgMEhU/l8BxhMDJbfl3W7
+S+2NlL/qRpzl9aX0WfKURlW2VwkelqTuZqEzQRrY7BKqyt2+srf6MOaRSeUb
+GPT2RzEJVeVuX9lbfRjzyKTyDQx6+6OYhKquFkzkLK70vUe7RMkZsfL7t8GE
+Pxj4u4DBygKDkWA0eV9N38UKkt7U28DpKL1mpc3FpnvvUWcw8PealQYGcwUG
+fgxu95QRQggtqE/QGHLl
+    "], {{0, 15}, {536, 0}}, {0, 255},
+    ColorFunction->RGBColor],
+   BoxForm`ImageTag["Byte", ColorSpace -> "RGB", Interleaving -> True],
+   Selectable->False],
+  BaseStyle->"ImageGraphics",
+  ImageSize->Automatic,
+  ImageSizeRaw->{536, 15},
+  PlotRange->{{0, 536}, {0, 15}}]], "Output",
+ ImageSize->{540, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[1]=",
+ CellID->104214755]
+}, Open  ]],
+
+Cell["\<\
+Use Normal or MatrixForm, matrix by matrix, to convert the results:\
+\>", "ExampleText",
+ CellID->349147845],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"matrices", "//", "Normal"}], "\[IndentingNewLine]", 
+ RowBox[{"Map", "[", 
+  RowBox[{"MatrixForm", " ", ",", "matrices", ",", 
+   RowBox[{"{", "2", "}"}]}], "]"}]}], "Input",
+ CellLabel->"In[2]:=",
+ CellID->4735082],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"0", ",", "1"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "0"}], "}"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"0", ",", "0"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "0"}], "}"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"1", ",", "0"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", 
+        RowBox[{"-", "1"}]}], "}"}]}], "}"}]}], "}"}], "}"}]], "Output",
+ ImageSize->{371, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[2]=",
+ CellID->9615607],
+
+Cell[BoxData[
+ GraphicsBox[
+  TagBox[RasterBox[CompressedData["
+1:eJztmFFOw0AMRCP1GvxwpR6hF+B63C6UD6QIuvZ41s5aZEaqhDbOeLJ+DQvv
+j4/747Zt29vz8/n8fP+8S1KlShmbN79yvD5NRx23H4EmRuXMQyXGM6yK4nGG
+4L0no/Ky3XERnwVxibMNxXOLKzjhbOnnovWSydGinUGcgObztpOc4EM3WoS2
+KJcT3AS8K5cTxIS4q5qTUc1pi7s4wSROxAkicSJOEImTPfgH2lGjGtenKB5S
+nI6xuyGGZ+i5Fi5WqOILm6jm8UIBxEmdmscLBRAndWoeLxQAXKTPq6VqPojm
+8aIBXAaIw2o8HaPmg2gejwiQi8raQbgHe8WzRb9PQmVGo3Rx3RWPCHDyObb6
+HxSIuRsPybYw3iRI3AvtTE7cX2TRYvClF6rBGXZvyY0X2j2uhXH1n3GCaCEn
+Uedox8kWxlVxwnmKk6LFXZxgug4nSPE8JzN7FTp8umXnxIvu3lF4Nnqgf7uD
+i7atOAHN8Y6T/qNL+NATk4wIJ4orBmF8B5fHczuCzvYzpkw/Gqmz+ZXjtWoq
+SZL0S19/LOWU
+    "], {{0, 28}, {184, 0}}, {0, 255},
+    ColorFunction->RGBColor],
+   BoxForm`ImageTag["Byte", ColorSpace -> "RGB", Interleaving -> True],
+   Selectable->False],
+  BaseStyle->"ImageGraphics",
+  ImageSize->Automatic,
+  ImageSizeRaw->{184, 28},
+  PlotRange->{{0, 184}, {0, 28}}]], "Output",
+ ImageSize->{188, 28},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[2]=",
+ CellID->234731421]
+}, Open  ]],
+
+Cell["\<\
+These three matrices do generate the SU(2) algebra, and one can build the \
+Pauli matrices from complex linear combinations of them. Consider now the \
+fundamental representation of SU(3):\
+\>", "ExampleText",
+ CellID->692636],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+{{E1,F1,H1},{E2,F2,H2}} = RepMinimalMatrices[SU3, {1,0}];
+Map[MatrixForm , {{E1,F1,H1},{E2,F2,H2}}, {2}]\
+\>", "Input",
+ CellLabel->"In[3]:=",
+ CellID->101142205],
+
+Cell[BoxData[
+ GraphicsBox[
+  TagBox[RasterBox[CompressedData["
+1:eJztmz1yGzkQhbnlk2y6x/EJVL6AFSpTyJAhQ4UKFTJkyJDHYKiQIZe2S1Pj
+GaDnofHTmOb7qlzlgroBPHTrEfSM//3x8/uPb5vN5r/7n9M/m82vv9+KsvkC
+D64xcxEUWmoEF0G9nHqr7TXi+KsstVRaxZzxPvGTqTRzJkkr1gsuiK79dOlW
+GhE8VZZakOAiiQ24Xq+73W4yaGWqr6+vyCQx8rUUDK6hBdyYnFKwdTM14riv
+LLUgwbrEZl068PHxcblcJoNWphrcDE6+loLBNbSAG5NTCrZupkYc95WlFiRY
+l9isSweC1yErU71/8O33e2SeIPlaCgbX0AJuTE4p2LqZGnHcV5ZakGBdYrMu
+/cP5fD4cDvNxK1O9/S7T/RCQqSYU0VI2uLgWcGNyStnWVWvEeYTKUgsSrE5s
+0KUD2+02OG5oqvdKnU4nZKoJRbSUDS6uBdyYnFK2ddUacR6hstSCBKsTG3Tp
+gPBPuJsvFifZ/A0eH/zp5+en7q5eREvZ4OJaUo86mJu6mUoacR6hsmW3lxS8
+Li26xAZdOvD8/NxmoSR0T+uoxYraT1f7PA1PlfWkJUazdwCenp7aLJSETj61
+WFG7Xfs8DU+V9aQlRn6XBm/F88H2b3Ah6HZFLVZMdqv7Kiek93kanirrSUsM
+pEuF1g2OBwf7vMB7+jLiSUuMoEadr7JLTfCkJQbepZmDfV7gPX0Z8aQlRm1T
+7fM0PFXWk5YYNFVFFrVYQVPFoRYraKqKLGqxgqaKQy1W9GCqVm/N3SqUOOnR
+ySq05DwJupU+EENTrd2lQoBtZT11qbqfk1YxN9Vx8OKeiwfX+NzE64untNeS
+tD2ZggdiZar1uhQJM6ysvy5VdEvqKjRVeZIgNNUkaKq6zQzQVGmqnbQrTRWB
+pjqGplo72LxLOzdV3FFvj1FieS0hrEMtKzJVfInFeJpq7WDzLrUy1Vju4uTC
+io9QYnktIaxDLanbGyNMJU+ymCJoxH9ZuupSJIym6sNUY+lqX11RiYPOMGZF
+pqrWsvabqiy8ny5Fwgwr669Le76pJoXdVvWCx+LkQomFC5tie0nBZbWkbk+e
+odSBZD4CWAxo36XIEdlW1k2XpnajbpVbBw+qbJnLR46OWqwA2xURzi41wZOW
+GDTVyQjyYUQtVuCmujgVu9QET1pi0FQVWdRiheH/qDLEU2U9aYlBU1VkUYsV
+NFUcarGCpqrIohYraKo41GIFTVWRRS1W0FRxqMWK/HdUgg/v5oN9HounEnvS
+EmOiUfFujJze52l4qqwnLTGQLs1s3T+8vLzEfpT0DljZYF2JqUWmXqJOIw4r
+GwsGF12Flkw3W5yhdpcOxI5lvL1FscWDy5b4YbU0S7Qy1QevrCKsQy3qzpSn
+mtPMVFf0n+YWoRaBVZsqK7uYAoZ1qMWfqfIOUDvY/D7TIJE3VRzeVHOC8anm
+NDPV7XYbHDds18vl8v7+Lk8ShFoE6iWqNeKwsospYFiHWtqYaoMuHbgfy/V6
+nY8btuvxeDyfz/IkQahFoF6iWiMOKxuklKmu6zdujDDVhAZdOnA38MPhMB83
+bNf9fi/PEINaBOolqjXisLJBSpnqin7j8KkmNOjSMbvdLjge+zioGnwv09vb
+GzJJEGoRqJGYqRGHlQ1GpsbPf2SuJTVYniE4T7MuHTidTs0uxovctQe/UIBQ
+S2MyNeJ0dRqeKutJS4xmXTrmeDw2XjFG/k6opSUtd9jPaXiqrCctMfrfISGE
+EEIIIan8D2HmgYA=
+    "], {{0, 42}, {455, 0}}, {0, 255},
+    ColorFunction->RGBColor],
+   BoxForm`ImageTag["Byte", ColorSpace -> "RGB", Interleaving -> True],
+   Selectable->False],
+  BaseStyle->"ImageGraphics",
+  ImageSize->Automatic,
+  ImageSizeRaw->{455, 42},
+  PlotRange->{{0, 455}, {0, 42}}]], "Output",
+ ImageSize->{459, 42},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[3]=",
+ CellID->120904046]
+}, Open  ]],
+
+Cell["Note that the Cartan matrix of SU(3) is", "ExampleText",
+ CellID->681777881],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SU3", "//", "MatrixForm"}]], "Input",
+ CellLabel->"In[4]:=",
+ CellID->546007265],
+
+Cell[BoxData[
+ GraphicsBox[
+  TagBox[RasterBox[CompressedData["
+1:eJztl0sKgDAMRANew43X8BgeoRfw/iutCxei/cw0/UkHCkIy4SlNiIvZNzOJ
+yGzPas/1fPSspvj9MDGocksRyVONC70TdIF1Q4nJdClXqBZqsNpnNB5AvRPz
+0XKo8hRUk6Yt32WuKDS+tIZYTMHEe1tYgzafBm0+Ddp80qKlpy40sRW/LfeO
+kL0uLWpvhLaLm4Aa0f2BXvZQACgzsWUIS9Cu+F/GbY+QkVh9a6kpmN/rBLWW
+l1w=
+    "], {{0, 28}, {58, 0}}, {0, 255},
+    ColorFunction->RGBColor],
+   BoxForm`ImageTag["Byte", ColorSpace -> "RGB", Interleaving -> True],
+   Selectable->False],
+  BaseStyle->"ImageGraphics",
+  ImageSize->Automatic,
+  ImageSizeRaw->{58, 28},
+  PlotRange->{{0, 58}, {0, 28}}]], "Output",
+ ImageSize->{62, 28},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[4]//MatrixForm=",
+ CellID->236013566]
+}, Open  ]],
+
+Cell["\<\
+We can then check that the Chevalley-Serre relations are obeyed:\
+\>", "ExampleText",
+ CellID->300819889],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"E1", ".", "F1"}], "-", 
+   RowBox[{"F1", ".", "E1"}]}], "\[Equal]", "H1"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"E1", ".", "F2"}], "-", 
+   RowBox[{"F2", ".", "E1"}]}], "\[Equal]", 
+  RowBox[{"0", " ", "H1"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"E2", ".", "F2"}], "-", 
+    RowBox[{"F2", ".", "E2"}]}], "\[Equal]", "H2"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"H1", ".", "E1"}], "-", 
+   RowBox[{"E1", ".", "H1"}]}], "\[Equal]", 
+  RowBox[{
+   RowBox[{"SU3", "[", 
+    RowBox[{"[", 
+     RowBox[{"1", ",", "1"}], "]"}], "]"}], "E1"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"H1", ".", "E2"}], "-", 
+   RowBox[{"E2", ".", "H1"}]}], "\[Equal]", 
+  RowBox[{
+   RowBox[{"SU3", "[", 
+    RowBox[{"[", 
+     RowBox[{"2", ",", "1"}], "]"}], "]"}], "E2"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"H2", ".", "E1"}], "-", 
+   RowBox[{"E1", ".", "H2"}]}], "\[Equal]", 
+  RowBox[{
+   RowBox[{"SU3", "[", 
+    RowBox[{"[", 
+     RowBox[{"1", ",", "2"}], "]"}], "]"}], "E1"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"H2", ".", "E2"}], "-", 
+    RowBox[{"E2", ".", "H2"}]}], "\[Equal]", 
+   RowBox[{
+    RowBox[{"SU3", "[", 
+     RowBox[{"[", 
+      RowBox[{"2", ",", "2"}], "]"}], "]"}], "E2"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"H1", ".", "F1"}], "-", 
+   RowBox[{"F1", ".", "H1"}]}], "\[Equal]", 
+  RowBox[{
+   RowBox[{"-", 
+    RowBox[{"SU3", "[", 
+     RowBox[{"[", 
+      RowBox[{"1", ",", "1"}], "]"}], "]"}]}], 
+   "F1"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"H1", ".", "F2"}], "-", 
+   RowBox[{"F2", ".", "H1"}]}], "\[Equal]", 
+  RowBox[{
+   RowBox[{"-", 
+    RowBox[{"SU3", "[", 
+     RowBox[{"[", 
+      RowBox[{"2", ",", "1"}], "]"}], "]"}]}], 
+   "F2"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"H2", ".", "F1"}], "-", 
+   RowBox[{"F1", ".", "H2"}]}], "\[Equal]", 
+  RowBox[{
+   RowBox[{"-", 
+    RowBox[{"SU3", "[", 
+     RowBox[{"[", 
+      RowBox[{"1", ",", "2"}], "]"}], "]"}]}], 
+   "F1"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"H2", ".", "F2"}], "-", 
+    RowBox[{"F2", ".", "H2"}]}], "\[Equal]", 
+   RowBox[{
+    RowBox[{"-", 
+     RowBox[{"SU3", "[", 
+      RowBox[{"[", 
+       RowBox[{"2", ",", "2"}], "]"}], "]"}]}], "F2"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"H1", ".", "H2"}], "-", 
+   RowBox[{"H2", ".", "H1"}]}], "\[Equal]", 
+  RowBox[{"0", "H1"}]}], "\[IndentingNewLine]"}], "Input",
+ CellLabel->"In[5]:=",
+ CellID->271990732],
+
+Cell[BoxData["True"], "Output",
+ ImageSize->{32, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[5]=",
+ CellID->909443065],
+
+Cell[BoxData["True"], "Output",
+ ImageSize->{32, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[5]=",
+ CellID->128003131],
+
+Cell[BoxData["True"], "Output",
+ ImageSize->{32, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[5]=",
+ CellID->86554699],
+
+Cell[BoxData["True"], "Output",
+ ImageSize->{32, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[5]=",
+ CellID->370622069],
+
+Cell[BoxData["True"], "Output",
+ ImageSize->{32, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[5]=",
+ CellID->119795156],
+
+Cell[BoxData["True"], "Output",
+ ImageSize->{32, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[5]=",
+ CellID->89086490],
+
+Cell[BoxData["True"], "Output",
+ ImageSize->{32, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[5]=",
+ CellID->292384091],
+
+Cell[BoxData["True"], "Output",
+ ImageSize->{32, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[5]=",
+ CellID->1460144],
+
+Cell[BoxData["True"], "Output",
+ ImageSize->{32, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[5]=",
+ CellID->403373367],
+
+Cell[BoxData["True"], "Output",
+ ImageSize->{32, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[5]=",
+ CellID->150848433],
+
+Cell[BoxData["True"], "Output",
+ ImageSize->{32, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[5]=",
+ CellID->319576349],
+
+Cell[BoxData["True"], "Output",
+ ImageSize->{32, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[5]=",
+ CellID->8444093]
+}, Open  ]],
+
+Cell["The two missing SU(3) generators can be built as follows:", \
+"ExampleText",
+ CellID->115306888],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"E12", "=", 
+   RowBox[{
+    RowBox[{"E1", ".", "E2"}], "-", 
+    RowBox[{"E2", ".", "E1"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"F12", "=", 
+    RowBox[{
+     RowBox[{"F1", ".", "F2"}], "-", 
+     RowBox[{"F2", ".", "F1"}]}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+  "Print", "[", 
+   "\"\<The following matrices form a basis of the SU(3) algebra:\>\"", "]"}],
+   ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"MatrixForm", "/@", 
+   RowBox[{"{", 
+    RowBox[{
+    "E1", ",", "E2", ",", "E12", ",", "F1", ",", "F2", ",", "F12", ",", "H1", 
+     ",", "H2"}], "}"}]}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", "\"\<The Gell-Mann matrices:\>\"", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"MatrixForm", "/@", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"E1", "+", "F1"}], ",", 
+    RowBox[{"\[ImaginaryI]", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"-", "E1"}], "+", "F1"}], ")"}]}], ",", "H1", ",", 
+    RowBox[{"E12", "-", "F12"}], ",", 
+    RowBox[{"\[ImaginaryI]", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"-", "E12"}], "-", "F12"}], ")"}]}], ",", 
+    RowBox[{"E2", "+", "F2"}], ",", 
+    RowBox[{"\[ImaginaryI]", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"-", "E2"}], "+", "F2"}], ")"}]}], ",", 
+    RowBox[{
+     RowBox[{
+      FractionBox["1", 
+       SqrtBox["3"]], "H1"}], "+", 
+     RowBox[{
+      FractionBox["2", 
+       SqrtBox["3"]], "H2"}]}]}], "}"}]}]}], "Input",
+ CellLabel->"In[6]:=",
+ CellID->334918258],
+
+Cell[BoxData["\<\"The following matrices form a basis of the SU(3) algebra:\"\
+\>"], "Print",
+ CellLabel->"During evaluation of In[19]:=",
+ CellID->37845453],
+
+Cell[BoxData[
+ GraphicsBox[
+  TagBox[RasterBox[CompressedData["
+1:eJztnDFyGzsMhneSk7w2V3i3yAk8ucBz6c6lSpUqXbp0qVKlSh1DpUuV+zaT
+yY6sJbkgCJAE9v9mMuOxAZDfgmtoY9n//Prv56/vwzD8mP79+20Yfn88chn+
+Qg/WqCwCw0UjWARtl7Ld5YG+iAeLw169c0f2cnUuiAh1WtD2fM57CH5MTJGt
+XEjWinrBImhvr/LdRF93s32p7yKyuglH3jdnXrqnMymSyOZ2u+33+/JtiAys
+19dXSpEY5S6CwbZc0mG2XDz1pb4LfXWpxFaO/QwsW2eSl1joOPPx8XG9Xtnb
+KAlbpgQ3Q6fcRTDYlks6zJaLp77Ud6GvLpXYyrGfgWXrTPISCx1ngi8/Wg2s
+6aXC4XCg1AlS7iIYbMslHWbLxVNf6rvQV5dKbOXYz8CydSZ5iYWOf7hcLsfj
+sWQbJWHBlOniT2qUUg+IuMgGG3JZDTPk4qkv9V2yVhdJbOXYz8AaTZ1JdiLb
+cWa325Vvgx0WTJmu//l8ppR6QMRFNtiQy2qYIRdPfanvkrW6SGIrx64GlqEz
+yU5kO84kfhA2/GW1yPAVenzwq5+fn7wnRxEX2WBDLqtNNOSyGgyXkfxD8Kyt
+shMrO66e9gRKF8TWmeQlsh1nnp+fS9KV4L2fBC7awAUurYBjjC04zjw9PQlt
+RBKeFFy0gQtcWgHHGI4dlw9uUu+Nl4W3K7hoAxe4tAKOslmteNht4v8Sg5/v
+83HS06MxXOCijSeXGHCM4cAxOJuCn+zzcdLTozFc4KKNJ5cYcIzhwBEDqx/g
+AhdtPLnEgGMMB44YWP0AF7ho48klBhxjOHAUGVitfq9kVGictksiwJxL/b4Q
+65hw8dGXrNVFEjvvV7pIVnC3juyrkbWK0sC6D17diXiwbOP0XChhVlzq9yW9
+ViKsQxd/faGvXp7Yeb/SCB7g5o68lyVZ6RhYMxhY2sEYWNvpC3318sTO+5UG
+AysrHQNrBgNLOxgDazt9oa9enth5v9JgYGWlEwdWrNQWbkAMLKlgDKzt9IW+
+enli5/1Kg4GVlR5zJNbZwg2IgSUVjIG1nb7QVy9P7L9f9yRKpYuspmx5YBFL
+GboBg6flHkMDq0OX+n0hboy+vaxg9MXBwKrTrzTaA6umY8OBRXwlYOhtuqvF
+67sMXwnGWHGhBMu6UK5e1vaygtEXB29rr9avdAWpA9zQMdeFt8q4mV8cplwQ
+uGgDF7i0Ao4xrDuOTgfWahZctIELXFoBxxjWHUePA4sCXLSBC1xaAccYDhwx
+sPoBLnDRxpNLDDjGcOCIgdUPcIGLNp5cYsAxhgNHDKx+gAtctPHkEgOOMRw4
+xn5Ut3zPSZ+ynhoHF7ho48klBhxjmHbMfRf9y8tL7Euyv0aRFcxrHFy0g+Ei
+60JctL5LeidZwT76VSexhzPJ8FoWSQTwHGdisveLriqIB8s2Di5SwXARcWGH
+1XGh74cY5qNfFRKt3F/0UksKB5ahPzWzCly0g+FS/8/g1Heh74cY5qNfFRKt
+3F/0UkvwhDUDF+1guOAJy9bAwhNWekVeML3UksKBtdvtVhet/M3ker2+v7+n
+iwSBi2owXEYhF3ZYHRf6fohhPvqlnWjo/qKXeoDtODPJ3m639KKVv5mcTqfL
+5ZIuEgQuqsFwGYVc2GHVXO5J7CeBv35pJ9q6v3gnhO04M4284/EY3BJlAxrB
+h8MhXSEGXFSD4TIKubDD6rjQ90MM89Ev7URD9xe91ANsx3v2+31s3eAAVQ2e
+Lv7b2xulSBC4KAXDZabcZfgKPX75JSWX9DbKt50V3LxfFRJ7cGR7LSsE6xQ6
+zpzP58LHNEEmo+DjLRG4KAGXGbhUBo6rbMHxntPpJFKnnPKdwEUDuMhWkMKT
+Sww41qmgTf87BAAAAAAAAABn/A8cSqNn
+    "], {{0, 42}, {571, 0}}, {0, 255},
+    ColorFunction->RGBColor],
+   BoxForm`ImageTag["Byte", ColorSpace -> "RGB", Interleaving -> True],
+   Selectable->False],
+  BaseStyle->"ImageGraphics",
+  ImageSize->Automatic,
+  ImageSizeRaw->{571, 42},
+  PlotRange->{{0, 571}, {0, 42}}]], "Output",
+ ImageSize->{575, 42},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[6]=",
+ CellID->28280074],
+
+Cell[BoxData["\<\"The Gell-Mann matrices:\"\>"], "Print",
+ CellLabel->"During evaluation of In[19]:=",
+ CellID->24353159],
+
+Cell[BoxData[
+ GraphicsBox[
+  TagBox[RasterBox[CompressedData["
+1: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
+
+    "], {{0, 139}, {358, 0}}, {0, 255},
+    ColorFunction->RGBColor],
+   BoxForm`ImageTag["Byte", ColorSpace -> "RGB", Interleaving -> True],
+   Selectable->False],
+  BaseStyle->"ImageGraphics",
+  ImageSize->Automatic,
+  ImageSizeRaw->{358, 139},
+  PlotRange->{{0, 358}, {0, 139}}]], "Output",
+ ImageSize->{362, 139},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[6]=",
+ CellID->485686274]
+}, Open  ]],
+
+Cell["\<\
+Instead of the fundamental representation ({1,0}) one could have used some \
+other one. For example:\
+\>", "ExampleText",
+ CellID->200171223],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"E1", ",", "F1", ",", "H1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"E2", ",", "F2", ",", "H2"}], "}"}]}], "}"}], " ", "=", " ", 
+   RowBox[{"RepMinimalMatrices", "[", 
+    RowBox[{"SU3", ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "0"}], "}"}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Map", "[", 
+   RowBox[{"MatrixForm", " ", ",", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"E1", ",", "F1", ",", "H1"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"E2", ",", "F2", ",", "H2"}], "}"}]}], "}"}], ",", " ", 
+    RowBox[{"{", "2", "}"}]}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"E1", ".", "F1"}], "-", 
+   RowBox[{"F1", ".", "E1"}]}], "\[Equal]", "H1"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"E1", ".", "F2"}], "-", 
+   RowBox[{"F2", ".", "E1"}]}], "\[Equal]", 
+  RowBox[{"0", " ", "H1"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"E2", ".", "F2"}], "-", 
+    RowBox[{"F2", ".", "E2"}]}], "\[Equal]", "H2"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"H1", ".", "E1"}], "-", 
+   RowBox[{"E1", ".", "H1"}]}], "\[Equal]", 
+  RowBox[{
+   RowBox[{"SU3", "[", 
+    RowBox[{"[", 
+     RowBox[{"1", ",", "1"}], "]"}], "]"}], "E1"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"H1", ".", "E2"}], "-", 
+   RowBox[{"E2", ".", "H1"}]}], "\[Equal]", 
+  RowBox[{
+   RowBox[{"SU3", "[", 
+    RowBox[{"[", 
+     RowBox[{"2", ",", "1"}], "]"}], "]"}], "E2"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"H2", ".", "E1"}], "-", 
+   RowBox[{"E1", ".", "H2"}]}], "\[Equal]", 
+  RowBox[{
+   RowBox[{"SU3", "[", 
+    RowBox[{"[", 
+     RowBox[{"1", ",", "2"}], "]"}], "]"}], "E1"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"H2", ".", "E2"}], "-", 
+    RowBox[{"E2", ".", "H2"}]}], "\[Equal]", 
+   RowBox[{
+    RowBox[{"SU3", "[", 
+     RowBox[{"[", 
+      RowBox[{"2", ",", "2"}], "]"}], "]"}], "E2"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"H1", ".", "F1"}], "-", 
+   RowBox[{"F1", ".", "H1"}]}], "\[Equal]", 
+  RowBox[{
+   RowBox[{"-", 
+    RowBox[{"SU3", "[", 
+     RowBox[{"[", 
+      RowBox[{"1", ",", "1"}], "]"}], "]"}]}], 
+   "F1"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"H1", ".", "F2"}], "-", 
+   RowBox[{"F2", ".", "H1"}]}], "\[Equal]", 
+  RowBox[{
+   RowBox[{"-", 
+    RowBox[{"SU3", "[", 
+     RowBox[{"[", 
+      RowBox[{"2", ",", "1"}], "]"}], "]"}]}], 
+   "F2"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"H2", ".", "F1"}], "-", 
+   RowBox[{"F1", ".", "H2"}]}], "\[Equal]", 
+  RowBox[{
+   RowBox[{"-", 
+    RowBox[{"SU3", "[", 
+     RowBox[{"[", 
+      RowBox[{"1", ",", "2"}], "]"}], "]"}]}], 
+   "F1"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"H2", ".", "F2"}], "-", 
+    RowBox[{"F2", ".", "H2"}]}], "\[Equal]", 
+   RowBox[{
+    RowBox[{"-", 
+     RowBox[{"SU3", "[", 
+      RowBox[{"[", 
+       RowBox[{"2", ",", "2"}], "]"}], "]"}]}], "F2"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"H1", ".", "H2"}], "-", 
+   RowBox[{"H2", ".", "H1"}]}], "\[Equal]", 
+  RowBox[{"0", "H1"}]}]}], "Input",
+ CellLabel->"In[7]:=",
+ CellID->159492392],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     TagBox[
+      RowBox[{"(", "\[NoBreak]", GridBox[{
+         {"0", 
+          SqrtBox["2"], "0", "0", "0", "0"},
+         {"0", "0", "0", 
+          SqrtBox["2"], "0", "0"},
+         {"0", "0", "0", "0", "1", "0"},
+         {"0", "0", "0", "0", "0", "0"},
+         {"0", "0", "0", "0", "0", "0"},
+         {"0", "0", "0", "0", "0", "0"}
+        },
+        GridBoxAlignment->{
+         "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, 
+          "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[0.7]}, 
+            Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+      Function[BoxForm`e$, 
+       MatrixForm[
+       SparseArray[
+        Automatic, {6, 6}, 0, {
+         1, {{0, 1, 2, 3, 3, 3, 3}, {{2}, {4}, {5}}}, {
+          2^Rational[1, 2], 2^Rational[1, 2], 1}}]]]], ",", 
+     TagBox[
+      RowBox[{"(", "\[NoBreak]", GridBox[{
+         {"0", "0", "0", "0", "0", "0"},
+         {
+          SqrtBox["2"], "0", "0", "0", "0", "0"},
+         {"0", "0", "0", "0", "0", "0"},
+         {"0", 
+          SqrtBox["2"], "0", "0", "0", "0"},
+         {"0", "0", "1", "0", "0", "0"},
+         {"0", "0", "0", "0", "0", "0"}
+        },
+        GridBoxAlignment->{
+         "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, 
+          "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[0.7]}, 
+            Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+      Function[BoxForm`e$, 
+       MatrixForm[
+       SparseArray[
+        Automatic, {6, 6}, 0, {
+         1, {{0, 0, 1, 1, 2, 3, 3}, {{1}, {2}, {3}}}, {
+          2^Rational[1, 2], 2^Rational[1, 2], 1}}]]]], ",", 
+     TagBox[
+      RowBox[{"(", "\[NoBreak]", GridBox[{
+         {"2", "0", "0", "0", "0", "0"},
+         {"0", "0", "0", "0", "0", "0"},
+         {"0", "0", "1", "0", "0", "0"},
+         {"0", "0", "0", 
+          RowBox[{"-", "2"}], "0", "0"},
+         {"0", "0", "0", "0", 
+          RowBox[{"-", "1"}], "0"},
+         {"0", "0", "0", "0", "0", "0"}
+        },
+        GridBoxAlignment->{
+         "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, 
+          "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[0.7]}, 
+            Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+      Function[BoxForm`e$, 
+       MatrixForm[
+       SparseArray[
+        Automatic, {6, 6}, 0, {
+         1, {{0, 1, 1, 2, 3, 4, 4}, {{1}, {3}, {4}, {5}}}, {2, 
+          1, -2, -1}}]]]]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     TagBox[
+      RowBox[{"(", "\[NoBreak]", GridBox[{
+         {"0", "0", "0", "0", "0", "0"},
+         {"0", "0", "1", "0", "0", "0"},
+         {"0", "0", "0", "0", "0", "0"},
+         {"0", "0", "0", "0", 
+          SqrtBox["2"], "0"},
+         {"0", "0", "0", "0", "0", 
+          SqrtBox["2"]},
+         {"0", "0", "0", "0", "0", "0"}
+        },
+        GridBoxAlignment->{
+         "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, 
+          "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[0.7]}, 
+            Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+      Function[BoxForm`e$, 
+       MatrixForm[
+       SparseArray[
+        Automatic, {6, 6}, 0, {
+         1, {{0, 0, 1, 1, 2, 3, 3}, {{3}, {5}, {6}}}, {
+          1, 2^Rational[1, 2], 2^Rational[1, 2]}}]]]], ",", 
+     TagBox[
+      RowBox[{"(", "\[NoBreak]", GridBox[{
+         {"0", "0", "0", "0", "0", "0"},
+         {"0", "0", "0", "0", "0", "0"},
+         {"0", "1", "0", "0", "0", "0"},
+         {"0", "0", "0", "0", "0", "0"},
+         {"0", "0", "0", 
+          SqrtBox["2"], "0", "0"},
+         {"0", "0", "0", "0", 
+          SqrtBox["2"], "0"}
+        },
+        GridBoxAlignment->{
+         "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, 
+          "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[0.7]}, 
+            Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+      Function[BoxForm`e$, 
+       MatrixForm[
+       SparseArray[
+        Automatic, {6, 6}, 0, {
+         1, {{0, 0, 0, 1, 1, 2, 3}, {{2}, {4}, {5}}}, {
+          1, 2^Rational[1, 2], 2^Rational[1, 2]}}]]]], ",", 
+     TagBox[
+      RowBox[{"(", "\[NoBreak]", GridBox[{
+         {"0", "0", "0", "0", "0", "0"},
+         {"0", "1", "0", "0", "0", "0"},
+         {"0", "0", 
+          RowBox[{"-", "1"}], "0", "0", "0"},
+         {"0", "0", "0", "2", "0", "0"},
+         {"0", "0", "0", "0", "0", "0"},
+         {"0", "0", "0", "0", "0", 
+          RowBox[{"-", "2"}]}
+        },
+        GridBoxAlignment->{
+         "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, 
+          "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[0.7]}, 
+            Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+      Function[BoxForm`e$, 
+       MatrixForm[
+       SparseArray[
+        Automatic, {6, 6}, 0, {
+         1, {{0, 0, 1, 2, 3, 3, 4}, {{2}, {3}, {4}, {6}}}, {1, -1, 
+          2, -2}}]]]]}], "}"}]}], "}"}]], "Output",
+ ImageSize->{445, 200},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[7]=",
+ CellID->68352478],
+
+Cell[BoxData["True"], "Output",
+ ImageSize->{32, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[7]=",
+ CellID->249334717],
+
+Cell[BoxData["True"], "Output",
+ ImageSize->{32, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[7]=",
+ CellID->280321605],
+
+Cell[BoxData["True"], "Output",
+ ImageSize->{32, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[7]=",
+ CellID->313005577],
+
+Cell[BoxData["True"], "Output",
+ ImageSize->{32, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[7]=",
+ CellID->479300385],
+
+Cell[BoxData["True"], "Output",
+ ImageSize->{32, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[7]=",
+ CellID->909243672],
+
+Cell[BoxData["True"], "Output",
+ ImageSize->{32, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[7]=",
+ CellID->80294449],
+
+Cell[BoxData["True"], "Output",
+ ImageSize->{32, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[7]=",
+ CellID->373860011],
+
+Cell[BoxData["True"], "Output",
+ ImageSize->{32, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[7]=",
+ CellID->193201011],
+
+Cell[BoxData["True"], "Output",
+ ImageSize->{32, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[7]=",
+ CellID->652835830],
+
+Cell[BoxData["True"], "Output",
+ ImageSize->{32, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[7]=",
+ CellID->164740903],
+
+Cell[BoxData["True"], "Output",
+ ImageSize->{32, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[7]=",
+ CellID->218981361],
+
+Cell[BoxData["True"], "Output",
+ ImageSize->{32, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[7]=",
+ CellID->665861113]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["TUTORIALS",
+ BaseStyle->None,
+ Appearance->{Automatic, None},
+ Evaluator->None,
+ Method->"Preemptive",
+ ButtonFunction:>(FrontEndExecute[{
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], All, ButtonCell], 
+    FrontEndToken["OpenCloseGroup"], 
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], After, 
+     CellContents]}]& )]], "TutorialsSection",
+ CellID->250839057],
+
+Cell[TextData[ButtonBox["Susyno Tutorial",
+ BaseStyle->"Link",
+ ButtonData->"paclet:Susyno/tutorial/SusynoTutorial"]], "Tutorials",
+ CellID->341631938]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["RELATED LINKS",
+ BaseStyle->None,
+ Appearance->{Automatic, None},
+ Evaluator->None,
+ Method->"Preemptive",
+ ButtonFunction:>(FrontEndExecute[{
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], All, ButtonCell], 
+    FrontEndToken["OpenCloseGroup"], 
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], After, 
+     CellContents]}]& )]], "RelatedLinksSection",
+ CellID->1584193535],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["Normal",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/Normal"]], "InlineFormula"],
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
+  ButtonBox["MatrixForm",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/MatrixForm"]], "InlineFormula"],
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
+  ButtonBox["RepMatrices",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/RepMatrices"]], "InlineFormula"],
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
+  ButtonBox["SparseArray",
+   BaseStyle->"Link",
+   ButtonData->"paclet:ref/SparseArray"]], "InlineFormula"]
+}], "RelatedLinks",
+ CellID->1038487239]
+}, Open  ]],
+
+Cell[" ", "FooterCell"]
+},
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+WindowSize->{725, 566},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowTitle->"RepMinimalMatrices - Wolfram Mathematica",
+TaggingRules->{
+ "ModificationHighlight" -> False, 
+  "Metadata" -> {
+   "built" -> "{2013, 8, 7, 2, 28, 37.3593750}", "context" -> "Susyno`", 
+    "keywords" -> {}, "index" -> True, "label" -> "Susyno Paclet Symbol", 
+    "language" -> "en", "paclet" -> "Susyno", "status" -> "None", "summary" -> 
+    "RepMinimalMatrices[group, rep] Returns the matrices of a representation \
+rep of group RepMinimalMatrices[{group1, group2, ...}, {rep_group1, \
+rep_group2, ...}] Returns the matrices of representation rep_group1 of \
+group1, rep_group2 of group2, ...", "synonyms" -> {}, "title" -> 
+    "RepMinimalMatrices", "type" -> "Symbol", "uri" -> 
+    "Susyno/ref/RepMinimalMatrices"}, "SearchTextTranslated" -> ""},
+CellContext->"Global`",
+FrontEndVersion->"7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[
+    StyleDefinitions -> FrontEnd`FileName[{"Wolfram"}, "Reference.nb"]]], 
+   Cell[
+    StyleData["Input"], CellContext -> "Global`"], 
+   Cell[
+    StyleData["Output"], CellContext -> "Global`"]}, Visible -> False, 
+  FrontEndVersion -> "7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
+   StyleDefinitions -> "Default.nb"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "PrimaryExamplesSection"->{
+  Cell[10008, 340, 461, 13, 70, "PrimaryExamplesSection",
+   CellTags->"PrimaryExamplesSection",
+   CellID->634604968]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"PrimaryExamplesSection", 47314, 1469}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[599, 21, 76, 1, 70, "SymbolColorBar"],
+Cell[678, 24, 178, 5, 70, "LinkTrail"],
+Cell[859, 31, 2338, 53, 70, "AnchorBarGrid",
+ CellID->1],
+Cell[CellGroupData[{
+Cell[3222, 88, 61, 1, 70, "ObjectName",
+ CellID->1224892054],
+Cell[3286, 91, 1180, 35, 70, "Usage",
+ CellID->982511436]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4503, 131, 580, 17, 70, "NotesSection",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->370334604],
+Cell[5086, 150, 249, 9, 70, "Notes",
+ CellID->1067943069],
+Cell[5338, 161, 181, 5, 70, "Notes",
+ CellID->41030773],
+Cell[5522, 168, 589, 21, 70, "Notes",
+ CellID->812326107],
+Cell[6114, 191, 2081, 80, 70, "Notes",
+ CellID->29855657],
+Cell[8198, 273, 1184, 44, 70, "Notes",
+ CellID->220613822],
+Cell[9385, 319, 156, 4, 70, "Notes",
+ CellID->18412127],
+Cell[9544, 325, 427, 10, 70, "Notes",
+ CellID->28371261]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[10008, 340, 461, 13, 70, "PrimaryExamplesSection",
+ CellTags->"PrimaryExamplesSection",
+ CellID->634604968],
+Cell[CellGroupData[{
+Cell[10494, 357, 145, 5, 70, "ExampleSection",
+ CellID->415154],
+Cell[10642, 364, 90, 1, 70, "ExampleText",
+ CellID->513681956],
+Cell[CellGroupData[{
+Cell[10757, 369, 195, 6, 28, "Input",
+ CellID->196926373],
+Cell[10955, 377, 1240, 28, 36, "Output",
+ CellID->104214755]
+}, Open  ]],
+Cell[12210, 408, 118, 3, 70, "ExampleText",
+ CellID->349147845],
+Cell[CellGroupData[{
+Cell[12353, 415, 240, 6, 70, "Input",
+ CellID->4735082],
+Cell[12596, 423, 743, 27, 36, "Output",
+ CellID->9615607],
+Cell[13342, 452, 1049, 25, 49, "Output",
+ CellID->234731421]
+}, Open  ]],
+Cell[14406, 480, 236, 5, 70, "ExampleText",
+ CellID->692636],
+Cell[CellGroupData[{
+Cell[14667, 489, 172, 5, 45, "Input",
+ CellID->101142205],
+Cell[14842, 496, 2273, 45, 63, "Output",
+ CellID->120904046]
+}, Open  ]],
+Cell[17130, 544, 82, 1, 70, "ExampleText",
+ CellID->681777881],
+Cell[CellGroupData[{
+Cell[17237, 549, 104, 3, 28, "Input",
+ CellID->546007265],
+Cell[17344, 554, 744, 20, 63, "Output",
+ CellID->236013566]
+}, Open  ]],
+Cell[18103, 577, 115, 3, 70, "ExampleText",
+ CellID->300819889],
+Cell[CellGroupData[{
+Cell[18243, 584, 2739, 97, 70, "Input",
+ CellID->271990732],
+Cell[20985, 683, 161, 5, 36, "Output",
+ CellID->909443065],
+Cell[21149, 690, 161, 5, 36, "Output",
+ CellID->128003131],
+Cell[21313, 697, 160, 5, 36, "Output",
+ CellID->86554699],
+Cell[21476, 704, 161, 5, 36, "Output",
+ CellID->370622069],
+Cell[21640, 711, 161, 5, 36, "Output",
+ CellID->119795156],
+Cell[21804, 718, 160, 5, 36, "Output",
+ CellID->89086490],
+Cell[21967, 725, 161, 5, 36, "Output",
+ CellID->292384091],
+Cell[22131, 732, 159, 5, 36, "Output",
+ CellID->1460144],
+Cell[22293, 739, 161, 5, 36, "Output",
+ CellID->403373367],
+Cell[22457, 746, 161, 5, 36, "Output",
+ CellID->150848433],
+Cell[22621, 753, 161, 5, 36, "Output",
+ CellID->319576349],
+Cell[22785, 760, 159, 5, 36, "Output",
+ CellID->8444093]
+}, Open  ]],
+Cell[22959, 768, 102, 2, 70, "ExampleText",
+ CellID->115306888],
+Cell[CellGroupData[{
+Cell[23086, 774, 1606, 53, 70, "Input",
+ CellID->334918258],
+Cell[24695, 829, 157, 3, 23, "Print",
+ CellID->37845453],
+Cell[24855, 834, 2410, 47, 60, "Output",
+ CellID->28280074],
+Cell[27268, 883, 121, 2, 23, "Print",
+ CellID->24353159],
+Cell[27392, 887, 4335, 79, 160, "Output",
+ CellID->485686274]
+}, Open  ]],
+Cell[31742, 969, 151, 4, 70, "ExampleText",
+ CellID->200171223],
+Cell[CellGroupData[{
+Cell[31918, 977, 3455, 120, 70, "Input",
+ CellID->159492392],
+Cell[35376, 1099, 6414, 173, 221, "Output",
+ CellID->68352478],
+Cell[41793, 1274, 161, 5, 36, "Output",
+ CellID->249334717],
+Cell[41957, 1281, 161, 5, 36, "Output",
+ CellID->280321605],
+Cell[42121, 1288, 161, 5, 36, "Output",
+ CellID->313005577],
+Cell[42285, 1295, 161, 5, 36, "Output",
+ CellID->479300385],
+Cell[42449, 1302, 161, 5, 36, "Output",
+ CellID->909243672],
+Cell[42613, 1309, 160, 5, 36, "Output",
+ CellID->80294449],
+Cell[42776, 1316, 161, 5, 36, "Output",
+ CellID->373860011],
+Cell[42940, 1323, 161, 5, 36, "Output",
+ CellID->193201011],
+Cell[43104, 1330, 161, 5, 36, "Output",
+ CellID->652835830],
+Cell[43268, 1337, 161, 5, 36, "Output",
+ CellID->164740903],
+Cell[43432, 1344, 161, 5, 36, "Output",
+ CellID->218981361],
+Cell[43596, 1351, 161, 5, 36, "Output",
+ CellID->665861113]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[43818, 1363, 419, 12, 70, "TutorialsSection",
+ CellID->250839057],
+Cell[44240, 1377, 151, 3, 70, "Tutorials",
+ CellID->341631938]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[44428, 1385, 427, 12, 70, "RelatedLinksSection",
+ CellID->1584193535],
+Cell[44858, 1399, 907, 30, 70, "RelatedLinks",
+ CellID->1038487239]
+}, Open  ]],
+Cell[45780, 1432, 23, 0, 70, "FooterCell"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

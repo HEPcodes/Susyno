@@ -1,0 +1,784 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     24636,        774]
+NotebookOptionsPosition[     20421,        642]
+NotebookOutlinePosition[     22244,        690]
+CellTagsIndexPosition[     22159,        685]
+WindowTitle->PermutationSymmetryOfInvariants - Wolfram Mathematica
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[" ", "SymbolColorBar",
+ CellMargins->{{Inherited, Inherited}, {-5, 0}}],
+
+Cell[TextData[{
+ ButtonBox["Mathematica",
+  BaseStyle->{"Link", "LinkTrail"},
+  ButtonData->"paclet:Susyno/guide/Susyno"],
+ StyleBox[" > ", "LinkTrailSeparator"]
+}], "LinkTrail"],
+
+Cell[BoxData[GridBox[{
+   {Cell["SUSYNO PACLET SYMBOL", "PacletNameCell"], Cell[TextData[{
+     Cell[BoxData[
+      ActionMenuBox[
+       FrameBox["\<\"Tutorials \[RightGuillemet]\"\>",
+        StripOnInput->False], {"\<\"Susyno Tutorial\"\>":>
+       Documentation`HelpLookup["paclet:Susyno/tutorial/SusynoTutorial"]},
+       Appearance->None,
+       MenuAppearance->Automatic]],
+      LineSpacing->{1.4, 0}],
+     "\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+     Cell[BoxData[
+      ActionMenuBox[
+       FrameBox["\<\"More About \[RightGuillemet]\"\>",
+        StripOnInput->False], {
+       RowBox[{
+        RowBox[{"{", "}"}], "\[LeftDoubleBracket]", "1", 
+        "\[RightDoubleBracket]"}]:>Documentation`HelpLookup[
+        If[
+         StringMatchQ[
+          Part[{}, 2], "paclet*"], 
+         Part[
+          Part[{{}, {"http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE", 
+             StringReplace[{
+               URL["http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE/"], None}, 
+              "paclet:" :> ""]}}, 1], 2], 
+         StringJoin["paclet:", 
+          Part[
+           Part[{{}, {"http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE", 
+              StringReplace[{
+                URL["http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE/"], None},
+                "paclet:" :> ""]}}, 1], 
+           2]]]], "\<\"http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE\"\>":>
+       Documentation`HelpLookup[
+        If[
+         StringMatchQ[
+          StringReplace[{
+            URL["http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE/"], None}, 
+           "paclet:" :> ""], "paclet*"], 
+         Part[
+          Part[{{}, {"http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE", 
+             StringReplace[{
+               URL["http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE/"], None}, 
+              "paclet:" :> ""]}}, 2], 2], 
+         StringJoin["paclet:", 
+          Part[
+           Part[{{}, {"http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE", 
+              StringReplace[{
+                URL["http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE/"], None},
+                "paclet:" :> ""]}}, 2], 2]]]]},
+       Appearance->None,
+       MenuAppearance->Automatic]],
+      LineSpacing->{1.4, 0}],
+     "\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+     Cell[BoxData[
+      ActionMenuBox[
+       FrameBox["\<\"URL \[RightGuillemet]\"\>",
+        StripOnInput->
+         False], {"\<\"Susyno/ref/PermutationSymmetryOfInvariants\"\>":>
+       None, "\<\"Copy Mathematica url\"\>":>
+       Module[{DocumentationSearch`Private`nb$}, 
+        DocumentationSearch`Private`nb$ = NotebookPut[
+           Notebook[{
+             Cell["Susyno/ref/PermutationSymmetryOfInvariants"]}, Visible -> 
+            False]]; SelectionMove[
+         DocumentationSearch`Private`nb$, All, Notebook]; 
+        FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+        NotebookClose[DocumentationSearch`Private`nb$]; Null], 
+       Delimiter, "\<\"Copy web url\"\>":>
+       Module[{DocumentationSearch`Private`nb$}, 
+        DocumentationSearch`Private`nb$ = NotebookPut[
+           Notebook[{
+             Cell[
+              BoxData[
+               MakeBoxes[
+                Hyperlink[
+                "http://reference.wolfram.com/mathematica/Susyno/ref/\
+PermutationSymmetryOfInvariants.html"], StandardForm]], "Input", 
+              TextClipboardType -> "PlainText"]}, Visible -> False]]; 
+        SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+        FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+        NotebookClose[DocumentationSearch`Private`nb$]; 
+        Null], "\<\"Go to web url\"\>":>FrontEndExecute[{
+         NotebookLocate[{
+           URL[
+            StringJoin[
+            "http://reference.wolfram.com/mathematica/", 
+             "Susyno/ref/PermutationSymmetryOfInvariants", ".html"]], 
+           None}]}]},
+       Appearance->None,
+       MenuAppearance->Automatic]],
+      LineSpacing->{1.4, 0}]
+    }], "AnchorBar"]}
+  }]], "AnchorBarGrid",
+ CellID->1],
+
+Cell[CellGroupData[{
+
+Cell["PermutationSymmetryOfInvariants", "ObjectName",
+ CellID->1224892054],
+
+Cell[BoxData[GridBox[{
+   {"", Cell[TextData[{
+     Cell[BoxData[
+      RowBox[{"PermutationSymmetryOfInvariants", "[", 
+       RowBox[{
+        RowBox[{"gauge", " ", "group"}], ",", 
+        RowBox[{"list", " ", "of", " ", "representations"}]}], "]"}]], 
+      "InlineFormula"],
+     " \[LineSeparator]Computes how many invariant combinations there are in \
+the product of the representations of the gauge group provided, together with \
+the information on how these invariants change under a permutation of the \
+representations"
+    }]]}
+  }]], "Usage",
+ GridBoxOptions->{
+ GridBoxBackground->{
+  "Columns" -> {{None}}, "ColumnsIndexed" -> {}, "Rows" -> {{None}}, 
+   "RowsIndexed" -> {}}},
+ CellID->982511436]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[Cell[BoxData[
+ ButtonBox[
+  FrameBox[
+   StyleBox[
+    RowBox[{"MORE", " ", "INFORMATION"}], "NotesFrameText"],
+   StripOnInput->False],
+  Appearance->{Automatic, None},
+  BaseStyle->None,
+  ButtonFunction:>(FrontEndExecute[{
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], All, ButtonCell], 
+     FrontEndToken["OpenCloseGroup"], 
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], After, CellContents]}]& ),
+  Evaluator->None,
+  Method->"Preemptive"]]]], "NotesSection",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->603843398],
+
+Cell[TextData[{
+ Cell[BoxData[
+  RowBox[{"gauge", " ", "group"}]], "InlineFormula"],
+ " can be a list of simple/abelian groups (see ",
+ ButtonBox["Cartan matrix).",
+  BaseStyle->"Link",
+  ButtonData->"paclet:Susyno/ref/CartanMatrix"]
+}], "Notes",
+ CellID->149353492],
+
+Cell[TextData[{
+ Cell[BoxData[
+  RowBox[{"list", " ", "of", " ", "representations"}]], "InlineFormula"],
+ " must be a list of representations of the gauge group."
+}], "Notes",
+ CellID->190293714],
+
+Cell[TextData[{
+ "This function is a more complicated version of ",
+ Cell[BoxData[
+  ButtonBox["InvariantPlethysms",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/InvariantPlethysms"]], "InlineFormula"],
+ ", which can handle gauge groups which are not simple, and also product of \
+representations which need not be the same. For model building, this is the \
+function which is directly needed."
+}], "Notes",
+ CellID->757085513],
+
+Cell[TextData[{
+ "The output is rather complex (see the examples below). It is made of two \
+lists: {",
+ Cell[BoxData["indices"], "InlineFormula"],
+ ", ",
+ Cell[BoxData["SnRepresentations"], "InlineFormula"],
+ "}. The first one (",
+ Cell[BoxData["indices"], "InlineFormula"],
+ ") indicates the position of equal representations in the  input list. So ",
+ Cell[BoxData["indices"], "InlineFormula"],
+ "={",
+ Cell[BoxData["G1"], "InlineFormula"],
+ ", ",
+ Cell[BoxData["G2"], "InlineFormula"],
+ ", \[CenterEllipsis]} where each ",
+ Cell[BoxData["GI"], "InlineFormula"],
+ " lists the positions of a group of equal representations. For example, if \
+the input list is {",
+ Cell[BoxData[
+  SubscriptBox["R", "1"]], "InlineFormula"],
+ ", ",
+ Cell[BoxData[
+  SubscriptBox["R", "2"]], "InlineFormula"],
+ ",",
+ Cell[BoxData[
+  SubscriptBox["R", "1"]], "InlineFormula"],
+ ", ",
+ Cell[BoxData[
+  SubscriptBox["R", "2"]], "InlineFormula"],
+ "} for some representation ",
+ Cell[BoxData[
+  SubscriptBox["R", "1"]], "InlineFormula"],
+ ", ",
+ Cell[BoxData[
+  SubscriptBox["R", "2"]], "InlineFormula"],
+ " of the gauge group, ",
+ Cell[BoxData["indices"], "InlineFormula"],
+ " will be {{1,3},{2,4}} (the representations in positions 1 and 3 are the \
+same, as well as the ones in the positions 2 and 4). The second list (",
+ Cell[BoxData["SnRepresentations"], "InlineFormula"],
+ ") is itself a list ",
+ Cell[BoxData[
+  RowBox[{"{", 
+   RowBox[{"SnRep1", ",", " ", "SnRep2", ",", " ", "\[CenterEllipsis]"}], 
+   "}"}]], "InlineFormula"],
+ " with the break down of the gauge invariants according to how they change \
+under permutations of equal representations. Specifically, each ",
+ Cell[BoxData["SnRepI"], "InlineFormula"],
+ " is of the form ",
+ Cell[BoxData[
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "SnRepIG1", ",", " ", "SnRepIG2", ",", " ", "\[CenterEllipsis]"}], "}"}],
+     ",", " ", "multiplicity"}], "}"}]], "InlineFormula"],
+ " where each ",
+ Cell[BoxData["SnRepIGJ"], "InlineFormula"],
+ " is the irreducible representation of an ",
+ Cell[BoxData[
+  SubscriptBox["S", "n"]], "InlineFormula"],
+ " induced when the same fields in the grouping ",
+ Cell[BoxData["GJ"], "InlineFormula"],
+ " are permuted. ",
+ Cell[BoxData["multiplicity"], "InlineFormula"],
+ " indicates how many times such a gauge invariant is contained in the \
+product of the representations of the gauge group provided."
+}], "Notes",
+ CellID->311445735],
+
+Cell[TextData[{
+ Cell[BoxData["PermutationSymmetryOfInvariants"], "InlineFormula"],
+ " is related to the ",
+ Cell[BoxData[
+  ButtonBox["Plethysms",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/Plethysms"]], "InlineFormula"],
+ " function, which follows the algorithm described in ",
+ StyleBox["M. A. A. van Leeuwen, A. M. Cohen, and B. Lisser, LiE, A Package \
+for Lie Group Computations. Computer Algebra Nederland, 1992",
+  FontSlant->"Italic"],
+ "."
+}], "Notes",
+ CellID->586435317]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["EXAMPLES",
+ BaseStyle->None,
+ Appearance->{Automatic, None},
+ Evaluator->None,
+ Method->"Preemptive",
+ ButtonFunction:>(FrontEndExecute[{
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], All, ButtonCell], 
+    FrontEndToken["OpenCloseGroup"], 
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], After, 
+     CellContents]}]& )]], "PrimaryExamplesSection",
+ CellTags->"PrimaryExamplesSection",
+ CellID->3069385],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Basic Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(1)", "ExampleCount"]
+}], "ExampleSection",
+ CellID->806829633],
+
+Cell["\<\
+Consider gauge groups with a single factor\[LongDash]for example {SU2}.  We \
+shall consider a product of two doublets (={{1}}) and two quadruplets \
+(={{3}}), which contains two invariants:\
+\>", "ExampleText",
+ CellID->21576093],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ReduceRepProduct", "[", 
+  RowBox[{
+   RowBox[{"{", "SU2", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"{", "1", "}"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"{", "1", "}"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"{", "2", "}"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"{", "2", "}"}], "}"}]}], "}"}]}], "]"}]], "Input",
+ CellLabel->"In[1]:=",
+ CellID->39678609],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"{", "6", "}"}], "}"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"{", "4", "}"}], "}"}], ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"{", "2", "}"}], "}"}], ",", "4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"{", "0", "}"}], "}"}], ",", "2"}], "}"}]}], "}"}]], "Output",
+ ImageSize->{319, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[1]=",
+ CellID->147230899]
+}, Open  ]],
+
+Cell[TextData[{
+ "With the function PermutationSymmetryOfInvariants we can see how these \
+invariants transform under the group ",
+ Cell[BoxData[
+  SubscriptBox["S", "2"]], "InlineFormula"],
+ "x",
+ Cell[BoxData[
+  SubscriptBox["S", "2"]], "InlineFormula"],
+ " of permutations of the two doublets, and the two ",
+ "quadruplets:"
+}], "ExampleText",
+ CellID->164414666],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PermutationSymmetryOfInvariants", "[", 
+  RowBox[{
+   RowBox[{"{", "SU2", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"{", "1", "}"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"{", "1", "}"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"{", "2", "}"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"{", "2", "}"}], "}"}]}], "}"}]}], "]"}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->631183171],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "2"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"3", ",", "4"}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", "2", "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"1", ",", "1"}], "}"}]}], "}"}], ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"1", ",", "1"}], "}"}], ",", 
+         RowBox[{"{", "2", "}"}]}], "}"}], ",", "1"}], "}"}]}], "}"}]}], 
+  "}"}]], "Output",
+ ImageSize->{391, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[2]=",
+ CellID->217959986]
+}, Open  ]],
+
+Cell[TextData[{
+ "We now carefully look at the output. The first part of it is {{1, 2}, {3, \
+4}}, and it tells us that there are two groups of equal representations in \
+the product: representation #1 and #2 are equal (group1), and representations \
+#3 and #4 are also the same (group2). This is manifestly true by looking at \
+the input (the {SU2} representations are {{{1}}, {{1}}, {{2}}, {{2}}}). The \
+next part of the output contains the following items:\[LineSeparator]\
+\[LineSeparator]{{{2}, {1, 1}}, 1}\[LineSeparator]{{{1, 1}, {2}}, 1}\
+\[LineSeparator]\[LineSeparator]This means that one of the invariants is \
+symmetric (irrep {2} of ",
+ Cell[BoxData[
+  SubscriptBox["S", "2"]], "InlineFormula"],
+ ") under a permutation of the two doublets, and antisymmetric (irrep {1,1} \
+of ",
+ Cell[BoxData[
+  SubscriptBox["S", "2"]], "InlineFormula"],
+ ") under a permutation of the two quadruplets. The other one is \
+antisymmetric (irrep {1,1} of ",
+ Cell[BoxData[
+  SubscriptBox["S", "2"]], "InlineFormula"],
+ ") under a permutation of the two doublets, and symmetric (irrep {2} of ",
+ Cell[BoxData[
+  SubscriptBox["S", "2"]], "InlineFormula"],
+ ") under a permutation of the two quadruplets."
+}], "ExampleText",
+ CellID->472237897],
+
+Cell["Consider now the product of 8x8x1x8 in SU(3):", "ExampleText",
+ CellID->864920639],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PermutationSymmetryOfInvariants", "[", 
+  RowBox[{
+   RowBox[{"{", "SU3", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "1"}], "}"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "1"}], "}"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "0"}], "}"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "1"}], "}"}], "}"}]}], "}"}]}], "]"}]], "Input",
+ CellLabel->"In[3]:=",
+ CellID->366660953],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "2", ",", "4"}], "}"}], ",", 
+     RowBox[{"{", "3", "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", "3", "}"}], ",", 
+         RowBox[{"{", "1", "}"}]}], "}"}], ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"1", ",", "1", ",", "1"}], "}"}], ",", 
+         RowBox[{"{", "1", "}"}]}], "}"}], ",", "1"}], "}"}]}], "}"}]}], 
+  "}"}]], "Output",
+ ImageSize->{391, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[3]=",
+ CellID->268395062]
+}, Open  ]],
+
+Cell[TextData[{
+ "The output informs us that representations #1, #2, #4 are equal (group1), \
+and then there is representation #3. The invariants in {{1, 1}}x{{1, 1}}x{{0, \
+0}}x{{1, 1}} of {SU3} representations breaks down in representations of ",
+ Cell[BoxData[
+  SubscriptBox["S", "3"]], "InlineFormula"],
+ "x",
+ Cell[BoxData[
+  SubscriptBox["S", "1"]], "InlineFormula"],
+ " as follows:\[LineSeparator]\[LineSeparator]{{{{3}, {1}}, 1}"
+}], "ExampleText",
+ CellID->3489678],
+
+Cell["\<\
+{{{1, 1, 1}, {1}}, 1}}\[LineSeparator]\[LineSeparator]In words, there is a \
+completely symmetric invariant under the permutation of the 8-dimensional \
+representations (irrep {3} of SU(3)) and there is also a completely \
+antisymmetric invariant under the permutation of the 8's (irrep {1,1,1} of \
+SU(3)).\
+\>", "ExampleText",
+ CellID->122271445],
+
+Cell["", "Input",
+ CellLabel->"In[4]:=",
+ CellID->4316210]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["TUTORIALS",
+ BaseStyle->None,
+ Appearance->{Automatic, None},
+ Evaluator->None,
+ Method->"Preemptive",
+ ButtonFunction:>(FrontEndExecute[{
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], All, ButtonCell], 
+    FrontEndToken["OpenCloseGroup"], 
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], After, 
+     CellContents]}]& )]], "TutorialsSection",
+ CellID->250839057],
+
+Cell[TextData[ButtonBox["Susyno Tutorial",
+ BaseStyle->"Link",
+ ButtonData->"paclet:Susyno/tutorial/SusynoTutorial"]], "Tutorials",
+ CellID->341631938]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["MORE ABOUT",
+ BaseStyle->None,
+ Appearance->{Automatic, None},
+ Evaluator->None,
+ Method->"Preemptive",
+ ButtonFunction:>(FrontEndExecute[{
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], All, ButtonCell], 
+    FrontEndToken["OpenCloseGroup"], 
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], After, 
+     CellContents]}]& )]], "MoreAboutSection",
+ CellID->38303248],
+
+Cell["\<\
+M. A. A. van Leeuwen, A. M. Cohen, and B. Lisser, LiE, A Package for Lie \
+Group Computations. Computer Algebra Nederland, 1992\
+\>", "MoreAbout",
+ CellID->1665078683],
+
+Cell[TextData[{
+ "M. A. A. van Leeuwen, A. M. Cohen, and B. Lisser, \
+\[OpenCurlyDoubleQuote]LiE - A Computer algebra package for Lie group \
+computations.\[CloseCurlyDoubleQuote] ",
+ ButtonBox["http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE/"], None},
+  ButtonNote->"http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE/"],
+ ", 2012. Retrieved March 17, 2013."
+}], "MoreAbout",
+ CellID->867725]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["RELATED DEMONSTRATIONS",
+ BaseStyle->None,
+ Appearance->{Automatic, None},
+ Evaluator->None,
+ Method->"Preemptive",
+ ButtonFunction:>(FrontEndExecute[{
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], All, ButtonCell], 
+    FrontEndToken["OpenCloseGroup"], 
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], After, 
+     CellContents]}]& )]], "RelatedDemonstrationsSection",
+ CellID->1268215905],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["InvariantPlethysms",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/InvariantPlethysms"]], "InlineFormula"],
+ " \[EmptyVerySmallSquare] ",
+ Cell[BoxData[
+  ButtonBox["PermutationSymmetryOfTensorProductParts",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/PermutationSymmetryOfTensorProductParts"]], 
+  "InlineFormula"],
+ " \[EmptyVerySmallSquare] ",
+ Cell[BoxData[
+  ButtonBox["Plethysms",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/Plethysms"]], "InlineFormula"]
+}], "RelatedDemonstrations",
+ CellID->1129518860]
+}, Open  ]],
+
+Cell[" ", "FooterCell"]
+},
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+WindowSize->{725, 566},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowTitle->"PermutationSymmetryOfInvariants - Wolfram Mathematica",
+TaggingRules->{
+ "ModificationHighlight" -> False, 
+  "Metadata" -> {
+   "built" -> "{2013, 8, 7, 2, 27, 49.5000000}", "context" -> "Susyno`", 
+    "keywords" -> {}, "index" -> True, "label" -> "Susyno Paclet Symbol", 
+    "language" -> "en", "paclet" -> "Susyno", "status" -> "None", "summary" -> 
+    "PermutationSymmetryOfInvariants[gauge group, list of representations] \
+Computes how many invariant combinations there are in the product of the \
+representations of the gauge group provided, together with the information on \
+how these invariants change under a permutation of the representations", 
+    "synonyms" -> {}, "title" -> "PermutationSymmetryOfInvariants", "type" -> 
+    "Symbol", "uri" -> "Susyno/ref/PermutationSymmetryOfInvariants"}, 
+  "SearchTextTranslated" -> ""},
+CellContext->"Global`",
+FrontEndVersion->"7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[
+    StyleDefinitions -> FrontEnd`FileName[{"Wolfram"}, "Reference.nb"]]], 
+   Cell[
+    StyleData["Input"], CellContext -> "Global`"], 
+   Cell[
+    StyleData["Output"], CellContext -> "Global`"]}, Visible -> False, 
+  FrontEndVersion -> "7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
+   StyleDefinitions -> "Default.nb"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "PrimaryExamplesSection"->{
+  Cell[10273, 293, 459, 13, 70, "PrimaryExamplesSection",
+   CellTags->"PrimaryExamplesSection",
+   CellID->3069385]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"PrimaryExamplesSection", 22017, 678}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[612, 21, 76, 1, 70, "SymbolColorBar"],
+Cell[691, 24, 178, 5, 70, "LinkTrail"],
+Cell[872, 31, 4091, 96, 70, "AnchorBarGrid",
+ CellID->1],
+Cell[CellGroupData[{
+Cell[4988, 131, 74, 1, 70, "ObjectName",
+ CellID->1224892054],
+Cell[5065, 134, 713, 18, 70, "Usage",
+ CellID->982511436]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5815, 157, 580, 17, 70, "NotesSection",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->603843398],
+Cell[6398, 176, 266, 8, 70, "Notes",
+ CellID->149353492],
+Cell[6667, 186, 195, 5, 70, "Notes",
+ CellID->190293714],
+Cell[6865, 193, 438, 10, 70, "Notes",
+ CellID->757085513],
+Cell[7306, 205, 2432, 68, 70, "Notes",
+ CellID->311445735],
+Cell[9741, 275, 495, 13, 70, "Notes",
+ CellID->586435317]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[10273, 293, 459, 13, 70, "PrimaryExamplesSection",
+ CellTags->"PrimaryExamplesSection",
+ CellID->3069385],
+Cell[CellGroupData[{
+Cell[10757, 310, 148, 5, 70, "ExampleSection",
+ CellID->806829633],
+Cell[10908, 317, 240, 5, 70, "ExampleText",
+ CellID->21576093],
+Cell[CellGroupData[{
+Cell[11173, 326, 441, 15, 70, "Input",
+ CellID->39678609],
+Cell[11617, 343, 632, 23, 36, "Output",
+ CellID->147230899]
+}, Open  ]],
+Cell[12264, 369, 366, 11, 70, "ExampleText",
+ CellID->164414666],
+Cell[CellGroupData[{
+Cell[12655, 384, 457, 15, 70, "Input",
+ CellID->631183171],
+Cell[13115, 401, 813, 30, 36, "Output",
+ CellID->217959986]
+}, Open  ]],
+Cell[13943, 434, 1237, 25, 70, "ExampleText",
+ CellID->472237897],
+Cell[15183, 461, 88, 1, 70, "ExampleText",
+ CellID->864920639],
+Cell[CellGroupData[{
+Cell[15296, 466, 569, 19, 70, "Input",
+ CellID->366660953],
+Cell[15868, 487, 775, 28, 36, "Output",
+ CellID->268395062]
+}, Open  ]],
+Cell[16658, 518, 475, 11, 70, "ExampleText",
+ CellID->3489678],
+Cell[17136, 531, 358, 7, 70, "ExampleText",
+ CellID->122271445],
+Cell[17497, 540, 58, 2, 70, "Input",
+ CellID->4316210]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17604, 548, 419, 12, 70, "TutorialsSection",
+ CellID->250839057],
+Cell[18026, 562, 151, 3, 70, "Tutorials",
+ CellID->341631938]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18214, 570, 419, 12, 70, "MoreAboutSection",
+ CellID->38303248],
+Cell[18636, 584, 177, 4, 70, "MoreAbout",
+ CellID->1665078683],
+Cell[18816, 590, 489, 11, 70, "MoreAbout",
+ CellID->867725]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19342, 606, 445, 12, 70, "RelatedDemonstrationsSection",
+ CellID->1268215905],
+Cell[19790, 620, 589, 17, 70, "RelatedDemonstrations",
+ CellID->1129518860]
+}, Open  ]],
+Cell[20394, 640, 23, 0, 70, "FooterCell"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

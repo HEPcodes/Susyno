@@ -1,0 +1,789 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     23016,        779]
+NotebookOptionsPosition[     19086,        651]
+NotebookOutlinePosition[     20748,        697]
+CellTagsIndexPosition[     20663,        692]
+WindowTitle->SnClassCharacter - Wolfram Mathematica
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[" ", "SymbolColorBar",
+ CellMargins->{{Inherited, Inherited}, {-5, 0}}],
+
+Cell[TextData[{
+ ButtonBox["Mathematica",
+  BaseStyle->{"Link", "LinkTrail"},
+  ButtonData->"paclet:Susyno/guide/Susyno"],
+ StyleBox[" > ", "LinkTrailSeparator"]
+}], "LinkTrail"],
+
+Cell[BoxData[GridBox[{
+   {Cell["SUSYNO PACLET SYMBOL", "PacletNameCell"], Cell[TextData[{
+     Cell[BoxData[
+      ActionMenuBox[
+       FrameBox["\<\"Tutorials \[RightGuillemet]\"\>",
+        StripOnInput->False], {"\<\"Susyno Tutorial\"\>":>
+       Documentation`HelpLookup["paclet:Susyno/tutorial/SusynoTutorial"]},
+       Appearance->None,
+       MenuAppearance->Automatic]],
+      LineSpacing->{1.4, 0}],
+     "\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+     Cell[BoxData[
+      ActionMenuBox[
+       FrameBox["\<\"URL \[RightGuillemet]\"\>",
+        StripOnInput->False], {"\<\"Susyno/ref/SnClassCharacter\"\>":>
+       None, "\<\"Copy Mathematica url\"\>":>
+       Module[{DocumentationSearch`Private`nb$}, 
+        DocumentationSearch`Private`nb$ = NotebookPut[
+           Notebook[{
+             Cell["Susyno/ref/SnClassCharacter"]}, Visible -> False]]; 
+        SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+        FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+        NotebookClose[DocumentationSearch`Private`nb$]; Null], 
+       Delimiter, "\<\"Copy web url\"\>":>
+       Module[{DocumentationSearch`Private`nb$}, 
+        DocumentationSearch`Private`nb$ = NotebookPut[
+           Notebook[{
+             Cell[
+              BoxData[
+               MakeBoxes[
+                Hyperlink[
+                "http://reference.wolfram.com/mathematica/Susyno/ref/\
+SnClassCharacter.html"], StandardForm]], "Input", TextClipboardType -> 
+              "PlainText"]}, Visible -> False]]; 
+        SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+        FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+        NotebookClose[DocumentationSearch`Private`nb$]; 
+        Null], "\<\"Go to web url\"\>":>FrontEndExecute[{
+         NotebookLocate[{
+           URL[
+            StringJoin[
+            "http://reference.wolfram.com/mathematica/", 
+             "Susyno/ref/SnClassCharacter", ".html"]], None}]}]},
+       Appearance->None,
+       MenuAppearance->Automatic]],
+      LineSpacing->{1.4, 0}]
+    }], "AnchorBar"]}
+  }]], "AnchorBarGrid",
+ GridBoxOptions->{GridBoxItemSize->{"Columns" -> {
+     Scaled[0.65], {
+      Scaled[0.34]}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+   "RowsIndexed" -> {}}},
+ CellID->1],
+
+Cell[CellGroupData[{
+
+Cell["SnClassCharacter", "ObjectName",
+ CellID->1224892054],
+
+Cell[BoxData[GridBox[{
+   {"", Cell[TextData[{
+     Cell[BoxData[
+      RowBox[{"SnClassCharacter", "[", 
+       RowBox[{"representation", ",", " ", "class"}], "]"}]], "InlineFormula"],
+     " \[LineSeparator]Calculates the character (trace of the matrices) of a \
+given class of the permutation group ",
+     Cell[BoxData[
+      SubscriptBox["S", "n"]], "InlineFormula"],
+     ", for a particular irreducible representation"
+    }]]}
+  }]], "Usage",
+ GridBoxOptions->{
+ GridBoxBackground->{
+  "Columns" -> {{None}}, "ColumnsIndexed" -> {}, "Rows" -> {{None}}, 
+   "RowsIndexed" -> {}}},
+ CellID->982511436]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[Cell[BoxData[
+ ButtonBox[
+  FrameBox[
+   StyleBox[
+    RowBox[{"MORE", " ", "INFORMATION"}], "NotesFrameText"],
+   StripOnInput->False],
+  Appearance->{Automatic, None},
+  BaseStyle->None,
+  ButtonFunction:>(FrontEndExecute[{
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], All, ButtonCell], 
+     FrontEndToken["OpenCloseGroup"], 
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], After, CellContents]}]& ),
+  Evaluator->None,
+  Method->"Preemptive"]]]], "NotesSection",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->622739023],
+
+Cell[TextData[{
+ Cell[BoxData["representation"], "InlineFormula"],
+ " and ",
+ Cell[BoxData["class"], "InlineFormula"],
+ " must be partitions of some integer n, since both a representation and a \
+class of the ",
+ Cell[BoxData[
+  SubscriptBox["S", "n"]], "InlineFormula"],
+ " permutation group are given by partitions of n."
+}], "Notes",
+ CellID->613073599]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["EXAMPLES",
+ BaseStyle->None,
+ Appearance->{Automatic, None},
+ Evaluator->None,
+ Method->"Preemptive",
+ ButtonFunction:>(FrontEndExecute[{
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], All, ButtonCell], 
+    FrontEndToken["OpenCloseGroup"], 
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], After, 
+     CellContents]}]& )]], "PrimaryExamplesSection",
+ CellTags->"PrimaryExamplesSection",
+ CellID->113173467],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Basic Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(1)", "ExampleCount"]
+}], "ExampleSection",
+ CellID->160526033],
+
+Cell[TextData[{
+ "Compute the character of the class {2,1} of the 1-dimensional \
+representation {1,1,1} of ",
+ Cell[BoxData[
+  SubscriptBox["S", "3"]], "InlineFormula"],
+ ":"
+}], "ExampleText",
+ CellID->32979335],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SnClassCharacter", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "1", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "1"}], "}"}]}], "]"}]], "Input",
+ CellLabel->"In[1]:=",
+ CellID->298933796],
+
+Cell[BoxData[
+ RowBox[{"-", "1"}]], "Output",
+ ImageSize->{19, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[1]=",
+ CellID->57863262]
+}, Open  ]],
+
+Cell[TextData[{
+ "Note that to compute the dimension of a representation of ",
+ Cell[BoxData[
+  SubscriptBox["S", "n"]], "InlineFormula"],
+ ", one can evaluate the character of class {1,1,\[CenterEllipsis],1} which \
+contains the identity element of  ",
+ Cell[BoxData[
+  SubscriptBox["S", "n"]], "InlineFormula"],
+ " only. For example, the representation {3,2} is 5-dimensional:"
+}], "ExampleText",
+ CellID->80400136],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SnClassCharacter", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"3", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "1", ",", "1", ",", "1", ",", "1"}], "}"}]}], 
+  "]"}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->667134697],
+
+Cell[BoxData["5"], "Output",
+ ImageSize->{11, 15},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[2]=",
+ CellID->218069280]
+}, Open  ]],
+
+Cell[TextData[{
+ "More generally, we can build the character table of ",
+ Cell[BoxData[
+  SubscriptBox["S", "n"]], "InlineFormula"],
+ " easily:"
+}], "ExampleText",
+ CellID->132639251],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"n", "=", "5"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"characterTable", "=", 
+    RowBox[{"Reverse", "/@", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"SnClassCharacter", "[", 
+        RowBox[{"i", ",", "j"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", 
+         RowBox[{"IntegerPartitions", "[", "n", "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"j", ",", 
+         RowBox[{"IntegerPartitions", "[", "n", "]"}]}], "}"}]}], "]"}]}]}], 
+   ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{"\"\<Character table of \>\"", ",", 
+    SubscriptBox["S", "n"], ",", "\"\<:\>\""}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"characterTable", "//", 
+  "MatrixForm"}], "\[IndentingNewLine]"}], "Input",
+ CellLabel->"In[3]:=",
+ CellID->70075227],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Character table of \"\>", "\[InvisibleSpace]", 
+   SubscriptBox["S", "5"], "\[InvisibleSpace]", "\<\":\"\>"}],
+  SequenceForm["Character table of ", 
+   Subscript[$CellContext`S, 5], ":"],
+  Editable->False]], "Print",
+ CellLabel->"During evaluation of In[3]:=",
+ CellID->278024847],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", GridBox[{
+     {"1", "1", "1", "1", "1", "1", "1"},
+     {"4", "2", "0", "1", 
+      RowBox[{"-", "1"}], "0", 
+      RowBox[{"-", "1"}]},
+     {"5", "1", "1", 
+      RowBox[{"-", "1"}], "1", 
+      RowBox[{"-", "1"}], "0"},
+     {"6", "0", 
+      RowBox[{"-", "2"}], "0", "0", "0", "1"},
+     {"5", 
+      RowBox[{"-", "1"}], "1", 
+      RowBox[{"-", "1"}], 
+      RowBox[{"-", "1"}], "1", "0"},
+     {"4", 
+      RowBox[{"-", "2"}], "0", "1", "1", "0", 
+      RowBox[{"-", "1"}]},
+     {"1", 
+      RowBox[{"-", "1"}], "1", "1", 
+      RowBox[{"-", "1"}], 
+      RowBox[{"-", "1"}], "1"}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ ImageSize->{169, 102},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[3]//MatrixForm=",
+ CellID->76596110]
+}, Open  ]],
+
+Cell["\<\
+It is well known that these tables are orthogonal once the group and class \
+orders are taken into consideration:\
+\>", "ExampleText",
+ CellID->54313663],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"characterTableCorrected", "=", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Sqrt", "[", 
+        RowBox[{
+         RowBox[{"SnClassOrder", "[", "j", "]"}], "/", 
+         RowBox[{"n", "!"}]}], "]"}], 
+       RowBox[{"SnClassCharacter", "[", 
+        RowBox[{"i", ",", "j"}], "]"}]}], ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", 
+        RowBox[{"IntegerPartitions", "[", "n", "]"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"j", ",", 
+        RowBox[{"IntegerPartitions", "[", "n", "]"}]}], "}"}]}], "]"}]}], 
+   ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{"\"\<'Corrected' character table of \>\"", ",", 
+    SubscriptBox["S", "n"], ",", "\"\<:\>\""}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"characterTableCorrected", "//", "MatrixForm"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", "\"\<It is orthogonal:\>\"", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"characterTableCorrected", ".", 
+   RowBox[{"Transpose", "[", "characterTableCorrected", "]"}]}], "//", 
+  "MatrixForm"}]}], "Input",
+ CellLabel->"In[4]:=",
+ CellID->842523768],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"'Corrected' character table of \"\>", "\[InvisibleSpace]", 
+   SubscriptBox["S", "5"], "\[InvisibleSpace]", "\<\":\"\>"}],
+  SequenceForm["'Corrected' character table of ", 
+   Subscript[$CellContext`S, 5], ":"],
+  Editable->False]], "Print",
+ CellLabel->"During evaluation of In[7]:=",
+ CellID->585251664],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", GridBox[{
+     {
+      FractionBox["1", 
+       SqrtBox["5"]], 
+      FractionBox["1", "2"], 
+      FractionBox["1", 
+       SqrtBox["6"]], 
+      FractionBox["1", 
+       SqrtBox["6"]], 
+      FractionBox["1", 
+       RowBox[{"2", " ", 
+        SqrtBox["2"]}]], 
+      FractionBox["1", 
+       RowBox[{"2", " ", 
+        SqrtBox["3"]}]], 
+      FractionBox["1", 
+       RowBox[{"2", " ", 
+        SqrtBox["30"]}]]},
+     {
+      RowBox[{"-", 
+       FractionBox["1", 
+        SqrtBox["5"]]}], "0", 
+      RowBox[{"-", 
+       FractionBox["1", 
+        SqrtBox["6"]]}], 
+      FractionBox["1", 
+       SqrtBox["6"]], "0", 
+      FractionBox["1", 
+       SqrtBox["3"]], 
+      SqrtBox[
+       FractionBox["2", "15"]]},
+     {"0", 
+      RowBox[{"-", 
+       FractionBox["1", "2"]}], 
+      FractionBox["1", 
+       SqrtBox["6"]], 
+      RowBox[{"-", 
+       FractionBox["1", 
+        SqrtBox["6"]]}], 
+      FractionBox["1", 
+       RowBox[{"2", " ", 
+        SqrtBox["2"]}]], 
+      FractionBox["1", 
+       RowBox[{"2", " ", 
+        SqrtBox["3"]}]], 
+      FractionBox[
+       SqrtBox[
+        FractionBox["5", "6"]], "2"]},
+     {
+      FractionBox["1", 
+       SqrtBox["5"]], "0", "0", "0", 
+      RowBox[{"-", 
+       FractionBox["1", 
+        SqrtBox["2"]]}], "0", 
+      SqrtBox[
+       FractionBox["3", "10"]]},
+     {"0", 
+      FractionBox["1", "2"], 
+      RowBox[{"-", 
+       FractionBox["1", 
+        SqrtBox["6"]]}], 
+      RowBox[{"-", 
+       FractionBox["1", 
+        SqrtBox["6"]]}], 
+      FractionBox["1", 
+       RowBox[{"2", " ", 
+        SqrtBox["2"]}]], 
+      RowBox[{"-", 
+       FractionBox["1", 
+        RowBox[{"2", " ", 
+         SqrtBox["3"]}]]}], 
+      FractionBox[
+       SqrtBox[
+        FractionBox["5", "6"]], "2"]},
+     {
+      RowBox[{"-", 
+       FractionBox["1", 
+        SqrtBox["5"]]}], "0", 
+      FractionBox["1", 
+       SqrtBox["6"]], 
+      FractionBox["1", 
+       SqrtBox["6"]], "0", 
+      RowBox[{"-", 
+       FractionBox["1", 
+        SqrtBox["3"]]}], 
+      SqrtBox[
+       FractionBox["2", "15"]]},
+     {
+      FractionBox["1", 
+       SqrtBox["5"]], 
+      RowBox[{"-", 
+       FractionBox["1", "2"]}], 
+      RowBox[{"-", 
+       FractionBox["1", 
+        SqrtBox["6"]]}], 
+      FractionBox["1", 
+       SqrtBox["6"]], 
+      FractionBox["1", 
+       RowBox[{"2", " ", 
+        SqrtBox["2"]}]], 
+      RowBox[{"-", 
+       FractionBox["1", 
+        RowBox[{"2", " ", 
+         SqrtBox["3"]}]]}], 
+      FractionBox["1", 
+       RowBox[{"2", " ", 
+        SqrtBox["30"]}]]}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ ImageSize->{300, 294},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[4]//MatrixForm=",
+ CellID->228704552],
+
+Cell[BoxData["\<\"It is orthogonal:\"\>"], "Print",
+ CellLabel->"During evaluation of In[7]:=",
+ CellID->618296175],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", GridBox[{
+     {"1", "0", "0", "0", "0", "0", "0"},
+     {"0", "1", "0", "0", "0", "0", "0"},
+     {"0", "0", "1", "0", "0", "0", "0"},
+     {"0", "0", "0", "1", "0", "0", "0"},
+     {"0", "0", "0", "0", "1", "0", "0"},
+     {"0", "0", "0", "0", "0", "1", "0"},
+     {"0", "0", "0", "0", "0", "0", "1"}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ ImageSize->{121, 102},
+ ImageMargins->{{0, 0}, {0, 0}},
+ ImageRegion->{{0, 1}, {0, 1}},
+ CellLabel->"Out[4]//MatrixForm=",
+ CellID->514124903]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["SEE ALSO",
+ BaseStyle->None,
+ Appearance->{Automatic, None},
+ Evaluator->None,
+ Method->"Preemptive",
+ ButtonFunction:>(FrontEndExecute[{
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], All, ButtonCell], 
+    FrontEndToken["OpenCloseGroup"], 
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], After, 
+     CellContents]}]& )]], "SeeAlsoSection",
+ CellID->1255426704],
+
+Cell[BoxData[Cell[BoxData[
+  ButtonBox[
+   RowBox[{
+    RowBox[{"D", ".", " ", "Bernstein"}], ",", " ", 
+    RowBox[{
+     RowBox[{"J", ".", " ", "Symb", ".", " ", "Comput", ".", " ", "37"}], " ", 
+     RowBox[{"no", ".", " ", "6"}]}], ",", " ", 
+    RowBox[{
+     RowBox[{"(", "2004", ")"}], " ", "727", "\[Dash]748"}], ",", " ", 
+    RowBox[{"arXiv", ":", 
+     RowBox[{"math", "/", 
+      RowBox[{"0309225", " ", "[", 
+       RowBox[{"math", ".", "CO"}], "]"}]}]}]}],
+   BaseStyle->"Link"]], "InlineFormula"]], "SeeAlso",
+ CellID->929782353]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["TUTORIALS",
+ BaseStyle->None,
+ Appearance->{Automatic, None},
+ Evaluator->None,
+ Method->"Preemptive",
+ ButtonFunction:>(FrontEndExecute[{
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], All, ButtonCell], 
+    FrontEndToken["OpenCloseGroup"], 
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], After, 
+     CellContents]}]& )]], "TutorialsSection",
+ CellID->250839057],
+
+Cell[TextData[ButtonBox["Susyno Tutorial",
+ BaseStyle->"Link",
+ ButtonData->"paclet:Susyno/tutorial/SusynoTutorial"]], "Tutorials",
+ CellID->341631938]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["RELATED LINKS",
+ BaseStyle->None,
+ Appearance->{Automatic, None},
+ Evaluator->None,
+ Method->"Preemptive",
+ ButtonFunction:>(FrontEndExecute[{
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], All, ButtonCell], 
+    FrontEndToken["OpenCloseGroup"], 
+    FrontEnd`SelectionMove[
+     FrontEnd`SelectedNotebook[], After, 
+     CellContents]}]& )]], "RelatedLinksSection",
+ CellID->1584193535],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["HookContentFormula",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/HookContentFormula"]], "InlineFormula"],
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
+  ButtonBox["DecomposeSnProduct",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/DecomposeSnProduct"]], "InlineFormula"],
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
+  ButtonBox["SnClassOrder",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/SnClassOrder"]], "InlineFormula"],
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
+  ButtonBox["SnIrrepDim",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/SnIrrepDim"]], "InlineFormula"],
+ " "
+}], "RelatedLinks",
+ CellID->1038487239]
+}, Open  ]],
+
+Cell[" ", "FooterCell"]
+},
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+WindowSize->{725, 566},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowTitle->"SnClassCharacter - Wolfram Mathematica",
+TaggingRules->{
+ "ModificationHighlight" -> False, 
+  "Metadata" -> {
+   "built" -> "{2013, 8, 7, 2, 29, 11.6250000}", "context" -> "Susyno`", 
+    "keywords" -> {}, "index" -> True, "label" -> "Susyno Paclet Symbol", 
+    "language" -> "en", "paclet" -> "Susyno", "status" -> "None", "summary" -> 
+    "SnClassCharacter[representation, class] Calculates the character (trace \
+of the matrices) of a given class of the permutation group S_n, for a \
+particular irreducible representation", "synonyms" -> {}, "title" -> 
+    "SnClassCharacter", "type" -> "Symbol", "uri" -> 
+    "Susyno/ref/SnClassCharacter"}, "SearchTextTranslated" -> ""},
+CellContext->"Global`",
+FrontEndVersion->"7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[
+    StyleDefinitions -> FrontEnd`FileName[{"Wolfram"}, "Reference.nb"]]], 
+   Cell[
+    StyleData["Input"], CellContext -> "Global`"], 
+   Cell[
+    StyleData["Output"], CellContext -> "Global`"]}, Visible -> False, 
+  FrontEndVersion -> "7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
+   StyleDefinitions -> "Default.nb"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "PrimaryExamplesSection"->{
+  Cell[4894, 146, 461, 13, 70, "PrimaryExamplesSection",
+   CellTags->"PrimaryExamplesSection",
+   CellID->113173467]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"PrimaryExamplesSection", 20520, 685}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[597, 21, 76, 1, 70, "SymbolColorBar"],
+Cell[676, 24, 178, 5, 70, "LinkTrail"],
+Cell[857, 31, 2330, 53, 70, "AnchorBarGrid",
+ CellID->1],
+Cell[CellGroupData[{
+Cell[3212, 88, 59, 1, 70, "ObjectName",
+ CellID->1224892054],
+Cell[3274, 91, 607, 16, 70, "Usage",
+ CellID->982511436]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3918, 112, 580, 17, 70, "NotesSection",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->622739023],
+Cell[4501, 131, 356, 10, 70, "Notes",
+ CellID->613073599]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[4894, 146, 461, 13, 70, "PrimaryExamplesSection",
+ CellTags->"PrimaryExamplesSection",
+ CellID->113173467],
+Cell[CellGroupData[{
+Cell[5380, 163, 148, 5, 70, "ExampleSection",
+ CellID->160526033],
+Cell[5531, 170, 213, 7, 70, "ExampleText",
+ CellID->32979335],
+Cell[CellGroupData[{
+Cell[5769, 181, 243, 8, 70, "Input",
+ CellID->298933796],
+Cell[6015, 191, 174, 6, 36, "Output",
+ CellID->57863262]
+}, Open  ]],
+Cell[6204, 200, 417, 10, 70, "ExampleText",
+ CellID->80400136],
+Cell[CellGroupData[{
+Cell[6646, 214, 266, 9, 70, "Input",
+ CellID->667134697],
+Cell[6915, 225, 158, 5, 36, "Output",
+ CellID->218069280]
+}, Open  ]],
+Cell[7088, 233, 183, 6, 70, "ExampleText",
+ CellID->132639251],
+Cell[CellGroupData[{
+Cell[7296, 243, 901, 26, 70, "Input",
+ CellID->70075227],
+Cell[8200, 271, 331, 8, 70, "Print",
+ CellID->278024847],
+Cell[8534, 281, 1274, 40, 137, "Output",
+ CellID->76596110]
+}, Open  ]],
+Cell[9823, 324, 163, 4, 70, "ExampleText",
+ CellID->54313663],
+Cell[CellGroupData[{
+Cell[10011, 332, 1266, 36, 70, "Input",
+ CellID->842523768],
+Cell[11280, 370, 355, 8, 70, "Print",
+ CellID->585251664],
+Cell[11638, 380, 3220, 126, 329, "Output",
+ CellID->228704552],
+Cell[14861, 508, 115, 2, 70, "Print",
+ CellID->618296175],
+Cell[14979, 512, 989, 27, 137, "Output",
+ CellID->514124903]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16029, 546, 417, 12, 70, "SeeAlsoSection",
+ CellID->1255426704],
+Cell[16449, 560, 544, 14, 70, "SeeAlso",
+ CellID->929782353]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17030, 579, 419, 12, 70, "TutorialsSection",
+ CellID->250839057],
+Cell[17452, 593, 151, 3, 70, "Tutorials",
+ CellID->341631938]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17640, 601, 427, 12, 70, "RelatedLinksSection",
+ CellID->1584193535],
+Cell[18070, 615, 974, 31, 70, "RelatedLinks",
+ CellID->1038487239]
+}, Open  ]],
+Cell[19059, 649, 23, 0, 70, "FooterCell"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

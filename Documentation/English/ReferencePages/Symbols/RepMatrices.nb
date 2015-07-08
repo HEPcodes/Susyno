@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       145,          7]
-NotebookDataLength[     39581,       1065]
-NotebookOptionsPosition[     34770,        905]
-NotebookOutlinePosition[     36466,        951]
-CellTagsIndexPosition[     36381,        946]
+NotebookDataLength[     39764,       1072]
+NotebookOptionsPosition[     34956,        912]
+NotebookOutlinePosition[     36651,        958]
+CellTagsIndexPosition[     36566,        953]
 WindowTitle->RepMatrices - Wolfram Mathematica
 WindowFrame->Normal*)
 
@@ -146,7 +146,7 @@ Cell[TextData[Cell[BoxData[
   Evaluator->None,
   Method->"Preemptive"]]]], "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->124685365],
+ CellID->113886520],
 
 Cell[TextData[{
  "The ",
@@ -155,14 +155,14 @@ Cell[TextData[{
  ButtonBox["Cartan matrices",
   BaseStyle->"Link",
   ButtonData->"paclet:Susyno/ref/CartanMatrix"],
- " of the intended groups;"
+ " of the intended groups."
 }], "Notes",
  CellID->1067943069],
 
 Cell[TextData[{
  "Each representation ",
  Cell[BoxData["rep"], "InlineFormula"],
- " should be a list of non-negative integers (Dynkin coefficients);"
+ " should be a list of non-negative integers (Dynkin coefficients)."
 }], "Notes",
  CellID->41030773],
 
@@ -185,13 +185,13 @@ Cell[TextData[{
   ButtonBox["MatrixForm",
    BaseStyle->"Link",
    ButtonData->"paclet:ref/MatrixForm"]], "InlineFormula"],
- " to convert the results if needed;"
+ " to convert the results if needed."
 }], "Notes",
  CellID->812326107],
 
 Cell["\<\
 This method clearly must assume a particular basis for each representation so \
-the results are basis dependent;\
+the results are basis dependent.\
 \>", "Notes",
  CellID->18412127],
 
@@ -248,7 +248,7 @@ Cell[TextData[ButtonBox["EXAMPLES",
      FrontEnd`SelectedNotebook[], After, 
      CellContents]}]& )]], "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->275378755],
+ CellID->230907238],
 
 Cell[CellGroupData[{
 
@@ -257,9 +257,9 @@ Cell[TextData[{
  "\[NonBreakingSpace]\[NonBreakingSpace]",
  Cell["(1)", "ExampleCount"]
 }], "ExampleSection",
- CellID->193062518],
+ CellID->95935242],
 
-Cell["SU2's doublet representation [={1}] matrices:", "ExampleText",
+Cell["SU(2)'s doublet representation [={1}] matrices:", "ExampleText",
  CellID->513681956],
 
 Cell[CellGroupData[{
@@ -299,7 +299,7 @@ qM9edQaDfK1VYWCwVmCwBAOEEEIPqE+HGCkF
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[1]=",
- CellID->4667540]
+ CellID->24927834]
 }, Open  ]],
 
 Cell["\<\
@@ -348,7 +348,7 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[2]=",
- CellID->266579390],
+ CellID->28023960],
 
 Cell[BoxData[
  GraphicsBox[
@@ -386,11 +386,11 @@ hdMEo3WnBYNKU7hI5o2KOjk3RaVSwfAP8a1tTQ==
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[2]=",
- CellID->410812250]
+ CellID->3804307]
 }, Open  ]],
 
 Cell["\<\
-SU3's fundamental representation [={1,0}] matrices are 'almost' 1/2 the \
+SU(3)'s fundamental representation [={1,0}] matrices are 'almost' 1/2 the \
 Gell-Mann matrices. The difference is due to a the choice of basis:\
 \>", "ExampleText",
  CellID->692636],
@@ -499,7 +499,7 @@ fTHN
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[3]=",
- CellID->233123158]
+ CellID->130689977]
 }, Open  ]]
 }, Open  ]],
 
@@ -551,7 +551,7 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[2]=",
- CellID->32463757]
+ CellID->21882826]
 }, Open  ]],
 
 Cell["\<\
@@ -579,12 +579,12 @@ Cell[BoxData[
   SequenceForm["Casimir of {1,0,0,0,0} of SO(10): ", 
    Rational[9, 2]],
   Editable->False]], "Print",
- CellLabel->"During evaluation of In[3]:=",
- CellID->75225588],
+ CellLabel->"During evaluation of In[7]:=",
+ CellID->356764962],
 
 Cell[BoxData["\<\"Sum of all representation matrices squared:\"\>"], "Print",
- CellLabel->"During evaluation of In[3]:=",
- CellID->80543062]
+ CellLabel->"During evaluation of In[7]:=",
+ CellID->929148463]
 }, Open  ]],
 
 Cell[BoxData[
@@ -634,7 +634,7 @@ Cell[BoxData[
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[3]//MatrixForm=",
- CellID->255643888]
+ CellID->392809554]
 }, Open  ]],
 
 Cell["Finally the trace condition:", "ExampleText",
@@ -643,8 +643,7 @@ Cell["Finally the trace condition:", "ExampleText",
 Cell[CellGroupData[{
 
 Cell["\<\
-(* Sr=Casimir*Dim(rep)/Dim(group) *)
-Sr=Casimir[SO10,{1,0,0,0,0}] DimR[SO10,{1,0,0,0,0}]/DimR[SO10,Adjoint[SO10]];
+Sr=DynkinIndex[SO10,{1,0,0,0,0}];
 Print[\"S(rep) of rep={1,0,0,0,0} of SO(10): \", Sr]
 Print[\"Tr(Mi Mj):\"]
 Table[Tr[matrices[[i]].matrices[[j]]],{i,45},{j,45}]//MatrixForm\
@@ -660,12 +659,12 @@ Cell[BoxData[
    "\[InvisibleSpace]", "1"}],
   SequenceForm["S(rep) of rep={1,0,0,0,0} of SO(10): ", 1],
   Editable->False]], "Print",
- CellLabel->"During evaluation of In[55]:=",
- CellID->440539975],
+ CellLabel->"During evaluation of In[10]:=",
+ CellID->115580194],
 
 Cell[BoxData["\<\"Tr(Mi Mj):\"\>"], "Print",
- CellLabel->"During evaluation of In[55]:=",
- CellID->5552020]
+ CellLabel->"During evaluation of In[10]:=",
+ CellID->173705802]
 }, Open  ]],
 
 Cell[BoxData[
@@ -833,7 +832,7 @@ y/FN9u7dux/9qbdv3/7op700+KthGIZhGF6It8v+8We//s//33777Uef/fjx
  ImageMargins->{{0, 0}, {0, 0}},
  ImageRegion->{{0, 1}, {0, 1}},
  CellLabel->"Out[4]//MatrixForm=",
- CellID->870488456]
+ CellID->261068]
 }, Open  ]]
 }, Closed]]
 }, Open  ]],
@@ -894,6 +893,14 @@ Cell[TextData[{
   "InlineSeparator"],
  " ",
  Cell[BoxData[
+  ButtonBox["RepMinimalMatrices",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/RepMinimalMatrices"]], "InlineFormula"],
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
   ButtonBox["SparseArray",
    BaseStyle->"Link",
    ButtonData->"paclet:ref/SparseArray"]], "InlineFormula"]
@@ -911,7 +918,7 @@ WindowTitle->"RepMatrices - Wolfram Mathematica",
 TaggingRules->{
  "ModificationHighlight" -> False, 
   "Metadata" -> {
-   "built" -> "{2012, 3, 2, 12, 16, 32.9687500}", "context" -> "Susyno`", 
+   "built" -> "{2013, 8, 7, 2, 28, 29.4687500}", "context" -> "Susyno`", 
     "keywords" -> {}, "index" -> True, "label" -> "Susyno Paclet Symbol", 
     "language" -> "en", "paclet" -> "Susyno", "status" -> "None", "summary" -> 
     "RepMatrices[group, rep] Returns the matrices of a representation rep of \
@@ -940,12 +947,12 @@ CellTagsIndex->{
  "PrimaryExamplesSection"->{
   Cell[7153, 237, 461, 13, 70, "PrimaryExamplesSection",
    CellTags->"PrimaryExamplesSection",
-   CellID->275378755]}
+   CellID->230907238]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"PrimaryExamplesSection", 36238, 939}
+ {"PrimaryExamplesSection", 36423, 946}
  }
 *)
 (*NotebookFileOutline
@@ -963,7 +970,7 @@ Cell[3244, 91, 1166, 35, 70, "Usage",
 Cell[CellGroupData[{
 Cell[4447, 131, 580, 17, 70, "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->124685365],
+ CellID->113886520],
 Cell[5030, 150, 249, 9, 70, "Notes",
  CellID->1067943069],
 Cell[5282, 161, 181, 5, 70, "Notes",
@@ -978,95 +985,95 @@ Cell[6217, 197, 899, 35, 70, "Notes",
 Cell[CellGroupData[{
 Cell[7153, 237, 461, 13, 70, "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->275378755],
+ CellID->230907238],
 Cell[CellGroupData[{
-Cell[7639, 254, 148, 5, 70, "ExampleSection",
- CellID->193062518],
-Cell[7790, 261, 88, 1, 70, "ExampleText",
+Cell[7639, 254, 147, 5, 70, "ExampleSection",
+ CellID->95935242],
+Cell[7789, 261, 90, 1, 70, "ExampleText",
  CellID->513681956],
 Cell[CellGroupData[{
-Cell[7903, 266, 188, 6, 28, "Input",
+Cell[7904, 266, 188, 6, 28, "Input",
  CellID->196926373],
-Cell[8094, 274, 1193, 27, 36, "Output",
- CellID->4667540]
+Cell[8095, 274, 1194, 27, 36, "Output",
+ CellID->24927834]
 }, Open  ]],
-Cell[9302, 304, 118, 3, 70, "ExampleText",
+Cell[9304, 304, 118, 3, 70, "ExampleText",
  CellID->349147845],
 Cell[CellGroupData[{
-Cell[9445, 311, 192, 4, 70, "Input",
+Cell[9447, 311, 192, 4, 70, "Input",
  CellID->4735082],
-Cell[9640, 317, 907, 33, 53, "Output",
- CellID->266579390],
-Cell[10550, 352, 1748, 36, 70, "Output",
- CellID->410812250]
+Cell[9642, 317, 906, 33, 53, "Output",
+ CellID->28023960],
+Cell[10551, 352, 1746, 36, 70, "Output",
+ CellID->3804307]
 }, Open  ]],
-Cell[12313, 391, 189, 4, 70, "ExampleText",
+Cell[12312, 391, 191, 4, 70, "ExampleText",
  CellID->692636],
 Cell[CellGroupData[{
-Cell[12527, 399, 97, 2, 28, "Input",
+Cell[12528, 399, 97, 2, 28, "Input",
  CellID->101142205],
-Cell[12627, 403, 5498, 98, 183, "Output",
- CellID->233123158]
+Cell[12628, 403, 5498, 98, 183, "Output",
+ CellID->130689977]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[18174, 507, 238, 7, 70, "ExampleSection",
+Cell[18175, 507, 238, 7, 70, "ExampleSection",
  CellID->2123667759],
-Cell[18415, 516, 97, 1, 70, "ExampleText",
+Cell[18416, 516, 97, 1, 70, "ExampleText",
  CellID->633240428],
-Cell[18515, 519, 99, 2, 70, "Input",
+Cell[18516, 519, 99, 2, 70, "Input",
  CellID->661675421],
-Cell[18617, 523, 150, 4, 70, "ExampleText",
+Cell[18618, 523, 150, 4, 70, "ExampleText",
  CellID->356242323],
 Cell[CellGroupData[{
-Cell[18792, 531, 130, 4, 70, "Input",
+Cell[18793, 531, 130, 4, 70, "Input",
  CellID->619171038],
-Cell[18925, 537, 803, 16, 88, "Output",
- CellID->32463757]
+Cell[18926, 537, 803, 16, 88, "Output",
+ CellID->21882826]
 }, Open  ]],
-Cell[19743, 556, 169, 4, 70, "ExampleText",
+Cell[19744, 556, 169, 4, 70, "ExampleText",
  CellID->94195855],
 Cell[CellGroupData[{
-Cell[19937, 564, 247, 6, 70, "Input",
+Cell[19938, 564, 247, 6, 70, "Input",
  CellID->159557486],
 Cell[CellGroupData[{
-Cell[20209, 574, 306, 8, 70, "Print",
- CellID->75225588],
-Cell[20518, 584, 140, 2, 70, "Print",
- CellID->80543062]
+Cell[20210, 574, 307, 8, 70, "Print",
+ CellID->356764962],
+Cell[20520, 584, 141, 2, 70, "Print",
+ CellID->929148463]
 }, Open  ]],
-Cell[20673, 589, 1844, 47, 282, "Output",
- CellID->255643888]
+Cell[20676, 589, 1844, 47, 282, "Output",
+ CellID->392809554]
 }, Open  ]],
-Cell[22532, 639, 70, 1, 70, "ExampleText",
+Cell[22535, 639, 70, 1, 70, "ExampleText",
  CellID->12390622],
 Cell[CellGroupData[{
-Cell[22627, 644, 322, 8, 70, "Input",
+Cell[22630, 644, 241, 7, 70, "Input",
  CellID->105951781],
 Cell[CellGroupData[{
-Cell[22974, 656, 279, 7, 70, "Print",
- CellID->440539975],
-Cell[23256, 665, 107, 2, 70, "Print",
- CellID->5552020]
+Cell[22896, 655, 279, 7, 70, "Print",
+ CellID->115580194],
+Cell[23178, 664, 109, 2, 70, "Print",
+ CellID->173705802]
 }, Open  ]],
-Cell[23378, 670, 9593, 165, 70, "Output",
- CellID->870488456]
+Cell[23302, 669, 9590, 165, 70, "Output",
+ CellID->261068]
 }, Open  ]]
 }, Closed]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[33032, 842, 419, 12, 70, "TutorialsSection",
+Cell[32953, 841, 419, 12, 70, "TutorialsSection",
  CellID->250839057],
-Cell[33454, 856, 151, 3, 70, "Tutorials",
+Cell[33375, 855, 151, 3, 70, "Tutorials",
  CellID->341631938]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[33642, 864, 427, 12, 70, "RelatedLinksSection",
+Cell[33563, 863, 427, 12, 70, "RelatedLinksSection",
  CellID->1584193535],
-Cell[34072, 878, 656, 22, 70, "RelatedLinks",
+Cell[33993, 877, 921, 30, 70, "RelatedLinks",
  CellID->1038487239]
 }, Open  ]],
-Cell[34743, 903, 23, 0, 70, "FooterCell"]
+Cell[34929, 910, 23, 0, 70, "FooterCell"]
 }
 ]
 *)

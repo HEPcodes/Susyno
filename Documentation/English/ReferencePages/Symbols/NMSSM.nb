@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       145,          7]
-NotebookDataLength[     14021,        460]
-NotebookOptionsPosition[     11308,        372]
-NotebookOutlinePosition[     12804,        416]
-CellTagsIndexPosition[     12719,        411]
+NotebookDataLength[     13637,        453]
+NotebookOptionsPosition[     10916,        365]
+NotebookOutlinePosition[     12406,        409]
+CellTagsIndexPosition[     12321,        404]
 WindowTitle->NMSSM - Wolfram Mathematica
 WindowFrame->Normal*)
 
@@ -44,12 +44,12 @@ Cell[BoxData[GridBox[{
      Cell[BoxData[
       ActionMenuBox[
        FrameBox["\<\"URL \[RightGuillemet]\"\>",
-        StripOnInput->False], {"\<\"Susyno/ref/NMSSM\"\>":>
+        StripOnInput->False], {"\<\"Susyno/ref/Weights\"\>":>
        None, "\<\"Copy Mathematica url\"\>":>
        Module[{DocumentationSearch`Private`nb$}, 
         DocumentationSearch`Private`nb$ = NotebookPut[
            Notebook[{
-             Cell["Susyno/ref/NMSSM"]}, Visible -> False]]; 
+             Cell["Susyno/ref/Weights"]}, Visible -> False]]; 
         SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
         FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
         NotebookClose[DocumentationSearch`Private`nb$]; Null], 
@@ -61,7 +61,7 @@ Cell[BoxData[GridBox[{
               BoxData[
                MakeBoxes[
                 Hyperlink[
-                "http://reference.wolfram.com/mathematica/Susyno/ref/NMSSM.\
+                "http://reference.wolfram.com/mathematica/Susyno/ref/Weights.\
 html"], StandardForm]], "Input", TextClipboardType -> "PlainText"]}, Visible -> 
             False]]; SelectionMove[
          DocumentationSearch`Private`nb$, All, Notebook]; 
@@ -71,8 +71,8 @@ html"], StandardForm]], "Input", TextClipboardType -> "PlainText"]}, Visible ->
          NotebookLocate[{
            URL[
             StringJoin[
-            "http://reference.wolfram.com/mathematica/", "Susyno/ref/NMSSM", 
-             ".html"]], None}]}]},
+            "http://reference.wolfram.com/mathematica/", "Susyno/ref/Weights",
+              ".html"]], None}]}]},
        Appearance->None,
        MenuAppearance->Automatic]],
       LineSpacing->{1.4, 0}]
@@ -92,8 +92,7 @@ Cell["NMSSM", "ObjectName",
 Cell[BoxData[GridBox[{
    {"", Cell[TextData[{
      Cell[BoxData["NMSSM"], "InlineFormula"],
-     " \[LineSeparator]",
-     "Variable with all the data of the NMSSM model"
+     " \[LineSeparator]Variable with all the data of the NMSSM"
     }]]}
   }]], "Usage",
  GridBoxOptions->{
@@ -122,25 +121,14 @@ Cell[TextData[Cell[BoxData[
   Evaluator->None,
   Method->"Preemptive"]]]], "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->345814108],
+ CellID->16672639],
 
 Cell[TextData[{
  Cell[BoxData["NMSSM"], "InlineFormula"],
  "  is ready to be used with ",
- Cell[BoxData[
-  ButtonBox["BetaFunctions1L",
-   BaseStyle->"Link",
-   ButtonData->"paclet:Susyno/ref/BetaFunctions1L"]], "InlineFormula"],
- ", ",
- Cell[BoxData[
-  ButtonBox["BetaFunctions2L",
-   BaseStyle->"Link",
-   ButtonData->"paclet:Susyno/ref/BetaFunctions2L"]], "InlineFormula"],
- " or ",
- Cell[BoxData[
-  ButtonBox["ShowLagrangian",
-   BaseStyle->"Link",
-   ButtonData->"paclet:Susyno/ref/ShowLagrangian"]], "InlineFormula"],
+ ButtonBox["GenerateModel",
+  BaseStyle->"Link",
+  ButtonData->"paclet:Susyno/ref/GenerateModel"],
  "."
 }], "Notes",
  CellID->1067943069]
@@ -161,7 +149,7 @@ Cell[TextData[ButtonBox["EXAMPLES",
      FrontEnd`SelectedNotebook[], After, 
      CellContents]}]& )]], "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->118431411],
+ CellID->86869729],
 
 Cell[CellGroupData[{
 
@@ -170,156 +158,143 @@ Cell[TextData[{
  "\[NonBreakingSpace]\[NonBreakingSpace]",
  Cell["(1)", "ExampleCount"]
 }], "ExampleSection",
- CellID->310980857],
+ CellID->321076577],
 
-Cell["NMSSM is the same as modelX defined below:", "ExampleText",
- CellID->517356572],
-
-Cell[CellGroupData[{
+Cell[TextData[{
+ Cell[BoxData["NMSSM"], "InlineFormula"],
+ " is defined as having the following gauge group, representations, field \
+names, number of flavors, and discrete symmetry:"
+}], "Notes",
+ CellID->315923061],
 
 Cell[BoxData[{
  RowBox[{
-  RowBox[{"norm", "=", 
-   RowBox[{"Sqrt", "[", 
-    RowBox[{"3", "/", "5"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"group", "[", "NMSSM", "]"}], "^=", 
+    RowBox[{"{", 
+     RowBox[{"U1", ",", "SU2", ",", "SU3"}], "}"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"Q", "=", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"U1", "->", 
-      RowBox[{
-       RowBox[{"1", "/", "6"}], " ", "norm"}]}], " ", ",", 
-     RowBox[{"SU2", "->", 
-      RowBox[{"{", "1", "}"}]}], ",", 
-     RowBox[{"SU3", "->", 
-      RowBox[{"{", 
-       RowBox[{"1", ",", "0"}], "}"}]}], ",", 
-     RowBox[{"NFlavours", "\[Rule]", "3"}], ",", 
-     RowBox[{"DiscreteSym", "\[Rule]", 
-      RowBox[{"-", "1"}]}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"normalization", "=", 
+   RowBox[{"Sqrt", "[", 
+    RowBox[{"3", "/", "5"}], "]"}]}], ";"}], "\n", 
  RowBox[{
   RowBox[{"u", "=", 
    RowBox[{"{", 
     RowBox[{
-     RowBox[{"U1", "->", 
+     RowBox[{
       RowBox[{
-       RowBox[{
-        RowBox[{"-", "2"}], "/", "3"}], " ", "norm"}]}], " ", ",", 
-     RowBox[{"SU2", "->", 
-      RowBox[{"{", "0", "}"}]}], ",", 
-     RowBox[{"SU3", "->", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "1"}], "}"}]}], ",", 
-     RowBox[{"NFlavours", "\[Rule]", "3"}], ",", 
-     RowBox[{"DiscreteSym", "\[Rule]", 
-      RowBox[{"-", "1"}]}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+       RowBox[{"-", "2"}], "/", "3"}], " ", "normalization"}], ",", 
+     RowBox[{"{", "0", "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"d", "=", 
    RowBox[{"{", 
     RowBox[{
-     RowBox[{"U1", "\[Rule]", 
-      RowBox[{
-       RowBox[{"1", "/", "3"}], " ", "norm"}]}], " ", ",", 
-     RowBox[{"SU2", "->", 
-      RowBox[{"{", "0", "}"}]}], ",", 
-     RowBox[{"SU3", "->", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "1"}], "}"}]}], ",", 
-     RowBox[{"NFlavours", "\[Rule]", "3"}], ",", 
-     RowBox[{"DiscreteSym", "\[Rule]", 
-      RowBox[{"-", "1"}]}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"1", "/", "3"}], " ", "normalization"}], ",", 
+     RowBox[{"{", "0", "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Q", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"1", "/", "6"}], " ", "normalization"}], ",", 
+     RowBox[{"{", "1", "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"e", "=", 
+   RowBox[{"{", 
+    RowBox[{"normalization", ",", 
+     RowBox[{"{", "0", "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"L", "=", 
    RowBox[{"{", 
     RowBox[{
-     RowBox[{"U1", "\[Rule]", 
+     RowBox[{
       RowBox[{
-       RowBox[{
-        RowBox[{"-", "1"}], "/", "2"}], " ", "norm"}]}], " ", ",", 
-     RowBox[{"SU2", "->", 
-      RowBox[{"{", "1", "}"}]}], ",", 
-     RowBox[{"SU3", "->", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "0"}], "}"}]}], ",", 
-     RowBox[{"NFlavours", "\[Rule]", "3"}], ",", 
-     RowBox[{"DiscreteSym", "\[Rule]", 
-      RowBox[{"-", "1"}]}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"e", "=", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"U1", "\[Rule]", " ", "norm"}], " ", ",", 
-     RowBox[{"SU2", "->", 
-      RowBox[{"{", "0", "}"}]}], ",", 
-     RowBox[{"SU3", "->", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "0"}], "}"}]}], ",", 
-     RowBox[{"NFlavours", "\[Rule]", "3"}], ",", 
-     RowBox[{"DiscreteSym", "\[Rule]", 
-      RowBox[{"-", "1"}]}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+       RowBox[{"-", "1"}], "/", "2"}], " ", "normalization"}], ",", 
+     RowBox[{"{", "1", "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Hu", "=", 
    RowBox[{"{", 
     RowBox[{
-     RowBox[{"U1", "\[Rule]", " ", 
-      RowBox[{
-       RowBox[{"1", "/", "2"}], "norm"}]}], " ", ",", 
-     RowBox[{"SU2", "->", 
-      RowBox[{"{", "1", "}"}]}], ",", 
-     RowBox[{"SU3", "->", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "0"}], "}"}]}], ",", 
-     RowBox[{"NFlavours", "\[Rule]", "1"}], ",", 
-     RowBox[{"DiscreteSym", "\[Rule]", "1"}]}], "}"}]}], 
-  ";"}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"1", "/", "2"}], " ", "normalization"}], ",", 
+     RowBox[{"{", "1", "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Hd", "=", 
    RowBox[{"{", 
     RowBox[{
-     RowBox[{"U1", "\[Rule]", " ", 
+     RowBox[{
       RowBox[{
-       RowBox[{
-        RowBox[{"-", "1"}], "/", "2"}], "norm"}]}], " ", ",", 
-     RowBox[{"SU2", "->", 
-      RowBox[{"{", "1", "}"}]}], ",", 
-     RowBox[{"SU3", "->", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "0"}], "}"}]}], ",", 
-     RowBox[{"NFlavours", "\[Rule]", "1"}], ",", 
-     RowBox[{"DiscreteSym", "\[Rule]", "1"}]}], "}"}]}], 
-  ";"}], "\[IndentingNewLine]", 
+       RowBox[{"-", "1"}], "/", "2"}], " ", "normalization"}], ",", 
+     RowBox[{"{", "1", "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{"S", "=", 
     RowBox[{"{", 
-     RowBox[{
-      RowBox[{"U1", "\[Rule]", "0"}], " ", ",", 
-      RowBox[{"SU2", "->", 
-       RowBox[{"{", "0", "}"}]}], ",", 
-      RowBox[{"SU3", "->", 
-       RowBox[{"{", 
-        RowBox[{"0", ",", "0"}], "}"}]}], ",", 
-      RowBox[{"NFlavours", "\[Rule]", "1"}], ",", 
-      RowBox[{"DiscreteSym", "\[Rule]", "1"}]}], "}"}]}], ";"}], 
+     RowBox[{"0", ",", 
+      RowBox[{"{", "0", "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ";"}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
-   RowBox[{"modelX", "=", 
+   RowBox[{"reps", "[", "NMSSM", "]"}], "^=", 
+   RowBox[{"{", 
+    RowBox[{
+    "u", ",", "d", ",", "Q", ",", "e", ",", "L", ",", "Hu", ",", "Hd", ",", 
+     "S"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"fieldNames", "[", "NMSSM", "]"}], "^=", 
     RowBox[{"{", 
      RowBox[{
-     "Q", ",", "u", ",", "d", ",", "L", ",", "e", ",", "Hu", ",", "Hd", ",", 
-      "S"}], "}"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{"NMSSM", "===", "modelX"}]}], "Input",
+     "\"\<u\>\"", ",", "\"\<d\>\"", ",", "\"\<Q\>\"", ",", "\"\<e\>\"", ",", 
+      "\"\<L\>\"", ",", "\"\<Hu\>\"", ",", "\"\<Hd\>\"", ",", "\"\<S\>\""}], 
+     "}"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"nFlavs", "[", "NMSSM", "]"}], "^=", 
+   RowBox[{"{", 
+    RowBox[{
+    "3", ",", "3", ",", "3", ",", "3", ",", "3", ",", "1", ",", "1", ",", 
+     "1"}], "}"}]}], ";", 
+  RowBox[{
+   RowBox[{"discreteSym", "[", "NMSSM", "]"}], "^=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "1"}], ",", 
+     RowBox[{"-", "1"}], ",", 
+     RowBox[{"-", "1"}], ",", 
+     RowBox[{"-", "1"}], ",", 
+     RowBox[{"-", "1"}], ",", "1", ",", "1", ",", "1"}], "}"}]}], 
+  ";"}]}], "Input",
  CellLabel->"In[1]:=",
- CellID->286337577],
+ CellID->295978785],
 
-Cell[BoxData["True"], "Output",
- ImageSize->{32, 15},
- ImageMargins->{{0, 0}, {0, 0}},
- ImageRegion->{{0, 1}, {0, 1}},
- CellLabel->"Out[1]=",
- CellID->49095666]
-}, Open  ]]
+Cell["Compute the RGEs of this model:", "Notes",
+ CellID->215478229],
+
+Cell[BoxData[
+ RowBox[{"GenerateModel", "[", "NMSSM", "]"}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->762564837]
 }, Open  ]]
 }, Open  ]],
 
@@ -361,10 +336,28 @@ Cell[TextData[ButtonBox["RELATED LINKS",
      CellContents]}]& )]], "RelatedLinksSection",
  CellID->1584193535],
 
-Cell[TextData[Cell[BoxData[
- ButtonBox["MSSM",
-  BaseStyle->"Link",
-  ButtonData->"paclet:Susyno/ref/MSSM"]], "InlineFormula"]], "RelatedLinks",
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["GenerateModel",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/GenerateModel"]], "InlineFormula"],
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
+  ButtonBox["MSSM",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/MSSM"]], "InlineFormula"],
+ "\[NonBreakingSpace]",
+ StyleBox["\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+  "InlineSeparator"],
+ " ",
+ Cell[BoxData[
+  ButtonBox["RPVMSSM",
+   BaseStyle->"Link",
+   ButtonData->"paclet:Susyno/ref/RPVMSSM"]], "InlineFormula"]
+}], "RelatedLinks",
  CellID->1038487239]
 }, Open  ]],
 
@@ -378,11 +371,11 @@ WindowTitle->"NMSSM - Wolfram Mathematica",
 TaggingRules->{
  "ModificationHighlight" -> False, 
   "Metadata" -> {
-   "built" -> "{2012, 3, 2, 12, 15, 55.7656250}", "context" -> "Susyno`", 
+   "built" -> "{2013, 8, 7, 2, 27, 44.4531250}", "context" -> "Susyno`", 
     "keywords" -> {}, "index" -> True, "label" -> "Susyno Paclet Symbol", 
     "language" -> "en", "paclet" -> "Susyno", "status" -> "None", "summary" -> 
-    "NMSSM Variable with all the data of the NMSSM model", "synonyms" -> {}, 
-    "title" -> "NMSSM", "type" -> "Symbol", "uri" -> "Susyno/ref/NMSSM"}, 
+    "NMSSM Variable with all the data of the NMSSM", "synonyms" -> {}, 
+    "title" -> "NMSSM", "type" -> "Symbol", "uri" -> "Susyno/ref/Weights"}, 
   "SearchTextTranslated" -> ""},
 CellContext->"Global`",
 FrontEndVersion->"7.0 for Microsoft Windows (32-bit) (February 18, 2009)",
@@ -403,65 +396,65 @@ StyleDefinitions->Notebook[{
 (*CellTagsOutline
 CellTagsIndex->{
  "PrimaryExamplesSection"->{
-  Cell[4779, 150, 461, 13, 70, "PrimaryExamplesSection",
+  Cell[4436, 138, 460, 13, 70, "PrimaryExamplesSection",
    CellTags->"PrimaryExamplesSection",
-   CellID->118431411]}
+   CellID->86869729]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"PrimaryExamplesSection", 12576, 404}
+ {"PrimaryExamplesSection", 12179, 397}
  }
 *)
 (*NotebookFileOutline
 Notebook[{
 Cell[586, 21, 76, 1, 70, "SymbolColorBar"],
 Cell[665, 24, 178, 5, 70, "LinkTrail"],
-Cell[846, 31, 2285, 53, 70, "AnchorBarGrid",
+Cell[846, 31, 2293, 53, 70, "AnchorBarGrid",
  CellID->1],
 Cell[CellGroupData[{
-Cell[3156, 88, 48, 1, 70, "ObjectName",
+Cell[3164, 88, 48, 1, 70, "ObjectName",
  CellID->1224892054],
-Cell[3207, 91, 353, 11, 70, "Usage",
+Cell[3215, 91, 338, 10, 70, "Usage",
  CellID->982511436]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[3597, 107, 580, 17, 70, "NotesSection",
+Cell[3590, 106, 579, 17, 70, "NotesSection",
  CellGroupingRules->{"SectionGrouping", 50},
- CellID->345814108],
-Cell[4180, 126, 562, 19, 70, "Notes",
+ CellID->16672639],
+Cell[4172, 125, 227, 8, 70, "Notes",
  CellID->1067943069]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[4779, 150, 461, 13, 70, "PrimaryExamplesSection",
+Cell[4436, 138, 460, 13, 70, "PrimaryExamplesSection",
  CellTags->"PrimaryExamplesSection",
- CellID->118431411],
+ CellID->86869729],
 Cell[CellGroupData[{
-Cell[5265, 167, 148, 5, 70, "ExampleSection",
- CellID->310980857],
-Cell[5416, 174, 85, 1, 70, "ExampleText",
- CellID->517356572],
-Cell[CellGroupData[{
-Cell[5526, 179, 4311, 134, 70, "Input",
- CellID->286337577],
-Cell[9840, 315, 160, 5, 36, "Output",
- CellID->49095666]
-}, Open  ]]
+Cell[4921, 155, 148, 5, 70, "ExampleSection",
+ CellID->321076577],
+Cell[5072, 162, 216, 5, 70, "Notes",
+ CellID->315923061],
+Cell[5291, 169, 3636, 119, 70, "Input",
+ CellID->295978785],
+Cell[8930, 290, 68, 1, 70, "Notes",
+ CellID->215478229],
+Cell[9001, 293, 113, 3, 70, "Input",
+ CellID->762564837]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[10061, 327, 419, 12, 70, "TutorialsSection",
+Cell[9163, 302, 419, 12, 70, "TutorialsSection",
  CellID->250839057],
-Cell[10483, 341, 151, 3, 70, "Tutorials",
+Cell[9585, 316, 151, 3, 70, "Tutorials",
  CellID->341631938]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[10671, 349, 427, 12, 70, "RelatedLinksSection",
+Cell[9773, 324, 427, 12, 70, "RelatedLinksSection",
  CellID->1584193535],
-Cell[11101, 363, 165, 4, 70, "RelatedLinks",
+Cell[10203, 338, 671, 22, 70, "RelatedLinks",
  CellID->1038487239]
 }, Open  ]],
-Cell[11281, 370, 23, 0, 70, "FooterCell"]
+Cell[10889, 363, 23, 0, 70, "FooterCell"]
 }
 ]
 *)

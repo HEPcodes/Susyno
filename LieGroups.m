@@ -19,14 +19,31 @@
 
 
 
+(* Two effects: 1)- variables X are really Susyno`LieGroups`X; When this package is read, Susyno`LieGroups` is placed in $ContextPath/$Packages so that things can be searched by the short name *)
+(* This name (Susyno`LieGroups`) has no efffect on the required init.m call since this one depends on the folder/file names *)
 BeginPackage["Susyno`LieGroups`"];
-ClearAll["`*"];
+
+{a,b,c,Adjoint,CartanMatrix,Casimir,CholeskyTypeDecomposition,ConjugateIrrep,Conjugations,DimR,DominantConjugate,DominantWeights,DynkinIndex,e6,E6,e7,E7,e8,E8,f4,F4,FindM,g2,G2,Invariants,InverseFlatten,IrrepInProduct,IsSymmetric,MatrixD,NullMatrix,NullSpace2,PositiveRoots,ReduceRepProduct,ReflectWeight,RepMatrices,RepMinimalMatrices,SimpleProduct,so10,So10,SO10,so11,So11,SO11,so12,So12,SO12,so13,So13,SO13,so14,So14,SO14,so15,So15,SO15,so16,So16,SO16,so17,So17,SO17,so18,So18,SO18,so19,So19,SO19,so20,So20,SO20,so21,So21,SO21,so22,So22,SO22,so23,So23,SO23,so24,So24,SO24,so25,So25,SO25,so26,So26,SO26,so27,So27,SO27,so28,So28,SO28,so29,So29,SO29,so3,So3,SO3,so30,So30,SO30,so31,So31,SO31,so32,So32,SO32,so5,So5,SO5,so6,So6,SO6,so7,So7,SO7,so8,So8,SO8,so9,So9,SO9,sp10,Sp10,SP10,sp12,Sp12,SP12,sp14,Sp14,SP14,sp16,Sp16,SP16,sp18,Sp18,SP18,sp2,Sp2,SP2,sp20,Sp20,SP20,sp22,Sp22,SP22,sp24,Sp24,SP24,sp26,Sp26,SP26,sp28,Sp28,SP28,sp30,Sp30,SP30,sp32,Sp32,SP32,sp4,Sp4,SP4,sp6,Sp6,SP6,sp8,Sp8,SP8,SpecialMatrixD,su10,Su10,SU10,su11,Su11,SU11,su12,Su12,SU12,su13,Su13,SU13,su14,Su14,SU14,su15,Su15,SU15,su16,Su16,SU16,su17,Su17,SU17,su18,Su18,SU18,su19,Su19,SU19,su2,Su2,SU2,su20,Su20,SU20,su21,Su21,SU21,su22,Su22,SU22,su23,Su23,SU23,su24,Su24,SU24,su25,Su25,SU25,su26,Su26,SU26,su27,Su27,SU27,su28,Su28,SU28,su29,Su29,SU29,su3,Su3,SU3,su30,Su30,SU30,su31,Su31,SU31,su32,Su32,SU32,su4,Su4,SU4,su5,Su5,SU5,su6,Su6,SU6,su7,Su7,SU7,su8,Su8,SU8,su9,Su9,SU9,SpecialMatrixD,SymmetrizeInvariants,u1,U1,WeylOrbit};
+
+(* From the anomalies addition *)
+{TriangularAnomalyCheck,TriangularAnomalyValue};
+
+(* From the RepsUpToDimN addition *)
+{RepsUpToDimN,RepsUpToDimNNoConjugates,RepsUpToDimNAuxilarMethod};
+
+(* From the plesthysm addition *)
+{SnIrrepDim,DecomposeSnProduct,PartitionSequence,RimHooks,RebuiltPartitionFromSequence,SnClassCharacter,SnClassOrder,AltDom,Adams,Plethysms,InvariantPlethysms,GatherWeights,ReduceRepPolyProduct,NumberOfInvariantsInProduct};
+{TuplesWithMultiplicity, TallyWithMultiplicity, PermutationSymmetryOfTensorProductPartsAuxiliar, PermutationSymmetryOfTensorProductParts, PermutationSymmetryOfInvariants,HookContentFormula};
+
+{CMtoName};
+
+Begin["`Private`"]
 
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
-CartanMatrix[name_String,numberId_Integer]:=Module[{result},
-result="Unknown lie algebra. Try U(1),SU(n) [n>1],SO(n) [n=3 or >4],Sp(2n) [n>1] or the exceptionals G(2),F(4),E(6),E(7),E(8).";
+CartanMatrix[name_String,numberId_Integer]:=CartanMatrix[name,numberId]=Module[{result},
+result="Unknown simple lie algebra. Try SU(n) [n>1],SO(n) [n=3 or >4],Sp(2n) [n>1] or the exceptionals G(2),F(4),E(6),E(7),E(8).";
 
 (* Classical algebras *)
 
@@ -54,13 +71,13 @@ result[[numberId-2,numberId]]=-1;
 
 (* Classical algebras, with alternative names *)
 
-If[ToUpperCase[name]=="SU", (*   SU (n+1)=A (n)   *)
+If[ToUpperCase[name]=="SU", (*   SU(n+1)=A(n)   *)
 result=CartanMatrix["A", numberId-1]];
-If[ToUpperCase[name]=="SP"&&EvenQ[numberId], (*   Sp (2n)=C (n)   *)
+If[ToUpperCase[name]=="SP"&&EvenQ[numberId], (*   Sp(2n)=C(n)   *)
 result=CartanMatrix["C", numberId/2]];
-If[ToUpperCase[name]=="SO"&&!EvenQ[numberId], (*   SO (2n+1)=B (n)   *)
+If[ToUpperCase[name]=="SO"&&!EvenQ[numberId], (*   SO(2n+1)=B(n)   *)
 result=CartanMatrix["B", (numberId-1)/2]];
-If[ToUpperCase[name]=="SO"&&EvenQ[numberId], (*   SO (2n)=D (n)   *)
+If[ToUpperCase[name]=="SO"&&EvenQ[numberId], (*   SO(2n)=D(n)   *)
 result=CartanMatrix["D", numberId/2]];
 
 
@@ -84,6 +101,7 @@ Return[result];
 ]
 
 (*Assign to some variables the groups' Cartan matrix*)
+(*
 Do[
 Evaluate[ToExpression["SU"<>ToString[i]]]=Evaluate[ToExpression["Su"<>ToString[i]]]=Evaluate[ToExpression["su"<>ToString[i]]]=CartanMatrix["SU",i];
 ,{i,2,32}]
@@ -93,14 +111,63 @@ Evaluate[ToExpression["SO"<>ToString[i]]]=Evaluate[ToExpression["So"<>ToString[i
 Do[
 Evaluate[ToExpression["SP"<>ToString[i]]]=Evaluate[ToExpression["Sp"<>ToString[i]]]=Evaluate[ToExpression["sp"<>ToString[i]]]=CartanMatrix["SP",i];
 ,{i,2,32,2}]
+SO3=So3=so3=CartanMatrix["SO",3];
+*)
+
 E6=e6=CartanMatrix["E",6];
 E7=e7=CartanMatrix["E",7];
 E8=e8=CartanMatrix["E",8];
 G2=g2=CartanMatrix["G",2];
 F4=f4=CartanMatrix["F",4];
-SO3=So3=so3=CartanMatrix["SO",3];
 U1=u1=CartanMatrix["U",1]=CartanMatrix["u",1]={};
 
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+CMtoName[cm_]:=Module[{adjoint,dim,cas},
+
+If[cm=={},Return["U1"]];
+
+adjoint=Adjoint[cm];
+dim=DimR[cm,adjoint];
+cas=Casimir[cm,adjoint];
+
+Return[IdentifyGroupName[{dim,cas}]];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+IdentifyGroupName[dimCas_]:=Module[{result,aux,n},
+
+(*U(1)*)
+If[dimCas=={1,0},Return["U1"]];
+
+(*Exceptionals*)
+result=Switch[dimCas,{14,4},"G2",{52,9},"F4",{78,12},"E6",{133,18},"E7",{248,30},"E8",_,Null];
+If[!(result===Null),Return[result]];
+
+(*SU(n)*)
+aux=Solve[{n^2-1,n}==dimCas,n];
+aux=Cases[n/.aux,x_/;x>=2&&IntegerQ[x]];
+If[Length[aux]!=0,
+Return["SU"<>ToString[aux[[1]]]];
+];
+
+(*SO(n)*)
+aux=Solve[{1/2(n^2-n),n-2}==dimCas,n];
+aux=Cases[n/.aux,x_/;x>=5&&IntegerQ[x]];
+If[Length[aux]!=0,
+Return["SO"<>ToString[aux[[1]]]];
+];
+
+(*SP(2n)*)
+aux=Solve[{2n^2+n,2n+2}==dimCas,n];
+aux=Cases[n/.aux,x_/;x>=3&&IntegerQ[x]];
+If[Length[aux]!=0,
+Return["SP"<>ToString[2aux[[1]]]];
+];
+
+Return["Unknown group"];
+]
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
@@ -151,6 +218,8 @@ result[[i,k]]=j;result[[i,k+1]]=j;result[[i,k+2]]=j;k=k+3;
 Return[result];
 ]
 
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
 ReflectWeight[cm_,weight_,i_]:=Module[{mD,result},
 result= weight;
 result[[i]]=-weight[[i]];
@@ -162,8 +231,10 @@ If[mD[[i,j]]!=0,result[[mD[[i,j]]]]+=weight[[i]]];
 Return[result];
 ]
 
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
 DominantConjugate[cm_,weight_]:=Module[{index,dWeight,i,mD},
-If[cm=={{2}},Return[If[weight[[1]]<0,{-weight,1},{weight,0}]]];(*for SU2 the code below would not work*)
+If[cm=={{2}},Return[If[weight[[1]]<0,{-weight,1},{weight,0}]]]; (* for SU2 the code below would not work *)
 index=0;
 dWeight=weight;
 i=1;
@@ -178,6 +249,8 @@ i=mD[[i,1]];
 ];
 Return[{dWeight,index}];
 ]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
 WeylOrbit[cm_,weight_]:=Module[{wL,counter,n,result,aux},
 n=Length[cm];
@@ -203,6 +276,8 @@ result=Join[result,wL[counter]];
 
 Return[result];
 ]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
 DominantWeights[cm_,w_]:=DominantWeights[cm,w]=Module[{proots,listw,aux,functionAux,result,aux1,aux2,n,k,cmInv,matD,cmID,deltaTimes2},
 cmInv=Inverse[cm];
@@ -254,13 +329,36 @@ result=Append[result,{listw[[j]],functionAux[listw[[j]]]}];
 Return[result];
 ]
 
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+(* Reference:  the Lie Manual available in http://www-math.univ-poitiers.fr/~maavl/LiE/ *)
+LongestWeylWord[cm_]:=LongestWeylWord[cm]=Module[{n,weight,aux,result},
+n=Length[cm];
+weight=-ConstantArray[1,n];
+result={};
+While[weight!=Abs[weight],
+aux=Position[weight,x_/;x<0,1,1][[1,1]];
+weight=ReflectWeight[cm,weight,aux];
+PrependTo[result,aux];
+];
+Return[result];
+]
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
-Adjoint[input__]:=If[Depth[{input}]==4,Return[AdjointBaseMethod[input]],Return[AdjointBaseMethod@@@Transpose[{input}]]];
+Adjoint[input__]:=If[Depth[{input}]<=4,Return[AdjointBaseMethod[input]],Return[AdjointBaseMethod@@@Transpose[{input}]]];
 
 (* DESCRIPTION: Max weight of the adjoint representation is just the largest  positive root of the algebra [NOTE: this is correct only if the given group is simple. Otherwise the adjoint representation is not even irreducible] *)
-AdjointBaseMethod[cm_]:=PositiveRoots[cm][[-1]] 
+AdjointBaseMethod[cm_]:=If[cm==={},0,If[cm===ConstantArray[{},Length[cm]],ConstantArray[0,Length[cm]],PositiveRoots[cm][[-1]]]];
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+ConjugateIrrep[input__]:=ConjugateIrrep[input]=Switch[Depth[{input}],x_/;(x==3||x==4),ConjugateIrrepBase[input],5,ConjugateIrrepBase@@@Transpose[{input}]];
+
+(* Old, innefient way of calculating the conjugate representation *)
+(* ConjugateIrrepBase[cm_,rep_]:=If[cm==={},-rep,-Weights[cm,rep][[-1,1]]] *)
+
+(* See for example "A SHORT INTRODUCTION TO SIMPLE LIE ALGEBRA REPRESENTATIONS", JOSH GUFFIN, http://www.math.upenn.edu/~guffin/teaching/talks/rep.pdf *)
+ConjugateIrrepBase[cm_,rep_]:=If[cm==={}||cm===ConstantArray[{},Length[cm]],-rep,-Fold[ReflectWeight[cm,#1,#2]&,rep,LongestWeylWord[cm]]];
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
@@ -290,9 +388,12 @@ Return[result];
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
 (* DESCRIPTION: Returns the weights of a representation (with dimentionalities) *)
-Weights;
 Unprotect[Weights];
-Weights[cm_,w_]:=Weights[cm,w]=Module[{dW,wOrbit,result,invCM},
+Weights[cm_,w_]:=Weights[cm,w]=Module[{dW,result,invCM},
+
+(* Reorder the weights of conjugate representations so that RepMatrices[group,ConjugateIrrep[group,w]]=-Conjugate[RepMatrices[group,w]] and Invariants[group,{w,ConjugateIrrep[group,w]},{False,False}]=a[1]b[1]+...+a[n]b[n] *)
+If[OrderedQ[{w,ConjugateIrrep[cm,w]}]&& ConjugateIrrep[cm,w]=!=w,Return[{-1,1}#&/@Weights[cm,ConjugateIrrep[cm,w]]]]; 
+
 invCM=Inverse[cm];
 dW=DominantWeights[cm,w];
 result=Table[{#,dW[[i,2]]}&/@WeylOrbit[cm,dW[[i,1]]],{i,Length[dW]}];
@@ -322,8 +423,19 @@ Return[auxMax];
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 (* Reduces a direct product representation in its irreducible parts *)
-ReduceRepProduct[cm_,listReps__]:=Module[{n,orderedList,result},
-orderedList=Sort[{listReps},DimR[cm,#1]<DimR[cm,#2]&];
+
+ReduceRepProduct[group_,repsList_]:=ReduceRepProduct[group,repsList]=If[Depth[group]==3&&group=!=ConstantArray[U1,Length[group]],Return[ReduceRepProductBase[group,repsList]],Return[{#[[1;;-1,1]],Times@@#[[1;;-1,2]]}&/@Tuples[MapThread[ReduceRepProductBase[#1,#2]&,{group,Transpose[repsList]}]]]];
+
+(* Deals with possible factor groups/reps *)
+ReduceRepProductBase[cm_,repsList_]:=Module[{n,orderedList,result},
+
+(* If the group is U1 - trivial *)
+If[cm==U1,Return[{{Plus@@repsList,1}}]];
+
+(* If there is only one rep in listReps - trivial *)
+If[Length[repsList]==1,Return[{{repsList[[1]],1}}]];
+
+orderedList=Sort[repsList,DimR[cm,#1]<DimR[cm,#2]&];
 n=Length[orderedList];
 result=ReduceRepProductBase2[cm,orderedList[[n-1]],orderedList[[n]]];
 Do[
@@ -367,9 +479,12 @@ Return[result];
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 (* Calculates the dimention of a irrep *)
-DimR[input__]:=DimR[input]=If[Depth[{input}]==4,Return[DimRBaseMethod[input]],Return[DimRBaseMethod@@@Transpose[{input}]]];
+DimR[input__]:=DimR[input]=Switch[Depth[{input}],x_/;(x==3||x==4),DimRBaseMethod[input],5,DimRBaseMethod@@@Transpose[{input}]];
 
 DimRBaseMethod[cm_,w_]:=Module[{n,proots,cmInv,matD,cmID,delta,result},
+If[cm==={},Return[1]]; (* U1 group *)
+If[cm===ConstantArray[{},Length[cm]],Return[ConstantArray[1,Length[cm]]]]; (* multiple U1 group *)
+
 n=Length[cm];
 proots=PositiveRoots[cm];
 
@@ -415,7 +530,11 @@ Return[result];
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 (* Calculates the generators of a irrep based on the Chevalley-Serre relations *)
-RepMinimalMatrices[cm_,maxW_]:=RepMinimalMatrices[cm,maxW]=Module[{aux1,aux2,aux3,aux4,aux5,aux6,aux7,aux8,n,listw,listAux,listAux2,up,down,dim,dim1,dim2,dim3,col,matrixT,matrix,index,posBegin,posEnd,begin,end,b1,e1,b2,e2,matrixE,matrixF,matrixH},
+RepMinimalMatrices[cm_,maxW_]:=RepMinimalMatrices[cm,maxW]=Module[{aux1,aux2,aux3,aux4,aux6,aux7,aux8,n,listw,up,down,dim,dim1,dim2,dim3,col,matrixT,matrix,index,posBegin,posEnd,begin,end,b1,e1,b2,e2,matrixE,matrixF,matrixH},
+
+(* Reorder the weights of conjugate representations so that RepMatrices[group,ConjugateIrrep[group,w]]=-Conjugate[RepMatrices[group,w]] and Invariants[group,{w,ConjugateIrrep[group,w]},{False,False}]=a[1]b[1]+...+a[n]b[n] *)
+If[OrderedQ[{maxW,ConjugateIrrep[cm,maxW]}]&& ConjugateIrrep[cm,maxW]=!=maxW,Return[-RepMinimalMatrices[cm,ConjugateIrrep[cm,maxW]][[All,{2,1,3}]]]]; 
+
 n=Length[cm];
 listw=Weights[cm,maxW];
 
@@ -546,11 +665,13 @@ Return[aux1]; (*  result is a list with entries {e[i],f[i],h[i]} *)
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 (* Calculates the Casimir invariant of an irrep *)
-Casimir[input__]:=Casimir[input]=If[Depth[{input}]==4,Return[CasimirBaseMethod[input]],Return[CasimirBaseMethod@@@Transpose[{input}]]];
+Casimir[input__]:=Casimir[input]=Switch[Depth[{input}],x_/;(x==3||x==4),CasimirBaseMethod[input],5,CasimirBaseMethod@@@Transpose[{input}]];
 
 (* Uses formula XI .23 of "Semi-Simple Lie Algebras and Their Representations", page 89 *)
 
 CasimirBaseMethod[cm_,w_]:=Module[{n,cmInv,matD,cmID,proots,deltaTimes2,result},
+If[cm==={}||cm===ConstantArray[{},Length[cm]],Return[w^2]]; (* U1 group or multiple U1 groups *)
+
 n=Length[cm];
 proots=PositiveRoots[cm];
 
@@ -564,6 +685,12 @@ Return[result];
 ]
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+DynkinIndex[cm_,rep_]:=Simplify[Casimir[cm,rep] DimR[cm,rep]/DimR[cm,Adjoint[cm]]]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+
 (* Auxiliar method (used for building invariants) *)
 BlockW[w1_,w2_,listW_,repMat_]:=Module[{dim,b,e,aux1},
 
@@ -609,7 +736,7 @@ Return[res];
 
 RepMatrices[input__]:=RepMatrices[input]=If[Depth[{input}]==4,Return[RepMatricesBaseMethod[input]],Return[RepMatricesBaseMethod@@@Transpose[{input}]]];
 
-RepMatricesBaseMethod[cm_,maxW_]:=Module[{listE,listF,listH,listTotal,n,pRoots,sR,cR,dimG,dimR,rep,matrixCholesky,aux,j},
+RepMatricesBaseMethod[cm_,maxW_]:=Module[{listE,listF,listH,listTotal,n,pRoots,sR,dimG,dimR,rep,matrixCholesky,aux,j},
 n=Length[cm];
 pRoots=PositiveRoots[cm];
 rep=RepMinimalMatrices[cm,maxW];
@@ -665,7 +792,7 @@ Return[listTotal];
 ];
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
-(* This method checks if an invariant is symmetric (output=1), skew-symmetric (output=2) ou none (output=0) given the fields names (e.g. {a,b,c}) *)
+(* This method checks if an invariant is symmetric(output=1), skew-symmetric (output=2) ou none (output=0) given the fields names (e.g. {a,b,c}) *)
 IsSymmetric[invariant_,vars_]:=Module[{aux1,result},
 result=0;
 aux1=invariant/.{vars[[1]]->vars[[2]],vars[[2]]->vars[[1]]};
@@ -677,7 +804,99 @@ Return[result];
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
-Invariants[arguments__]:=Invariants[arguments]=Module[{result,cm,argumentsList,nArgs,conjugate,aux,aux2,aux3,numberGroups},
+(* Invariants3Mod and IrrepInProduct are auxiliar methods *)
+Invariants3Mod[cm_,reps_,conjs_]:=Module[{},
+If[(conjs[[1]]&&conjs[[2]]&&conjs[[3]])||((!conjs[[1]])&&(!conjs[[2]])&&(!conjs[[3]])),Return[InvariantsOld[cm,reps[[1]],reps[[2]],reps[[3]]]]];
+If[(conjs[[1]]&&conjs[[2]]&&(!conjs[[3]]))||((!conjs[[1]])&&(!conjs[[2]])&&(conjs[[3]])),Return[InvariantsOld[cm,reps[[1]],reps[[2]],reps[[3]],True]]];
+
+If[(conjs[[1]]&&(!conjs[[2]])&&conjs[[3]])||((!conjs[[1]])&&(conjs[[2]])&&(!conjs[[3]])),Return[InvariantsOld[cm,reps[[1]],reps[[3]],reps[[2]],True]/.{c->b,b->c}]];
+If[((!conjs[[1]])&&conjs[[2]]&&conjs[[3]])||((conjs[[1]])&&(!conjs[[2]])&&(!conjs[[3]])),Return[InvariantsOld[cm,reps[[3]],reps[[2]],reps[[1]],True]/.{c->a,a->c}]];
+]
+
+Options[IrrepInProduct]={Conjugations->{}};
+IrrepInProduct[cm_,reps_,OptionsPattern[]]:=Module[{aux,vector,conjs},
+
+(* Option allows to conjugate the representations given as input. By default, no conjugation is done *)
+conjs=If[OptionValue[Conjugations]==={},ConstantArray[False,Length[reps]],OptionValue[Conjugations]];
+
+aux=Invariants3Mod[cm,reps,conjs];
+vector=DeleteDuplicates[Sort[Cases[aux,c[__],-1]]];
+aux=CoefficientArrays[#,vector][[2]]&/@aux;
+
+Return[aux];
+]
+
+Options[Invariants]={Conjugations->{}};
+Invariants[groupOriginal_,rOriginal_,OptionsPattern[]]:=Module[{result,pU1s,pNonU1s,hyperchargesSum,group,r,cjs},
+
+(* Option allows to conjugate the representations given as input. By default, no conjugation is done *)
+cjs=If[OptionValue[Conjugations]==={},ConstantArray[False,Length[rOriginal]],OptionValue[Conjugations]];
+
+
+(* Deal with U1's *)
+If[groupOriginal===U1&&Sum[rOriginal[[i]]If[cjs[[i]],-1,1],{i,Length[rOriginal]}]==0,Return[Product[ToExpression[FromCharacterCode[96+i]],{i,Length[rOriginal]}]]];
+If[groupOriginal===U1&&Sum[rOriginal[[i]]If[cjs[[i]],-1,1],{i,Length[rOriginal]}]!=0,Return[{}]];
+
+(* Remove U1s and hypercharges *)
+pU1s=Flatten[Position[groupOriginal,U1]];
+pNonU1s=Flatten[Position[groupOriginal,x_/;x!=U1,{1}]];
+hyperchargesSum=Sum[rOriginal[[i,pU1s]]If[cjs[[i]],-1,1],{i,Length[rOriginal]}];
+If[!(hyperchargesSum===0hyperchargesSum),Return[{}]];
+group=groupOriginal[[pNonU1s]];
+r=rOriginal[[All,pNonU1s]];
+
+
+
+(* /Deal with U1's *)
+
+InvariantsAux[otherStuff_,cm_,reps_,conjs_]:=Module[{aux1,aux1c,aux2,aux3,prov,trueReps,i1,j1},
+
+If[Length[reps]==3,
+
+aux1=Invariants3Mod[cm,reps,conjs];
+aux1=(aux1//Normal)/.{a->ToExpression[FromCharacterCode[97+Length[otherStuff]]],b->ToExpression[FromCharacterCode[98+Length[otherStuff]]],c->ToExpression[FromCharacterCode[99+Length[otherStuff]]]};
+
+aux2=otherStuff[[1]];
+Do[
+aux2=Flatten[Expand[otherStuff[[i1]] /.aux2],1];
+,{i1,2,Length[otherStuff]}];
+
+aux2=Flatten[Expand[aux1/.aux2]];
+AppendTo[result,aux2];
+Return[];
+];
+
+trueReps=Table[If[conjs[[i1]],ConjugateIrrep[cm,reps[[i1]]],reps[[i1]]],{i1,Length[reps]}];
+aux1=ReduceRepProduct[cm,{trueReps[[1]],trueReps[[2]]}][[1;;-1,1]];
+aux1=ConjugateIrrep[cm,#]&/@aux1;
+
+aux2=ReduceRepProduct[cm,trueReps[[3;;-1]]][[1;;-1,1]];
+
+aux1=Intersection[aux1,aux2];
+
+Do[
+aux2=(IrrepInProduct[cm,Append[reps[[1;;2]],aux1[[i1]]],Conjugations->Append[conjs[[1;;2]],False]] //Normal )/.{a->ToExpression[FromCharacterCode[96+Length[otherStuff]+1]],b->ToExpression[FromCharacterCode[96+Length[otherStuff]+2]]};
+aux3=Flatten[Array[ToExpression[FromCharacterCode[96+Length[otherStuff]+2]],DimR[cm,aux1[[i1]]]]];
+aux2=(MapThread[Rule,{aux3,#}])&/@aux2;
+
+InvariantsAux[Append[otherStuff,aux2],cm,Prepend[reps[[3;;-1]],aux1[[i1]]],Prepend[conjs[[3;;-1]],True]];
+,{i1,Length[aux1]}];
+];
+
+result={};
+
+Piecewise[
+{{InvariantsAux[{},group,r,cjs],Length[r]>3},
+{result=Invariants3Mod[group,r,cjs],Length[r]==3},
+{result=InvariantsOld[group,r[[1]],r[[2]],!(cjs[[1]]==cjs[[2]])],Length[r]==2},
+{result=InvariantsOld[group,r[[1]],cjs[[1]]],Length[r]==1}
+}];
+
+Return[Flatten[result]];
+]
+
+(* This is the old wrapper method that calculates invariants of combinations of up to 3 fields. The new method (Invariants) may contain an arbitrary number of fields and has a different input syntax *)
+InvariantsOld[arguments__]:=InvariantsOld[arguments]=Module[{result,argumentsList,nArgs,conjugate,aux,aux2,numberGroups},
 
 argumentsList=Drop[{arguments},-1];
 conjugate={arguments}[[-1]];
@@ -685,7 +904,6 @@ conjugate={arguments}[[-1]];
 If[!(TrueQ[conjugate]||TrueQ[!conjugate]),argumentsList={arguments};conjugate=False];
 nArgs=Length[argumentsList];
 numberGroups=Length[argumentsList[[1]]];
-
 
 
 (* If the first argument is just one matrix (simple group) simply use the methods InvariantsBaseMethod *)
@@ -862,7 +1080,7 @@ result[[i]]=Expand[Sqrt[Sqrt[DimR[cm,rep1] DimR[cm,rep2]]/coefs[[i]].Conjugate[c
 
 (* Special treatment - This code ensures that well known cases come out in the expected form *)
 
- (* Two SU (2) doublets and no conjugation ... fix the sign *)
+ (* Two SU(2) doublets and no conjugation ... fix the sign *)
 If[cm==SU2&&rep1==rep2=={1}&&!conj, result=-result];
 
 (* /Special treatment *)
@@ -1021,10 +1239,11 @@ result=Table[expr[i0],{i0,Length[aux4]}];
 
 (*With more that one invariant and repeated fields, make sure each invariant has some symmetry *)
 If[Length[result]>1,
-If[rep1==rep2==rep3,result=SymmetrizeInvariants[result,a,b,c];];
-If[rep1==rep2!=rep3,result=SymmetrizeInvariants[result,a,b];];
-If[rep1==rep3!=rep2,result=SymmetrizeInvariants[result,a,c];];
-If[rep3==rep2!=rep1,result=SymmetrizeInvariants[result,c,b];];
+
+If[(rep1==rep2==rep3)&&!conj,result=SymmetrizeInvariants[result,{DimR[cm,rep1],DimR[cm,rep2],DimR[cm,rep3]},{{1,2,3}}];];
+If[rep1==rep2!=rep3,result=SymmetrizeInvariants[result,{DimR[cm,rep1],DimR[cm,rep2],DimR[cm,rep3]},{{1,2}}];];
+If[(rep1==rep3!=rep2)&&!conj,result=SymmetrizeInvariants[result,{DimR[cm,rep1],DimR[cm,rep2],DimR[cm,rep3]},{{1,3}}];];
+If[(rep3==rep2!=rep1)&&!conj,result=SymmetrizeInvariants[result,{DimR[cm,rep1],DimR[cm,rep2],DimR[cm,rep3]},{{2,3}}];];
 ];
 
 (* Normalize the invariants *)
@@ -1041,7 +1260,7 @@ result[[i]]=Expand[Sqrt[Sqrt[DimR[cm,rep1] DimR[cm,rep2]DimR[cm,rep3]] /coefs[[i
 (* Special treatment - This code ensures that well known cases come out in the expected form *)
 
 
-(* Two SU (2) doublets and a singlet no conjugation on the doublets ... fix the sign *)
+(* Two SU(2) doublets and a singlet no conjugation on the doublets ... fix the sign *)
 If[cm==SU2&&Sort[{rep1,rep2,rep3}]=={{0},{1},{1}}&&(!conj||rep3=={0}), result=-result]; 
 
 (* /Special treatment *)
@@ -1050,51 +1269,508 @@ Return[result];
 ]
 
 (* SymmetrizeAux and SymmetrizeInvariants are auxiliar methods to InvariantsBaseMethod[cm,rep1,rep2,rep3]; They are used to make sure the result is (anti)symmetric *)
-SymmetrizeAux[expression_,v1_,v2_]:=Module[{res1,res2},
+SymmetrizeAux[expression_,vars_]:=Module[{aux,res1,res2,permutations,rules,signs},
 res1=res2=0;
-res1=expression+(expression /.{v1->v2,v2->v1});
-res2=expression-(expression /.{v1->v2,v2->v1});
+
+permutations=Permutations[vars];
+rules=MapThread[Rule,{vars,#}]&/@permutations;
+signs=(Signature/@permutations )/Signature[vars];
+
+aux=expression/.rules;
+
+res1=Plus@@aux;
+res2=signs.aux;
 Return[Expand[{res1,res2}]];
+
 ]
 
-SymmetrizeAux[expression_,v1_,v2_,v3_]:=Module[{res1,res2},
-res1=res2=0;
-res1=expression+(expression /.{v1->v2,v2->v1})+(expression /.{v1->v3,v3->v1})+(expression /.{v2->v3,v3->v2})+(expression /.{v1->v2,v2->v3,v3->v1})+(expression /.{v1->v3,v3->v2,v2->v1});
-res2=expression-(expression /.{v1->v2,v2->v1})-(expression /.{v1->v3,v3->v1})-(expression /.{v2->v3,v3->v2})+(expression /.{v1->v2,v2->v3,v3->v1})+(expression /.{v1->v3,v3->v2,v2->v1});
-Return[Expand[{res1,res2}]];
+SymmetrizeInvariants[invariants_,dimReps_,pos_]:=Module[{i,j,nReps,vars,fieldComponents,aux,aux2,dimRepsCom},
+nReps=Length[dimReps];
+aux=invariants;
+
+Do[
+vars=(ToExpression[FromCharacterCode[96+#]]&/@pos[[i]]);
+
+aux=Flatten[SymmetrizeAux[#,vars]& /@aux];
+
+aux=DeleteCases[aux,0];
+,{i,Length[pos]}];
+
+(* Maybe the 1 and 1' irreps of the symmetry group Sn are insufficient *)
+If[Length[aux]!=Length[invariants],Return[invariants]];
+
+
+fieldComponents=Table[Array[ToExpression[FromCharacterCode[96+i]],dimReps[[i]]],{i,nReps}];
+fieldComponents=Flatten[fieldComponents];
+aux=CoefficientArrays[#,fieldComponents][[nReps+1]]&/@aux;
+
+dimRepsCom=Table[Sum[dimReps[[j]],{j,i-1}],{i,nReps}];
+aux2=Table[1+dimRepsCom[[i]];;dimRepsCom[[i]]+dimReps[[i]],{i,nReps}];
+aux=Table[(Part[aux[[j]],##])&@@aux2,{j,Length[aux]}];
+aux=SparseArray[Flatten/@aux];
+aux2={aux[[1]]};
+
+Do[
+If[MatrixRank[Append[aux2,aux[[i]]]]>MatrixRank[aux2],AppendTo[aux2,aux[[i]]]];
+,{i,Length[aux]}];
+
+aux=InverseFlatten[#,dimReps]&/@aux2;
+
+fieldComponents=Reverse[Table[Array[ToExpression[FromCharacterCode[96+i]],dimReps[[i]]],{i,nReps}]];
+aux=Dot[aux,##]&@@fieldComponents;
+
+Return[Expand[aux]];
 ]
 
-SymmetrizeInvariants[invariants_,var1_,var2_]:=Module[{i,j,aux,coefs},
-aux=DeleteCases[Flatten[SymmetrizeAux[#,var1,var2]& /@invariants],0];
+(* If x is a nested list then x=InverseFlatten[Flatten[x],Dimensions[x]] *)
+InverseFlatten[flattenedList_,dims_]:=Fold[Partition[#,#2]&,flattenedList,Most[Reverse[dims]]];
 
-coefs=Table[aux[[i,1]] /.{a[__]->1,b[__]->1,c[__]->1},{i,Length[aux]}];
- aux=Expand[ aux/coefs];
 
-i=1;
-While[i<Length[aux],
-	j=i+1;
-	While[j<=Length[aux],
-	If[aux[[i]]==aux[[j]],aux=Delete[aux,j];coefs=Delete[coefs,j]];
-	j++;];
-i++;];
-aux=Expand[aux coefs] ;
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ANOMALIES XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+(* Check if a model is anomally free or not *)
+TriangularAnomalyCheck[groups_,reps_,nF_:Null]:=Module[{nFlavours,posU1s,posSUNs,dimRepsNFlavs,dynkins,n,sigmas,aux,result},
+
+(* If no number of flavours were given assume that they are all =1 *)
+nFlavours=If[nF===Null,ConstantArray[1,Length[reps]],nF];
+
+result=True;
+posU1s=Position[groups,{},{1}]//Flatten;
+posSUNs=Position[groups,x_/;Length[x]>1&&x===CartanMatrix["A",Length[x]],{1}]//Flatten;
+
+dimRepsNFlavs=Apply[Times,DimR[groups,#]&/@reps,{1}] nFlavours;
+dynkins=dimRepsNFlavs(DynkinIndex[groups,#]/DimR[groups,#]&/@reps);
+
+(* Y^3 cases and T T Y cases *)
+Do[
+aux=Total[dynkins reps[[All,i]]];
+result=result&&(aux==0aux);
+,{i,posU1s}];
+
+(* TTT cases - see "Gauge groups without triangular anomaly", Susumu Okubo, 1977 *)
+Do[
+n=Length[groups[[i]]]+1;
+sigmas=Prepend[Accumulate[#],0]&/@reps[[All,i]];
+sigmas=sigmas+1/2(n+1)-ConstantArray[Range[n],Length[reps]]-1/n Total[sigmas,{2}];
+aux=Total[dimRepsNFlavs n/((n^2-1)(n^2-4))sigmas^3,2];
+result=result&&(aux==0);
+,{i,posSUNs}];
+Return[result];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+(* For 1 field/representation this method gives a list which, when summed for all the representations in a model (note: including flavour multiplicity), must be the {0,0,...} list *)
+TriangularAnomalyValue[groups_,rep_]:=Module[{posU1s,posSUNs,dimRep,dynkins,n,sigmas,aux,part1,part2,result},
+
+posU1s=Position[groups,{},{1}]//Flatten;
+posSUNs=Position[groups,x_/;Length[x]>1&&x===CartanMatrix["A",Length[x]],{1}]//Flatten;
+
+dimRep=Times@@DimR[groups,rep] ;
+dynkins=dimRep DynkinIndex[groups,rep]/DimR[groups,rep];
+
+(* Y^3 cases and T T Y cases *)
+result={};
+Do[
+aux=dynkins rep[[i]];
+AppendTo[result,aux];
+,{i,posU1s}];
+
+(* TTT cases - see "Gauge groups without triangular anomaly", Susumu Okubo, 1977 *)
+Do[
+n=Length[groups[[i]]]+1;
+sigmas=-Prepend[Accumulate[rep[[i]]],0];
+sigmas=sigmas+1/2(n+1)-Range[n]-1/n Total[sigmas];
+aux=Total[dimRep n/((n^2-1)(n^2-4))sigmas^3];
+AppendTo[result,aux];
+,{i,posSUNs}];
+
+result=Flatten[result];
+Return[result];
+]
+
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX LISTING ALL REPS UP TO SOME SIZE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+(* For a simple group, this method calculates all the representations up to a given size maxDim *)
+RepsUpToDimN[group_,maxDim_]:=RepsUpToDimNAuxilarMethod[group,ConstantArray[0,Length[group]],1,maxDim,{}]
+
+(* Same as RepsUpToDimN but returns only one representation for each pair of conjugate representations *)
+RepsUpToDimNNoConjugates[group_,maxDim_]:=DeleteDuplicates[RepsUpToDimN[group,maxDim],#1==#2||#1==ConjugateIrrep[group,#2]&]
+
+(* This is a recursive auxiliar method used by RepsUpToDimN and is not meant to be used directly *)
+RepsUpToDimNAuxilarMethod[group_,w_,digit_,max_,results_]:=Module[{wAux,newResult},
+wAux=w;
+wAux[[digit]]=0;
+newResult=results;
+(* If it is a leaf ... *)
+If[digit==Length[w],
+While[DimR[group,wAux]<=max,
+AppendTo[newResult,wAux];
+wAux[[digit]]++;
+];,
+While[DimR[group,wAux]<=max,
+newResult=RepsUpToDimNAuxilarMethod[group,wAux,digit+1,max,newResult];
+wAux[[digit]]++;
+];
+];
+Return[newResult];
+]
+
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXX THE SYMMETRY TO TENSOR PRODUCTS - PLESTHYSM XXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+(* Hook length formula for the dimension of the Sn representations. Should be the same as SnClassCharacter[partition,ConstantArray[1,Total[partition]]] *)
+SnIrrepDim[partition_]:=Module[{n1,n2,inverseP,result},
+n1=partition[[1]];
+n2=Length[partition];
+inverseP=Count[partition,x_/;x>=#]&/@Range[n1];
+result=Table[Max[partition[[j]]+inverseP[[i]]-(j-1)-(i-1)-1,1],{i,n1},{j,n2}];
+result=Total[partition]!/(Times@@Flatten[result]);
+Return[result];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+(* This method decomposes the product of a list of Sn representations into its irreducible parts *)
+DecomposeSnProduct[partitionsList_]:=Module[{n,characterTable,aux,result},
+(* must be the same as for all partitions in partitionsList *)
+n=Total[partitionsList[[1]]]; 
+result=1/n!Table[Sum[SnClassOrder[i]Product[SnClassCharacter[inputPartition,i],{inputPartition,partitionsList}]SnClassCharacter[j,i],{i,IntegerPartitions[n]}],{j,IntegerPartitions[n]}];
+Return[result];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+(* See arXiv:math/0309225v1[math.CO] - this is an auxiliar method to calculate SnClassCharacter *)
+(* Note: a partitition is a list of non-increasing positive integers - see http://en.wikipedia.org/wiki/Young_tableau *)
+PartitionSequence[partition_]:=Module[{sequence},
+sequence=ConstantArray[1,partition[[-1]]];
+AppendTo[sequence,0];
+Do[
+sequence=Join[sequence,ConstantArray[1,partition[[-i]]-partition[[-i+1]]]];
+AppendTo[sequence,0];
+,{i,2,Length[partition]}];
+Return[sequence];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+(* See arXiv:math/0309225v1[math.CO] - this is an auxiliar method to calculate SnClassCharacter *)
+(* This method finds all the rim hooks \[Xi] with length l and returns a list with all the possibilities {partition\\[Xi], leg length of rim hook \[Xi]} which is writen as {partition\\[Xi],ll(\[Xi])}*)
+RimHooks[partition_,l_]:=Module[{seqMinusHook,sequence,length,result},
+sequence=PartitionSequence[partition];
+result={};
+
+Do[
+If[sequence[[i]]==1&&sequence[[i+l]]==0,
+
+seqMinusHook=sequence;seqMinusHook[[i]]=0;seqMinusHook[[i+l]]=1;
+length=Count[sequence[[i;;i+l]],0]-1;
+AppendTo[result,{RebuiltPartitionFromSequence[seqMinusHook],length}];
+];
+
+,{i,Length[sequence]-l}];
+Return[result];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+(* See arXiv:math/0309225v1[math.CO] - this is an auxiliar method to calculate SnClassCharacter *)
+(* RebuiltPartitionFromSequence[PartitionSequence[partition]]=partition *)
+RebuiltPartitionFromSequence[sequence_]:=Module[{start,end,validSequence,counter1s,result},
+counter1s=0;result={};
+Do[
+If[sequence[[i]]==0,
+PrependTo[result,counter1s];
+,
+counter1s++;
+];
+
+,{i,Length[sequence]}];
+Return[DeleteCases[result,0]];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+(* See arXiv:math/0309225v1[math.CO] for the way to compute SnClassCharacter from the Murnaghan-Nakayama rule  *)
+(* \[Lambda] is the representation; \[Mu] is the conjugacy class. This method computes the character of conjugacy class \mu in the irreducible representation \[Lambda]  *)
+SnClassCharacter[partition\[Lambda]_,partition\[Mu]_]:=SnClassCharacter[partition\[Lambda],partition\[Mu]]=Module[{new\[Lambda]s,new\[Mu],n,result},
+
+If[Length[partition\[Lambda]]==0,Return[1]];
+
+n=Total[partition\[Lambda]];
+If[n!=Total[partition\[Mu]],Return["Error in SnClassCharacter function: both partitions must be of the same order."]];
+
+new\[Lambda]s=RimHooks[partition\[Lambda],partition\[Mu][[1]]];
+new\[Mu]=partition\[Mu][[2;;-1]];
+
+result=Sum[(-1)^new\[Lambda]s[[i,2]] SnClassCharacter[new\[Lambda]s[[i,1]],new\[Mu]],{i,Length[new\[Lambda]s]}];
+
+Return[result];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+(* Reference: Unless otherwise stated, the reference for the code below was the Lie Manual available in http://www-math.univ-poitiers.fr/~maavl/LiE/ *)
+
+(* Size of a given conjugacy class of Sn. The formula is easy but see for example "Enumerative Combinatorics", Richard P.Stanley, http://math.mit.edu/~rstan/ec/ec1.pdf, 1.3.2 Proposition *)
+SnClassOrder[partition_]:=SnClassOrder[partition]=Module[{aux,n,result},
+n=Total[partition];
+aux=Tally[partition];
+result=n!/Product[aux[[i,1]]^aux[[i,2]] aux[[i,2]]!,{i,Length[aux]}];
+Return[result];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+VDecomp[cm_,dominantWeight_]:=Module[{result},
+result=AltDom[cm,WeylOrbit[cm,dominantWeight]];
+Return[result];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+AltDom[cm_,weights_,weylWord_]:=Module[{cmInv,matD,cmID,aux,prov,result},
+prov={#,1}&/@weights;
+
+
+Do[
+(* aux=SimpleProduct[prov[[j]],cm[[i]],cmID]; *)
+If[prov[[j,2]]!=0,
+Which[prov[[j,1,weylWord[[i]]]]>=0,Null,
+prov[[j,1,weylWord[[i]]]]==-1,prov[[j,2]]=0,
+prov[[j,1,weylWord[[i]]]]<=-2,prov[[j,2]]=-prov[[j,2]];prov[[j,1]]=prov[[j,1]]-(prov[[j,1,weylWord[[i]]]]+1)cm[[weylWord[[i]]]];
+
+];
+
+];
+
+,{i,Length[weylWord]},{j,Length[prov]}];
+prov=DeleteCases[prov,x_/;x[[2]]==0];
+
+Return[prov];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+AltDom[cm_,weights_]:=AltDom[cm,weights,LongestWeylWord[cm]]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+Adams[cm_,n_,rep_]:=Module[{aux,result},
+aux=DominantWeights[cm,rep];
+aux={#[[1]] n,#[[2]]}&/@aux;
+
+result=Table[{VDecomp[cm,aux[[i,1]]],aux[[i,2]]},{i,Length[aux]}];
+result=Table[{result[[i,1,j,1]],result[[i,1,j,2]]result[[i,2]]},{i,Length[result]},{j,Length[result[[i,1]]]}];
+result=Flatten[result,1];
+Return[result];
+]
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+Plethysms[cm_,weight_,partition_]:=Plethysms[cm,weight,partition]=Module[{n,kList,aux,aux1,aux2,factor,sum},
+
+n=Plus@@partition;
+
+(* If group = U1 *)
+If[cm===U1,
+Return[If[Length[partition]==1,{{n weight,1}},{}]];
+];
+
+kList=IntegerPartitions[n];
+sum={};
+
+Do[
+factor=1/n!SnClassOrder[kList[[i]]]SnClassCharacter[partition,kList[[i]]];
+
+aux=Adams[cm,#,weight]&/@kList[[i]];
+
+aux=ReduceRepPolyProduct[cm,aux];
+aux={#[[1]],factor #[[2]]}&/@aux;
+
+AppendTo[sum,aux];
+,{i,Length[kList]}];
+
+sum=GatherWeights[sum];
+Return[sum];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+InvariantPlethysms[cm_,weight_,partition_]:=InvariantPlethysms[cm,weight,partition]=Module[{n,kList,aux,aux1,aux2,factor,sum},
+n=Plus@@partition;
+kList=IntegerPartitions[n];
+sum=0;
+
+(* If group = U1 *)
+If[cm===U1,
+Return[If[Length[partition]==1&&weight==0,1,0]];
+];
+
+Do[
+factor=1/n!SnClassOrder[kList[[i]]]SnClassCharacter[partition,kList[[i]]];
+aux=Adams[cm,#,weight]&/@kList[[i]];
+aux=NumberOfInvariantsInProduct[cm,aux];
+sum=sum+factor aux;
+
+,{i,Length[kList]}];
+
+Return[sum];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+GatherWeights[listW_]:=Module[{aux},
+aux=Flatten[listW,1];
+aux=Gather[aux,#1[[1]]==#2[[1]]&];
+
+aux={#[[1,1]],Plus@@#[[1;;-1,2]]}&/@aux;
+aux=DeleteCases[aux,x_/;x[[2]]==0];
+
 Return[aux];
 ]
 
-SymmetrizeInvariants[invariants_,var1_,var2_,var3_]:=Module[{i,j,aux,coefs},
-aux=DeleteCases[Flatten[SymmetrizeAux[#,var1,var2,var3]& /@invariants],0];
-coefs=Table[aux[[i,1]] /.{a[__]->1,b[__]->1,c[__]->1},{i,Length[aux]}];
- aux=Expand[ aux/coefs];
-i=1;
-While[i<Length[aux],
-	j=i+1;
-	While[j<=Length[aux],
-	If[aux[[i]]==aux[[j]],aux=Delete[aux,j];coefs=Delete[coefs,j]];
-	j++;];
-i++;];
-aux=Expand[aux coefs] ;
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+GatherWeights[listW_,listMult_]:=Module[{aux},
+aux=Table[{#[[1]],listMult[[i]]#[[2]]}&/@listW[[i]],{i,Length[listW]}];
+aux=Flatten[aux,1];
+aux=Gather[aux,#1[[1]]==#2[[1]]&];
+
+aux={#[[1,1]],Plus@@#[[1;;-1,2]]}&/@aux;
+aux=DeleteCases[aux,x_/;x[[2]]==0];
+Return[aux];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+(* This method calculates the decompositions of a product of sums of irreps: (R11+R12+R13+...) x (R21+R22+R23+...) x ... *)
+(* polyList = list of lists of representations to be multiplied. The method outputs the decomposition of such a product *)
+ReduceRepPolyProduct[cm_,polyList_]:=Module[{n,aux,aux2},
+
+n=Length[polyList];
+aux=polyList[[1]];
+If[n<=1,Return[aux]];
+Do[
+aux=Tuples[{aux,polyList[[i+1]]}];
+
+aux2=ReduceRepProduct[cm,#[[1;;2,1]]]&/@aux;
+
+aux=GatherWeights[aux2,#[[1,2]]#[[2,2]]&/@aux];
+,{i,n-1}];
+
+Return[aux];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+(* This method is similar to ReduceRepPolyProduct but it only cares about the number of invariants in product. That is its output *)
+NumberOfInvariantsInProduct[cm_,polyList_]:=Module[{n,aux,aux2,invariantRep,list1,list2},
+invariantRep=ConstantArray[0,Length[cm]];
+n=Length[polyList];
+
+(* If there is no product, just find the number of invariants in polyList[[1]] and return *)
+If[n==1,
+aux=Cases[polyList[[1]],x_/;x[[1]]==0x[[1]]:>x[[2]]];
+Return[Total[aux]];
+];
+
+(* If theres is more than one factor list in polyList, break polyList in two parts with abou the same length  *)
+(* E.g.: if Length[polyList]=2 then Length[list1]=Length[list2]=1; If Length[polyList]=3 then Length[list1]=1 and Length[list2]=2. *)
+(* Conjugate the irreps in the first part (list1) and match then to irreps in second part (list2) - those form invariants *)
+list1=ReduceRepPolyProduct[cm,polyList[[1;;Floor[n/2] ]]];
+list2=ReduceRepPolyProduct[cm,polyList[[Floor[n/2]+1;;-1]]];
+list1={ConjugateIrrep[cm,#[[1]]],#[[2]]}&/@list1;
+
+aux=(Cases[list2,x_/;x[[1]]==#[[1]]:>x[[2]]]&/@list1);
+aux=Total[Flatten[list1[[All,2]]aux]];
+
 Return[aux];
 ]
 
 
+
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+(* TuplesWithMultiplicity, TallyWithMultiplicity, PermutationSymmetryOfTensorProductPartsAuxiliar, PermutationSymmetryOfTensorProductParts, PermutationSymmetryOfInvariants *)
+(* These are functions related to the symmetry of invariants  which are more ready to use when building a Lagrangian: they deal with products of different representations and the group can be semisimple *)
+
+(* E.g.: TuplesWithMultiplicity[{{{X1,1},{X2,2}},{{Y1,10}},{{Z1,\[Pi]},{Z2,-\[Pi]}}}] = {{{X1,Y1,Z1},10 \[Pi]},{{X1,Y1,Z2},-10 \[Pi]},{{X2,Y1,Z1},20 \[Pi]},{{X2,Y1,Z2},-20 \[Pi]}} *)
+TuplesWithMultiplicity[listOflists_]:=Module[{aux1,aux2,result},
+aux1=Tuples[listOflists];
+aux2=Times@@@aux1[[All,All,2]];
+aux1=aux1[[All,All,1]];
+result=MapThread[List,{aux1,aux2}];
+Return[result];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+(* E.g.: TallyWithMultiplicity[{{X,1},{X,10},{Y,2},{Z,1},{X,2}}] = {{X,13},{Y,2},{Z,1}} *)
+TallyWithMultiplicity[listOflists_]:=Module[{aux1,aux2,result},
+aux1=Gather[listOflists,#1[[1]]==#2[[1]]&];
+aux2=Plus@@@(aux1[[All,All,2]]);
+aux1=aux1[[All,1,1]];
+result=MapThread[List,{aux1,aux2}];
+Return[result];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+(* Base method for PermutationSymmetryOfTensorProductParts *)
+PermutationSymmetryOfTensorProductPartsAuxiliar[group_,rep_,n_]:=Module[{aux,snPart,intPartitionsN,result},
+intPartitionsN=IntegerPartitions[n];
+aux=Tuples[intPartitionsN,Length[group]];
+snPart=DecomposeSnProduct/@aux;
+aux=Table[Plethysms[group[[j]],rep[[j]],i[[j]]],{i,aux},{j,Length[i]}];
+aux=TuplesWithMultiplicity/@aux;
+aux=Table[{{aux[[i,j,1]],intPartitionsN[[k]]},aux[[i,j,2]]snPart[[i,k]]},{i,Length[aux]},{j,Length[aux[[i]]]},{k,Length[intPartitionsN]}];
+aux=DeleteCases[Flatten[aux,2],x_/;x[[-1]]==0];
+result=TallyWithMultiplicity[aux];
+Return[result];
+];
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+(* This calculates the Plethysms in a tensor product of different fields/representations *)
+PermutationSymmetryOfTensorProductParts[group_,listOfReps_]:=Module[{aux1,aux2,aux3,plesthysmFields},
+aux1=Tally[listOfReps];
+plesthysmFields=Flatten[Position[listOfReps,#]]&/@aux1[[All,1]];
+
+aux2=Table[PermutationSymmetryOfTensorProductPartsAuxiliar[group,aux1[[i,1]],aux1[[i,2]]],{i,Length[aux1]}];
+aux2=TuplesWithMultiplicity[aux2];
+aux3=Table[ReduceRepProduct[group,i[[1,All,1]]],{i,aux2}];
+aux3=Table[{{aux3[[i,j,1]],aux2[[i,1,All,2]]},aux3[[i,j,2]]aux2[[i,2]]},{i,Length[aux3]},{j,Length[aux3[[i]]]}];
+aux3=TallyWithMultiplicity[Flatten[aux3,1]];
+Return[{plesthysmFields,aux3}];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+(* This returns only the invariant plesthysms in a tensor product of different fields/representations *)
+(* Output is: {A,B,C} where A = groups os representations (by index) which are equal; B = list with the Sn reps of these groups of representations; C = multiplicity of the invariant *)
+PermutationSymmetryOfInvariants[group_,listOfReps_]:=Module[{indices,invariants},
+{indices,invariants}=PermutationSymmetryOfTensorProductParts[group,listOfReps];
+invariants=DeleteCases[invariants,x_/;x[[1,1]]0!=x[[1,1]]];
+invariants=Table[{i[[1,2]],i[[2]]},{i,invariants}];
+Return[{indices,invariants}];
+]
+
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+(* Hook-content formula: counts the number of semi-standard Young tableaux of shape given by partition and with the cells filled with the numbers 1,...,n *)
+HookContentFormula[partition_,nMax_]:=Module[{n1,n2,inverseP,hookLengths,content,result,aux},
+n1=partition[[1]];
+n2=Length[partition];
+inverseP=Count[partition,x_/;x>=#]&/@Range[n1];
+
+aux=Table[If[partition[[j]]+inverseP[[i]]-(j-1)-(i-1)-1>0,(nMax+i-j)/(partition[[j]]+inverseP[[i]]-(j-1)-(i-1)-1),1],{i,n1},{j,n2}];
+result=Times@@Flatten[aux];
+Return[result];
+]
+
+
+End[];
 EndPackage[];
