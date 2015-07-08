@@ -5,18 +5,6 @@
 
 (* CreatedBy='Mathematica 9.0' *)
 
-(*CacheID: 234*)
-(* Internal cache information:
-NotebookFileLineBreakTest
-NotebookFileLineBreakTest
-NotebookDataPosition[       157,          7]
-NotebookDataLength[     13555,        444]
-NotebookOptionsPosition[     10603,        353]
-NotebookOutlinePosition[     12336,        400]
-CellTagsIndexPosition[     12251,        395]
-WindowTitle->RPVMSSM - Wolfram Mathematica
-WindowFrame->Normal*)
-
 (* Beginning of Notebook Content *)
 Notebook[{
 Cell[" ", "SymbolColorBar",
@@ -376,10 +364,7 @@ StyleDefinitions->Notebook[{
    Cell[
     StyleData["Output"], CellContext -> "Global`"]}, Visible -> False, 
   FrontEndVersion -> "9.0 for Microsoft Windows (64-bit) (January 25, 2013)", 
-  StyleDefinitions -> 
-  FrontEnd`FileName[{$RootDirectory, "C:", "Program Files", 
-     "Wolfram Research", "Mathematica", "10.0", "AddOns", "Applications"}, 
-    "Default_Style_MyVersion.nb", CharacterEncoding -> "WindowsANSI"]]
+  StyleDefinitions -> "Default.nb"]
 ]
 (* End of Notebook Content *)
 

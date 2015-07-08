@@ -38,6 +38,7 @@ Begin["`Private`"]
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 (* Auxiliar method. Input: list o matrices. Output: big matrix with the given matrices as diagonal blocks *)
 (* Taken from SSB module *)
+(* TODO: get rid of this function; replace with BlockDiagonalNTensor *)
 BlockDiagonalMatrix[blocks_]:=Module[{dims,result,i,pos},
 dims=Dimensions/@blocks;
 result=ConstantArray[0,Plus@@dims];
@@ -219,7 +220,7 @@ Return[aux];
 limits=Prepend[1+Accumulate[Length/@newGNonU1s],1];
 
 (* [--------------------OPERATION SPEED UP 1--------------------] Start *)
-If[Length[oG]==1&&Length[newGNonU1s]==1&&Length[newGU1s]==0&&Length[oG[[1]]]==Length[newGNonU1s[[1]]],
+If[Length[oG]==1&&Length[newGNonU1s]==1&&Length[newGU1s]==0&&Length[oG[[1]]]==Length[newGNonU1s[[1]]]&&Det[projectionMatrixNonU1s]!=0,
 (* Speed up happens for this case: original group=simple group; new group= simple group with same rank *)
 
 weights=SpeedUp1\[UnderBracket]DecomposeReps[oG[[1]],newGNonU1s[[1]],oRepNonU1s,Inverse[projectionMatrixNonU1s]];
@@ -271,21 +272,19 @@ weightsGroups=Gather[weights,conjugacyClassFunction[Join[#1[[1]],#1[[2]]]]==conj
 weightsGroups=SortWeights[newGNonU1s,#]&/@weightsGroups;
 
 completeResult={};
+result=Flatten[Reap[
 Do[
-
 While[Length[weights]>0,
 aux=Table[weights[[1,1,limits[[i]];;limits[[i+1]]-1]],{i,Length[newGNonU1s]}];
-result=Join[result,ConstantArray[{aux,weights[[1,2]]},weights[[1,-1]]]];
+Sow[ConstantArray[{aux,weights[[1,2]]},weights[[1,-1]]]];
 weights=RemoveWeights[Simplify[weights],Simplify[WeightsModDominants[newGNonU1s,weights[[1]]]]];
 weights=SortWeights[newGNonU1s,weights];
 ];
-,{weights,weightsGroups}];
+,{weights,weightsGroups}]][[2]],2];
 
 completeResult=Join[completeResult,Simplify[result]];
 
-
 Return[completeResult];
-
 ]
 
 (* This is a function that speeds up the calculation of Decompose reps when a) there are no U(1)s in the group and subgroup and b) there is no rank reduction between group and subgroup. So, to simplify, for now this speed up is triggered only when both group and subgroup are simple groups with the same rank. *)
@@ -313,27 +312,23 @@ WeightsMod[cms_,repTogether_]:=Module[{aux,aux1,aux2,aux3,dims},
 dims=Length/@cms;
 aux1={};
 aux2=1;
+
 Do[
 AppendTo[aux1,repTogether[[1,aux2;;aux2+dims[[i]]-1]]];
 aux2=aux2+dims[[i]];
 ,{i,Length[cms]}];
 
-aux3={};
-Do[
-
-AppendTo[aux3,Weights[cms[[i]],aux1[[i]]]];
-,{i,Length[cms]}];
-
+aux3=Flatten[Reap[Do[
+Sow[Weights[cms[[i]],aux1[[i]]]];
+,{i,Length[cms]}]][[2]],1];
 aux3=Tuples[aux3];
 
 (* "Repair" elements *)
-Do[
 If[Length[repTogether]==2,
-aux3[[i]]={aux3[[i,All,1]]//Flatten,repTogether[[-1]]Times@@aux3[[i,All,2]]},
-aux3[[i]]={aux3[[i,All,1]]//Flatten,repTogether[[2]],repTogether[[-1]]Times@@aux3[[i,All,2]]}
+aux3={#[[All,1]]//Flatten,repTogether[[-1]]Times@@#[[All,2]]}&/@aux3;
+,
+aux3={#[[All,1]]//Flatten,repTogether[[2]],repTogether[[-1]]Times@@#[[All,2]]}&/@aux3;
 ];
-,{i,Length[aux3]}];
-
 
 Return[aux3];
 ]
@@ -498,7 +493,7 @@ The function computes the U1's that correspond to dots that were excluded [this 
 regularsubgroupinfo::numberOfU1s="There is a total of `1` remnant U(1)'s inside the original group (in addition to the provided simple subgroups).
 Make sure that all user-defined unbroken U(1) gauge factors are  a linear combination of these U(1)'s (in other words, each must be specified as an `1`-dimensional list/vector).";
 
-RegularSubgroupInfo[group_,rep_,subgroup_,dotsComposition_]:=Module[{positionU1s,positionNonU1s,matricesGroup,matricesGroupPositions,matricesSubgroup,tempMatrices,dot,extractMatricesPos,u1Combination,aux,aux2,aux3,aux4,missingDots,discardedGenerators,projectionMatrix,dotPositions,nO,tempProjection,availableU1GeneratorsLC,availableU1Generators,extDots,groupMod},
+RegularSubgroupInfo[group_,rep_,subgroup_,dotsComposition_]:=Module[{positionU1s,positionNonU1s,matricesGroup,matricesGroupPositions,matricesSubgroup,tempMatrices,dot,extractMatricesPos,u1Combination,aux,aux2,aux3,aux4,missingDots,discardedGenerators,projectionMatrix,dotPositions,nO,tempProjection,availableU1GeneratorsLC,availableU1Generators,extDots,groupMod,combination,minus\[CapitalLambda],cmInv,matD,cmID,newRootSize,groupI,startP,endP,indicesOfRootsOfFactorGroups,subgroupU1sDotPos},
 positionU1s=Flatten[Position[subgroup,U1]];
 positionNonU1s=Complement[Range[Length[subgroup]],positionU1s];
 
@@ -549,7 +544,7 @@ aux2=Join[Flatten[aux2,1],UnitVector[nO,#]&/@(dotPositions[[Flatten[Position[gro
 (* [END] This code computes the potential linear combinations of U(1)s which can be factored out of the original group and are not part of the simple subgroups *)
 
 
-(* At this point, aux2 contains the linear combinations of the roots which yield valid U(1)s that will commute with the {e,f,h} triples of the preserved dots *)
+(* At this point, aux2 contains the linear combinations of the roots which yield valid U(1)s that will commute with the {e,f,h} triples of the preserved dots. [Update] To be precise, it contains the linear combinations of the Subscript[\[Alpha], i]/<Subscript[\[Alpha], i],Subscript[\[Alpha], i]>. *)
 
 aux3=Table[If[group[[gI]]===U1,matricesGroup[[{matricesGroupPositions[[gI]]+1}]],matricesGroup[[matricesGroupPositions[[gI]]+3Range[Length[group[[gI]]]]]]],{gI,Length[group]}];
 aux3=Flatten[aux3,1];
@@ -578,8 +573,18 @@ aux=matricesGroup[[1+extractMatricesPos;;extractMatricesPos+3Length[group[[dotsC
 aux=InverseFlatten[aux,{Length[group[[dotsComposition[[elI,1]]]]],3}];
 
 AppendTo[tempMatrices,EFH\[UnderBracket]OfExtraDotOfRegularSubAlgebra[group[[dotsComposition[[elI,1]]]],aux]];
-aux=Table[-Count[dotPositions[[dotsComposition[[elI,1]]]]+findAdjointDecompositionInSimpleRoots[group[[dotsComposition[[elI,1]]]]],i],{i,nO}];
-AppendTo[projectionMatrix,aux];
+combination=Table[-Count[dotPositions[[dotsComposition[[elI,1]]]]+findAdjointDecompositionInSimpleRoots[group[[dotsComposition[[elI,1]]]]],i],{i,nO}];
+
+(* AppendTo[projectionMatrix,aux]; INCORRECT - below is the correct code *)
+groupI=group[[dotsComposition[[elI,1]]]];
+minus\[CapitalLambda]=-Adjoint[groupI];
+cmInv=Inverse[groupI];matD=MatrixD[groupI];cmID=cmInv.matD;
+newRootSize=SimpleProduct[minus\[CapitalLambda],minus\[CapitalLambda],cmID]/SimpleProduct[groupI[[1]],groupI[[1]],cmID](matD[[1,1]]);
+aux=PadRight[Join[ConstantArray[1,dotPositions[[dotsComposition[[elI,1]]]]],Diagonal[matD]],nO];
+combination=combination  aux/newRootSize;
+
+AppendTo[projectionMatrix,combination];
+(* [END] AppendTo[projectionMatrix,aux]; INCORRECT - below is the correct code *)
 ];
 
 ,{dotI,Length[dotsComposition[[elI,2]]]}];
@@ -607,6 +612,27 @@ aux={#[[1,1]],Sort[#[[All,2]]]}&/@Gather[aux,#1[[1]]==#2[[1]]&];
 discardedGenerators=Table[If[group[[el[[1]]]]===U1,{},matricesGroup[[matricesGroupPositions[[el[[1]]]]+3(el[[2]]-1)+{1}]]],{el,missingDots}];
 discardedGenerators=Join[availableU1Generators,Flatten[discardedGenerators,1]];
 
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXX STATUS AT THIS POINT XXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
+
+(* At this point it has been calculated...;
+--------;
+For U1s: each line of 'projectionMatrix' corresponds to the linear combination of the Subscript[h, i] (and maybe involving also 2 Subscript[h, -\[CapitalLambda]]/<\[CapitalLambda],\[CapitalLambda]>) which is associated to the U1 factor. 'matricesSubgroup' contains the corresponding linear combination of the Subscript[h, i] (and maybe involving also 2 Subscript[h, -\[CapitalLambda]]/<\[CapitalLambda],\[CapitalLambda]>);
+--------;
+For non-U1s: each line of 'projectionMatrix' corresponds to the preserved Subscript[\[Alpha], i], or combination of the Subscript[\[Alpha], i]'s if the subgroup involves the extended Dynkin diagram. If the extended Dynkin diagram dot is not involved, this is the same as the preseved Subscript[\[Alpha], i]/<Subscript[\[Alpha], i],Subscript[\[Alpha], i]> otherwhise it is not the same. 'matricesSubgroup' contains the correct combination of the Subscript[\[Alpha], i]/<Subscript[\[Alpha], i],Subscript[\[Alpha], i]>, since this correction is adequately performed in the function EFH\[UnderBracket]OfExtraDotOfRegularSubAlgebra (which returns the Subscript[e, i],Subscript[f, i],Subscript[h, i] associated to the extended dot);
+
+A further problem is related to what happens to the normalization of the simple roots which are preserved: this normalization does not change, which may be a problem. Consider for example SP4 \[Rule] SU2 where the second dot of SP4 is preserved. Since SP4's <Subscript[\[Alpha], 2],Subscript[\[Alpha], 2]> = 2 by the function MatrixD, we may have a problem as in SU2, <Subscript[\[Alpha], 1],Subscript[\[Alpha], 1]> = 1 by the function MatrixD.;
+--------;
+There a then two (potential) problems;
+
+A-For the extend Dynkin diagram dot, the projection matrix line must be corrected;
+B-Chaining the use of the 'matricesSubgroup' with other functions might be a problem, given that the normalization of the subgroup simple roots is not cannonical. EVERYWHERE MatrixD is used must be looked at carefully in these cases (ratios MatrixD(...)/MatrixD(...) are ok though).
+ *)
+
+(* 25/Feb/2015 UPDATE: the newer code (pre-25/Feb/2015) has already been changed so that line of 'projectionMatrix' corresponds to the preserved Subscript[\[Alpha], i]/<Subscript[\[Alpha], i],Subscript[\[Alpha], i]> or combination of the Subscript[\[Alpha], i]/<Subscript[\[Alpha], i],Subscript[\[Alpha], i]> of the original group *)
+
+
 Return[{matricesSubgroup,discardedGenerators,projectionMatrix}];
 ]
 
@@ -615,31 +641,6 @@ Return[{matricesSubgroup,discardedGenerators,projectionMatrix}];
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
-GroupsWithRankN2[n_]:=Module[{res},
-res={};
-If[n>0,AppendTo[res,{"A",n}]];
-If[n>2,AppendTo[res,{"D",n}]];
-If[n>1,AppendTo[res,{"B",n}]];
-If[n>2,AppendTo[res,{"C",n}]];
-
-If[n==2,AppendTo[res,{"G",2}]];
-If[n==4,AppendTo[res,{"F",4}]];
-If[n==6,AppendTo[res,{"E",6}]];
-If[n==7,AppendTo[res,{"E",7}]];
-If[n==8,AppendTo[res,{"E",8}]];
-
-Return[res];
-]
-
-(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
-
-CMtoFamilyAndSeries[cm_]:=Module[{aux,result},
-aux=GroupsWithRankN2[Length[cm]];
-result=aux[[Position[CartanMatrix@@@aux,cm][[1,1]]]];
-Return[result];
-]
-
-(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
 (* This function is used to speed up the calculation of invariants, by breaking the original group into smaller ones. *)
 

@@ -36,7 +36,7 @@ BeginPackage["Susyno`LieGroups`"];
 {TuplesWithMultiplicity, TallyWithMultiplicity, PermutationSymmetryOfTensorProductPartsAuxiliar, PermutationSymmetryOfTensorProductParts, PermutationSymmetryOfInvariants,HookContentFormula};
 {TransposeTableaux,CheckStandardTableaux,GenerateStandardTableaux,SnIrrepGenerators};
 
-{CMtoName,IdentifyGroupName,RepresentationIndex,CMtoFamilyAndSeries,ConjugacyClass,RepName};
+{CMtoName,RepresentationIndex,CMtoFamilyAndSeries,ConjugacyClass,RepName};
 
 (* Functions somewhat related to SSB *)
 {BuildProductRepMinimal,SMethod};
@@ -80,12 +80,14 @@ If[ToUpperCase[name]=="C"&&numberId>1,
 result=SparseArray[{Band[{1,1}]->2,Band[{2,1}]->-1,Band[{1,2}]->-1},{numberId,numberId}]//Normal;
 result[[numberId,numberId-1]]=-2;
 ];
-If[ToUpperCase[name]=="D"&&numberId>2,
+If[ToUpperCase[name]=="D"&&numberId>=2,
+If[numberId==2,result=2IdentityMatrix[2] (* This is SO4=SU2xSU2 *),
 result=SparseArray[{Band[{1,1}]->2,Band[{2,1}]->-1,Band[{1,2}]->-1},{numberId,numberId}]//Normal;
 result[[numberId,numberId-1]]=0;
 result[[numberId-1,numberId]]=0;
 result[[numberId,numberId-2]]=-1;
 result[[numberId-2,numberId]]=-1;
+]
 ];
 
 (* Classical algebras, with alternative names *)
@@ -148,50 +150,25 @@ IsSimpleGroupQ[group_]:=If[Depth[group]==2||(Depth[group]==3&&group=!=ConstantAr
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
-CMtoName[cm_]:=Module[{adjoint,dim,cas},
+CMtoName[group_]:=If[IsSimpleGroupQ[group],CMtoName\[UnderBracket]Aux[group],CMtoName\[UnderBracket]Aux/@group]
+CMtoName\[UnderBracket]Aux[cm_]:=Module[{aux,result},
 
-If[cm=={},Return["U1"]];
-
-adjoint=Adjoint[cm];
-dim=DimR[cm,adjoint];
-cas=Casimir[cm,adjoint];
-
-Return[IdentifyGroupName[{dim,cas}]];
-]
-
-(* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
-
-IdentifyGroupName[dimCas_]:=Module[{result,aux,n},
-
-(*U(1)*)
-If[dimCas=={1,0},Return["U1"]];
-
-(*Exceptionals*)
-result=Switch[dimCas,{14,4},"G2",{52,9},"F4",{78,12},"E6",{133,18},"E7",{248,30},"E8",_,Null];
-If[!(result===Null),Return[result]];
-
-(*SU(n)*)
-aux=Solve[{n^2-1,n}==dimCas,n];
-aux=Cases[n/.aux,x_/;x>=2&&IntegerQ[x]];
-If[Length[aux]!=0,
-Return["SU"<>ToString[aux[[1]]]];
+result="Unknown group";
+Which[cm=={},result="U1",
+cm==G2,result="G2",
+cm==F4,result="F4",
+cm==E6,result="E6",
+cm==E7,result="E7",
+cm==E8,result="E8",
+True,
+aux=CMtoFamilyAndSeries[cm];
+If[aux[[1]]=="A",result="SU"<>ToString[aux[[2]]+1]];
+If[aux[[1]]=="B",result="SO"<>ToString[2aux[[2]]+1]];
+If[aux[[1]]=="C",result="SP"<>ToString[2aux[[2]]]];
+If[aux[[1]]=="D",result="SO"<>ToString[2aux[[2]]]];
 ];
 
-(*SO(n)*)
-aux=Solve[{1/2(n^2-n),n-2}==dimCas,n];
-aux=Cases[n/.aux,x_/;x>=5&&IntegerQ[x]];
-If[Length[aux]!=0,
-Return["SO"<>ToString[aux[[1]]]];
-];
-
-(*SP(2n)*)
-aux=Solve[{2n^2+n,2n+2}==dimCas,n];
-aux=Cases[n/.aux,x_/;x>=3&&IntegerQ[x]];
-If[Length[aux]!=0,
-Return["SP"<>ToString[2aux[[1]]]];
-];
-
-Return["Unknown group"];
+Return[result];
 ]
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
@@ -277,13 +254,15 @@ Return[{dWeight,index}];
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
+(* This commented version of the WeylOrbit function is equivalent to the one being used, and it is more human readable (but slower) *)
+(*
 WeylOrbit[cm_,weight_]:=Module[{wL,counter,n,result,aux},
 n=Length[cm];
 counter=0;
 wL[counter]={weight};
 result={weight};
 
-While[Length[wL[counter]]!=0,
+While[Length[wL[counter]]\[NotEqual]0,
 
 counter++;
 wL[counter]={};
@@ -292,12 +271,41 @@ Do[
 
 If[wL[counter-1][[j,i]]>0 ,
 aux=ReflectWeight[cm,wL[counter-1][[j]],i][[i+1;;n]];
-If[aux==Abs[aux],
+If[aux\[Equal]Abs[aux],
 wL[counter]=Append[wL[counter],ReflectWeight[cm,wL[counter-1][[j]],i]];
 ]];
 ,{j,Length[wL[counter-1]]},{i,n}];
 result=Join[result,wL[counter]];
 ];
+
+Return[result];
+]
+*)
+
+WeylOrbit[cm_,weight_]:=Module[{lastListWl,n,result,aux,temp},
+n=Length[cm];
+
+lastListWl={weight};
+
+result=Reap[
+Sow[{weight}];
+While[Length[lastListWl]!=0,
+
+temp=If[Abs[#]==-#,Null,ConstantArray[#,n]-# cm]&/@lastListWl; (* This carries out at once the WeylReflections *)
+lastListWl=Reap[Do[
+
+If[lastListWl[[j,i]]>0&&temp[[j,i,i+1;;n]] ==Abs[temp[[j,i,i+1;;n]]],
+Sow[temp[[j,i]]];
+];
+,{j,Length[lastListWl]},{i,n}]][[2]];
+
+If[lastListWl!={},
+lastListWl=lastListWl[[1]];
+Sow[lastListWl];
+];
+]][[2,1]];
+
+result=Flatten[result,1];
 
 Return[result];
 ]
@@ -424,7 +432,9 @@ invCM=Inverse[cm];
 dW=DominantWeights[cm,w];
 result=Table[{#,dW[[i,2]]}&/@WeylOrbit[cm,dW[[i,1]]],{i,Length[dW]}];
 result=Apply[Join,result];
- result=Sort[result,OrderedQ[{-{#1[[1]]-#2[[1]]}.invCM,0{#1[[1]]}}]&]; 
+result=Sort[{-#[[1]].invCM,#}&/@result];
+result=result[[All,2]];
+(*  result=Sort[result,OrderedQ[{-{#1[[1]]-#2[[1]]}.invCM,0{#1[[1]]}}]&]; *)
 
 Return[result];
 ]
@@ -834,10 +844,31 @@ Return[res];
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 (* This method returns the complete set of matrices that make up a representation, with the correct casimir and trace normalizations *)
+RepMatrices[group_,rep_]:=Module[{repMats,identities,aux,aux2,dimsG,dimsGAcc,res},
+If[IsSimpleGroupQ[group],
+Return[RepMatricesBaseMethod[group,rep]],
 
-RepMatrices[input__]:=RepMatrices[input]=If[Depth[{input}]==4,Return[RepMatricesBaseMethod[input]],Return[RepMatricesBaseMethod@@@Transpose[{input}]]];
+(* Else ... group is not just a single factor group *)
+repMats=Table[If[group[[i]]=={},{SparseArray[{{rep[[i]]}}]},RepMatricesBaseMethod[group[[i]],rep[[i]]]],{i,Length[group]}];
+If[Length[repMats]==1,Return[repMats[[1]]]];
 
-RepMatricesBaseMethod[cm_,maxW_]:=Module[{listE,listF,listH,listTotal,n,pRoots,sR,dimG,dimR,rep,matrixCholesky,aux,j},
+identities=Table[{SparseArray[IdentityMatrix[Length[repMats[[i,1]]]]]},{i,Length[group]}];
+
+aux=Table[identities,{i,Length[group]}];
+Do[
+aux[[i,i]]=repMats[[i]];
+,{i,Length[group]}];
+
+res={};
+Do[
+AppendTo[res,KroneckerProduct@@Table[If[k==i,aux[[i,k,j]],aux[[i,k,1]]],{k,Length[group]}]];
+,{i,Length[group]},{j,Length[repMats[[i]]]}];
+
+Return[res];
+];
+]
+
+RepMatricesBaseMethod[cm_,maxW_]:=RepMatricesBaseMethod[cm,maxW]=Module[{listE,listF,listH,listTotal,n,pRoots,sR,dimG,dimR,rep,matrixCholesky,aux,j},
 n=Length[cm];
 pRoots=PositiveRoots[cm];
 rep=RepMinimalMatrices[cm,maxW];
@@ -946,7 +977,7 @@ Return[result];
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 (* The invariants are symmetrized with SnIrrepGenerators. To be precise, invariants/.{a\[Rule]b,b\[Rule]a}=SnM1.invariants and invariants/.{a\[Rule]b,b\[Rule]c,c\[Rule]d,d\[Rule]e,...,X\[Rule]a}=SnM2.invariants where X is some letter (depends on the number of repeated representations n) and {SnM1,SnM2} are the matrices given by SnIrrepGenerators. This is assuming just a single representation repeated n times. For more complicated cases the generalization is trivial. In terms of the invariants in tensor form, Transpose[invariants,{1,3,2,4,5,6,...}]=SnM1.invariants and Transpose[invariants,{1,3,4,5,6,...,2}]=SnM2.invariants  *)
-SymmetrizeInvariants[liegroupIn_,representationsIn_,invariantsTensors_,cjs_]:=Module[{symmetries,fakeConjugationCharges,liegroup,representations,flattenedInvariants,allColumns,stop,count,maxRank,columnsToTrack,aux,invRef,groupOfIndices,permuteInvs12,permuteInvs1\[UnderBracket]n,refP12,refP1\[UnderBracket]n,ids,aux0,aux1,aux2,aux3,aux4,aux5,newStates,result},
+SymmetrizeInvariants[liegroupIn_,representationsIn_,invariantsTensors_,cjs_]:=Module[{symmetries,fakeConjugationCharges,repsTemp,liegroup,representations,flattenedInvariants,allColumns,stop,count,maxRank,columnsToTrack,aux,invRef,groupOfIndices,permuteInvs12,permuteInvs1\[UnderBracket]n,refP12,refP1\[UnderBracket]n,ids,aux0,aux1,aux2,aux3,aux4,aux5,newStates,result},
 
 (* If there are no invariants, stop here *)
 If[invariantsTensors==={},Return[{}]];
@@ -954,8 +985,9 @@ If[invariantsTensors==={},Return[{}]];
 (* Need to take care of conjugations. In particular, conjugated fields are always considered different from the non-conjuated ones, so there is no symmetrization between the two sets of fields. *)
 (* [TODO?] A possible exception to this are representations R which are complex since, in the corrently used basis, R^* is exactly equal to the conjugated representation R'=ConjugateIrrep[group,R]. *)
 (* As such, a fake change is given to conjugated and non-conjugated representations *)
-aux1=DeleteDuplicates[representationsIn];
-aux2=Flatten[Position[representationsIn,#]]&/@aux1;
+repsTemp=Table[If[cjs[[i]],ConjugateIrrep[liegroupIn,representationsIn[[i]]],representationsIn[[i]]],{i,Length[representationsIn]}];
+aux1=DeleteDuplicates[repsTemp];
+aux2=Flatten[Position[repsTemp,#]]&/@aux1;
 aux3={#[[Flatten[Position[cjs[[#]],True]]]],#[[Flatten[Position[cjs[[#]],False]]]]}&/@aux2;
 fakeConjugationCharges=ConstantArray[0,Length[representationsIn]];
 Do[
@@ -2298,7 +2330,7 @@ res={};
 If[n>0,AppendTo[res,{"A",n}]];
 If[n>2,AppendTo[res,{"D",n}]];
 If[n>1,AppendTo[res,{"B",n}]];
-If[n>2,AppendTo[res,{"C",n}]];
+If[n>1,AppendTo[res,{"C",n}]];
 
 If[n==2,AppendTo[res,{"G",2}]];
 If[n==4,AppendTo[res,{"F",4}]];
@@ -2312,6 +2344,7 @@ Return[res];
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
 CMtoFamilyAndSeries[cm_]:=Module[{aux,result},
+If[cm==={},Return["U1"]];
 aux=GroupsWithRankN2[Length[cm]];
 result=aux[[Position[CartanMatrix@@@aux,cm][[1,1]]]];
 Return[result];
