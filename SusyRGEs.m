@@ -427,15 +427,13 @@ Return[modelMod];
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 (* Dealts with multiple equal reps *)
-ReverseMergeReps[model_,modelMod_]:=Module[{fullRepInfo,reverseMergeReps,changeNotation,revertNotation,deleteNullParametersRule,basicRule,reverseSignRule,orderingRule,finalRule,newParameters,uselessRules,aux,aux2,aux3,betaFunctionsModel},
+ReverseMergeReps[model_,modelMod_]:=Module[{fullRepInfo,reverseMergeReps,changeNotation,revertNotation,deleteNullParametersRule,basicRule,reverseSignRule,orderingRule,finalRule,newParameters,uselessRules,aux,aux2,aux3,betaFunctionsModel,signs,ps},
 
 (* If model did not contain repeated representations, there is no need for extra computations since model=modelMod *)
 If[reps[model]===reps[modelMod],
 betaFunctions[model]^=betaFunctions[modelMod];
 Return[];
 ];
-
-
 
 fullRepInfo=Thread[{reps[model],discreteSym[model]}];
 aux=DeleteDuplicates[fullRepInfo];
@@ -450,29 +448,39 @@ basicRule=Flatten[Table[head[{x1___,i,x2___},x3___]->Sum[head[{x1,-reverseMergeR
 
 reverseSignRule=Table[head[x1_,x3___]->head[-x1,x3],{head,{y,\[Mu],l,h,b,s,m2}}];
 
+(*
 orderingRule={y[{x1__},x2___,{x3__}]:>y[Sort[{x1}],x2,{x3}[[Ordering[{x1}]]]],\[Mu][{x1__},x2___,{x3__}]:>\[Mu][Sort[{x1}],x2,{x3}[[Ordering[{x1}]]]],l[{x1__},x2___,{x3__}]:>l[Sort[{x1}],x2,{x3}[[Ordering[{x1}]]]],h[{x1__},x2___,{x3__}]:>h[Sort[{x1}],x2,{x3}[[Ordering[{x1}]]]],b[{x1__},x2___,{x3__}]:>b[Sort[{x1}],x2,{x3}[[Ordering[{x1}]]]],s[{x1__},x2___,{x3__}]:>s[Sort[{x1}],x2,{x3}[[Ordering[{x1}]]]],m2[{x1__},x2___,{x3__}]:>If[!(OrderedQ[{x1}]),Conjugate[m2[Sort[{x1}],x2,{x3}[[Ordering[{x1}]]]]],m2[Sort[{x1}],x2,{x3}[[Ordering[{x1}]]]]]};
+*)
+(* In general, the above commented orderingRule is not correct since it does not take into account a possible sign flip (or a more complicated scenario with the {2,1} rep of S3) *)
+
+(* [Start] correct orderingRule *)
+orderingRule={y[x___]:>ReorderRepIndices[y[x],model],\[Mu][x___]:>ReorderRepIndices[\[Mu][x],model],h[x___]:>ReorderRepIndices[h[x],model],b[x___]:>ReorderRepIndices[b[x],model],m2[{x1__},x2___,{x3__}]:>If[!(OrderedQ[{x1}]),Conjugate[m2[Sort[{x1}],x2,{x3}[[Ordering[{x1}]]]]],m2[Sort[{x1}],x2,{x3}[[Ordering[{x1}]]]]]};
+
+(* [End] correct orderingRule *)
 
 (* finalRule is the true rule to be applied to the results *)
 newParameters=((originalParameters[modelMod]//.basicRule)/.reverseSignRule)/.orderingRule;
 
 (* ... but as a last step we need to delete parameters that are known to be null  *)
-aux3=DeleteCases[Flatten[newParameters[[3;;9]]/.Plus->List/.f[x_]:>f[_]],Conjugate[_]];
+aux3=DeleteCases[Flatten[newParameters[[3;;9]]/.Plus->List/.f[x_]:>f[_]],Conjugate[_]]/.-x_:>x;
+
 aux3=DeleteCases[aux3,x_/;MemberQ[Flatten[originalParameters[model]],x]];
 deleteNullParametersRule=MapThread[Rule,{aux3,ConstantArray[0,Length[aux3]]}];
 newParameters=newParameters/.deleteNullParametersRule;
 
-
 finalRule=Table[(originalParameters[modelMod][[i,j]]/.{f[1]->i1_,f[2]->i2_,f[3]:>i3_})->(newParameters[[i,j]]/.{f[1]->i1,f[2]->i2,f[3]:>i3}),{i,9},{j,Length[originalParameters[modelMod][[i]]]}];
 
-(* no need to have trivial transormations rules *)
+(* no need to have trivial transformations rules *)
 uselessRules={};
 Do[
 If[newParameters[[i,j]]===originalParameters[modelMod][[i,j]],AppendTo[uselessRules,{i,j}]];
 ,{i,Length[finalRule]},{j,Length[finalRule[[i]]]}];
 
 finalRule=Flatten[Delete[finalRule,uselessRules]];
-finalRule=finalRule/.orderingRule;
 
+(* +++ Seems unnecessary +++:
+finalRule=finalRule/.orderingRule;
+*)
 (* 'decompose' the parameters inside the betaFunctions[modelMod] and originalParameters[modelMod] 'variables' *)
 aux=betaFunctions[modelMod]/.finalRule;
 
@@ -484,29 +492,49 @@ changeNotation={y[x1_,x2___,x3_]:>y[MapThread[List,{x1,x3}],x2],\[Mu][x1_,x2___,
 
 aux=aux/.changeNotation;
 
-
 (* Second, initialize the results variable *)
 betaFunctionsModel=Table[0 ,{i,9},{j,Length[ originalParameters[model][[i]]]}];
 
 (* Third, find where to place the aux=betaFunctions[modelMod]/.finalRule results in betaFunctions[model] *)
-aux2=Table[Position[newParameters[[i]]/.f[x_]:>f[],(originalParameters[model][[i,j]]/.f[x_]:>f[])][[1,1]],{i,1,9},{j,Length[originalParameters[model][[i]]]}];
+aux2=Table[Position[newParameters[[i]]/.-x_:>x/.f[x_]:>f[],(originalParameters[model][[i,j]]/.f[x_]:>f[])][[1,1]],{i,1,9},{j,Length[originalParameters[model][[i]]]}];
 
 aux3=Table[Cases[newParameters[[i]],(originalParameters[model][[i,j]]/.f[x_]:>f[_]),-1][[1,-1]],{i,1,9},{j,Length[originalParameters[model][[i]]]}];
+signs=Table[Total[Coefficient[newParameters[[i]],Cases[newParameters[[i]],(originalParameters[model][[i,j]]/.f[x_]:>f[_]),-1][[1]]]],{i,1,9},{j,Length[originalParameters[model][[i]]]}];
     aux3=Table[MapThread[Rule,{el2,Array[f,Length[el2]]}],{el1,aux3[[3;;9]]},{el2,el1}];
 
-(* TODO: free indices might need to be permuted! *)
+(* Finally: (a) free indices might need to be permuted and (b) a minus sign might be necessary *)
+
 Do[
 betaFunctionsModel[[i]]=aux[[i,1;;2,aux2[[i]]]];
 
 If[i>2,
 Do[
-betaFunctionsModel[[i,All,j]]=betaFunctionsModel[[i,All,j]]/.aux3[[i-2,j]];
+betaFunctionsModel[[i,All,j]]=signs[[i,j]]betaFunctionsModel[[i,All,j]]/.aux3[[i-2,j]];
 ,{j,Length[aux3[[i-2]]]}];
 ];
 
 ,{i,9}];
 
-(* Forth, look at the parameter and corresponding betaFunctions: only allow in the RGEs parameters where the free flavours (f[1],f[2],f[3] or subset) match the correct representation indices. All other cases should be zeroed out. *)
+
+(* Fourth, repeated flavor indices which are summed over should involve the same representation index; terms where this is not true should be deleted *)
+aux=betaFunctionsModel//.Conjugate[x_+y_]:>Conjugate[x]+Conjugate[y]//Expand;
+
+Do[
+aux2=aux[[i,j,k]];
+If[Head[aux2]===Plus,aux2[[0]]=List,aux2={aux2}];
+
+aux3=Cases[#,{x_Integer,f[y_Integer]}:>{x,y},-1]&/@aux2;
+aux3=Table[Length/@DeleteDuplicates/@Gather[el,#1[[2]]==#2[[2]]&],{el,aux3}];
+ps=Position[aux3,2][[All,1]];
+
+aux2=Delete[aux2,{#}&/@ps];
+aux2[[0]]=Plus;
+
+aux[[i,j,k]]=aux2;
+,{i,9},{j,2},{k,Length[aux[[i,j]]]}];
+betaFunctionsModel=aux;
+
+(* Fifth, look at the parameter and corresponding betaFunctions: only allow in the RGEs parameters where the free flavours (f[1],f[2],f[3] or subset) match the correct representation indices. All other cases should be zeroed out. *)
 aux2=originalParameters[model]/.{y[x1_,x2___,x3_]:>MapThread[List,{x1,x3}],\[Mu][x1_,x2___,x3_]:>MapThread[List,{x1,x3}],l[x1_,x2___,x3_]:>MapThread[List,{x1,x3}],h[x1_,x2___,x3_]:>MapThread[List,{x1,x3}],b[x1_,x2___,x3_]:>MapThread[List,{x1,x3}],s[x1_,x2___,x3_]:>MapThread[List,{x1,x3}],m2[x1_,x2___,x3_]:>MapThread[List,{x1,x3}]};
 
 Do[
@@ -514,12 +542,85 @@ aux3=Table[{x_,aux2[[i,j,k,2]]}->If[x==aux2[[i,j,k,1]],Evaluate[aux2[[i,j,k]]],F
 betaFunctionsModel[[i,1;;2,j]]=(betaFunctionsModel[[i,1;;2,j]]/.aux3)/.head_[{x1___,ForRemoval,x2___},x3___]:>0;
 ,{i,3,9},{j,Length[originalParameters[model][[i]]]}];
 
-(* Fifth, revert to the usual notation *)
+(* Sixth, revert to the usual notation *)
 revertNotation={y[x1_,x2___]:>y[x1[[All,1]],x2,x1[[All,2]]],\[Mu][x1_,x2___]:>\[Mu][x1[[All,1]],x2,x1[[All,2]]],l[x1_,x2___]:>l[x1[[All,1]],x2,x1[[All,2]]],h[x1_,x2___]:>h[x1[[All,1]],x2,x1[[All,2]]],b[x1_,x2___]:>b[x1[[All,1]],x2,x1[[All,2]]],s[x1_,x2___]:>s[x1[[All,1]],x2,x1[[All,2]]],m2[x1_,x2___]:>m2[x1[[All,1]],x2,x1[[All,2]]]};
 
 betaFunctionsModel=betaFunctionsModel/.revertNotation;
 
 betaFunctions[model]^=betaFunctionsModel;
+]
+
+(* ReorderRepIndices and ReorderRepIndicesAux are auxiliar functions to ReverseMergeReps: they are used to figure out if a minus sign is necessary, or not, while reording the representation and flavor indices of the parameters expanded in ReverseMergeReps. Note that in the case of mixed symmetry (S3 irrep {2,1}) no reordering is done. *)
+
+ReorderRepIndices[parameterIn_,model_]:=Module[{parameter,n,result},
+n=Length[parameterIn[[1]]];
+parameter=parameterIn/.MapThread[Rule,{parameterIn[[-1]],{f[1],f[2],f[3]}[[1;;n]]}];
+result=ReorderRepIndicesAux[parameter,model]/.MapThread[Rule,{{f[1],f[2],f[3]}[[1;;n]],parameterIn[[-1]]}];
+Return[result];
+]
+
+ReorderRepIndicesAux[parameter_,model_]:=(*ReorderRepIndicesAux[parameter,model]=*)Module[{head,invIndex,positionInOrigPar,symInformation,n,hasSymQ,result,aux,aux2,COUNTER,symPos,antiSymmetricQ,symmetricQ,sign},
+head=parameter[[0]];
+n=Length[parameter[[1]]];
+
+invIndex=If[n==3,parameter[[2]],1];
+(*
+positionInOrigPar=Position[originalParameters[model],parameter[[0]][Sort[parameter[[1]]],parameter[[2]],_]][[1]];
+*)
+symInformation=PermutationSymmetryOfInvariants[group[model],reps[model][[parameter[[1]]]]];
+
+(* 1- Exclude from symInformation those cases corresponding to unrealizable parameters *)
+aux=Total/@(nFlavs[model][[DeleteDuplicates[parameter[[1]][[#]]]]]&/@symInformation[[1]]);
+aux=MemberQ[#,x_/;x<=0]&/@Table[HookContentFormula[symInformation[[2,i,1,j]],aux[[j]]],{i,Length[symInformation[[2]]]},{j,Length[symInformation[[1]]]}];
+
+aux=Flatten[Position[aux,True]];
+
+symInformation[[2]]=Delete[symInformation[[2]],aux];
+aux=Times@@@Map[SnIrrepDim,symInformation[[2,All,1]],{2}];
+
+(* 2- The remaining data on symInformation does correspond to real parameters (should match originalParameters[model]). *)
+hasSymQ=Or@@(MemberQ[#,x_/;x>1]&/@Map[Length,symInformation[[2,All,1]],{2}]);
+
+If[!hasSymQ,
+If[n==3,
+result=parameter[[0]][Sort[parameter[[1]]],parameter[[2]],parameter[[3]][[Ordering[parameter[[1]]]]]];
+,
+result=parameter[[0]][Sort[parameter[[1]]],parameter[[2]][[Ordering[parameter[[1]]]]]];
+];
+Return[result];
+,
+
+(* If code arrives here, there MAY be be a non-trivial symmetry to consider *)
+
+(* 3-Now find out what does the index invIndex correspond to (which symmetry) and discard all other useless information *)
+COUNTER=1;
+aux=Table[COUNTER++,{i,Length[symInformation[[2]]]},{j,symInformation[[2,i,2]]},{k,Times@@SnIrrepDim/@symInformation[[2,i,1]]}];
+symPos=Position[aux,invIndex][[1]];
+symInformation={symInformation[[1]],symInformation[[2,symPos[[1]],1]],Extract[aux,symPos[[1;;2]]],symPos[[3]]};
+
+(* 4- symInformation now contains the important information: symInformation={<same rep pos>,<permutation symmetry of parameter>,<invariant indeces of all parameters related to the input one by permutation symmetry>,<pos in symInformation[[3]] of this parameter>}.
+*)
+(* Now, deal only with complete symmetric and antisymmetric case (cases with the {2,1} will be left untouched for now) *)
+antiSymmetricQ=MemberQ[symInformation[[2]],x_/;Length[x]>1]&&(Length[symInformation[[3]]]==1);
+symmetricQ=!MemberQ[symInformation[[2]],x_/;Length[x]>1];
+
+If[antiSymmetricQ||symmetricQ,
+sign=If[symmetricQ,1,Times@@(Signature[parameter[[1]][[#]]]&/@symInformation[[1]])];
+If[sign==0,sign=1];
+
+If[n==3,
+result=sign parameter[[0]][Sort[parameter[[1]]],parameter[[2]],parameter[[3]][[Ordering[parameter[[1]]]]]];
+,
+result=sign parameter[[0]][Sort[parameter[[1]]],parameter[[2]][[Ordering[parameter[[1]]]]]];
+];
+,
+result= parameter;
+];
+
+
+
+Return[result];
+];
 ]
 
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)

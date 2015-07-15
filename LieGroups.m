@@ -460,7 +460,16 @@ Return[auxMax];
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 (* Reduces a direct product representation in its irreducible parts *)
 
-ReduceRepProduct[group_,repsList_]:=ReduceRepProduct[group,repsList]=If[Depth[group]==3&&group=!=ConstantArray[U1,Length[group]],Return[ReduceRepProductBase[group,repsList]],Return[{#[[1;;-1,1]],Times@@#[[1;;-1,2]]}&/@Tuples[MapThread[ReduceRepProductBase[#1,#2]&,{group,Transpose[repsList]}]]]];
+Options[ReduceRepProduct]={UseName->False};
+ReduceRepProduct[group_,repsList_,OptionsPattern[]]:=ReduceRepProduct[group,repsList]=Module[{output},
+If[IsSimpleGroupQ[group],
+output=ReduceRepProductBase[group,repsList];
+,
+output={#[[1;;-1,1]],Times@@#[[1;;-1,2]]}&/@Tuples[MapThread[ReduceRepProductBase[#1,#2]&,{group,Transpose[repsList]}]];
+];
+If[OptionValue[UseName],output={RepName[group,#[[1]]],#[[2]]}&/@output];
+Return[output];
+];
 
 (* Deals with possible factor groups/reps *)
 ReduceRepProductBase[cm_,repsList_]:=Module[{n,orderedList,result},
@@ -1646,7 +1655,9 @@ Return[result];
 (* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX *)
 
 (* For 1 field/representation this method gives a list which, when summed for all the representations in a model (note: including flavour multiplicity), must be the {0,0,...} list *)
-TriangularAnomalyValue[groups_,rep_]:=Module[{posU1s,posSUNs,dimRep,dynkins,n,sigmas,aux,part1,part2,result},
+
+Options[TriangularAnomalyValue]={Verbose->False};
+TriangularAnomalyValue[groups_,rep_,OptionsPattern[]]:=Module[{posU1s,posSUNs,dimRep,dynkins,n,sigmas,aux,aux2,part1,part2,result,groupNames},
 
 posU1s=Position[groups,{},{1}]//Flatten;
 posSUNs=Position[groups,x_/;Length[x]>1&&x===CartanMatrix["A",Length[x]],{1}]//Flatten;
@@ -1654,11 +1665,20 @@ posSUNs=Position[groups,x_/;Length[x]>1&&x===CartanMatrix["A",Length[x]],{1}]//F
 dimRep=Times@@DimR[groups,rep] ;
 dynkins=dimRep DynkinIndex[groups,rep]/DimR[groups,rep];
 
-(* Y^3 cases and T T Y cases *)
+
 result={};
+
+(* Y Y' Y'' cases (with maybe Y!=Y'!=Y'') *)
+Do[
+If[i<j<k,AppendTo[result,{{i,j,k},dimRep rep[[i]]rep[[j]]rep[[k]]}]];
+,{i,posU1s},{j,posU1s},{k,posU1s}];
+
+
+(* Y Y Y' (with maybe Y=Y') cases and T T Y cases *)
 Do[
 aux=dynkins rep[[i]];
-AppendTo[result,aux];
+aux2=Table[{i,j,j},{j,Length[groups]}];
+result=Join[result,Transpose[{aux2,aux}]];
 ,{i,posU1s}];
 
 (* TTT cases - see "Gauge groups without triangular anomaly", Susumu Okubo, 1977 *)
@@ -1667,10 +1687,18 @@ n=Length[groups[[i]]]+1;
 sigmas=-Prepend[Accumulate[rep[[i]]],0];
 sigmas=sigmas+1/2(n+1)-Range[n]-1/n Total[sigmas];
 aux=Total[dimRep n/((n^2-1)(n^2-4))sigmas^3];
-AppendTo[result,aux];
+AppendTo[result,{{i,i,i},aux}];
 ,{i,posSUNs}];
 
-result=Flatten[result];
+If[OptionValue[Verbose],
+
+groupNames=CMtoName[groups];
+aux=Flatten[Position[groupNames,#]]&/@DeleteDuplicates[groupNames];
+Do[If[Length[el]>1,groupNames[[el[[i]]]]=Subscript[groupNames[[el[[i]]]], i]],{el,aux},{i,Length[el]}];
+Print[Row[{Style["XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",GrayLevel[0.5]],"\n",Style[">>> The input group has the following factors: ",{Bold,Darker[Red]}],groupNames,".\n",Style[Row[{">>> There are ",Length[result]," anomalies to consider: "}],{Bold,Darker[Red]}],Times@@groupNames[[#]]&/@result[[All,1]],".\n",Style[">>> The values of the anomalies given by the TriangularAnomalyValue function follow this order.",{Bold,Darker[Red]}],Style["\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",GrayLevel[0.5]]},BaseStyle->{FontFamily->"Consolas"}]];
+
+];
+result=result[[All,2]];
 Return[result];
 ]
 
@@ -2071,7 +2099,7 @@ Return[result];
 (* This calculates the Plethysms in a tensor product of different fields/representations *)
 PermutationSymmetryOfTensorProductParts[groupIn_,listOfRepsIn_]:=Module[{group,listOfReps,aux1,aux2,aux3,plesthysmFields},
 (* Deal with single simple groups *)
-If[(groupIn===ConstantArray[U1,Length[groupIn]]&&Length[groupIn]>0)||Depth[groupIn]==4,
+If[!IsSimpleGroupQ[groupIn],
 group=groupIn;listOfReps=listOfRepsIn;
 ,
 group={groupIn};listOfReps={#}&/@listOfRepsIn;
@@ -2085,6 +2113,12 @@ aux2=TuplesWithMultiplicity[aux2];
 aux3=Table[ReduceRepProduct[group,i[[1,All,1]]],{i,aux2}];
 aux3=Table[{{aux3[[i,j,1]],aux2[[i,1,All,2]]},aux3[[i,j,2]]aux2[[i,2]]},{i,Length[aux3]},{j,Length[aux3[[i]]]}];
 aux3=TallyWithMultiplicity[Flatten[aux3,1]];
+
+(* Deal with single simple groups *)
+If[IsSimpleGroupQ[groupIn],
+aux3[[All,1,1]]=aux3[[All,1,1,1]];
+];
+
 Return[{plesthysmFields,aux3}];
 ]
 

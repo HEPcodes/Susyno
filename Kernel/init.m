@@ -5,7 +5,7 @@
 Block[{result},
 result={};
 AppendTo[result,Style["XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX Susyno XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",{GrayLevel[0.5]}]];
-AppendTo[result,Row[{Style["Version: 3.3 ; Author: Renato Fonseca\nFor help, use the ",{GrayLevel[0.5]}],Hyperlink["Susyno Tutorial","paclet:Susyno/tutorial/SusynoTutorial"],Style[" and the built-in documentation.",{GrayLevel[0.5]}]}]];
+AppendTo[result,Row[{Style["Version: 3.4; Author: Renato Fonseca\nFor help, use the ",{GrayLevel[0.5]}],Hyperlink["Susyno Tutorial","paclet:Susyno/tutorial/SusynoTutorial"],Style[" and the built-in documentation.",{GrayLevel[0.5]}]}]];
 
 AppendTo[result,Style["XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",{GrayLevel[0.5]}]];
 
